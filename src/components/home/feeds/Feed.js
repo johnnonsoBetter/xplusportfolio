@@ -23,7 +23,7 @@ export default function Feed() {
                 <Grid item xs={12} sm={8} md={8} lg={6} >
                     
                 </Grid>
-                <Grid item sm={4} sx={{display: {xs: "none", sm: "block", md: "block", lg: "none"}}} md={4} lg={3} >
+                <Grid  item sm={4} sx={{display: {xs: "none", sm: "block", md: "block", lg: "none"}}} md={4} lg={3} >
                     
                 <TopProjects />
                 </Grid>

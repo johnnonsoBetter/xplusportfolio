@@ -1,0 +1,9 @@
+.pinned-project-menu::-webkit-scrollbar {
+    display: none!important;
+}
+
+.pinned-project-menu {
+    -ms-overflow-style: none!important;
+    scrollbar-width: none!important;
+    background-color: green;
+}

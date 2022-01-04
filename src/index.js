@@ -4,10 +4,22 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from './context/AuthContext';
+import { FetchProvider } from './context/FetchContext';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter >
+      <AuthProvider>
+      <FetchProvider>
+        <App />
+      </FetchProvider>
+      
+      </AuthProvider>
+    </BrowserRouter>
+    
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

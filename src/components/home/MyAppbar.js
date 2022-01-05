@@ -70,7 +70,7 @@ export default function MyAppbar(props) {
         <Box  >
             <ElevationScroll  {...props}>
                 <AppBar sx={{backgroundColor: "white"}} >
-                    <Container  >
+                    <Container  sx={{pr: {xs: "0px", sm: 1}, pl: {xs: "0px", sm: 1}}} >
                         <Toolbar >
                         <AppbarContent />
                         </Toolbar>

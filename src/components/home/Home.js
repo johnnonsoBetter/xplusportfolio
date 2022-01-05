@@ -15,9 +15,6 @@ export default function HideAppBar(props) {
 
   const { path} = useRouteMatch()
 
-  
-
-
   return (
     <React.Fragment>
       <CssBaseline />

@@ -2,6 +2,8 @@ import { PsychologyRounded } from '@mui/icons-material';
 import { Avatar, Box, Divider, IconButton, InputBase, Paper, Skeleton, Stack } from '@mui/material'
 import React from 'react'
 import ActivityLoader from './ActivityLoader';
+import ProjectActivity from './project_activity/ProjectActivity';
+
 
 
 const AnticipationCreator = ()=> {
@@ -32,7 +34,7 @@ function MyMiniInfo() {
 
         return (
             <Box>
-                <Paper elevation={0} sx={{minHeight: 10, width: "100%", borderRadius: "10px"}} >
+                <Paper elevation={0} sx={{minHeight: 10, width: "100%"}} >
                     <Box display="flex" p={1} width="100%" alignItems="center" justifyContent="flex-start" >
                         <Box width="20%" height="100%" display="flex" justifyContent="center" >
                             <Avatar src="/images/pics.jpg" alt="pics" width={50} height={50} sx={{mr: 2}}/>
@@ -75,9 +77,15 @@ function MyMiniInfo() {
 export default function ActivityPage() {
 
     return (
-        <Box elevation={0} sx={{width: "100%"}}>
+        <Box  sx={{width: "100%",  height: {xs: "auto", sm: "auto", md: "calc(99vh - 110px)"}, scrollbarWidth: {display: "none"}, overflowY: "auto"}}>
             <MyMiniInfo />
-            <ActivityLoader />
+
+           
+                <ProjectActivity />
+                <ProjectActivity />
+                <ProjectActivity />
+            
+            
         </Box>
     )
 }

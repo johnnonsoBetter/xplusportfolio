@@ -1,10 +1,11 @@
+
 import { Avatar, Box, ListItemIcon, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 
 
-export default function ProjectActivityOwner() {
+export default function AnticipationActivityOwner() {
 
 
     return (
@@ -13,7 +14,7 @@ export default function ProjectActivityOwner() {
         
             <ListItemIcon >
                 
-                <Avatar src="/images/selfie.jpeg" alt="pics" />
+                <Avatar src="/images/rich.jpg" alt="pics" />
             </ListItemIcon>
             <Stack  >
                 

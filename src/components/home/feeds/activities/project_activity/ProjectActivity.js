@@ -15,6 +15,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { ChatBubbleOutlined, ChatBubbleOutlineRounded, CropFreeOutlined, EmojiObjectsOutlined, HowToVoteOutlined, InsertLinkOutlined, ModeCommentOutlined, PushPinOutlined, ThumbUpOutlined } from '@mui/icons-material';
 import { Badge, IconButton, Tooltip } from '@mui/material';
 import ProjectActivityOwner from '../project_activity/ProjectActivityOwner';
+import { Link } from 'react-router-dom';
 
 
 
@@ -168,6 +169,12 @@ function ProjectActivity() {
           </Button>
         }
       />
+      <Paper elevation={0} >
+        <Link to="/xpo/kpo" style={{textDecoration: "none"}} >
+        <Typography color="MenuText" fontWeight={600} noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}> Todo-Application</Typography>
+        </Link>
+        
+      </Paper>
       
         <Paper  elevation={0} sx={{display: "flex", justifyContent: "space-between"}}>
             <Box py={1} mx={2} display="flex" justifyContent="flex-end"  >
@@ -178,7 +185,6 @@ function ProjectActivity() {
                         <HowToVoteOutlined />
                     </Badge>
                 </IconButton>
-
 
             </Tooltip>
 

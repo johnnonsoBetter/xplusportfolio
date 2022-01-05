@@ -2,6 +2,7 @@ import { PsychologyRounded } from '@mui/icons-material';
 import { Avatar, Box, Divider, IconButton, InputBase, Paper, Skeleton, Stack } from '@mui/material'
 import React from 'react'
 import ActivityLoader from './ActivityLoader';
+import AnticipationActivity from './anticipation_activity/AnticipationActivity';
 import ProjectActivity from './project_activity/ProjectActivity';
 
 
@@ -82,7 +83,7 @@ export default function ActivityPage() {
 
            
                 <ProjectActivity />
-                <ProjectActivity />
+                <AnticipationActivity />
                 <ProjectActivity />
             
             

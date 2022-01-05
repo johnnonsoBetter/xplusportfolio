@@ -67,7 +67,7 @@ export default function MyAppbar(props) {
 
     return (
         <>
-        <Box sx={{display: {xs: 'none', sm: 'block'}}} >
+        <Box  >
             <ElevationScroll  {...props}>
                 <AppBar sx={{backgroundColor: "white"}} >
                     <Container  >
@@ -79,7 +79,7 @@ export default function MyAppbar(props) {
             </ElevationScroll>
         </Box>
 
-        <Box sx={{display: {xs: 'block', sm: 'none'}}} >
+        {/* <Box sx={{display: {xs: 'block', sm: 'none'}}} >
             <HideOnScroll  {...props}>
                 <AppBar sx={{backgroundColor: "white"}} >
                     <Container  >
@@ -89,7 +89,7 @@ export default function MyAppbar(props) {
                     </Container>      
                 </AppBar>
             </HideOnScroll>
-        </Box>
+        </Box> */}
         
         
         </>

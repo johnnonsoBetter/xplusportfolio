@@ -23,7 +23,7 @@ export default function HideAppBar(props) {
       <CssBaseline />
         <MyAppbar />
         <Toolbar />
-        <Container>
+        <Container sx={{pr: {xs: "4px", sm: 1}, pl: {xs: "4px", sm: 1}}}>
         <Box sx={{ my: 2 }}>
           <Switch >
 

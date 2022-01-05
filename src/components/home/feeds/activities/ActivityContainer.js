@@ -4,25 +4,32 @@ import React from 'react'
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import { PeopleOutline, PsychologyRounded } from '@mui/icons-material';
+
+import {  PsychologyRounded,  } from '@mui/icons-material';
+import { Switch, Route } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 export default function ActivityContainer() {
+
+    const {path} = useRouteMatch()
 
 
     return (
         <Box width="100%">
-            <MyMiniInfo />
+            
+            <Switch >
+                <Route path={path + "/projects/:slug"} render={() => <p> project</p>} />
+                <Route  path={path + "/members"} render={() => <p> members</p>} />
+                <Route exact path={path}  render={() => <MyMiniInfo /> } />
+                <Redirect to="/404"  />
+            </Switch>
         </Box>
     )
 }
 
 
 function MyMiniInfo() {
-
-
-
-
 
 const AnticipationCreator = ()=> {
   return (

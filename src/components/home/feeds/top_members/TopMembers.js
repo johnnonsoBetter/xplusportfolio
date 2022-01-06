@@ -16,7 +16,7 @@ function Members({members}) {
                     
                         
                             <Box display="flex" width="100%" alignItems="center" justifyContent="space-between" >
-                                <Link to="/xpo"  style={{textDecoration: "none", display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
+                                <Link to="/xpo/members/john-doe"  style={{textDecoration: "none", display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
                             
                                 <ListItemIcon >
                                     

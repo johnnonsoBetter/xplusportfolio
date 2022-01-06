@@ -8,7 +8,7 @@ import MyProfile from './MyProfile'
 import { Link } from 'react-router-dom'
 import { AppsOutlined, PeopleAltOutlined } from '@mui/icons-material'
 import { useRouteMatch } from 'react-router-dom'
-
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function AppbarContent() {
 
@@ -37,6 +37,20 @@ export default function AppbarContent() {
                         </Tooltip>
                        
                     </Link>
+
+                    <Link to="/xpo"  >
+                       
+
+                        <IconButton  sx={{display: {xs: "block", sm: "none"}, mt: 1}}>
+                        <SearchIcon />
+                        </IconButton>
+
+
+                     
+                       
+                    </Link>
+
+                    
 
 
                     <Link to={`${path}/members`} >

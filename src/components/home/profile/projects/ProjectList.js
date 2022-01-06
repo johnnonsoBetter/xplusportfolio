@@ -1,5 +1,5 @@
 import { Folder, FolderOutlined, HowToVoteOutlined, ThumbUpOutlined } from '@mui/icons-material'
-import { Avatar, Badge, Box, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Avatar, Badge, Box, Grid, List, ListItem, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ProjectActivity from '../../feeds/activities/project_activity/ProjectActivity'
@@ -9,17 +9,11 @@ export default  function ProjectList() {
 
     return (
         <Box my={2} >
-            <Grid container spacing={1} >
-
-                <Grid item xs={12} >
-                    <ProjectListLoader />
-                </Grid>
-
-                <Grid item xs={12} >
+            <List >
+                <ListItem disablePadding>
                     <ProjectActivity />
-                </Grid>
-                
-            </Grid>
+                </ListItem>
+            </List>
         
         </Box>
     )

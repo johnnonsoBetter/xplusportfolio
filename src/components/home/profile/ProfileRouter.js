@@ -17,6 +17,7 @@ import { Switch } from 'react-router-dom';
 import { ListSubheader } from '@mui/material';
 import { Redirect } from 'react-router-dom';
 import Followers from './followers/Followers';
+import Following from './following/Following';
 
 
 function MyTabs({slug}) {
@@ -50,17 +51,17 @@ export default function ProfileRouter({slug}) {
       <Box sx={{ width: '100%' }}>
         
         
-        <ListSubheader sx={{borderRadius: "5px"}}>
+        <ListSubheader sx={{borderRadius: "5px", bgcolor: "white"}}>
           <MyTabs slug={slug}/>
         </ListSubheader>
         <Switch>
    
-          <Route path={`/xpo/members/${slug}/following`} render={ () => <p> following </p>} />
+          <Route path={`/xpo/members/${slug}/following`} render={ () => <Following />} />
           <Route path={`/xpo/members/${slug}/followers`} render={ () => <Followers />} />
           <Route path={`/xpo/members/${slug}/suggestions`} render={ () => <p> suggest </p>} />
           <Route path={`/xpo/members/${slug}/anticipations`} render={ () => <p> anticipations </p>} />
           <Route path={`/xpo/members/${slug}/projects`} render={ () => <p> Projects </p>} />
-          <Route path={`/xpo/members/${slug}`} render={ () => <p> Home </p>} />
+          <Route exact path={`/xpo/members/${slug}`} render={ () => <p> Home </p>} />
           <Redirect to="/404" />
           
         </Switch>

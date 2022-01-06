@@ -21,7 +21,7 @@ export default function HideAppBar(props) {
         <MyAppbar />
         <Toolbar />
         <Container sx={{pr: {xs: "4px", sm: 1}, pl: {xs: "4px", sm: 1}}}>
-        <Box sx={{ my: 2 }}>
+        <Box sx={{ my: {xs: 0, sm: 0, md: 2} }}>
           <Switch >
 
             <Route   path={path + "/my-profile"} render={() => <p> my profile </p>} />  

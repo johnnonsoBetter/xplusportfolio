@@ -78,7 +78,7 @@ function MyMiniInfo() {
 export default function ActivityPage() {
 
     return (
-        <Box  sx={{width: "100%",  height: {xs: "auto", sm: "auto", md: "calc(99vh - 110px)"}, scrollbarWidth: {display: "none"}, overflowY: "auto"}}>
+        <Box  sx={{width: "100%",  height: {xs: "auto", sm: "auto", md: "calc(99vh - 85px)"}, scrollbarWidth: {display: "none"}, overflowY: "auto"}}>
             <MyMiniInfo />
 
            

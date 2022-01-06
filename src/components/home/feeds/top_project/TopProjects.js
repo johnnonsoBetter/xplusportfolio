@@ -1,3 +1,4 @@
+import { HowToVoteOutlined } from '@mui/icons-material'
 import { Avatar, Badge, Box, List, ListItem, ListItemButton, ListItemIcon, ListSubheader, Menu, MenuItem, Paper, Stack, Typography } from '@mui/material'
 import { deepOrange } from '@mui/material/colors'
 import React, { useState } from 'react'
@@ -14,14 +15,14 @@ function Projects({projects}) {
             {
                 projects.map(project => (
                     <ListItem key={project.id} divider>
-                        <Link to={`${path}/projects/${project.id}`} style={{textDecoration: "none", width: "100%"}} >
+                        <Link to={`projects/${project.id}`} style={{textDecoration: "none", width: "100%"}} >
 
                             <Box display="flex" width="100%" alignItems="center" >
                                 
                                 <ListItemIcon>
                                     
                                     <Badge badgeContent={25}  color="primary" >
-                                        <img width="32"  src="/images/portfolio.png" alt="portfolio" />
+                                       <HowToVoteOutlined />
                                     </Badge>
                                 </ListItemIcon>
                                 <Stack  >

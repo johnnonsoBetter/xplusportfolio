@@ -176,10 +176,10 @@ function ProjectActivity() {
         
       </Paper>
       
-        <Paper  elevation={0} sx={{display: "flex", justifyContent: "space-between"}}>
+        <Paper  elevation={0} sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <Box py={1} mx={2} display="flex" justifyContent="flex-end"  >
             
-            <Tooltip title="votes" sx={{mr: 2}} >
+            <Tooltip title="vote" sx={{mr: 2}} >
                 <IconButton size="small">
                     <Badge color="info" badgeContent={25} >
                         <HowToVoteOutlined />
@@ -190,17 +190,15 @@ function ProjectActivity() {
 
             
 
-            <Tooltip title="suggestions" >
+            <Tooltip title="suggestions" sx={{mr: 2}} >
                 <IconButton size="small" >
                     <Badge color="warning" badgeContent={25} >
                         <EmojiObjectsOutlined />
                     </Badge>
                 </IconButton>
             </Tooltip>
-            </Box>
-            <Box py={1} mx={2} display="flex" justifyContent="flex-end"  >
-            
-            <Tooltip title="likes" sx={{mr: 2}} >
+
+            <Tooltip title="like"  >
                 <IconButton size="small" >
                     <Badge color="info" badgeContent={25} >
                         <ThumbUpOutlined />
@@ -208,16 +206,17 @@ function ProjectActivity() {
                 </IconButton>
                 
             </Tooltip> 
+            </Box>
+            <Box py={1} mx={1} display="flex" justifyContent="flex-end"  >
+
+            <Link to="/xpo/kpo" style={{textDecoration: "none"}} >
+              <Typography color="MenuText" variant="body2" noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}>22 comments</Typography>
+            </Link>
+            
+           
             
 
-            <Tooltip title="comments" >
-                <IconButton size="small" >
-                    <Badge color="info" badgeContent={25} >
-                        <ModeCommentOutlined  />
-                    </Badge>
-                </IconButton>
-
-            </Tooltip>
+            
             
             </Box>
             

@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import MembersContainer from '../../members/MembersContainer';
+import ProfileContainer from '../../profile/ProfileContainer';
 import ActivityPage from './ActivityPage';
 
 export default function ActivityContainer() {
@@ -17,6 +18,7 @@ export default function ActivityContainer() {
             
             <Switch >
                 <Route path={`${path}/projects/:slug`} render={() => <p> project</p>} />
+                <Route path={`${path}/members/:slug`} render={() => <ProfileContainer />} />
                 <Route  path={`${path}/members`} render={() => <MembersContainer />} />
                 <Route exact path={path}  render={() => <ActivityPage /> } />
                 <Redirect to="/404"  />

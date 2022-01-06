@@ -35,13 +35,7 @@ export function Loader() {
             </Stack>
         
         </Box>
-        <Box display="flex" width="100%" justifyContent="flex-end" >
-
-                <Skeleton variant="circular" sx={{width: 20, height: 20, mr: 1}} />
-                <Skeleton variant="circular" sx={{width: 20, height: 20, mr: 1}} />
-                <Skeleton variant="circular" sx={{width: 20, height: 20, mr: 1}} />
-                <Skeleton variant="circular" sx={{width: 20, height: 20, mr: 1}} />
-        </Box>
+      
       </Paper>
       <Paper elevation={0} >
           <Skeleton variant="rectangular" sx={{width: "100%", height: 225}} />
@@ -52,10 +46,15 @@ export function Loader() {
             <Skeleton type="text" width={60} /> 
           </Box>
 
-          <Box display="flex" my={1} >
-                <Skeleton variant="circular" sx={{width: 10, height: 10, mr: 1}} />
-                <Skeleton variant="circular" sx={{width: 10, height: 10, mr: 1}} />
-                <Skeleton variant="circular" sx={{width: 10, height: 10, mr: 1}} />
+         
+         
+      </Paper>
+
+      <Paper elevation={0} sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}} >
+          <Box ml={1} my={1}  display="flex" width="100%" alignItems="center" justifyContent="flex-start"  >
+             
+            <Skeleton variant="circular" width={30} height={30} sx={{mr: 2}} />
+            <Skeleton variant="rectanglar"   type="text" width={60}  />
           </Box>
 
           <Box mr={1} >
@@ -63,34 +62,14 @@ export function Loader() {
           </Box>
          
       </Paper>
-      <Paper elevation={0} sx={{py: 1}} >
-            <Box ml={1}  >
-                <Skeleton type="text" width={150} /> 
-            </Box>
-
-            <Box display="flex" justifyContent="space-between" >
-
-                <Box display="flex" ml={1} my={1}  width="100%" justifyContent="flex-start" >
-
-                    <Skeleton variant="circular" sx={{width: 20, height: 20, mr: 1}} />
-                    <Skeleton variant="circular" sx={{width: 20, height: 20, mr: 1}} />
-                    <Skeleton variant="circular" sx={{width: 20, height: 20, mr: 1}} />
-                    <Skeleton variant="circular" sx={{width: 20, height: 20, mr: 1}} />
-                </Box>
-
-
-            </Box>
-        
-      </Paper>
-      
-      
+     
     </Box>
     )
 
 }
 
 
-export default function ProjectListLoader() {
+export default function AnticipationListLoader() {
 
     return (
         <List  >

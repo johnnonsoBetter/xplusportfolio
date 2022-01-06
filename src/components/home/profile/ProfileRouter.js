@@ -19,6 +19,7 @@ import { Redirect } from 'react-router-dom';
 import Followers from './followers/Followers';
 import Following from './following/Following';
 import ProjectContainer from './projects/ProjectContainer';
+import AncticipationContainer from './anticipations/AnticipationContainer';
 
 
 function MyTabs({slug}) {
@@ -60,7 +61,7 @@ export default function ProfileRouter({slug}) {
           <Route path={`/xpo/members/${slug}/following`} render={ () => <Following />} />
           <Route path={`/xpo/members/${slug}/followers`} render={ () => <Followers />} />
           <Route path={`/xpo/members/${slug}/suggestions`} render={ () => <p> suggest </p>} />
-          <Route path={`/xpo/members/${slug}/anticipations`} render={ () => <p> anticipations </p>} />
+          <Route path={`/xpo/members/${slug}/anticipations`} render={ () => <AncticipationContainer />} />
           <Route path={`/xpo/members/${slug}/projects`} render={ () => <ProjectContainer />} />
           <Route exact path={`/xpo/members/${slug}`} render={ () => <p> Home </p>} />
           <Redirect to="/404" />

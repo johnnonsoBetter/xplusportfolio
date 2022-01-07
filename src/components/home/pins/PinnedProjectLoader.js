@@ -2,8 +2,12 @@ import { Box, MenuItem, Skeleton, Stack } from '@mui/material'
 import React from 'react'
 
 
-export default function PinnedProjectLoader() {
-    const loaders = [1, 2, 3, 4, 5]
+export default function PinnedProjectLoader({length = 5}) {
+    const loaders = []
+
+    for(var i = 0; i < length; i++){
+        loaders.push(i)
+    }
     return (
         <>
             

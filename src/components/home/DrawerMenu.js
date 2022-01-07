@@ -19,13 +19,14 @@ export default function DrawerMenu() {
     
     return (
         <div>
-             <Dialog open={drawerOpen} fullScreen={fullScreen}  >
-                <DialogTitle>Subscribe</DialogTitle>
-                <DialogContent>
-                <DialogContentText>
-                    To subscribe to this website, please enter your email address here. We
-                    will send updates occasionally.
-                </DialogContentText>
+             <Dialog sx={{pr: 0, pl: 0}} open={drawerOpen} fullScreen={fullScreen}  >
+                <DialogTitle sx={{pr: 0, pl: 0}}>
+                    <IconButton onClick={() => setDrawerOpen(!drawerOpen)} >
+                        <CloseOutlined />
+                    </IconButton>
+                </DialogTitle>
+                <DialogContent sx={{pr: "2px", pl: 0}}>
+                
                 <Box >
                     {
                         drawerComponent === "search" ? 
@@ -41,11 +42,7 @@ export default function DrawerMenu() {
                     }
                 </Box>
                 </DialogContent>
-                <DialogActions>
-                    <IconButton onClick={() => setDrawerOpen(!drawerOpen)} >
-                        <CloseOutlined />
-                    </IconButton>
-                </DialogActions>
+                
             </Dialog>
         </div>
     )

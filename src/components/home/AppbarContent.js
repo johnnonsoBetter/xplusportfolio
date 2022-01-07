@@ -1,18 +1,43 @@
 
-import { Box, IconButton, Tooltip, Typography } from '@mui/material'
-import React from 'react'
+import { Badge, Box, IconButton, Tooltip, Typography } from '@mui/material'
+import React, { useContext } from 'react'
 import Search from './Search'
 import NotificationMenu from './notifications/NotificationMenu'
 import PinnedProjectMenu from './pins/PinnedProjectMenu'
 import MyProfile from './MyProfile'
 import { Link } from 'react-router-dom'
-import { AppsOutlined, PeopleAltOutlined } from '@mui/icons-material'
+import { AppsOutlined, NotificationsOutlined, PeopleAltOutlined, PushPinOutlined } from '@mui/icons-material'
 import { useRouteMatch } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
+import DrawerContext from '../../context/DrawerContext'
 
 export default function AppbarContent() {
-
+    
     const {path} = useRouteMatch()
+    const {setDrawerOpen, setFullScreen, setDrawerComponent} = useContext(DrawerContext) 
+
+    const openMobileSearch = () => {
+
+        setDrawerOpen(true)
+        setDrawerComponent('search')
+        setFullScreen(true)
+    }
+
+    const openMobileNotification = () => {
+
+        setDrawerOpen(true)
+        setDrawerComponent('notification')
+        setFullScreen(true)
+    }
+
+    const openMobilePinnedProject = () => {
+
+        setDrawerOpen(true)
+        setDrawerComponent('pinned')
+        setFullScreen(true)
+    }
+
+
 
     return (
         <Box width="100%" display="flex" alignItems="center" justifyContent="space-between" >
@@ -35,8 +60,8 @@ export default function AppbarContent() {
                     </Link>
 
                     <Link to="/xpo#search"  >
-                        <IconButton  sx={{display: {xs: "block", sm: "none"}, mt: 1}}>
-                        <SearchIcon />
+                        <IconButton onClick={openMobileSearch}  sx={{display: {xs: "block", sm: "none"}, mt: 1}}>
+                            <SearchIcon />
                         </IconButton>
                     </Link>
 
@@ -54,13 +79,34 @@ export default function AppbarContent() {
                         </Tooltip>
                        
                     </Link>
-                    
+
 
                     
-                  
-                    <PinnedProjectMenu />
 
-                    <NotificationMenu />
+            
+                    <Box sx={{display: {xs: "flex", sm: "none"}, justifyContent: "space-between"}} >
+                        <IconButton onClick={openMobilePinnedProject} disableRipple sx={{mr: 1}}>
+                            
+                            <Badge color="error" badgeContent={5} >
+                                <PushPinOutlined />
+                            </Badge>
+                        </IconButton>
+
+                        <IconButton onClick={openMobileNotification} disableRipple sx={{mr: 1}}>
+                        
+                            <Badge color="error" badgeContent={5} >
+                                <NotificationsOutlined />
+                            </Badge>
+                        </IconButton>
+
+                    </Box>
+                    
+
+                    <Box sx={{display: {xs: "none", sm: "flex"}, justifyContent: "space-between"}} >
+                        <PinnedProjectMenu />
+
+                        <NotificationMenu />
+                    </Box>
 
                     <MyProfile />
                     

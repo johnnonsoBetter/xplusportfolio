@@ -16,21 +16,21 @@ import DrawerMenu from './DrawerMenu';
 export default function Home(props) {
 
   const { path} = useRouteMatch()
-  const [openDrawer, setOpenDrawer] = useState(false)
+  const [drawerOpen, setDrawerOpen] = useState(true)
   const [drawerComponent, setDrawerComponent] = useState(null)
-  const [fullWidth, setFullWidth] = useState(false)
+  const [fullScreen, setFullScreen] = useState(false)
 
   return (
     <React.Fragment>
       <CssBaseline />
         <DrawerContextProvider 
           value={{
-            openDrawer,
+            drawerOpen,
             drawerComponent,
-            fullWidth,
-            setFullWidth: (fullWidth) => setFullWidth(fullWidth),
+            fullScreen,
+            setFullScreen: (fullScreen) => setFullScreen(fullScreen),
             setDrawerComponent: (component) => setDrawerComponent(component),
-            setOpenDrawer: (openDrawer) => setOpenDrawer(openDrawer)
+            setDrawerOpen: (drawerOpen) => setDrawerOpen(drawerOpen)
           }}
         > 
             <DrawerMenu />

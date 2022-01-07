@@ -28,26 +28,16 @@ export default function AppbarContent() {
 
                     <Link to="/xpo" >
                         <Tooltip title="Feeds">
-
                         <IconButton>
                             <AppsOutlined />
                         </IconButton>
-
-
                         </Tooltip>
-                       
                     </Link>
 
-                    <Link to="/xpo"  >
-                       
-
+                    <Link to="/xpo#search"  >
                         <IconButton  sx={{display: {xs: "block", sm: "none"}, mt: 1}}>
                         <SearchIcon />
                         </IconButton>
-
-
-                     
-                       
                     </Link>
 
                     

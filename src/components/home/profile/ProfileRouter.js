@@ -20,11 +20,10 @@ import Followers from './followers/Followers';
 import Following from './following/Following';
 import ProjectContainer from './projects/ProjectContainer';
 import AncticipationContainer from './anticipations/AnticipationContainer';
+import { NavLink } from 'react-router-dom';
 
 
 function MyTabs({slug}) {
-
-  const { url} = useRouteMatch()
 
   return (
     <Tabs 
@@ -33,12 +32,12 @@ function MyTabs({slug}) {
     
     aria-label="scrollable force tabs example" 
     >
-      <Tab label="Profile" value="?profile" to={`/xpo/members/${slug}`} component={Link} />
-      <Tab label="Projects" value="?projects" to={`/xpo/members/${slug}/projects`} component={Link} />
-      <Tab label="Anticipations" value="?anticipations" to={`/xpo/members/${slug}/anticipations`} component={Link} />
-      <Tab label="Suggestions" value="?suggestions" to={`/xpo/members/${slug}/suggestions`} component={Link} />
-      <Tab label="Followers" value="?followers" to={`/xpo/members/${slug}/followers`} component={Link} />
-      <Tab label="Following" value="?following" to={`/xpo/members/${slug}/following`} component={Link} />
+      <Tab label="Profile"  value="?profile" to={`/xpo/members/${slug}`} component={NavLink} />
+      <Tab label="Projects" value="?projects" to={`/xpo/members/${slug}/projects`} component={NavLink} />
+      <Tab label="Anticipations" value="?anticipations" to={`/xpo/members/${slug}/anticipations`} component={NavLink} />
+      <Tab label="Suggestions" value="?suggestions" to={`/xpo/members/${slug}/suggestions`} component={NavLink} />
+      <Tab label="Followers" value="?followers" to={`/xpo/members/${slug}/followers`} component={NavLink} />
+      <Tab label="Following" value="?following" to={`/xpo/members/${slug}/following`} component={NavLink} />
       
     </Tabs>
   );
@@ -53,7 +52,7 @@ export default function ProfileRouter({slug}) {
       <Box sx={{ width: '100%' }}>
         
         
-        <ListSubheader sx={{borderRadius: "5px", bgcolor: "white"}}>
+        <ListSubheader  sx={{borderRadius: "5px", bgcolor: "white", zIndex: 500}}>
           <MyTabs slug={slug}/>
         </ListSubheader>
         <Switch>

@@ -170,7 +170,7 @@ function ProjectActivity() {
         }
       />
       <Paper elevation={0} >
-        <Link to="/xpo/kpo" style={{textDecoration: "none"}} >
+        <Link to="/xpo/projects/90" style={{textDecoration: "none"}} >
         <Typography color="MenuText" fontWeight={600} noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}> Todo-Application</Typography>
         </Link>
         

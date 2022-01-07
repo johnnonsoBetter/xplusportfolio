@@ -6,6 +6,8 @@ import TopProjects from './top_project/TopProjects'
 
 export default function Feed() {
 
+    
+
 
     return (
         <Box >
@@ -19,7 +21,7 @@ export default function Feed() {
                 <Grid item sm={4} sx={{display: {xs: "none", sm: "none", md: "block"}}} md={4} lg={3} >
                     
                     <TopMembers />
-                    <Box  sx={{display: {xs: "none", sm: "none", md: "block", lg: "none"}}} >
+                    <Box my={2} sx={{display: {xs: "none", sm: "none", md: "block", lg: "none"}}} >
                         <TopProjects />
                     </Box>
                     

@@ -27,8 +27,9 @@ function App() {
             
           <Route path="/sign_up" render={() => <Signup />} />
           <Route path="/login" render={() => <Login />} />               
-          {/* <Route path="/" render={() => isAuthenticated() ?  <Home /> : <Redirect to="/login" /> } /> */}
+          
           <Route  path="/xpo" render={() =>  <Home /> } />
+          <Route exact  path="/" render={() => <Redirect to="/xpo" /> } />
           <Route exact path="/404" render={() => <p> Not found</p>} />
           <Redirect to="/404" />
           

@@ -1,6 +1,7 @@
 import { LightbulbOutlined } from '@mui/icons-material';
 import { Box, Divider, IconButton, InputBase, Paper, Tooltip } from '@mui/material'
 import React from 'react'
+import SuggestionList from './SuggestionList';
 
 
 function Search() {
@@ -38,6 +39,9 @@ export default function SuggestionContainer () {
     return (
         <Box width="100%"> 
            <Search />
+           <Box my={3} >
+               <SuggestionList />
+           </Box>
         </Box>
     )
 }

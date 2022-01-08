@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
@@ -7,8 +7,19 @@ import { Link, useLocation } from 'react-router-dom';
 
 
 export default function BottomNav() {
-  const [value, setValue] = React.useState(1);
-  const {pathname} = useLocation()
+  const [value, setValue] = React.useState(0);
+  const location = useLocation()
+
+  useEffect(() => {
+      if (location.hash != "#search" && value === 2)
+          setValue(-1)
+
+      if (location.pathname !== "/xpo/members" && value === 1)
+        setValue(-1)
+
+      if (location.pathname !== "/xpo" && value === 0)
+        setValue(-1)
+  }, [location.hash, location.pathname ])
 
 
   return (
@@ -29,7 +40,7 @@ export default function BottomNav() {
             <BottomNavigationAction disableRipple LinkComponent={Link} to="/xpo" label="Feeds" type="link" icon={<Apps />} />
           <BottomNavigationAction disableRipple LinkComponent={Link} to={`/xpo/members`} label="Members" icon={<PeopleOutlineRounded />} />
           
-          <BottomNavigationAction disableRipple LinkComponent={Link} to={`${pathname}#search`} label="Search" icon={<Search />} />
+          <BottomNavigationAction disableRipple LinkComponent={Link} to={`#search`} label="Search" icon={<Search />} />
           
                         {/* <IconButton onClick={openMobileSearch}  sx={{display: {xs: "block", sm: "none"}, mt: 1}}>
                             <SearchIcon />

@@ -65,7 +65,7 @@ export default function AppbarContent() {
                     
 
 
-                    <Link to={`xpo/members`} >
+                    <Link to={`/xpo/members`} >
                         <Tooltip title="Members" sx={{display: {xs: "none", sm: "block"}}}>
 
                         <IconButton>

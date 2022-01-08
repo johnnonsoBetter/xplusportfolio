@@ -25,28 +25,40 @@ export default function DrawerMenu() {
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
     useEffect(() => {
+        // when the screen is not smaller device remove hash 
+        if (!matches && hash != ''){
+            setDrawerOpen(false)
+            window.location.hash = ""
+            window.location.pathname = location.pathname.replace('#', '')
 
+        }
+
+        
         if (hash == "#search" && matches ){
+            // open the search menu, when the search hash is found.
             setDrawerOpen(true)
             setDrawerComponent('search')
             setFullScreen(true)
         }else if (hash === "#pinned" && matches){
+            // open the pinnedproject menu, when the pinned hash is found.
             setDrawerOpen(true)
             setDrawerComponent('pinned')
             setFullScreen(true)
         }
         else if (hash === "#notification" && matches){
+            // open the notification menu, when the notification hash is found.
             setDrawerOpen(true)
             setDrawerComponent('notification')
             setFullScreen(true)
         }else {
+            // close drawer menu and default drawer component
             setDrawerOpen(false)
             setDrawerComponent(null)
             setFullScreen(false)
-            location.hash = ""
+            
         }
 
-    }, [hash])
+    }, [hash, matches, location.pathname])
     
     return (
         <div>

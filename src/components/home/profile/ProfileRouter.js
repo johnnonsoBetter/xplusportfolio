@@ -5,11 +5,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import {
-  MemoryRouter,
   Route,
-  Link,
-  matchPath,
-  useLocation,
   useRouteMatch,
 } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';

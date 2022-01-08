@@ -11,14 +11,21 @@ export default function BottomNav() {
   const location = useLocation()
 
   useEffect(() => {
-      if (location.hash != "#search" && value === 2)
-          setValue(-1)
 
-      if (location.pathname !== "/xpo/members" && value === 1)
+    if (location.hash != "#search" && value === 2)
         setValue(-1)
 
-      if (location.pathname !== "/xpo" && value === 0)
+    if (location.pathname !== "/xpo/members" && value === 1)
         setValue(-1)
+
+    if (location.pathname !== "/xpo" && value === 0)
+        setValue(-1)
+
+    if (location.pathname === "/xpo/members")
+        setValue(1)
+
+    if (location.pathname === "/xpo")
+        setValue(0)
   }, [location.hash, location.pathname ])
 
 

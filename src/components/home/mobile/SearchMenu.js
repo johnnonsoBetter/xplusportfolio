@@ -60,7 +60,7 @@ export default function MobileSearch() {
                                 
                                 
                                 <Box  maxWidth="90" >
-                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body1"> Todo application</Typography>
+                                    <Typography variant="body2" sx={{textTransform: "capitalize"}} color="ButtonText"> Todo application</Typography>
                                 </Box>
                                 <Box maxWidth="95%" >
                                 <Typography  variant="body2" color="ButtonShadow" noWrap={true}> A todo list application that helps "</Typography>
@@ -85,7 +85,7 @@ export default function MobileSearch() {
                                 
                                 
                                 <Box  maxWidth="90" >
-                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body1"> Todo application</Typography>
+                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body2"> Todo application</Typography>
                                 </Box>
                                 <Box maxWidth="95%" >
                                 <Typography  variant="body2" color="ButtonShadow" noWrap={true}> A todo list application that helps "</Typography>
@@ -110,7 +110,7 @@ export default function MobileSearch() {
                                 
                                 
                                 <Box maxWidth="90" >
-                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body1"> Chukwuma obi kemi</Typography>
+                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body2"> Chukwuma obi kemi</Typography>
                                 </Box>
                                 <Box maxWidth="95%" >
                                 <Typography  variant="body2" color="ButtonShadow" noWrap={true}>  A Ruby on rails developer </Typography>
@@ -135,7 +135,7 @@ export default function MobileSearch() {
                                 
                                 
                                 <Box  maxWidth="90" >
-                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body1"> Todo application</Typography>
+                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body2"> Todo application</Typography>
                                 </Box>
                                 <Box maxWidth="95%" >
                                 <Typography  variant="body2" color="ButtonShadow" noWrap={true}> A todo list application that helps "</Typography>

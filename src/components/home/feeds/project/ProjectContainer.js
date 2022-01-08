@@ -8,6 +8,8 @@ import { Loader } from '../../profile/projects/ProjectListLoader';
 import { LightbulbRounded, MessageRounded } from '@mui/icons-material';
 import ProjectActivity from '../activities/project_activity/ProjectActivity';
 import { Link, useLocation } from 'react-router-dom';
+import CommentContainer from './comment/CommentContainer';
+import SuggestionContainer from './suggestion/SuggestionContainer';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,16 +67,16 @@ export default function ProjectContainer() {
     <ProjectActivity />
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs   indicatorColor=""   value={value} variant="fullWidth" onChange={handleChange} aria-label="basic tabs example">
+        <Tabs    indicatorColor=""   value={value} variant="fullWidth" onChange={handleChange} aria-label="basic tabs example">
           <Tab  LinkComponent={Link} to="?comments"  disableRipple label="Comments" iconPosition="top"  icon={<MessageRounded  />} {...a11yProps(0)} />
           <Tab LinkComponent={Link} to="?suggestions" disableRipple label="Suggestions" iconPosition="top" icon={<LightbulbRounded />} {...a11yProps(1)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
-        Item One
+      <TabPanel sx={{p: 0}} value={value} index={0}>
+        <CommentContainer />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <SuggestionContainer />
       </TabPanel>
      
     </Box>

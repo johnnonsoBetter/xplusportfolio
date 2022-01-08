@@ -52,25 +52,21 @@ export default function AppbarContent() {
                     <Search />
 
 
-                    <Link to="/xpo" >
-                        <Tooltip title="Feeds">
+                    <Link to="/xpo"  >
+                        <Tooltip title="Feeds" sx={{display: {xs: "none", sm: "block"}}}>
                         <IconButton>
                             <AppsOutlined />
                         </IconButton>
                         </Tooltip>
                     </Link>
 
-                    <Link to={`${pathname}#search`}  >
-                        <IconButton onClick={openMobileSearch}  sx={{display: {xs: "block", sm: "none"}, mt: 1}}>
-                            <SearchIcon />
-                        </IconButton>
-                    </Link>
+                   
 
                     
 
 
-                    <Link to={`${path}/members`} >
-                        <Tooltip title="Members">
+                    <Link to={`xpo/members`} >
+                        <Tooltip title="Members" sx={{display: {xs: "none", sm: "block"}}}>
 
                         <IconButton>
                             <PeopleAltOutlined />

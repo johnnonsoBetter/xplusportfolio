@@ -45,7 +45,7 @@ export default function Home(props) {
             <DrawerMenu />
             <MyAppbar />
             <Toolbar />
-            <Container sx={{pr: {xs: "4px", sm: 1}, pl: {xs: "4px", sm: 1}}}>
+            <Container sx={{mb: 10, pr: {xs: "4px", sm: 1}, pl: {xs: "4px", sm: 1}}}>
             <Box sx={{ my: {xs: 0, sm: 0, md: 2} }}>
               <Switch >
 

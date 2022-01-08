@@ -8,7 +8,7 @@ function Search() {
     return (
       <Paper 
         elevation={1}
-      sx={{ p: '12px 4px', display: 'flex', alignItems: 'center', width: "100%", borderRadius: "7px" }}
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "100%", borderRadius: "47px" }}
       >
         <InputBase
           sx={{ ml: 1, flex: 1}}

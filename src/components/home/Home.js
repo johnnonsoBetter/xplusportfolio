@@ -12,6 +12,7 @@ import Feed from './feeds/Feed';
 import { DrawerContextProvider } from '../../context/DrawerContext';
 import DrawerMenu from './DrawerMenu';
 import { useHistory } from 'react-router-dom';
+import BottomNav from './BottomNav';
 
 
 export default function Home(props) {
@@ -54,7 +55,9 @@ export default function Home(props) {
                 
               </Switch>
             </Box>
+            
           </Container>
+          <BottomNav />
         </DrawerContextProvider>  
     </React.Fragment>
   );

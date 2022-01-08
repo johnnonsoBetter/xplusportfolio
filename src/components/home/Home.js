@@ -11,14 +11,16 @@ import { useRouteMatch } from 'react-router-dom';
 import Feed from './feeds/Feed';
 import { DrawerContextProvider } from '../../context/DrawerContext';
 import DrawerMenu from './DrawerMenu';
+import { useHistory } from 'react-router-dom';
 
 
 export default function Home(props) {
 
   const { path} = useRouteMatch()
-  const [drawerOpen, setDrawerOpen] = useState(true)
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const [drawerComponent, setDrawerComponent] = useState(null)
   const [fullScreen, setFullScreen] = useState(false)
+  const history = useHistory()
 
   return (
     <React.Fragment>
@@ -30,7 +32,13 @@ export default function Home(props) {
             fullScreen,
             setFullScreen: (fullScreen) => setFullScreen(fullScreen),
             setDrawerComponent: (component) => setDrawerComponent(component),
-            setDrawerOpen: (drawerOpen) => setDrawerOpen(drawerOpen)
+            setDrawerOpen: (drawerOpen) => setDrawerOpen(drawerOpen),
+            closeDrawer: () => {
+              setDrawerComponent(null)
+              setDrawerOpen(false)
+              setFullScreen(false)
+              history.goBack()
+            }
           }}
         > 
             <DrawerMenu />

@@ -20,11 +20,7 @@ export default function DrawerMenu() {
     return (
         <div>
              <Dialog sx={{pr: 0, pl: 0}} open={drawerOpen} fullScreen={fullScreen}  >
-                <DialogTitle sx={{pr: 0, pl: 0}}>
-                    <IconButton onClick={() => setDrawerOpen(!drawerOpen)} >
-                        <CloseOutlined />
-                    </IconButton>
-                </DialogTitle>
+                
                 <DialogContent sx={{pr: "2px", pl: 0}}>
                 
                 <Box >

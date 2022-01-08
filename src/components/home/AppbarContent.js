@@ -5,7 +5,7 @@ import Search from './Search'
 import NotificationMenu from './notifications/NotificationMenu'
 import PinnedProjectMenu from './pins/PinnedProjectMenu'
 import MyProfile from './MyProfile'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { AppsOutlined, NotificationsOutlined, PeopleAltOutlined, PushPinOutlined } from '@mui/icons-material'
 import { useRouteMatch } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
@@ -14,6 +14,7 @@ import DrawerContext from '../../context/DrawerContext'
 export default function AppbarContent() {
     
     const {path} = useRouteMatch()
+    const {pathname} = useLocation()
     const {setDrawerOpen, setFullScreen, setDrawerComponent} = useContext(DrawerContext) 
 
     const openMobileSearch = () => {
@@ -59,7 +60,7 @@ export default function AppbarContent() {
                         </Tooltip>
                     </Link>
 
-                    <Link to="/xpo#search"  >
+                    <Link to={`${pathname}#search`}  >
                         <IconButton onClick={openMobileSearch}  sx={{display: {xs: "block", sm: "none"}, mt: 1}}>
                             <SearchIcon />
                         </IconButton>

@@ -8,7 +8,7 @@ export default function PinnedProjectMenu() {
     return (
         <Box >
             <Typography> PinnedProject is here waiting for me and you today</Typography>
-           <PinnedProjectLoader length={7} />
+           <PinnedProjectLoader length={5} />
         </Box>
     )
 }

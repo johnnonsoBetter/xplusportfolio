@@ -1,9 +1,6 @@
 import * as React from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArchiveIcon from '@mui/icons-material/Archive';
 import Paper from '@mui/material/Paper';
 import { Apps, PeopleOutlineRounded, Search } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
@@ -11,7 +8,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 export default function BottomNav() {
   const [value, setValue] = React.useState(1);
-  const ref = React.useRef(null);
   const {pathname} = useLocation()
 
 
@@ -31,7 +27,7 @@ export default function BottomNav() {
           }}
         >
             <BottomNavigationAction disableRipple LinkComponent={Link} to="/xpo" label="Feeds" type="link" icon={<Apps />} />
-          <BottomNavigationAction disableRipple LinkComponent={Link} to={`xpo/members`} label="Members" icon={<PeopleOutlineRounded />} />
+          <BottomNavigationAction disableRipple LinkComponent={Link} to={`/xpo/members`} label="Members" icon={<PeopleOutlineRounded />} />
           
           <BottomNavigationAction disableRipple LinkComponent={Link} to={`${pathname}#search`} label="Search" icon={<Search />} />
           

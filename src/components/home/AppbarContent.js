@@ -82,19 +82,28 @@ export default function AppbarContent() {
 
             
                     <Box sx={{display: {xs: "flex", sm: "none"}, justifyContent: "space-between"}} >
-                        <IconButton onClick={openMobilePinnedProject} disableRipple sx={{mr: 1}}>
-                            
-                            <Badge color="error" badgeContent={5} >
-                                <PushPinOutlined />
-                            </Badge>
-                        </IconButton>
-
-                        <IconButton onClick={openMobileNotification} disableRipple sx={{mr: 1}}>
                         
-                            <Badge color="error" badgeContent={5} >
-                                <NotificationsOutlined />
-                            </Badge>
-                        </IconButton>
+                        <Link to={`#pinned`} >
+                            <IconButton disableRipple sx={{mr: 1}}>
+                                
+                                <Badge color="error" badgeContent={5} >
+                                    <PushPinOutlined />
+                                </Badge>
+                            </IconButton>
+
+                        </Link>
+
+                        <Link to={`#notification`} >
+                            <IconButton  disableRipple sx={{mr: 1}}>
+                            
+                                <Badge color="error" badgeContent={5} >
+                                    <NotificationsOutlined />
+                                </Badge>
+                            </IconButton>
+
+                        </Link>
+
+                        
 
                     </Box>
                     

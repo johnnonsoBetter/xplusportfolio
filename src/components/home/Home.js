@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import MyAppbar from './MyAppbar';
-import { Route } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom';
@@ -22,6 +22,7 @@ export default function Home(props) {
   const [drawerComponent, setDrawerComponent] = useState(null)
   const [fullScreen, setFullScreen] = useState(false)
   const history = useHistory()
+  const location = useLocation()
 
   return (
     <React.Fragment>
@@ -34,12 +35,7 @@ export default function Home(props) {
             setFullScreen: (fullScreen) => setFullScreen(fullScreen),
             setDrawerComponent: (component) => setDrawerComponent(component),
             setDrawerOpen: (drawerOpen) => setDrawerOpen(drawerOpen),
-            closeDrawer: () => {
-              setDrawerComponent(null)
-              setDrawerOpen(false)
-              setFullScreen(false)
-              history.goBack()
-            }
+            closeDrawer: () => history.goBack()
           }}
         > 
             <DrawerMenu />

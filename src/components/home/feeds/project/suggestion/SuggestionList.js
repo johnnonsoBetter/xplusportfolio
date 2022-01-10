@@ -21,12 +21,24 @@ export default function SuggestionList() {
             <StepLabel
               StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
             >
-            
-
               <Box display="flex" justifyContent="space-between" alignItems="center"  sx={{mr: 3}} >
-                <Typography variant="body2"> John Paul</Typography>
+              <Typography variant="body2"> John Paul</Typography>
+              <Typography variant="body2"> 1 week ago</Typography>
+             
+
+              </Box>
+               
+
+              
+            </StepLabel>
+            <StepContent>
+              <Typography textAlign="left" variant="body2">
+
+              For each ad campaign that you create, 
+              </Typography>
+              
                 
-                    <Box sx={{ mb: 2, my: 2, mr: 2 }} display="flex" alignItems="center"  justifyContent="flex-end">
+                    <Box sx={{ mb: 2, my: 2, mr: 2 }} display="flex" alignItems="center"  justifyContent="flex-start">
                     <Tooltip title="like" sx={{mr: 2}}  >
                         <IconButton size="small" >
                             <Badge color="info" badgeContent={13} >
@@ -38,7 +50,23 @@ export default function SuggestionList() {
 
                     <CheckCircleRounded color="success" />
                 </Box>
+        
+            </StepContent>
+        </Step>
+
+        <Step active >
+            <StepLabel
+              StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
+            >
+              <Box display="flex" justifyContent="space-between" alignItems="center"  sx={{mr: 3}} >
+              <Typography variant="body2"> John Paul</Typography>
+              <Typography variant="body2"> 1 week ago</Typography>
+             
+
               </Box>
+               
+
+              
             </StepLabel>
             <StepContent>
               <Typography textAlign="left" variant="body2">
@@ -46,27 +74,94 @@ export default function SuggestionList() {
               For each ad campaign that you create, 
               </Typography>
               
+                
+                    <Box sx={{ mb: 2, my: 2, mr: 2 }} display="flex" alignItems="center"  justifyContent="flex-start">
+                    <Tooltip title="like" sx={{mr: 2}}  >
+                        <IconButton size="small" >
+                            <Badge color="info" badgeContent={13} >
+                                <ThumbUpOutlined />
+                            </Badge>
+                        </IconButton>
+                        
+                    </Tooltip> 
+
+                    <CheckCircleRounded color="success" />
+                </Box>
+        
             </StepContent>
         </Step>
-
         <Step active >
             <StepLabel
-              StepIconComponent={()=> <Avatar src="/images/pics.jpg" />}
+              StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
             >
-              John Paul
+              <Box display="flex" justifyContent="space-between" alignItems="center"  sx={{mr: 3}} >
+              <Typography variant="body2"> John Paul</Typography>
+              <Typography variant="body2"> 1 week ago</Typography>
+             
+
+              </Box>
+               
+
+              
             </StepLabel>
             <StepContent>
               <Typography textAlign="left" variant="body2">
 
-                For each ad campaign that you create, you can control how much you're willing to spend on clicks and conversions, which networks and geographical locations you want your ads to show on, and more.
+              For each ad campaign that you create, 
               </Typography>
-              <Box sx={{ mb: 2 }}>
+              
+                
+                    <Box sx={{ mb: 2, my: 2, mr: 2 }} display="flex" alignItems="center"  justifyContent="flex-start">
+                    <Tooltip title="like" sx={{mr: 2}}  >
+                        <IconButton size="small" >
+                            <Badge color="info" badgeContent={13} >
+                                <ThumbUpOutlined />
+                            </Badge>
+                        </IconButton>
+                        
+                    </Tooltip> 
 
-              </Box>
+                    <CheckCircleRounded color="success" />
+                </Box>
+        
             </StepContent>
         </Step>
+        <Step active >
+            <StepLabel
+              StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
+            >
+              <Box display="flex" justifyContent="space-between" alignItems="center"  sx={{mr: 3}} >
+              <Typography variant="body2"> John Paul</Typography>
+              <Typography variant="body2"> 1 week ago</Typography>
+             
 
-          
+              </Box>
+               
+
+              
+            </StepLabel>
+            <StepContent>
+              <Typography textAlign="left" variant="body2">
+
+              For each ad campaign that you create, 
+              </Typography>
+              
+                
+                    <Box sx={{ mb: 2, my: 2, mr: 2 }} display="flex" alignItems="center"  justifyContent="flex-start">
+                    <Tooltip title="like" sx={{mr: 2}}  >
+                        <IconButton size="small" >
+                            <Badge color="info" badgeContent={13} >
+                                <ThumbUpOutlined />
+                            </Badge>
+                        </IconButton>
+                        
+                    </Tooltip> 
+
+                    <CheckCircleRounded color="success" />
+                </Box>
+        
+            </StepContent>
+        </Step>
       </Stepper>
      
     </Box>

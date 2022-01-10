@@ -79,7 +79,7 @@ export default function TopMembers() {
                     <Box p={2} display="flex" justifyContent="space-between">
                         
                         <Typography color="ButtonText" variant="body2" sx={{textAlign: "left"}}> Members</Typography>
-                        <Link   to={`${path}/members`}> <Typography color="InfoText" variant="body2" sx={{textAlign: "left"}}> more</Typography></Link>
+                        <Link   to={`/xpo/members`}> <Typography   color="ButtonText" variant="body2" sx={{textAlign: "left"}}> more</Typography></Link>
                     </Box> )
                 
                 } sx={{textAlign: "left"}} >  </ListSubheader>}  >

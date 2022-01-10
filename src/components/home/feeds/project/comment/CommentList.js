@@ -20,7 +20,7 @@ function NewSubComment({open}) {
 
                 <Paper 
                     elevation={1}
-                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: {xs: "80%", sm: "70%", md: "30"}, borderRadius: "7px" }}
+                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "100%", borderRadius: "7px" }}
                 >
                     <InputBase
                     sx={{ ml: 1, flex: 1}}
@@ -70,7 +70,10 @@ export default function CommentList() {
             <StepLabel
               StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
             >
-              John Paul
+              <Box display="flex" justifyContent="space-between" >
+                  <Typography variant="body2"> John Caption</Typography>
+                  <Typography fontWeight={200} variant="small" sx={{mx: 1}}> 2days ago</Typography>
+              </Box>
             </StepLabel>
             <StepContent>
               <Typography textAlign="left" variant="body2">

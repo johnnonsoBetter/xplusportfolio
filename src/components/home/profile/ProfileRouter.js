@@ -18,6 +18,7 @@ import ProjectContainer from './projects/ProjectContainer';
 import AncticipationContainer from './anticipations/AnticipationContainer';
 import { NavLink } from 'react-router-dom';
 import SuggestionContainer from './suggestions/SuggestionContainer';
+import MainProfile from './main/MainProfile';
 
 
 function MyTabs({slug}) {
@@ -59,7 +60,7 @@ export default function ProfileRouter({slug}) {
           <Route path={`/xpo/members/${slug}/suggestions`} render={ () => <SuggestionContainer />} />
           <Route path={`/xpo/members/${slug}/anticipations`} render={ () => <AncticipationContainer />} />
           <Route path={`/xpo/members/${slug}/projects`} render={ () => <ProjectContainer />} />
-          <Route exact path={`/xpo/members/${slug}`} render={ () => <p> Home </p>} />
+          <Route exact path={`/xpo/members/${slug}`} render={ () => <MainProfile />} />
           <Redirect to="/404" />
           
         </Switch>

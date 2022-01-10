@@ -60,7 +60,7 @@ export default function ProfileRouter({slug}) {
           <Route path={`/xpo/members/${slug}/suggestions`} render={ () => <SuggestionContainer />} />
           <Route path={`/xpo/members/${slug}/anticipations`} render={ () => <AncticipationContainer />} />
           <Route path={`/xpo/members/${slug}/projects`} render={ () => <ProjectContainer />} />
-          <Route exact path={`/xpo/members/${slug}`} render={ () => <MainProfile />} />
+          <Route exact path={`/xpo/members/${slug}`} render={ () => <MainProfile isCurrentUser={true} />} />
           <Redirect to="/404" />
           
         </Switch>

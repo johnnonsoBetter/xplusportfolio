@@ -1,12 +1,12 @@
-import { ArrowDropUpRounded, ArrowUpwardRounded, BuildRounded, FolderRounded, HowToVoteRounded, LightbulbRounded, PeopleAltRounded, PsychologyRounded } from '@mui/icons-material'
+import { AddRounded, ArrowDropUpRounded, ArrowUpwardRounded, BuildRounded, FolderRounded, HowToVoteRounded, LightbulbRounded, PeopleAltRounded, PsychologyRounded } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
-import { Avatar, Badge, Box, Chip, Divider, Grid, Paper, Stack, Tooltip, Typography } from '@mui/material'
+import { Avatar, Badge, Box, Chip, Divider, Grid, IconButton, Paper, Stack, Tooltip, Typography } from '@mui/material'
 import { blue, green, orange, purple } from '@mui/material/colors'
 import React from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import { Link, useLocation } from 'react-router-dom'
 
-export default function MainProfile() {
+export default function MainProfile({isCurrentUser}) {
     const {path} = useRouteMatch()
     return (
         <Box my={1} mx={1} >
@@ -66,9 +66,41 @@ export default function MainProfile() {
                                 </Box>
                                 
                             </Box>
-                            <Box  >
-                                    <LoadingButton disableRipple  variant="outlined" fullWidth  sx={{mt: 2}}  > Follow </LoadingButton>
-                                </Box>
+                            
+
+                            {
+                                isCurrentUser ? 
+                                
+                                <Box  >
+                                   
+                                    
+                                    <Grid container spacing={2} >
+                                        <Grid item xs={6}  >
+                                            {/* <LoadingButton color="success" disableRipple variant="contained" fullWidth  sx={{mt: 2}} endIcon={<FolderRounded />}  > New </LoadingButton> */}
+                                            <Tooltip title="Add Project">
+                                                <IconButton disableRipple>  
+                                                    <FolderRounded />
+                                                    <AddRounded fontSize="0.6em" />
+                                                </IconButton> 
+                                            </Tooltip>
+                                            
+                                        </Grid>
+                                        <Grid item xs={6} >
+                                            
+                                        <Tooltip title="Anticipate">
+                                                <IconButton disableRipple>  
+                                                    <PsychologyRounded />
+                                                    <AddRounded />
+                                                </IconButton> 
+                                            </Tooltip>
+                                        </Grid>
+                                    </Grid>
+                                </Box> :
+                                <Box  >
+                                    <LoadingButton  disableRipple variant="contained" fullWidth  sx={{mt: 2}}  > Follow </LoadingButton>
+                                </Box> 
+
+                            }
                         </Stack>
                     </Paper>
                 </Grid>

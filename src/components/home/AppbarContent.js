@@ -54,7 +54,7 @@ export default function AppbarContent() {
 
                     <Link to="/xpo"  >
                         <Tooltip title="Feeds" sx={{display: {xs: "none", sm: "block"}}}>
-                        <IconButton>
+                        <IconButton disableRipple>
                             <AppsOutlined />
                         </IconButton>
                         </Tooltip>
@@ -68,7 +68,7 @@ export default function AppbarContent() {
                     <Link to={`/xpo/members`} >
                         <Tooltip title="Members" sx={{display: {xs: "none", sm: "block"}}}>
 
-                        <IconButton>
+                        <IconButton  disableRipple>
                             <PeopleAltOutlined />
                         </IconButton>
 

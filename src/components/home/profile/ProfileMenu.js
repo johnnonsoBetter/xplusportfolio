@@ -8,7 +8,7 @@ export default function ProfileMenu() {
 
     return (
 
-        <Box    >
+        <Box  mx={1} my={1}  >
             <Box position="relative" >
 
                 <Box

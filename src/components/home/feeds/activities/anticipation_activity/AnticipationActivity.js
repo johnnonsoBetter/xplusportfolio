@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
 
-import { AccessTimeOutlined, EmojiObjectsOutlined, HowToVoteOutlined, InsertLinkOutlined, ModeCommentOutlined, PushPinOutlined, ThumbUpOutlined } from '@mui/icons-material';
+import { AccessTimeOutlined, EmojiObjectsOutlined, HowToVoteOutlined, InsertLinkOutlined, ModeCommentOutlined, PublishedWithChangesOutlined, PushPinOutlined, TaskRounded, ThumbUpOutlined } from '@mui/icons-material';
 import { Badge, Button, Chip, IconButton, Tooltip } from '@mui/material';
 import ProjectActivityOwner from '../project_activity/ProjectActivityOwner';
 import { Link } from 'react-router-dom';
@@ -39,9 +39,14 @@ function AnticipationActivity() {
           
         }}
       >
-          <Box >
+          <Box display="flex" width="100%" justifyContent="space-between" alignItems="center" >
             <AnticipationActivityOwner />
-        </Box>
+
+            
+            <Tooltip title="onprogress" sx={{mr: 2}} >
+            <TaskRounded color="disabled"  />
+            </Tooltip>
+          </Box>
     
       </Paper>
       

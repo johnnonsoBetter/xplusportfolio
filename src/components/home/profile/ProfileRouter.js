@@ -6,6 +6,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import {
   Route,
+  useLocation,
   useRouteMatch,
 } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
@@ -42,8 +43,9 @@ function MyTabs({slug}) {
 }
 
 
-export default function ProfileRouter({slug}) {
+export default function ProfileRouter({slug, isCurrentUser}) {
   const {path} = useRouteMatch()
+  const {pathname} = useLocation
 
   return (
     
@@ -60,7 +62,7 @@ export default function ProfileRouter({slug}) {
           <Route path={`/xpo/members/${slug}/suggestions`} render={ () => <SuggestionContainer />} />
           <Route path={`/xpo/members/${slug}/anticipations`} render={ () => <AncticipationContainer />} />
           <Route path={`/xpo/members/${slug}/projects`} render={ () => <ProjectContainer />} />
-          <Route exact path={`/xpo/members/${slug}`} render={ () => <MainProfile isCurrentUser={true} />} />
+          <Route exact path={`/xpo/members/${slug}`} render={ () => <MainProfile isCurrentUser={isCurrentUser} />} />
           <Redirect to="/404" />
           
         </Switch>

@@ -8,10 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
 import { Avatar, Typography } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { FetchContext } from '../../context/FetchContext';
-import { ModeEditOutlineOutlined, PersonOutlineRounded } from '@mui/icons-material';
+import { LogoutOutlined, ModeEditOutlineOutlined, PersonOutlineRounded } from '@mui/icons-material';
 
 
 
@@ -101,7 +101,17 @@ export default function MyProfile() {
           
         <MenuItem  disableRipple focusRipple={false} >
        
-            <Box width="100%" color="ButtonShadow" display="flex" justifyContent="flex-start" alignItems="center">
+            <Box width="100%" component={Link} to="/xpo/my_profile/mark-twain" sx={{textDecoration: "none"}} color="ButtonShadow" display="flex" justifyContent="flex-start" alignItems="center">
+            <PersonOutlineRounded  />
+                <Typography sx={{ml: 1}}> My Profile </Typography>
+                
+            </Box>
+        </MenuItem>
+
+        <MenuItem disableRipple focusRipple={false} >
+       
+            <Box component={Link} to="/xpo/edit_profile"  sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
+               
                 <ModeEditOutlineOutlined />
                 <Typography sx={{ml: 1}}> Edit Profile </Typography>
                 
@@ -110,18 +120,9 @@ export default function MyProfile() {
 
         <MenuItem  disableRipple focusRipple={false} >
        
-            <Box color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
-                <PersonOutlineRounded  />
-                <Typography sx={{ml: 1}}> View Profile </Typography>
-                
-            </Box>
-        </MenuItem>
-
-        <MenuItem  disableRipple focusRipple={false} >
-       
             <Box width="100%" color="ButtonShadow" display="flex" justifyContent="flex-start" alignItems="center">
-                <ModeEditOutlineOutlined />
-                <Typography sx={{ml: 1}}> Edit Profile </Typography>
+                <LogoutOutlined />
+                <Typography sx={{ml: 1}}> Logout </Typography>
                 
             </Box>
         </MenuItem>

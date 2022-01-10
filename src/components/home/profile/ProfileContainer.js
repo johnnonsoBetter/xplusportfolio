@@ -6,7 +6,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import ProfileMenu from './ProfileMenu';
 import ProfileRouter from './ProfileRouter';
 
-export default function PinnedSubheaderList() {
+export default function ProfileContainer({isCurrentUser, slug}) {
   return (
     <List
       sx={{
@@ -33,7 +33,7 @@ export default function PinnedSubheaderList() {
                 : 
                 <>
                     
-                    <ProfileRouter slug="john-doe" /> 
+                    <ProfileRouter slug={slug} isCurrentUser={false} /> 
                 </>
                 
             }

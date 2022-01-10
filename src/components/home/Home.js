@@ -45,8 +45,7 @@ export default function Home(props) {
             <Box sx={{ my: {xs: 0, sm: 0, md: 2} }}>
               <Switch >
 
-                <Route   path={path + "/my-profile"} render={() => <p> my profile </p>} />  
-                <Route   path={path + "/my-profile"} render={() => <p> users </p>} />   
+                
                 <Route  path={path} render={() =>  <Feed /> } />
                 
               </Switch>

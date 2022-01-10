@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import MembersContainer from '../../members/MembersContainer';
+import MyProfileContainer from '../../my_profile/MyProfileContainer';
 import ProfileContainer from '../../profile/ProfileContainer';
 import ProjectContainer from '../project/ProjectContainer';
 import ActivityPage from './ActivityPage';
@@ -18,9 +19,10 @@ export default function ActivityContainer() {
         <Box width="100%">
             
             <Switch >
-                <Route path={`${path}/projects/:slug`} render={() => <ProjectContainer />} />
-                <Route path={`${path}/members/:slug`} render={() => <ProfileContainer />} />
-                <Route  path={`${path}/members`} render={() => <MembersContainer />} />
+                <Route path={`/xpo/projects/:slug`} render={() => <ProjectContainer />} />
+                <Route path={`/xpo/members/:slug`} render={() => <ProfileContainer slug="john-doe" />} />
+                <Route  path={`/xpo/members`} render={() => <MembersContainer />} />
+                <Route  path={`/xpo/my_profile`} render={() => <MyProfileContainer />} />
                 <Route exact path={path}  render={() => <ActivityPage /> } />
                 <Redirect to="/404"  />
             </Switch>

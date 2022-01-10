@@ -63,46 +63,6 @@ export default function ProfileMenu() {
                         <img src="/images/linkedin.png" alt="linkedin" />
                     </Tooltip>
                 </Box>
-
-
-                <Box my={2} display="flex" justifyContent="flex-start" alignItems="center" >
-                
-
-                    <Tooltip title="Total Votes" >
-                        <Badge badgeContent={12} sx={{color: "rgb(0 0 0 / 50%)", mr: 2}}  >
-                            <HowToVoteOutlined  />
-                        </Badge>
-                    </Tooltip>
-                    
-
-                    <Tooltip title="Total Anticipations" >
-                        <Badge badgeContent={12} sx={{color: "rgb(0 0 0 / 50%)", mx: 2}} >
-                            <PsychologyOutlined  />
-                        </Badge>
-                    </Tooltip>
-                    
-
-                    <Tooltip title="Coin" >
-                        <Badge badgeContent={12} sx={{color: "rgb(0 0 0 / 50%)", mx: 2}} >
-                            <RequestQuoteOutlined /> 
-                        </Badge>
-
-                    </Tooltip>
-
-                    <Tooltip title="Follow">
-                        <IconButton sx={{color: "rgb(0 0 0 / 50%)", mx: 2}} >
-                            <PersonAddAlt1Rounded  /> 
-                        </IconButton>
-                        
-                    </Tooltip>
-                    
-                
-                </Box>
-                
-               
-                
- 
-
             </Box>
         
     )

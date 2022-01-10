@@ -1,14 +1,17 @@
-import { HowToVoteRounded, LightbulbRounded, PsychologyRounded } from '@mui/icons-material'
-import { Avatar, Box, Grid, Paper, Stack, Typography } from '@mui/material'
-import { blue, green, orange } from '@mui/material/colors'
+import { ArrowDropUpRounded, ArrowUpwardRounded, BuildRounded, FolderRounded, HowToVoteRounded, LightbulbRounded, PeopleAltRounded, PsychologyRounded } from '@mui/icons-material'
+import { LoadingButton } from '@mui/lab'
+import { Avatar, Badge, Box, Chip, Divider, Grid, Paper, Stack, Tooltip, Typography } from '@mui/material'
+import { blue, green, orange, purple } from '@mui/material/colors'
 import React from 'react'
+import { useRouteMatch } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function MainProfile() {
-
+    const {path} = useRouteMatch()
     return (
-        <Box my={1} >
+        <Box my={1} mx={1} >
             <Grid container spacing={1} >
-                <Grid item xs={12} sm={3} md={3}  >
+                <Grid item xs={6} md={3}  >
                     <Paper  sx={{minHeight: 130, display: 'flex', alignItems: 'center'}}  >
                         <Box p={1} >
                             <Stack >
@@ -25,10 +28,14 @@ export default function MainProfile() {
                     </Paper>
                 </Grid>
 
-                <Grid item xs={12} sm={3} md={3} spacing={2} >
+                
+
+                
+
+                <Grid item  xs={6} md={3}  >
                     <Paper   sx={{minHeight: 130, display: 'flex', alignItems: 'center'}} >
                         <Box p={1} >
-                            <Stack >
+                            <Stack  >
                                 <Box width="100%" display="flex" justifyContent="center" >
                                     
                                     <Avatar sx={{bgcolor: "white"}} > <HowToVoteRounded sx={{color: green[500]}} /> </Avatar>
@@ -42,13 +49,69 @@ export default function MainProfile() {
                     </Paper>
                 </Grid>
 
-                <Grid item xs={12} sm={3} md={3} spacing={2} >
-                    <Paper   sx={{minHeight: 130, display: 'flex', alignItems: 'center'}} >
+                <Grid item  xs={12} md={6}  >
+                    <Paper sx={{p: 1, minHeight: 130, display: 'flex', alignItems: 'center'}}   >
+                        <Stack width="100%">
+                            <Box display="flex" justifyContent="space-around">
+                                <Box component={Link} to={`${path}/followers`}   sx={{textDecoration: 'none'}}>
+                                    <PeopleAltRounded color="action" />
+                                    <Typography color="GrayText" marginBottom variant="body2"   > 23 followers</Typography>
+                                </Box>
+
+                                <Divider sx={{ height: 48, m: 0.5 }} orientation="vertical" />
+
+                                <Box component={Link} to={`${path}/following`}   sx={{textDecoration: 'none'}}>
+                                    <PeopleAltRounded color="action" />
+                                    <Typography marginBottom variant="body2" color="GrayText"> 23 following</Typography>
+                                </Box>
+                                
+                            </Box>
+                            <Box  >
+                                    <LoadingButton disableRipple  variant="outlined" fullWidth  sx={{mt: 2}}  > Follow </LoadingButton>
+                                </Box>
+                        </Stack>
+                    </Paper>
+                </Grid>
+
+
+                <Grid item  xs={12} md={12}  >
+                    <Paper    >
+                        <Box display="flex" alignItems="center"  p={1} >
+                           <BuildRounded color="action" fontSize="1.2rem" />
+                           <Typography sx={{ml: 1}} variant="body2" > Skills</Typography>
+                            
+                        </Box>
+                        <Box display="flex" flexWrap="wrap" >
+                            <Chip label="Ruby on rails" variant="outlined" sx={{mx: 1, my: 1}}/>
+                            <Chip label="React" variant="outlined" sx={{mx: 1, my: 1}}/>
+                            <Chip label="Heroku" variant="outlined" variant="outlined" sx={{mx: 1, my: 1}}/>
+                            <Chip label="Git" variant="outlined" sx={{mx: 1, my: 1}}/>
+                            <Chip label="Github" variant="outlined" sx={{mx: 1, my: 1}}/>
+                            <Chip label="Ruby on rails" variant="outlined" sx={{mx: 1, my: 1}}/>
+                        
+                        </Box>
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={4} sm={4} md={4}  >
+                    <Paper   component={Link} to={`${path}/anticipations`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
                         <Box p={1} >
                             <Stack >
                                 <Box width="100%" display="flex" justifyContent="center" >
                                     
+                                    
+                                    
+                                    <Tooltip title="Fufilled" >
+                                        <Badge badgeContent={2} anchorOrigin={{vertical: 'top', horizontal: "left"}}>
+                                            <ArrowDropUpRounded color="success"/>
+                                        </Badge>
+                                    </Tooltip>
                                     <Avatar sx={{bgcolor: "white"}} > <PsychologyRounded sx={{color: blue[500]}} /> </Avatar>
+                                    <Tooltip title="Expired" >
+                                        <Badge badgeContent={8} >
+                                            <ArrowDropUpRounded color="error" />
+                                        </Badge>
+                                    </Tooltip>
                                 </Box>
                                 <Box p={1} >
                                     <Typography variant="body2" > 13 Anticipations</Typography>
@@ -60,16 +123,33 @@ export default function MainProfile() {
                 </Grid>
 
 
-                <Grid item xs={12} sm={3} md={3} spacing={2} >
-                    <Paper   sx={{minHeight: 130, display: 'flex', alignItems: 'center'}} >
-                        <Box p={1} >
-                            <Stack >
+                <Grid item xs={4} sm={4} md={4}  >
+                    <Paper   component={Link} to={`${path}/suggestions`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                        <Box p={1}   >
+                            <Stack width="100%" justifyContent="center" alignItems="center">
                                 <Box width="100%" display="flex" justifyContent="center" >
                                     
                                     <Avatar sx={{bgcolor: "white"}} > <LightbulbRounded sx={{color: orange[500]}} /> </Avatar>
                                 </Box>
                                 <Box p={1} >
                                     <Typography variant="body2" > 7 Suggestions</Typography>
+                                </Box>
+                            </Stack>
+                            
+                        </Box>
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={4} md={4} spacing={2} >
+                    <Paper component={Link} to={`${path}/projects`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                        <Box p={1} >
+                            <Stack >
+                                <Box width="100%" display="flex" justifyContent="center" >
+                                    
+                                    <Avatar sx={{bgcolor: "white"}} > <FolderRounded sx={{color: purple[500]}} /> </Avatar>
+                                </Box>
+                                <Box p={1} >
+                                    <Typography variant="body2" > 12 Projects</Typography>
                                 </Box>
                             </Stack>
                             

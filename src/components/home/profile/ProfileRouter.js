@@ -47,7 +47,7 @@ export default function ProfileRouter({slug}) {
 
   return (
     
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%' }} my={2}>
         
         
         <ListSubheader  sx={{borderRadius: "5px", bgcolor: "white", zIndex: 500}}>

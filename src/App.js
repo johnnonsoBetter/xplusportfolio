@@ -7,6 +7,7 @@ import { AuthContext } from './context/AuthContext';
 import { Redirect } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import NoPageFound from './components/NoPageFound';
 
 const theme = createTheme({
   typography: {
@@ -30,7 +31,7 @@ function App() {
           
           <Route  path="/xpo" render={() =>  <Home /> } />
           <Route exact  path="/" render={() => <Redirect to="/xpo" /> } />
-          <Route exact path="/404" render={() => <p> Not found</p>} />
+          <Route exact path="/404" render={() => <NoPageFound />} />
           <Redirect to="/404" />
           
         </Switch>

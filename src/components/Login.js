@@ -6,9 +6,10 @@ import { useFormik } from 'formik';
 import { publicFetch } from '../utils/fetch';
 import { AuthContext } from '../context/AuthContext';
 import { Redirect } from 'react-router-dom';
-import { BadgeRounded, Visibility, VisibilityOff } from '@mui/icons-material';
+import { BadgeRounded, CloseOutlined, Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { blueGrey } from '@mui/material/colors';
+import DrawerContext from '../context/DrawerContext';
 
 
 const validationSchema = yup.object({
@@ -33,6 +34,7 @@ export default function Login(){
   const [checked] = useState(false)
   const [setOpenSnack] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const {closeDrawer} = useContext(DrawerContext)
   const [snackInfo, setSnackInfo] = useState({
     message: '',
     severity: ''
@@ -85,7 +87,7 @@ export default function Login(){
         const uid = response.headers['uid']
         const userInfo = response.data['data']
        
-         window.location.href = '/'
+         window.location.href = '/xpo'
          setAuthState({token, expiresAt: expiry, userInfo, client, uid, rememberDevice: checked})
        
      
@@ -136,6 +138,11 @@ export default function Login(){
             <form onSubmit={formik.handleSubmit}> 
                 <Box  width="100%">
                     <Paper elevation={0}  >
+                        <Box  display="flex" justifyContent="flex-end" >
+                          <IconButton onClick={closeDrawer}>
+                            <CloseOutlined />
+                          </IconButton>
+                        </Box>
                         <Box p={2}  textAlign="center" display="flex" justifyContent="center" m={5} marginBottom={0} >
                            
                              <Avatar > <BadgeRounded /> </Avatar>

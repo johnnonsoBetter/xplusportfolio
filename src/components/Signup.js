@@ -8,6 +8,9 @@ import { AuthContext } from '../context/AuthContext';
 import { Redirect } from 'react-router-dom';
 import { BadgeRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { blueGrey } from '@mui/material/colors';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 const validationSchema = yup.object({
@@ -40,6 +43,9 @@ export default function Signup(){
     message: '',
     severity: ''
   })
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+
 
   const formik = useFormik({
       initialValues: {
@@ -86,7 +92,7 @@ export default function Signup(){
         const uid = response.headers['uid']
         const userInfo = response.data['data']  
 
-        window.location.href = '/'
+        window.location.href = '/xpo'
         setAuthState({token, expiresAt: expiry, userInfo, client, uid, rememberDevice: checked})
         setRedirectOnLogin(true)
      
@@ -116,7 +122,7 @@ export default function Signup(){
     return (
         <>
         {redirectOnLogin && <Redirect to="/xpo" /> }
-        <Container maxWidth="sm" >
+        <Container maxWidth="xs" >
           <Snackbar open={loginError} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
               <Alert onClose={handleClose} severity='error'  sx={{ width: '100%' }}>
                 {snackInfo.message}
@@ -126,7 +132,7 @@ export default function Signup(){
             <Box  sx={{ display: "flex", justifyContent: "center", minHeight: "100vh", flexDirection: "column" }} >
             <form onSubmit={formik.handleSubmit}> 
                 <Box  width="100%">
-                    <Paper elevation={1} sx={{backgroundColor: "inherit", px: 4, py: 3}}  >
+                    <Paper elevation={matches ? 0 : 2} sx={{backgroundColor: "inherit", py: 3}}  >
                         <Box p={2} textAlign="center" display="flex" justifyContent="center" m={5} marginBottom={0} >
                               <Avatar > <BadgeRounded /> </Avatar>
 
@@ -197,8 +203,10 @@ export default function Signup(){
 
                         </Box>
 
-                        <Box my={1}>
-                          <Typography textAlign="center" > Already a member ?, <Link to="#login" >Login</Link> </Typography>
+                        
+                        <Box mb={4}  mx={1} display="flex" justifyContent="center">
+                          <Typography variant="body2" textAlign="center" to="/xpo#login" component={Link} sx={{color: blueGrey[500], textDecoration: "none"}}  >  Already a member ?, Login </Typography>
+                          
                         </Box>
 
                        

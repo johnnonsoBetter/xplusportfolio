@@ -15,6 +15,7 @@ import { CloseOutlined } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Login from '../Login';
 
 export default function DrawerMenu() {
 
@@ -26,12 +27,12 @@ export default function DrawerMenu() {
 
     useEffect(() => {
         // when the screen is not smaller device remove hash 
-        if (!matches && hash != ''){
-            setDrawerOpen(false)
-            window.location.hash = ""
-            window.location.pathname = location.pathname.replace('#', '')
+        // if (!matches && hash != ''){
+        //     setDrawerOpen(false)
+        //     window.location.hash = ""
+        //     window.location.pathname = location.pathname.replace('#', '')
 
-        }
+        // }
 
         
         if (hash == "#search" && matches ){
@@ -50,11 +51,27 @@ export default function DrawerMenu() {
             setDrawerOpen(true)
             setDrawerComponent('notification')
             setFullScreen(true)
-        }else {
+
+        }
+        else {
             // close drawer menu and default drawer component
-            setDrawerOpen(false)
-            setDrawerComponent(null)
-            setFullScreen(false)
+            
+
+            if (hash === "#login"){
+                // open the login menu, when the login hash is found.
+                setDrawerOpen(true)
+                setDrawerComponent('login')
+                
+                if (matches)
+                    setFullScreen(true)
+                else
+                    setFullScreen(false)
+                
+            }else{
+                setDrawerOpen(false)
+                setDrawerComponent(null)
+                setFullScreen(false)
+            }
             
         }
 
@@ -76,6 +93,8 @@ export default function DrawerMenu() {
                         <CreateAnticipationMenu /> : 
                         drawerComponent === "pinned" ?
                         <PinnedProjectMenu /> :
+                        drawerComponent === "login" ?
+                        <Login />  : 
                         null
 
                     }

@@ -1,4 +1,4 @@
-import { HowToVoteOutlined, LanguageOutlined, PersonAddAlt1Outlined, PersonAddAlt1Rounded, PsychologyOutlined, RequestQuoteOutlined } from '@mui/icons-material'
+import { AddAPhotoRounded, HowToVoteOutlined, LanguageOutlined, PersonAddAlt1Outlined, PersonAddAlt1Rounded, PsychologyOutlined, RequestQuoteOutlined } from '@mui/icons-material'
 import { Avatar, Badge, Box, IconButton, Paper, Tooltip, Typography } from '@mui/material'
 import { orange } from '@mui/material/colors'
 import React from 'react'
@@ -26,7 +26,11 @@ export default function ProfileMenu() {
                 />
 
                 <Box position="absolute" bottom={-30} left={20} >
-                    <Avatar src="/images/selfie.jpeg" alt="my pics" sx={{width: 90, height: 90, border: "2px solid white"}} />
+                
+                <IconButton color="warning" sx={{position: 'absolute', bottom: -8, right: "30%",  zIndex: 500,}}  >
+                <AddAPhotoRounded sx={{color: "white"}} />
+                </IconButton>
+                    <Avatar src="/images/selfie.jpeg"  alt="my pics" sx={{width: 90, height: 90, border: "2px solid white"}} />
                 </Box>
 
 

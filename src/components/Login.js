@@ -1,13 +1,14 @@
 import { LoadingButton } from '@mui/lab'
-import { Alert, Box, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar, TextField, Typography } from '@mui/material'
+import { Alert, Avatar, BadgeMark, Box, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar, TextField, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { publicFetch } from '../utils/fetch';
 import { AuthContext } from '../context/AuthContext';
 import { Redirect } from 'react-router-dom';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { BadgeRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { blueGrey } from '@mui/material/colors';
 
 
 const validationSchema = yup.object({
@@ -131,19 +132,20 @@ export default function Login(){
                 
               </Alert>
             </Snackbar>
-            <Box  sx={{ display: "flex", justifyContent: "center", minHeight: "100vh", flexDirection: "column" }} >
+            <Box  sx={{ display: "flex", justifyContent: "center", flexDirection: "column" }} >
             <form onSubmit={formik.handleSubmit}> 
                 <Box  width="100%">
                     <Paper elevation={0}  >
-                        <Box p={2} textAlign="center" m={5} marginBottom={0} >
-                             <Typography variant="h4" sx={{letterSpacing: "0em", fontWeight: "450"}}> Login</Typography>
+                        <Box p={2}  textAlign="center" display="flex" justifyContent="center" m={5} marginBottom={0} >
+                           
+                             <Avatar > <BadgeRounded /> </Avatar>
 
                         </Box>
                         <Box p={2} textAlign="center"  >
                              <Typography variant="h6" sx={{letterSpacing: "0em", fontWeight: "450"}}> Please Login!</Typography>
 
                         </Box>
-                        <Box p={2} >
+                        <Box py={2} >
                              <TextField 
                                 fullWidth  
                                 label="Email"  
@@ -158,7 +160,7 @@ export default function Login(){
 
                         </Box>
 
-                        <Box p={2} >
+                        <Box py={2} >
                         <FormControl sx={{width: '100%' }} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
@@ -188,17 +190,20 @@ export default function Login(){
 
                         </Box>
 
-                        <Box my={1}>
-                          <Typography textAlign="center" > Not A member ?, <Link to="/sign_up" >Sign Up</Link> </Typography>
+                        <Box mb={4}  mx={1} display="flex" justifyContent="space-between">
+                          <Typography variant="body2" textAlign="center" component={Link} sx={{color: blueGrey[500], textDecoration: "none"}}  > Forgot Password? </Typography>
+                          <Typography variant="body2" to="/sign_up" textAlign="center" component={Link} sx={{color: blueGrey[500], textDecoration: "none"}}  > Sign Up </Typography>
+                          
                         </Box>
 
                        
-                        <Box p={2} >
-                            <Container maxWidth="xs" >
-                            <LoadingButton loading={loginLoading}  type="submit" fullWidth  variant="outlined">
+                        <Box my={2} >
+                            
+                             
+                            <LoadingButton variant="contained"  loading={loginLoading}  type="submit" fullWidth  >
                                 Login
                             </LoadingButton>
-                            </Container>
+                           
                            
                         </Box>
                     

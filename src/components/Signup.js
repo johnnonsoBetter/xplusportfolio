@@ -1,12 +1,12 @@
 import { LoadingButton } from '@mui/lab'
-import { Alert, Box, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar, TextField, Typography } from '@mui/material'
+import { Alert, Avatar, Box, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar, TextField, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { publicFetch } from '../utils/fetch';
 import { AuthContext } from '../context/AuthContext';
 import { Redirect } from 'react-router-dom';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { BadgeRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 
@@ -115,7 +115,7 @@ export default function Signup(){
 
     return (
         <>
-        {redirectOnLogin && <Redirect to="/" /> }
+        {redirectOnLogin && <Redirect to="/xpo" /> }
         <Container maxWidth="sm" >
           <Snackbar open={loginError} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
               <Alert onClose={handleClose} severity='error'  sx={{ width: '100%' }}>
@@ -126,9 +126,9 @@ export default function Signup(){
             <Box  sx={{ display: "flex", justifyContent: "center", minHeight: "100vh", flexDirection: "column" }} >
             <form onSubmit={formik.handleSubmit}> 
                 <Box  width="100%">
-                    <Paper elevation={0}  >
-                        <Box p={2} textAlign="center" m={5} marginBottom={0} >
-                             <Typography variant="h4" sx={{letterSpacing: "0em", fontWeight: "450"}}> Signup</Typography>
+                    <Paper elevation={1} sx={{backgroundColor: "inherit", px: 4, py: 3}}  >
+                        <Box p={2} textAlign="center" display="flex" justifyContent="center" m={5} marginBottom={0} >
+                              <Avatar > <BadgeRounded /> </Avatar>
 
                         </Box>
                         <Box p={2} textAlign="center"  >
@@ -198,14 +198,14 @@ export default function Signup(){
                         </Box>
 
                         <Box my={1}>
-                          <Typography textAlign="center" > Already a member ?, <Link to="/login" >Login</Link> </Typography>
+                          <Typography textAlign="center" > Already a member ?, <Link to="#login" >Login</Link> </Typography>
                         </Box>
 
                        
 
                         <Box p={2} >
                             <Container maxWidth="xs" >
-                            <LoadingButton loading={loginLoading}  type="submit" fullWidth  variant="outlined">
+                            <LoadingButton variant="contained"  loading={loginLoading}  type="submit" fullWidth  >
                                 Sign Up
                             </LoadingButton>
                             </Container>

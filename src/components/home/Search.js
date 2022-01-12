@@ -13,11 +13,10 @@ export default function Search() {
   return (
     <Autocomplete
       id="country-select-demo"
-      sx={{ width: "50%", display: {xs: 'none', sm: 'block'}}}
+      sx={{ width: "50%", display: {xs: 'none', sm: 'none', md: 'block'}}}
       size="small"
       options={countries}
       autoHighlight
-      
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => (
         <SearchList />

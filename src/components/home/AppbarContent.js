@@ -51,59 +51,52 @@ export default function AppbarContent() {
                 <Box display="flex" width="100%" justifyContent="flex-end" alignItems="center" >
                     <Search />
 
-
-                    <Link to="/xpo"  >
-                        <Tooltip title="Feeds" sx={{display: {xs: "none", sm: "block"}}}>
-                        <IconButton disableRipple>
-                            <AppsOutlined />
-                        </IconButton>
+                        <Tooltip  LinkComponent={Link} to={`#search`} title="Feeds" sx={{display: {xs: "none", sm: "block", md: "none"}}}>
+                            <IconButton disableRipple>
+                                <SearchIcon />
+                            </IconButton>
                         </Tooltip>
-                    </Link>
-
-                   
-
-                    
 
 
-                    <Link to={`/xpo/members`} >
+                        <Tooltip  LinkComponent={Link} to={`/xpo`} title="Feeds" sx={{display: {xs: "none", sm: "block"}}}>
+                            <IconButton disableRipple>
+                                <AppsOutlined />
+                            </IconButton>
+                        </Tooltip>
+              
                         <Tooltip title="Members" sx={{display: {xs: "none", sm: "block"}}}>
 
-                        <IconButton  disableRipple>
+                        <IconButton LinkComponent={Link} to={`/xpo/members`}   disableRipple>
                             <PeopleAltOutlined />
                         </IconButton>
 
 
                         </Tooltip>
                        
-                    </Link>
-
+             
 
                     
 
             
                     <Box sx={{display: {xs: "flex", sm: "none"}, justifyContent: "space-between"}} >
                         
-                        <Link to={`#pinned`} >
-                            <IconButton disableRipple sx={{mr: 1}}>
+                   
+                            <IconButton LinkComponent={Link} to={`#pinned`} disableRipple sx={{mr: 1}}>
                                 
                                 <Badge color="error" badgeContent={5} >
                                     <PushPinOutlined />
                                 </Badge>
                             </IconButton>
 
-                        </Link>
+                        
 
-                        <Link to={`#notification`} >
-                            <IconButton  disableRipple sx={{mr: 1}}>
+                     
+                            <IconButton to={`#notification`} LinkComponent={Link}  disableRipple sx={{mr: 1}}>
                             
                                 <Badge color="error" badgeContent={5} >
                                     <NotificationsOutlined />
                                 </Badge>
                             </IconButton>
-
-                        </Link>
-
-                        
 
                     </Box>
                     

@@ -24,6 +24,7 @@ export default function DrawerMenu() {
     const {hash} = location
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
+    const matchesSmSearch = theme.breakpoints.down('md')
 
     useEffect(() => {
         // when the screen is not smaller device remove hash 
@@ -55,6 +56,8 @@ export default function DrawerMenu() {
         }
         else {
             // close drawer menu and default drawer component
+
+            
             
 
             if (hash === "#login"){
@@ -67,7 +70,12 @@ export default function DrawerMenu() {
                 else
                     setFullScreen(false)
                 
-            }else{
+            }else if(hash === "#search" && matchesSmSearch){
+                setDrawerOpen(true)
+                setDrawerComponent('search')
+                setFullScreen(true)
+            }
+            else{
                 setDrawerOpen(false)
                 setDrawerComponent(null)
                 setFullScreen(false)

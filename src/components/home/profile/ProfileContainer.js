@@ -13,7 +13,7 @@ export default function ProfileContainer({isCurrentUser, slug}) {
         width: '100%',
         position: 'relative',
         overflow: 'auto',
-        maxHeight: "calc(99vh - 60px)",
+        maxHeight: {sm: "calc(99vh - 60px)", xs: "calc(96vh - 85px)"},
         '& ul': { padding: 0 },
       }}
       subheader={<li />}

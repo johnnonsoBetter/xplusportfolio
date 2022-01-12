@@ -20,9 +20,16 @@ export default function Feed() {
                 </Grid>
                 <Grid item sm={4} sx={{display: {xs: "none", sm: "none", md: "block"}}} md={4} lg={3} >
                     
-                    <TopMembers />
-                    <Box my={2} sx={{display: {xs: "none", sm: "none", md: "block", lg: "none"}}} >
-                        <TopProjects />
+                   
+
+                    <Box  sx={{width: "100%",  height: "calc(99vh - 60px)", scrollbarWidth: {display: "none"}, overflowY: "auto"}} > 
+                        
+                        <Box mx={1} >
+                            <TopMembers />
+                        </Box>
+                        <Box mx={1} my={2}sx={{display: {xs: "none", sm: "none", md: "block", lg: "none"}}} >
+                            <TopProjects />
+                        </Box>
                     </Box>
                     
                 </Grid>
@@ -31,7 +38,7 @@ export default function Feed() {
                 </Grid>
                 <Grid  item sm={4} sx={{display: {xs: "none", sm: "none", md: "none", lg: "none"}}} md={4} lg={3} >
                     
-                <TopProjects />
+                    <TopProjects />
                 </Grid>
             </Grid>
         </Box>

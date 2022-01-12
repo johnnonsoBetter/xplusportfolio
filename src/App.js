@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './App.css';
-import {Container, createTheme, ThemeProvider} from '@mui/material'
+import {Box, Container, createTheme, ThemeProvider} from '@mui/material'
 import Home from './components/home/Home';
 import { Route, Switch } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
@@ -24,17 +24,19 @@ function App() {
   return (
     <ThemeProvider theme={theme} >
       <div className="App">
+       
         <Switch >
             
-          <Route path="/sign_up" render={() => <Signup />} />
-          <Route path="/login" render={() => <Login />} />               
-          
-          <Route  path="/xpo" render={() =>  <Home /> } />
-          <Route exact  path="/" render={() => <Redirect to="/xpo" /> } />
-          <Route exact path="/404" render={() => <NoPageFound />} />
-          <Redirect to="/404" />
-          
-        </Switch>
+            <Route path="/sign_up" render={() => <Signup />} />
+            <Route path="/login" render={() => <Login />} />               
+            
+            <Route  path="/xpo" render={() =>  <Home /> } />
+            <Route exact  path="/" render={() => <Redirect to="/xpo" /> } />
+            <Route exact path="/404" render={() => <NoPageFound />} />
+            <Redirect to="/404" />
+            
+          </Switch>
+
       </div>
     </ThemeProvider>
     

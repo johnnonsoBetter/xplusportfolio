@@ -24,6 +24,7 @@ export default function ActivityContainer() {
                 <Route  path={`/xpo/members`} render={() => <MembersContainer />} />
                 <Route  path={`/xpo/my_profile`} render={() => <MyProfileContainer />} />
                 <Route exact path={path}  render={() => <ActivityPage /> } />
+                <Route exact path="*"  render={() => <Redirect to="/404" /> } />
                 <Redirect to="/404"  />
             </Switch>
         </Box>

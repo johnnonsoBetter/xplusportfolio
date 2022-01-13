@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import NoPageFound from './components/NoPageFound';
+import UpdatePassword from './components/UpdatePassword';
 
 const theme = createTheme({
   typography: {
@@ -28,7 +29,7 @@ function App() {
         <Switch >
             
             <Route path="/sign_up" render={() => <Signup />} />
-            <Route path="/login" render={() => <Login />} />               
+            <Route path="/change_password" render={() => <UpdatePassword />} />               
             
             <Route  path="/xpo" render={() =>  <Home /> } />
             <Route exact  path="/" render={() => <Redirect to="/xpo" /> } />

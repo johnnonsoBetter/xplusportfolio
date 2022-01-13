@@ -31,3 +31,17 @@
   -ms-overflow-style: none!important;
   scrollbar-width: none!important;
 }
+
+.member-container::-webkit-scrollbar, 
+.pinned-project-menu::-webkit-scrollbar, 
+.activity-container::-webkit-scrollbar  {
+  display: none!important;
+}
+
+.member-container,
+.activity-container,
+.pinned-project-menu {
+  -ms-overflow-style: none!important;
+  scrollbar-width: none!important;
+  
+}

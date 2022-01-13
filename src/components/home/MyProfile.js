@@ -101,26 +101,26 @@ export default function MyProfile() {
           
         <MenuItem  disableRipple focusRipple={false} >
        
-            <Box width="100%" component={Link} to="/xpo/my_profile/mark-twain" sx={{textDecoration: "none"}} color="ButtonShadow" display="flex" justifyContent="flex-start" alignItems="center">
+            <Box width="100%"  component={Link} to="/xpo/my_profile/mark-twain" sx={{textDecoration: "none"}} color="ButtonShadow" display="flex" justifyContent="flex-start" alignItems="center">
             <PersonOutlineRounded  />
-                <Typography sx={{ml: 1}}> My Profile </Typography>
+                <Typography sx={{ml: 1}} color="ButtonText"> My Profile </Typography>
                 
             </Box>
         </MenuItem>
 
         <MenuItem disableRipple focusRipple={false} >
        
-            <Box component={Link} to="/xpo/edit_profile"  sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
+            <Box component={Link}  to="/xpo/edit_profile"   sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
                
                 <ModeEditOutlineOutlined />
-                <Typography sx={{ml: 1}}> Edit Profile </Typography>
+                <Typography sx={{ml: 1}} color="ButtonText"> Edit Profile </Typography>
                 
             </Box>
         </MenuItem>
 
         <MenuItem  disableRipple focusRipple={false} >
        
-            <Box width="100%" color="ButtonShadow" display="flex" justifyContent="flex-start" alignItems="center">
+            <Box width="100%" color="ButtonText" display="flex" justifyContent="flex-start" alignItems="center">
                 <LogoutOutlined />
                 <Typography sx={{ml: 1}}> Logout </Typography>
                 

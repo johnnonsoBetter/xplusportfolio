@@ -137,7 +137,7 @@ export default function ProjectContainer() {
 
   return (
     
-    <>
+    <Box sx={{width: "100%", scrollbarColor: "red",  height: {sm: "calc(99vh - 60px)", xs: "calc(96vh - 85px)"}, scrollbarWidth: {display: "none"}, overflowY: "auto"}}>
     <ProjectActivity />
     <Paper sx={{p: 2, mb: 1}} elevation={0} >
      
@@ -161,7 +161,7 @@ export default function ProjectContainer() {
       </TabPanel>
      
     </Box>
-    </>
+    </Box>
   );
 }
 

@@ -205,7 +205,7 @@ export default function Signup(){
 
                         
                         <Box mb={4}  mx={1} display="flex" justifyContent="center">
-                          <Typography variant="body2" textAlign="center" to="/xpo#login" component={Link} sx={{color: blueGrey[500], textDecoration: "none"}}  >  Already a member ?, Login </Typography>
+                          <Typography variant="body2" textAlign="center" to="/xpo#login" component={Link} sx={{color: blueGrey[500], textDecoration: "none"}}  >  Already a member ? Login </Typography>
                           
                         </Box>
 

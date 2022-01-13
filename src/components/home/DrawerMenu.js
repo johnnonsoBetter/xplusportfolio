@@ -16,6 +16,7 @@ import { useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Login from '../Login';
+import ResetPassword from '../ResetPassword';
 
 export default function DrawerMenu() {
 
@@ -74,6 +75,16 @@ export default function DrawerMenu() {
                 setDrawerOpen(true)
                 setDrawerComponent('search')
                 setFullScreen(true)
+            }else if (hash === "#reset-password"){
+                // open the login menu, when the login hash is found.
+                setDrawerOpen(true)
+                setDrawerComponent('reset-password')
+                
+                if (matches)
+                    setFullScreen(true)
+                else
+                    setFullScreen(false)
+                
             }
             else{
                 setDrawerOpen(false)
@@ -102,7 +113,9 @@ export default function DrawerMenu() {
                         drawerComponent === "pinned" ?
                         <PinnedProjectMenu /> :
                         drawerComponent === "login" ?
-                        <Login />  : 
+                        <Login />  :
+                        drawerComponent === "reset-password" ?
+                        <ResetPassword /> :
                         null
 
                     }

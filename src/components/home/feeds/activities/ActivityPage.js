@@ -4,7 +4,7 @@ import React from 'react'
 import ActivityLoader from './ActivityLoader';
 import AnticipationActivity from './anticipation_activity/AnticipationActivity';
 import ProjectActivity from './project_activity/ProjectActivity';
-
+import '../../../../App.css'
 
 
 const AnticipationCreator = ()=> {
@@ -78,7 +78,7 @@ function MyMiniInfo() {
 export default function ActivityPage() {
 
     return (
-        <Box  sx={{width: "100%",  height: "calc(99vh - 85px)", scrollbarWidth: {display: "none"}, overflowY: "auto"}}>
+        <Box className="activity-container" sx={{width: "100%",  height: "calc(99vh - 85px)", scrollbarWidth: {display: "none"}, overflowY: "auto"}}>
             <MyMiniInfo />
 
            

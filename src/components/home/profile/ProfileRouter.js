@@ -9,7 +9,7 @@ import {
   useLocation,
   useRouteMatch,
 } from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+
 import { Switch } from 'react-router-dom';
 import { ListSubheader } from '@mui/material';
 import { Redirect } from 'react-router-dom';

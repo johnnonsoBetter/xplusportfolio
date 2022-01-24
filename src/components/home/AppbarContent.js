@@ -43,7 +43,8 @@ export default function AppbarContent() {
     return (
         <Box width="100%" display="flex" alignItems="center" justifyContent="space-between" >
             <Box flexGrow={2} >
-                <Typography sx={{color: "black"}}> LOGO</Typography>
+                <Box component="img" srcSet="/images/xlogo.png" alt="logo" width={120} maxWidth="80%" />
+               
             </Box>
 
             <Box sx={{ml: 3}} flexGrow={10} display="flex"   >

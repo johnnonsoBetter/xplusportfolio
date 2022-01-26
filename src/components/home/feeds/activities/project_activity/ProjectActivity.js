@@ -86,11 +86,7 @@ function ProjectActivity() {
             
             <Box mx={1}  >
                 
-                <Tooltip title="View image" >
-                    <IconButton size="small" >
-                        <CropFreeOutlined />
-                    </IconButton>
-                </Tooltip>
+                
                 <Tooltip title="Review later" >
                     <IconButton size="small" >
                         <PushPinOutlined />
@@ -104,7 +100,7 @@ function ProjectActivity() {
                 </Tooltip>
 
                 <Tooltip title="View repo" >
-                    <IconButton size="small" >
+                    <IconButton size="small"  >
                         <img src="/images/repo.png" alt="repo" />
                     </IconButton>
                 </Tooltip>
@@ -182,7 +178,7 @@ function ProjectActivity() {
             <Tooltip title="vote" sx={{mr: 2}} >
                 <IconButton size="small">
                     <Badge color="info" badgeContent={25} >
-                        <HowToVoteOutlined />
+                        <HowToVoteOutlined fontSize='small' />
                     </Badge>
                 </IconButton>
 
@@ -193,15 +189,15 @@ function ProjectActivity() {
             <Tooltip title="suggestions" sx={{mr: 2}} >
                 <IconButton size="small" >
                     <Badge color="warning" badgeContent={25} >
-                        <EmojiObjectsOutlined />
+                        <EmojiObjectsOutlined   fontSize='small'/>
                     </Badge>
                 </IconButton>
             </Tooltip>
 
             <Tooltip title="like"  >
                 <IconButton size="small" >
-                    <Badge color="info" badgeContent={25} >
-                        <ThumbUpOutlined />
+                    <Badge  color="info" badgeContent={25} >
+                        <ThumbUpOutlined  fontSize='small' />
                     </Badge>
                 </IconButton>
                 

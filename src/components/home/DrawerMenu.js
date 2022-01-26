@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -26,15 +26,12 @@ export default function DrawerMenu() {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesSmSearch = theme.breakpoints.down('md')
+    const [fullWidth, setFullWidth] = useState(false)
 
     useEffect(() => {
-        // when the screen is not smaller device remove hash 
-        // if (!matches && hash != ''){
-        //     setDrawerOpen(false)
-        //     window.location.hash = ""
-        //     window.location.pathname = location.pathname.replace('#', '')
-
-        // }
+        
+        setFullWidth(false)
+        setFullScreen(false)
 
         
         if (hash == "#search" && matches ){
@@ -54,6 +51,13 @@ export default function DrawerMenu() {
             setDrawerComponent('notification')
             setFullScreen(true)
 
+        }else if (hash === "#create_anticipation") {
+            setDrawerOpen(true)
+            setDrawerComponent('create_anticipation')
+            setFullWidth(true)
+
+            if(matches)
+                setFullScreen(true)
         }
         else {
             // close drawer menu and default drawer component
@@ -98,7 +102,7 @@ export default function DrawerMenu() {
     
     return (
         <div>
-             <Dialog sx={{pr: 0, pl: 0}} open={drawerOpen} fullScreen={fullScreen}  >
+             <Dialog  sx={{pr: 0, pl: 0}} open={drawerOpen} fullScreen={fullScreen}  >
                 
                 <DialogContent sx={{pr: "2px", pl: 0}}>
                 
@@ -108,7 +112,7 @@ export default function DrawerMenu() {
                         <SearchMenu /> :
                         drawerComponent === "notification" ?
                         <NotificationMenu /> :
-                        drawerComponent === "c_anticipation" ?
+                        drawerComponent === "create_anticipation" ?
                         <CreateAnticipationMenu /> : 
                         drawerComponent === "pinned" ?
                         <PinnedProjectMenu /> :

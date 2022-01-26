@@ -5,9 +5,13 @@ import ActivityLoader from './ActivityLoader';
 import AnticipationActivity from './anticipation_activity/AnticipationActivity';
 import ProjectActivity from './project_activity/ProjectActivity';
 import '../../../../App.css'
+import {useHistory} from 'react-router-dom'
 
 
 const AnticipationCreator = ()=> {
+    const history = useHistory()
+
+
     return (
       <Paper
         component="form"
@@ -17,7 +21,10 @@ const AnticipationCreator = ()=> {
         <InputBase
           sx={{ ml: 1, flex: 1, width: "100%"}}
           fullWidth
-          
+          autoFocus={false}
+          onFocus={() => {
+              history.push('#create_anticipation')
+          }}
           placeholder="What are you working on? "
           inputProps={{ 'aria-label': 'What are you working on?' }}
         />

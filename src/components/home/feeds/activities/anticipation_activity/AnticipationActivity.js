@@ -82,7 +82,7 @@ function AnticipationActivity() {
             <Tooltip title="likes" sx={{mr: 2}} >
                 <IconButton size="small" >
                     <Badge color="info" badgeContent={25} >
-                        <ThumbUpOutlined />
+                        <ThumbUpOutlined  fontSize='small' />
                     </Badge>
                 </IconButton>
                 

@@ -33,6 +33,25 @@ export default function Home(props) {
   })
   const {somethingWentWrong} = useContext(AuthContext)
 
+  const notifyForOffline = () => {
+
+    const newSnackInfo = Object.assign(snackInfo, {})
+    newSnackInfo.message = "You are currently offline"
+    newSnackInfo.severity = 'warning'
+    setSnackInfo(newSnackInfo)
+    setOpenSnack(true)
+  }
+
+  const notifyForOnline = () => {
+
+    const newSnackInfo = Object.assign(snackInfo, {})
+    newSnackInfo.message = "You are currently online"
+    newSnackInfo.severity = 'success'
+    setSnackInfo(newSnackInfo)
+    setOpenSnack(true)
+  }
+
+
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -42,16 +61,33 @@ export default function Home(props) {
     setOpenSnack(false);
   };
 
+  React.useEffect(() => {
+    window.addEventListener('offline', notifyForOffline);
+    window.addEventListener('online', notifyForOnline);
+
+    // cleanup this component
+    return () => {
+      window.removeEventListener('offline', notifyForOffline);
+      window.removeEventListener('offline', notifyForOnline);
+    };
+  }, []);
+
 
   useEffect(() => {
-
+    console.log("app has done somethings ")
     if(somethingWentWrong){
         const newSnackInfo = Object.assign(snackInfo, {})
 
         newSnackInfo.message = "Something went wrong"
+        newSnackInfo.severity = 'error'
         setSnackInfo(newSnackInfo)
+         
         setOpenSnack(true)
     }
+
+    
+      
+  
   }, [somethingWentWrong])
 
   return (
@@ -70,7 +106,7 @@ export default function Home(props) {
           }}
         > 
               <Snackbar open={openSnack} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity='error'  sx={{ width: '100%' }}>
+                <Alert onClose={handleClose} severity={snackInfo.severity}  sx={{ width: '100%' }}>
                 {snackInfo.message}
                 
               </Alert>

@@ -22,7 +22,7 @@ export default function MembersContainer() {
              setUsers(data)
              setLoading(false)
         }).catch(err => {
-            console.log(err)
+         
             setSomethingWentWrong(true)
          
         })
@@ -38,7 +38,6 @@ export default function MembersContainer() {
                 <MemberList users={users} />
             }
            
-            
         </Box>
     )
 }

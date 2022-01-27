@@ -21,7 +21,7 @@ export default function ActivityContainer() {
             
             <Switch >
                 <Route path={`/xpo/projects/:slug`} render={() => <ProjectContainer />} />
-                <Route path={`/xpo/members/:slug`} render={() => <ProfileContainer slug="john-doe" />} />
+                <Route path={`/xpo/members/:slug`} render={() => <ProfileContainer  />} />
                 <Route  path={`/xpo/members`} render={() => <MembersContainer />} />
                 <Route  path={`/xpo/my_profile`} render={() => <MyProfileContainer />} />
                 <Route path={'/xpo/edit_profile'}  render={() => <EditProfile /> }/> 

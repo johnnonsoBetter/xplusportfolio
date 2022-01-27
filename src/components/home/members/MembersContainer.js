@@ -30,7 +30,7 @@ export default function MembersContainer() {
     }, [])
     
     return (
-        <Box >
+        <Box px={1} >
             {
                 loading ?
                 <MembersLoader /> 

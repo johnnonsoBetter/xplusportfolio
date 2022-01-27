@@ -6,7 +6,6 @@ import Container from '@mui/material/Container';
 import MyAppbar from './MyAppbar';
 import { Route, useLocation } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom';
 import Feed from './feeds/Feed';
 import { DrawerContextProvider } from '../../context/DrawerContext';
@@ -14,7 +13,6 @@ import DrawerMenu from './DrawerMenu';
 import { useHistory } from 'react-router-dom';
 import BottomNav from './BottomNav';
 import { Alert, Snackbar } from '@mui/material';
-import { HomeInfoContextProvider } from '../../context/HomeInfoContext';
 import { AuthContext } from '../../context/AuthContext';
 
 

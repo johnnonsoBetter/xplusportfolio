@@ -1,15 +1,13 @@
 import { LoadingButton } from '@mui/lab'
-import { Alert, Avatar, BadgeMark, Box, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar, TextField, Typography, useMediaQuery } from '@mui/material'
-import React, { useContext, useEffect, useState } from 'react'
+import { Alert, Box, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar, TextField, Typography, useMediaQuery } from '@mui/material'
+import React, { useContext, useState } from 'react'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { publicFetch } from '../utils/fetch';
 import { AuthContext } from '../context/AuthContext';
-import { Redirect } from 'react-router-dom';
-import { BadgeRounded, CloseOutlined, Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { blueGrey } from '@mui/material/colors';
-import DrawerContext from '../context/DrawerContext';
 import { useTheme } from '@emotion/react';
 
 
@@ -31,7 +29,6 @@ export default function Login(){
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
   const [loginLoading, setLoginLoading] = useState(false)
-  const [redirectOnLogin, setRedirectOnLogin] = useState(false)
   const [loginError, setLoginError] = useState(false)
   const {setAuthState} = useContext(AuthContext)
   const [checked] = useState(false)
@@ -118,19 +115,12 @@ export default function Login(){
       })
     }
 
-    useEffect(() => {
-
-      return () => {
-        setRedirectOnLogin(false)
-      }
-    }, [])
-
 
     return (
         <>
         
         <Container maxWidth="xs" >
-          <Snackbar open={loginError} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
+            <Snackbar open={loginError} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
               <Alert onClose={handleClose} severity='error'  sx={{ width: '100%' }}>
                 {snackInfo.message}
                 

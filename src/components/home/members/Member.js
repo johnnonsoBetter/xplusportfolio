@@ -1,17 +1,18 @@
-import { AccountBoxOutlined, BadgeOutlined, FolderRounded, HiveRounded, HowToVoteOutlined, PsychologyRounded } from '@mui/icons-material'
+import { FolderRounded, HiveRounded, PsychologyRounded } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
 import { Avatar, Badge, Box, Paper, Stack, Typography } from '@mui/material'
 import { blue, green, orange } from '@mui/material/colors'
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { FetchContext } from '../../../context/FetchContext'
 
 
 export default function Member({user}) {
-    const {name, slug, total_projects, total_anticipations, repu_coin} = user
+    const {name, slug, total_projects, total_anticipations, repu_coin, is_following} = user
 
     return (
-        <Paper elevation={0} sx={{minHeight: 260, borderRadius: "10px"}} >
-            <Link to={`/xpo/members/john-doe`} style={{textDecoration: 'none'}} >
+        <Paper  elevation={0} sx={{minHeight: 260, borderRadius: "10px"}} >
+            <Link to={`/xpo/members/${slug}`}  style={{textDecoration: 'none'}} >
                 <Stack rowGap={2} >
                     <Box  width="100%" display="flex" justifyContent="center" >
                        <Avatar src="/images/pics.jpg" alt="pics" sx={{width: 70, height: 70, my: 3}} />
@@ -36,9 +37,67 @@ export default function Member({user}) {
             
             </Link>
             
-            <Box width="100%" my={3} display="flex" justifyContent="center" >
-                <LoadingButton size="small" sx={{mx: 1}} fullWidth variant="outlined" > Follow </LoadingButton>
+            <Box width="100%"  my={2} display="flex" justifyContent="center" >
+               <FollowButton is_following={is_following} slug={slug} />
             </Box>
         </Paper>
     )
 }
+
+
+function FollowButton({is_following, slug}) {
+
+    const [isFollowing, setIsFollowing] = useState(is_following)
+    const {authAxios} = useContext(FetchContext)
+    const [followTrue, setFollowTrue] = useState(false)
+    const [unFollowTrue, setunFollowTrue] = useState(false)
+
+
+    const followMember = () => {
+        setunFollowTrue(false)
+        setIsFollowing(true)
+
+
+        setFollowTrue(true)
+
+        authAxios.post(`/api/v1/users/${slug}/followings`, {id: slug}).then(res => {
+            console.log(res)
+        }).catch(err => {
+            setIsFollowing(false)
+            setFollowTrue(false)
+        })
+
+    }
+
+
+    const unfollowMember = () => {
+        setFollowTrue(false)
+        setIsFollowing(false)
+
+        setunFollowTrue(true)
+
+        authAxios.delete(`/api/v1/users/${slug}/followings`, {id: slug}).then(res => {
+            console.log(res)
+        }).catch(err => {
+            setIsFollowing(true)
+            setunFollowTrue(false)
+        })
+
+    }
+
+    return (
+        <>
+        {
+           
+            isFollowing ?
+            <LoadingButton disabled={unFollowTrue} size="small" sx={{mx: 1}} fullWidth variant="outlined" onClick={unfollowMember} > Unfollow </LoadingButton> 
+            :
+            <LoadingButton disabled={followTrue} disableElevation size="small" sx={{mx: 1}} fullWidth variant="outlined" onClick={followMember}  > Follow </LoadingButton>
+           
+        }
+        </>
+    )
+}
+
+
+

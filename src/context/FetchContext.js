@@ -1,5 +1,7 @@
 import axios from 'axios'
-import React, { createContext } from 'react'
+import React, { createContext, useContext} from 'react'
+import {useHistory} from 'react-router-dom'
+import {AuthContext} from './AuthContext'
 const FetchContext = createContext()
 
 const {Provider} = FetchContext
@@ -9,6 +11,17 @@ const FetchProvider = ({children}) => {
     const authAxios = axios.create({
         baseURL: process.env.NODE_ENV === 'development'? 'http://localhost:3001' : 'https://peoplesfavouriteb.herokuapp.com/'
     })
+
+    const {isAuthenticated, setAuthState} = useContext(AuthContext)
+
+    const history = useHistory()
+
+
+    
+
+
+    
+    
 
    
 
@@ -25,10 +38,40 @@ const FetchProvider = ({children}) => {
             }
         )
 
+        // if(!isAuthenticated()){
+        //     // history.push('#login')
+        //     window.location.href = '/sign_up'
+        // }
+
+            
+
           config.headers = JSON.parse(userHeaders)
           return config;
         },
         error => {
+          return Promise.reject(error);
+        }
+    ); 
+
+
+    authAxios.interceptors.response.use(
+        res => {
+            
+    
+            console.log("this has returned the response")
+         
+          return res;
+        },
+        error => {
+          
+            if(error.response.status === 401){
+               
+                setAuthState({})
+                window.location.href = '/login'
+               console.log("rejected")
+            }
+
+         
           return Promise.reject(error);
         }
     ); 

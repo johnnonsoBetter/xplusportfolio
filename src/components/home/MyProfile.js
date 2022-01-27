@@ -99,7 +99,7 @@ export default function MyProfile() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
           
-        <MenuItem  disableRipple focusRipple={false} >
+        <MenuItem  disableRipple focusRipple={false} onClick={handleClose}  >
        
             <Box width="100%"  component={Link} to="/xpo/my_profile/mark-twain" sx={{textDecoration: "none"}} color="ButtonShadow" display="flex" justifyContent="flex-start" alignItems="center">
             <PersonOutlineRounded  />
@@ -108,7 +108,7 @@ export default function MyProfile() {
             </Box>
         </MenuItem>
 
-        <MenuItem disableRipple focusRipple={false} >
+        <MenuItem disableRipple focusRipple={false} onClick={handleClose} >
        
             <Box component={Link}  to="/xpo/edit_profile"   sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
                

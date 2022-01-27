@@ -28,11 +28,17 @@ function App() {
        
         <Switch >
             
+            <Route path="/login" render={() => <Login />} />
             <Route path="/sign_up" render={() => <Signup />} />
             <Route path="/change_password" render={() => <UpdatePassword />} />               
             
-            <Route  path="/xpo" render={() =>  <Home /> } />
+            {/* <Route  path="/xpo" render={() =>  <Home /> } />
             <Route exact  path="/" render={() => <Redirect to="/xpo" /> } />
+            <Route exact path="/404" render={() => <NoPageFound />} />
+            <Redirect to="/404" /> */}
+
+            <Route  path="/xpo" render={() => isAuthenticated() ? <Home /> : <Redirect to='/login' /> } />
+            <Route exact  path='/' render={() => isAuthenticated() ? <Redirect to="/xpo" /> : <Redirect to='/login' /> } />
             <Route exact path="/404" render={() => <NoPageFound />} />
             <Redirect to="/404" />
             

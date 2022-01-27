@@ -34,8 +34,7 @@ export default function BottomNav() {
       <Paper  sx={{ position: 'fixed', zIndex: 500, bottom: 0, left: 0, right: 0, display: {xs: "block", sm: "none"}}} elevation={3}>
         <BottomNavigation
           showLabels
-          
-          component={Link}
+     
           sx={{
               textDecoration: "none"
           }}
@@ -49,10 +48,7 @@ export default function BottomNav() {
           
           <BottomNavigationAction disableRipple LinkComponent={Link} to={`#search`} label="Search" icon={<Search />} />
           
-                        {/* <IconButton onClick={openMobileSearch}  sx={{display: {xs: "block", sm: "none"}, mt: 1}}>
-                            <SearchIcon />
-                        </IconButton>
-                    </Link> */}
+                     
         </BottomNavigation>
       </Paper>
     

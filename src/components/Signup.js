@@ -133,8 +133,12 @@ export default function Signup(){
             <form onSubmit={formik.handleSubmit}> 
                 <Box  width="100%">
                     <Paper elevation={matches ? 0 : 2} sx={{backgroundColor: "inherit", py: 3}}  >
-                        <Box p={2} textAlign="center" display="flex" justifyContent="center" m={5} marginBottom={0} >
-                              <Avatar > <BadgeRounded /> </Avatar>
+                        <Box px={2} textAlign="center" display="flex" justifyContent="center" m={5} marginBottom={0} >
+                        <Box px={2}  textAlign="center" display="flex" justifyContent="center" m={5} marginBottom={0} >
+                           
+                           <Box component='img' src='/images/logo.png' />
+
+                       </Box>
 
                         </Box>
                         <Box p={2} textAlign="center"  >

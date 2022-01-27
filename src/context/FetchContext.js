@@ -11,13 +11,12 @@ const FetchProvider = ({children}) => {
         baseURL: process.env.NODE_ENV === 'development'? 'http://localhost:3001' : 'https://peoplesfavouriteb.herokuapp.com/'
     })
 
-    const [somethingWentWrong, setSomethingWentWrong] = useState(false)
-
-    const {isAuthenticated, setAuthState, authState} = useContext(AuthContext)
+    const {isAuthenticated, setAuthState, setSomethingWentWrong} = useContext(AuthContext)
 
     authAxios.interceptors.request.use(
+        
         config => {
-    
+            setSomethingWentWrong(false)
         const userHeaders =  JSON.stringify(
 
             {   
@@ -68,7 +67,7 @@ const FetchProvider = ({children}) => {
         <Provider 
             value={{
                 authAxios,
-                somethingWentWrong,
+                
             }}
 
         >

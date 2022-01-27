@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -13,6 +13,9 @@ import { DrawerContextProvider } from '../../context/DrawerContext';
 import DrawerMenu from './DrawerMenu';
 import { useHistory } from 'react-router-dom';
 import BottomNav from './BottomNav';
+import { Alert, Snackbar } from '@mui/material';
+import { HomeInfoContextProvider } from '../../context/HomeInfoContext';
+import { AuthContext } from '../../context/AuthContext';
 
 
 export default function Home(props) {
@@ -23,11 +26,39 @@ export default function Home(props) {
   const [fullScreen, setFullScreen] = useState(false)
   const history = useHistory()
   const location = useLocation()
+  const [openSnack, setOpenSnack] = useState(false)
+  const [snackInfo, setSnackInfo] = useState({
+    message: '',
+    severity: ''
+  })
+  const {somethingWentWrong} = useContext(AuthContext)
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnack(false);
+  };
+
+
+  useEffect(() => {
+
+    if(somethingWentWrong){
+        const newSnackInfo = Object.assign(snackInfo, {})
+
+        newSnackInfo.message = "Something went wrong"
+        setSnackInfo(newSnackInfo)
+        setOpenSnack(true)
+    }
+  }, [somethingWentWrong])
 
   return (
     <React.Fragment>
       <CssBaseline />
-        <DrawerContextProvider 
+        
+       <DrawerContextProvider 
           value={{
             drawerOpen,
             drawerComponent,
@@ -38,6 +69,12 @@ export default function Home(props) {
             closeDrawer: () => history.goBack()
           }}
         > 
+              <Snackbar open={openSnack} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity='error'  sx={{ width: '100%' }}>
+                {snackInfo.message}
+                
+              </Alert>
+            </Snackbar>
             <DrawerMenu />
             <MyAppbar />
             <Toolbar />
@@ -54,6 +91,7 @@ export default function Home(props) {
           </Container>
           <BottomNav />
         </DrawerContextProvider>  
+       
     </React.Fragment>
   );
 }

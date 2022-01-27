@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
   const userInfo = localStorage.getItem('userInfo');
   const expiresAt = localStorage.getItem('expiresAt');
   const client = localStorage.getItem('client');
+  const [somethingWentWrong, setSomethingWentWrong] = useState(false)
 
   const [authState, setAuthState] = useState({
     token,
@@ -71,6 +72,8 @@ const AuthProvider = ({ children }) => {
         setAuthState: authInfo => setAuthInfo(authInfo),
         logUserOut,
         isAuthenticated,
+        somethingWentWrong,
+        setSomethingWentWrong: (wrong) => setSomethingWentWrong(wrong)
         
       }}
     >

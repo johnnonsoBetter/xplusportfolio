@@ -4,35 +4,40 @@ import MemberList from './MemberList'
 import MembersLoader from './MembersLoader'
 import {useContext} from 'react'
 import {FetchContext} from '../../../context/FetchContext'
+import { AuthContext } from '../../../context/AuthContext'
 
 
 export default function MembersContainer() {
 
-    const {authAxios, somethingWentWrong} = useContext(FetchContext)
+    const {authAxios} = useContext(FetchContext)
+    const {setSomethingWentWrong} = useContext(AuthContext)
 
     const [loading, setLoading] = useState(false)
-    const [failed, setFailed] = useState(false)
     const [users, setUsers] = useState([])
 
-    
-
-    
-
     useEffect(() => {
+        setLoading(true)
         authAxios.get('api/v1/users').then(res => {
              const {data} = res 
              setUsers(data)
-
-
+             setLoading(false)
         }).catch(err => {
             console.log(err)
+            setSomethingWentWrong(true)
+         
         })
 
     }, [])
     
     return (
         <Box >
-           <MemberList users={users} />
+            {
+                loading ?
+                <MembersLoader /> 
+                : 
+                <MemberList users={users} />
+            }
+           
             
         </Box>
     )

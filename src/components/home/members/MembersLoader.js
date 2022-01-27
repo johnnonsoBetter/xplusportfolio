@@ -32,7 +32,7 @@ export default function MembersLoader() {
 
     const loaders = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     return (
-        <Box width="100%" >
+        <Box py={1} className="member-container" sx={{width: "100%", scrollbarColor: "red",  height: {sm: "calc(99vh - 60px)", xs: "calc(96vh - 85px)"}, scrollbarWidth: {display: "none"}, overflowY: "auto"}} >
            <Grid container spacing={1} >
                {
                    loaders.map(load => (

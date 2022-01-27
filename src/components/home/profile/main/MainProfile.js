@@ -1,7 +1,7 @@
-import { AddRounded, ArrowDropUpRounded, ArrowUpwardRounded, BuildRounded, FolderRounded, HowToVoteRounded, LightbulbRounded, PeopleAltRounded, PsychologyRounded } from '@mui/icons-material'
+import { AddRounded, ArrowDropUpRounded, ArrowUpwardRounded, BuildRounded, FolderRounded, HiveOutlined, HowToVoteRounded, LightbulbRounded, PeopleAltRounded, PsychologyRounded } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
 import { Avatar, Badge, Box, Chip, Divider, Grid, IconButton, Paper, Stack, Tooltip, Typography } from '@mui/material'
-import { blue, green, orange, purple } from '@mui/material/colors'
+import { blue, green, orange, pink, purple } from '@mui/material/colors'
 import React from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import { Link, useLocation } from 'react-router-dom'
@@ -17,7 +17,7 @@ export default function MainProfile({isCurrentUser}) {
                             <Stack >
                                 <Box width="100%" display="flex" justifyContent="center" >
                                     
-                                    <Avatar src="/images/coiner.png" alt="coin" />
+                                    <HiveOutlined sx={{color: green[500]}} />
                                 </Box>
                                 <Box p={1} >
                                     <Typography variant="body2" > 200 Repu Coins</Typography>
@@ -38,7 +38,7 @@ export default function MainProfile({isCurrentUser}) {
                             <Stack  >
                                 <Box width="100%" display="flex" justifyContent="center" >
                                     
-                                    <Avatar sx={{bgcolor: "white"}} > <HowToVoteRounded sx={{color: green[500]}} /> </Avatar>
+                                    <Avatar sx={{bgcolor: "white"}} > <HowToVoteRounded sx={{color: pink[500]}} /> </Avatar>
                                 </Box>
                                 <Box p={1} >
                                     <Typography variant="body2" > 95 Project Votes</Typography>
@@ -161,7 +161,7 @@ export default function MainProfile({isCurrentUser}) {
                             <Stack width="100%" justifyContent="center" alignItems="center">
                                 <Box width="100%" display="flex" justifyContent="center" >
                                     
-                                    <Avatar sx={{bgcolor: "white"}} > <LightbulbRounded sx={{color: orange[500]}} /> </Avatar>
+                                    <Avatar sx={{bgcolor: "white"}} > <LightbulbRounded sx={{color: purple[500]}} /> </Avatar>
                                 </Box>
                                 <Box p={1} >
                                     <Typography variant="body2" > 7 Suggestions</Typography>
@@ -178,7 +178,7 @@ export default function MainProfile({isCurrentUser}) {
                             <Stack >
                                 <Box width="100%" display="flex" justifyContent="center" >
                                     
-                                    <Avatar sx={{bgcolor: "white"}} > <FolderRounded sx={{color: purple[500]}} /> </Avatar>
+                                    <Avatar sx={{bgcolor: "white"}} > <FolderRounded sx={{color: orange[500]}}  /> </Avatar>
                                 </Box>
                                 <Box p={1} >
                                     <Typography variant="body2" > 12 Projects</Typography>

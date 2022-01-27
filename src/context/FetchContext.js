@@ -1,6 +1,5 @@
 import axios from 'axios'
-import React, { createContext, useContext} from 'react'
-import {useHistory} from 'react-router-dom'
+import React, { createContext, useContext, useState} from 'react'
 import {AuthContext} from './AuthContext'
 const FetchContext = createContext()
 
@@ -12,18 +11,9 @@ const FetchProvider = ({children}) => {
         baseURL: process.env.NODE_ENV === 'development'? 'http://localhost:3001' : 'https://peoplesfavouriteb.herokuapp.com/'
     })
 
-    const {isAuthenticated, setAuthState} = useContext(AuthContext)
+    const [somethingWentWrong, setSomethingWentWrong] = useState(false)
 
-    const history = useHistory()
-
-
-    
-
-
-    
-    
-
-   
+    const {isAuthenticated, setAuthState, authState} = useContext(AuthContext)
 
     authAxios.interceptors.request.use(
         config => {
@@ -38,12 +28,10 @@ const FetchProvider = ({children}) => {
             }
         )
 
-        // if(!isAuthenticated()){
-        //     // history.push('#login')
-        //     window.location.href = '/sign_up'
-        // }
-
-            
+        if(!isAuthenticated()){
+            setAuthState({})
+            window.location.href = '/login'
+        }
 
           config.headers = JSON.parse(userHeaders)
           return config;
@@ -57,9 +45,7 @@ const FetchProvider = ({children}) => {
     authAxios.interceptors.response.use(
         res => {
             
-    
-            console.log("this has returned the response")
-         
+            
           return res;
         },
         error => {
@@ -68,8 +54,10 @@ const FetchProvider = ({children}) => {
                
                 setAuthState({})
                 window.location.href = '/login'
-               console.log("rejected")
+               
             }
+
+        
 
          
           return Promise.reject(error);
@@ -79,7 +67,8 @@ const FetchProvider = ({children}) => {
     return (
         <Provider 
             value={{
-                authAxios
+                authAxios,
+                somethingWentWrong,
             }}
 
         >

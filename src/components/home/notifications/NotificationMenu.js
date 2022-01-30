@@ -13,6 +13,7 @@ import { FetchContext } from '../../../context/FetchContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { NotificationsOutlined, PlaylistAddCheckOutlined } from '@mui/icons-material';
 import NotificationLoader from './NofiticationLoader';
+import NotificationList from './NotificationList';
 
 
 export default function NotificationMenu() {
@@ -31,19 +32,16 @@ export default function NotificationMenu() {
   };
 
 
-//   const logout = () => {
+  const {somethingWentWrong} = useContext(AuthContext)
+  const {authAxios} = useContext(FetchContext)
 
-//     setLoading(true)
-//     authAxios.delete('api/v1/auth/sign_out').then((res) => {
+  authAxios.get('api/v1/notifications').then(res => {
+      console.log(res)
+  }).catch(err => {
+      console.log(err)
+  })
 
-//         logUserOut()
-//         history.push('/login')
-      
-//     }).catch(err => {
-//         setLoading(false)
-//     })
 
-//   }
 
 
   return (
@@ -108,7 +106,9 @@ export default function NotificationMenu() {
                 </Tooltip>
             </Box>
         </MenuItem>
-        <NotificationLoader />
+        <NotificationList />
+
+
       </Menu>
     </React.Fragment>
   );

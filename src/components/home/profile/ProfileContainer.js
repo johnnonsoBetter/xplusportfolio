@@ -30,13 +30,11 @@ export default function ProfileContainer({isCurrentUser}) {
                 
                 sectionId === 0 ? 
                 <>
-                  
                     <ProfileMenu />
                 </>
                 
                 : 
                 <>
-                    
                     <ProfileRouter slug={slug} isCurrentUser={false} /> 
                 </>
                 

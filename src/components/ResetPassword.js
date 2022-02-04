@@ -123,7 +123,7 @@ export default function ResetPassword(){
 
     return (
         <>
-        {redirectOnLogin && <Redirect to="/" /> }
+       
         <Container maxWidth="sm" >
           <Snackbar open={loginError} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
               <Alert onClose={handleClose} severity='error'  sx={{ width: '100%' }}>

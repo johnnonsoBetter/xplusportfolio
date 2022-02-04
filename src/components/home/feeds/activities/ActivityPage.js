@@ -22,16 +22,15 @@ const AnticipationCreator = ()=> {
           sx={{ ml: 1, flex: 1, width: "100%"}}
           fullWidth
           autoFocus={false}
-          onFocus={() => {
-              history.push('#create_anticipation')
-          }}
+          onClick={() => history.push('#create_anticipation')}
+          
           placeholder="What are you working on? "
           inputProps={{ 'aria-label': 'What are you working on?' }}
         />
         
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
-          <PsychologyRounded />
+        <IconButton onClick={() => history.push('#create_anticipation')} color="primary" sx={{ p: '10px' }} aria-label="directions">
+          <PsychologyRounded  />
         </IconButton>
         
       </Paper>

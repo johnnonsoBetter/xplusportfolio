@@ -5,9 +5,11 @@ import { blue, green, orange, pink, purple } from '@mui/material/colors'
 import React from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import { Link, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function MainProfile({isCurrentUser}) {
     const {path} = useRouteMatch()
+    const history = useHistory()
     return (
         <Box my={1} mx={1} >
             <Grid container spacing={1} >
@@ -88,7 +90,7 @@ export default function MainProfile({isCurrentUser}) {
                                         <Grid item xs={6} >
                                             
                                         <Tooltip title="Anticipate">
-                                                <IconButton disableRipple>  
+                                                <IconButton onClick={() => history.push('#create_anticipation')} disableRipple>  
                                                     <PsychologyRounded />
                                                     <AddRounded />
                                                 </IconButton> 

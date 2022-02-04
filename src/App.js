@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './App.css';
-import {Box, Container, createTheme, ThemeProvider} from '@mui/material'
+import {createTheme, ThemeProvider} from '@mui/material'
 import Home from './components/home/Home';
 import { Route, Switch } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
@@ -10,6 +10,11 @@ import Login from './components/Login';
 import NoPageFound from './components/NoPageFound';
 import UpdatePassword from './components/UpdatePassword';
 import ConfirmAccount from './components/ConfirmAccount';
+import ForgotPassword from './components/ForgotPassword';
+import queryString from 'query-string'
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import SetReset from './components/SetReset';
+
 
 const theme = createTheme({
   typography: {
@@ -31,8 +36,9 @@ function App() {
             
             <Route path="/login" render={() => <Login />} />
             <Route path="/sign_up" render={() => <Signup />} />
-            <Route path="/change_password" render={() => <UpdatePassword />} />  
-            <Route path='/api' render={() => <ConfirmAccount /> } />        
+            
+            <Route path="/update_password" render={() => <UpdatePassword />} />  
+            <Route path='/api' render={() => <SetReset /> } />        
             <Route  path="/xpo" render={() => isAuthenticated() ? <Home /> : <Redirect to='/login' /> } />
             <Route exact  path='/' render={() => isAuthenticated() ? <Redirect to="/xpo" /> : <Redirect to='/login' /> } />
             <Route exact path="/404" render={() => <NoPageFound />} />
@@ -45,5 +51,8 @@ function App() {
     
   );
 }
+
+
+
 
 export default App;

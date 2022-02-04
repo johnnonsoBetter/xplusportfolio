@@ -1,10 +1,10 @@
 import { Box, CircularProgress, Container, Grow, Stack, Typography } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import React, { useContext, useState } from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import queryString from 'query-string'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
-import { CheckBoxRounded, CheckCircleRounded } from '@mui/icons-material'
+import {  CheckCircleRounded } from '@mui/icons-material'
 import { AuthContext } from '../context/AuthContext'
 import { publicFetch } from '../utils/fetch'
 
@@ -16,6 +16,7 @@ export default function ConfirmAccount() {
     const {confirmation_token} = parsed
     const [confirmed, setConfirmed] = useState(false)
     const {authContext} = useContext(AuthContext)
+
 
     publicFetch.get(`api/v1/auth/confirmation?confirmation_token=${confirmation_token}`).then(res => {
         console.log("Confirmed")

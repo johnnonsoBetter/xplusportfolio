@@ -1,15 +1,16 @@
-import { AddRounded, ArrowDropUpRounded, ArrowUpwardRounded, BuildRounded, FolderRounded, HiveOutlined, HowToVoteRounded, LightbulbRounded, PeopleAltRounded, PsychologyRounded } from '@mui/icons-material'
+import { AddRounded, ArrowDropUpRounded, BuildRounded, FolderRounded, HiveOutlined, HowToVoteRounded, LightbulbRounded, PeopleAltRounded, PsychologyRounded } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
 import { Avatar, Badge, Box, Chip, Divider, Grid, IconButton, Paper, Stack, Tooltip, Typography } from '@mui/material'
 import { blue, green, orange, pink, purple } from '@mui/material/colors'
 import React from 'react'
-import { useRouteMatch } from 'react-router-dom'
 import { Link, useLocation } from 'react-router-dom'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function MainProfile({isCurrentUser}) {
-    const {path} = useRouteMatch()
+   
+    const {pathname} = useLocation()
     const history = useHistory()
+
     return (
         <Box my={1} mx={1} >
             <Grid container spacing={1} >
@@ -55,14 +56,14 @@ export default function MainProfile({isCurrentUser}) {
                     <Paper sx={{p: 1, minHeight: 130, display: 'flex', alignItems: 'center'}}   >
                         <Stack width="100%">
                             <Box display="flex" justifyContent="space-around">
-                                <Box component={Link} to={`${path}/followers`}   sx={{textDecoration: 'none'}}>
+                                <Box component={Link} to={`${pathname}/followers`}   sx={{textDecoration: 'none'}}>
                                     <PeopleAltRounded color="action" />
                                     <Typography color="GrayText" marginBottom variant="body2"   > 23 followers</Typography>
                                 </Box>
 
                                 <Divider sx={{ height: 48, m: 0.5 }} orientation="vertical" />
 
-                                <Box component={Link} to={`${path}/following`}   sx={{textDecoration: 'none'}}>
+                                <Box component={Link} to={`${pathname}/following`}   sx={{textDecoration: 'none'}}>
                                     <PeopleAltRounded color="action" />
                                     <Typography marginBottom variant="body2" color="GrayText"> 23 following</Typography>
                                 </Box>
@@ -80,7 +81,7 @@ export default function MainProfile({isCurrentUser}) {
                                         <Grid item xs={6}  >
                                             {/* <LoadingButton color="success" disableRipple variant="contained" fullWidth  sx={{mt: 2}} endIcon={<FolderRounded />}  > New </LoadingButton> */}
                                             <Tooltip title="Add Project">
-                                                <IconButton disableRipple>  
+                                                <IconButton onClick={() => history.push('#create_project')} disableRipple>  
                                                     <FolderRounded />
                                                     <AddRounded fontSize="0.6em" />
                                                 </IconButton> 
@@ -128,7 +129,7 @@ export default function MainProfile({isCurrentUser}) {
                 </Grid>
 
                 <Grid item xs={4} sm={4} md={4}  >
-                    <Paper   component={Link} to={`${path}/anticipations`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                    <Paper   component={Link}  to={`${pathname}/anticipations`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
                         <Box p={1} >
                             <Stack >
                                 <Box width="100%" display="flex" justifyContent="center" >
@@ -158,7 +159,7 @@ export default function MainProfile({isCurrentUser}) {
 
 
                 <Grid item xs={4} sm={4} md={4}  >
-                    <Paper   component={Link} to={`${path}/suggestions`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                    <Paper   component={Link} to={`${pathname}/suggestions`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
                         <Box p={1}   >
                             <Stack width="100%" justifyContent="center" alignItems="center">
                                 <Box width="100%" display="flex" justifyContent="center" >
@@ -175,7 +176,7 @@ export default function MainProfile({isCurrentUser}) {
                 </Grid>
 
                 <Grid item xs={4} md={4} spacing={2} >
-                    <Paper component={Link} to={`${path}/projects`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                    <Paper component={Link} to={`${pathname}/projects`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
                         <Box p={1} >
                             <Stack >
                                 <Box width="100%" display="flex" justifyContent="center" >

@@ -10,13 +10,15 @@ import SearchMenu from './mobile/SearchMenu'
 import NotificationMenu from './mobile/NotificationMenu';
 import CreateAnticipationMenu from './mobile/CreateAnticipationMenu'
 import PinnedProjectMenu from './mobile/PinnedProjectMenu'
-import { Box, IconButton } from '@mui/material';
+import { Alert, Box, IconButton, Snackbar } from '@mui/material';
 import { CloseOutlined } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Login from '../Login';
 import ResetPassword from '../ResetPassword';
+import CreateProjectMenu from './mobile/creat_project/CreateProjectMenu';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function DrawerMenu() {
 
@@ -27,6 +29,15 @@ export default function DrawerMenu() {
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesSmSearch = theme.breakpoints.down('md')
     const [fullWidth, setFullWidth] = useState(false)
+    const {somethingWentWrong, setSomethingWentWrong} = useContext(AuthContext)
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setSomethingWentWrong(false);
+      };
 
     useEffect(() => {
         
@@ -54,6 +65,13 @@ export default function DrawerMenu() {
         }else if (hash === "#create_anticipation") {
             setDrawerOpen(true)
             setDrawerComponent('create_anticipation')
+            setFullWidth(true)
+
+            if(matches)
+                setFullScreen(true)
+        }else if (hash === "#create_project") {
+            setDrawerOpen(true)
+            setDrawerComponent('create_project')
             setFullWidth(true)
 
             if(matches)
@@ -105,7 +123,12 @@ export default function DrawerMenu() {
              <Dialog  sx={{pr: 0, pl: 0}} open={drawerOpen} fullScreen={fullScreen}  >
                 
                 <DialogContent sx={{pr: "2px", pl: 0}}>
-                
+                <Snackbar sx={{zIndex: 500000}} open={somethingWentWrong} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity='error'  sx={{ width: '100%' }}>
+                    {"Something went wrong!!"}
+                    
+                </Alert>
+            </Snackbar>
                 <Box >
                     {
                         drawerComponent === "search" ? 
@@ -120,6 +143,8 @@ export default function DrawerMenu() {
                         <Login />  :
                         drawerComponent === "reset-password" ?
                         <ResetPassword /> :
+                        drawerComponent === "create_project" ?
+                        <CreateProjectMenu /> :
                         null
 
                     }

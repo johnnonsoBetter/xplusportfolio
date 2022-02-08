@@ -22,6 +22,7 @@ import AncticipationContainer from '../profile/anticipations/AnticipationContain
 import ProjectContainer from '../profile/projects/ProjectContainer';
 import MainProfile from '../profile/main/MainProfile';
 import SuggestionContainer from '../profile/suggestions/SuggestionContainer';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
@@ -46,9 +47,10 @@ function MyTabs({slug}) {
 }
 
 
-export default function MyProfileRouter({slug}) {
+export default function MyProfileRouter() {
   const {path} = useRouteMatch()
   const {pathname} = useLocation
+  const {slug} = useParams()
 
   return (
     
@@ -60,12 +62,12 @@ export default function MyProfileRouter({slug}) {
         </ListSubheader>
         <Switch>
    
-          <Route path={`/xpo/my_profile/${slug}/following`} render={ () => <Following />} />
-          <Route path={`/xpo/my_profile/${slug}/followers`} render={ () => <Followers />} />
-          <Route path={`/xpo/my_profile/${slug}/suggestions`} render={ () => <SuggestionContainer />} />
-          <Route path={`/xpo/my_profile/${slug}/anticipations`} render={ () => <AncticipationContainer />} />
-          <Route path={`/xpo/my_profile/${slug}/projects`} render={ () => <ProjectContainer />} />
-          <Route exact path={`/xpo/my_profile/${slug}`} render={ () => <MainProfile isCurrentUser={true} />} />
+          <Route path={`/xpo/my_profile/:slug/following`} render={ () => <Following />} />
+          <Route path={`/xpo/my_profile/:slug/followers`} render={ () => <Followers />} />
+          <Route path={`/xpo/my_profile/:slug/suggestions`} render={ () => <SuggestionContainer />} />
+          <Route path={`/xpo/my_profile/:slug/anticipations`} render={ () => <AncticipationContainer />} />
+          <Route path={`/xpo/my_profile/:slug/projects`} render={ () => <ProjectContainer />} />
+          <Route exact path={`/xpo/my_profile/:slug`} render={ () => <MainProfile isCurrentUser={true} />} />
           <Redirect to="/404" />
           
         </Switch>

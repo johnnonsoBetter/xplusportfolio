@@ -89,7 +89,7 @@ export default function ActivityPage() {
 
            
                 <ProjectActivity />
-                <AnticipationActivity />
+                {/* <AnticipationActivity /> */}
                 <ProjectActivity />
             
             

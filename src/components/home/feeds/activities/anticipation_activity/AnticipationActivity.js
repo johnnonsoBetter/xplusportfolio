@@ -16,15 +16,33 @@ import { Link } from 'react-router-dom';
 import AnticipationActivityOwner from './AnticipationActivityOwner';
 import { blue, deepOrange, orange, yellow } from '@mui/material/colors';
 
+import moment from 'moment';
+import { AuthContext } from '../../../../../context/AuthContext';
 
 
 
 
 
+function AnticipationActivity({anticipation}) {
 
-function AnticipationActivity() {
+
+  const {authState} = React.useContext(AuthContext)
+  const {body, cover, due_date, total_subscribers, total_likes, created_at, user} = anticipation
+  const {image, text_color} = cover
+  const {slug} = JSON.parse(authState.userInfo)
+  const isCurrentUser = user.slug === slug 
+  
+  
 
  
+
+
+  const expires = moment().to(moment(due_date))
+
+
+
+
+
   return (
     <Box my={2} sx={{ flexGrow: 1 }}>
       <Paper
@@ -40,7 +58,7 @@ function AnticipationActivity() {
         }}
       >
           <Box display="flex" width="100%" justifyContent="space-between" alignItems="center" >
-            <AnticipationActivityOwner />
+            <AnticipationActivityOwner isCurrentUser={isCurrentUser} created_at={created_at} user={user}  />
 
             
             <Tooltip title="onprogress" sx={{mr: 2}} >
@@ -60,28 +78,29 @@ function AnticipationActivity() {
             maxWidth: "100%",
             overflow: 'hidden',
             width: '100%',
-           
-            backgroundColor: orange[300]
+            backgroundImage: `url(${image})`,
+            backgroundSize: 'cover',
+            color: text_color
         }}
 
         
        
-        > <Typography variant="h5"  sx={{p: 2, px: 3, m: 3}}> Working on a todo list application help users to keep tabs of all their daily task that they plan to complete that is going to help users to keep tabs of all their daily task that they plan to complete </Typography> </Box>
+        > <Typography variant="h5" sx={{px: 1}} textAlign='center' > {body}</Typography> </Box>
       
       <Paper elevation={0} >
         <Link to="/xpo/kpo" style={{textDecoration: "none"}} >
-        <Typography color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> 206 subscribers</Typography>
+        <Typography color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> {total_subscribers} subscribers</Typography>
         </Link>
         
       </Paper>
       
         <Paper  elevation={0} sx={{display: "flex", justifyContent: "space-between"}}>
             
-            <Box py={1} mx={2} display="flex" justifyContent="flex-start"  >
+            <Box py={1} mx={2} display="flex" justifyContent="flex-start" alignItems="center"  >
             
             <Tooltip title="likes" sx={{mr: 2}} >
                 <IconButton size="small" >
-                    <Badge color="info" badgeContent={25} >
+                    <Badge color="info" badgeContent={total_likes} >
                         <ThumbUpOutlined  fontSize='small' />
                     </Badge>
                 </IconButton>
@@ -90,15 +109,21 @@ function AnticipationActivity() {
             
 
             <Tooltip sx={{ml: 1}} title="expires" > 
-                <Chip variant="outlined" avatar={<AccessTimeOutlined  />} label="2weeks" />
+                <Chip size='small' variant="outlined" avatar={<AccessTimeOutlined  />} label={expires} />
             </Tooltip>
             
             </Box>
 
-            <Tooltip sx={{mr: 2}} title="Subscribe to anticipation" > 
+            {
+              !isCurrentUser &&
+              <Tooltip sx={{mr: 2}} title="Subscribe to anticipation" > 
 
                 <Button  >Subscribe</Button>
-            </Tooltip>
+            </Tooltip> 
+
+            }
+
+            
             
         </Paper>
 

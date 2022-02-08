@@ -7,8 +7,10 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import MyProfileRouter from './MyProfileRouter';
 import ProfileMenu from '../profile/ProfileMenu';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function MyProfileContainer() {
+  const {slug} = useParams()
   return (
     <List
       sx={{
@@ -35,7 +37,7 @@ export default function MyProfileContainer() {
                 : 
                 <>
                     
-                    <MyProfileRouter slug="mark-twain" isCurrentUser={true} /> 
+                    <MyProfileRouter slug={slug} isCurrentUser={true} /> 
                 </>
                 
             }

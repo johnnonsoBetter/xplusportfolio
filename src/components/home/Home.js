@@ -103,7 +103,7 @@ export default function Home(props) {
             closeDrawer: () => history.goBack()
           }}
         > 
-              <Snackbar open={openSnack} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
+              <Snackbar sx={{zIndex: 500000}} open={openSnack} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={snackInfo.severity}  sx={{ width: '100%' }}>
                 {snackInfo.message}
                 

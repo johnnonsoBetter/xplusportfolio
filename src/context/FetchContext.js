@@ -16,7 +16,7 @@ const FetchProvider = ({children}) => {
     authAxios.interceptors.request.use(
         
         config => {
-            setSomethingWentWrong(false)
+          
         const userHeaders =  JSON.stringify(
 
             {   
@@ -26,7 +26,8 @@ const FetchProvider = ({children}) => {
             
             }
         )
-
+        
+        
         if(!isAuthenticated()){
             setAuthState({})
             window.location.href = '/login'
@@ -52,9 +53,13 @@ const FetchProvider = ({children}) => {
             if(error.response.status === 401){
                
                 setAuthState({})
+
                 window.location.href = '/login'
                
+            }else{
+                setSomethingWentWrong(true)
             }
+            
 
         
 

@@ -1,6 +1,5 @@
-import { LoadingButton, LocalizationProvider, DesktopTimePicker, DatePicker } from '@mui/lab'
-import DateAdapter from '@mui/lab/AdapterMoment';
-import {  Box, Divider, Typography, Grid, Avatar, Button, TextField, Chip, IconButton } from '@mui/material'
+import { LoadingButton, LocalizationProvider, DatePicker } from '@mui/lab'
+import {  Box, Divider, Typography, Avatar, TextField, Chip, IconButton, CircularProgress } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import {Paper} from '@mui/material/';
 import InputBase from '@mui/material/InputBase';
@@ -14,6 +13,7 @@ import { useFormik } from 'formik';
 import isPast from 'date-fns/isPast'
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import nextDay from 'date-fns/nextDay'
+import { AuthContext } from '../../../context/AuthContext';
 
 
 
@@ -119,9 +119,9 @@ function Input(props) {
 }
 
 function CustomDate(props) {
-  const {formik, dueDate, setDueDate} = props
+  const { dueDate, setDueDate} = props
  
- // dateAdapter={AdapterDateFns}
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
@@ -140,6 +140,16 @@ function CustomDate(props) {
 }
 
 
+const Loader = () => {
+
+  return (
+    <Box minHeight={500} sx={{minWidth: {md: 400}}} display='flex' alignItems='center' justifyContent='center' width='100%'  >
+        <CircularProgress />
+    </Box>
+  )
+}
+
+
 
 
 
@@ -154,6 +164,9 @@ export default function CreateAnticipationMenu() {
   const history = useHistory()
   const [anticipationCoverId, setAnticipationCoverId] = useState(0)
   const [dueDate, setDueDate] = useState(nextDay(new Date(), -1))
+  const [loadingBtn, setLoadingBtn] = useState(false)
+  const { setSomethingWentWrong} = useContext(AuthContext)
+
 
 
   const formik = useFormik({
@@ -162,7 +175,7 @@ export default function CreateAnticipationMenu() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-
+      setLoadingBtn(true)
       authAxios.post('api/v1/anticipations', {
         anticipation: {
           body: values.body,
@@ -172,9 +185,11 @@ export default function CreateAnticipationMenu() {
       }).then(res => {
         console.log(res)
         setDueDate(nextDay(new Date(), -1))
+        setLoadingBtn(false)
         formik.resetForm()
       }).catch(err => {
         console.log(err)
+        setLoadingBtn(false)
       })
     
       
@@ -194,9 +209,10 @@ export default function CreateAnticipationMenu() {
       setAnticipationCoverId(id)
       setImg(image)
       setTextColor(text_color)
+      setLoading(false)
 
     }).catch(err => {
-      console.log(err)
+      setSomethingWentWrong(true)
     })
   }, [])
 
@@ -207,7 +223,7 @@ export default function CreateAnticipationMenu() {
 
     return (
         <Box position="relative" height="100%" >
-            <Box display='flex' justifyContent='space-between' alignItems='center' >
+          <Box display='flex' justifyContent='space-between' alignItems='center' >
               <Typography variant='h6' mx={2}  color="ButtonText" fontWeight={700}>
                 Create Anticipation
               </Typography>
@@ -220,6 +236,15 @@ export default function CreateAnticipationMenu() {
               </Box>
               
             </Box>
+          {
+
+            loading ?
+           <Loader />:
+
+
+            <>
+            
+            
             <Divider variant='horizontal' />
             <form onSubmit={formik.handleSubmit} >
 
@@ -230,7 +255,7 @@ export default function CreateAnticipationMenu() {
               <Box display="flex" alignItems="center"   justifyContent="space-between" >
                   <CustomDate dueDate={dueDate} setDueDate={setDueDate} />
                   
-                  <LoadingButton type="submit"  size='small' variant='contained' color='info'> Create</LoadingButton>
+                  <LoadingButton loading={loadingBtn} type="submit"  size='small' variant='contained' color='info'> Create</LoadingButton>
 
                   
               </Box>
@@ -253,9 +278,9 @@ export default function CreateAnticipationMenu() {
               <AnticipationCoverSelectors setAnticipationCoverId={setAnticipationCoverId} setImg={setImg} setTextColor={setTextColor} anticipationCovers={anticipationCovers} />
             </Box>
             </form>
-            
+            </>
 
-
+          }
         </Box>
     )
 }

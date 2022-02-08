@@ -18,10 +18,11 @@ import { LogoutOutlined, ModeEditOutlineOutlined, PersonOutlineRounded } from '@
 
 export default function MyProfile() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-//   const {authAxios} = useContext(FetchContext)
+  const {authAxios} = useContext(FetchContext)
   const [loading, setLoading] = useState(false)
   const open = Boolean(anchorEl);
- // const {logUserOut} = React.useContext(AuthContext)
+  const {logUserOut, authState} = React.useContext(AuthContext)
+  const {slug} = JSON.parse(authState.userInfo)
  
   const history = useHistory()
 
@@ -101,7 +102,7 @@ export default function MyProfile() {
           
         <MenuItem  disableRipple focusRipple={false} onClick={handleClose}  >
        
-            <Box width="100%"  component={Link} to="/xpo/my_profile/mark-twain" sx={{textDecoration: "none"}} color="ButtonShadow" display="flex" justifyContent="flex-start" alignItems="center">
+            <Box width="100%"  component={Link} to={`/xpo/my_profile/${slug}`} sx={{textDecoration: "none"}} color="ButtonShadow" display="flex" justifyContent="flex-start" alignItems="center">
             <PersonOutlineRounded  />
                 <Typography sx={{ml: 1}} color="ButtonText"> My Profile </Typography>
                 
@@ -110,7 +111,7 @@ export default function MyProfile() {
 
         <MenuItem disableRipple focusRipple={false} onClick={handleClose} >
        
-            <Box component={Link}  to="/xpo/edit_profile"   sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
+            <Box component={Link}  to="/xpo/edit_profile"    sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
                
                 <ModeEditOutlineOutlined />
                 <Typography sx={{ml: 1}} color="ButtonText"> Edit Profile </Typography>

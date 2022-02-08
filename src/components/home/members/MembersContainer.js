@@ -20,9 +20,7 @@ export default function MembersContainer() {
 
 
     const fetchMoreData = () => {
-        console.log("total members", totalMembers)
-       
-
+        
         authAxios.get('api/v1/users', {params: {page: page}}).then(res => {
             const {data} = res 
             setUsers(users.concat(data))

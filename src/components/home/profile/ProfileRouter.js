@@ -20,6 +20,7 @@ import AncticipationContainer from './anticipations/AnticipationContainer';
 import { NavLink } from 'react-router-dom';
 import SuggestionContainer from './suggestions/SuggestionContainer';
 import MainProfile from './main/MainProfile';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 function MyTabs({slug}) {
@@ -43,9 +44,10 @@ function MyTabs({slug}) {
 }
 
 
-export default function ProfileRouter({slug, isCurrentUser}) {
+export default function ProfileRouter({isCurrentUser}) {
   const {path} = useRouteMatch()
   const {pathname} = useLocation
+  const {slug} = useParams()
 
   return (
     
@@ -57,12 +59,12 @@ export default function ProfileRouter({slug, isCurrentUser}) {
         </ListSubheader>
         <Switch>
    
-          <Route path={`/xpo/members/${slug}/following`} render={ () => <Following />} />
-          <Route path={`/xpo/members/${slug}/followers`} render={ () => <Followers />} />
-          <Route path={`/xpo/members/${slug}/suggestions`} render={ () => <SuggestionContainer />} />
-          <Route path={`/xpo/members/${slug}/anticipations`} render={ () => <AncticipationContainer />} />
-          <Route path={`/xpo/members/${slug}/projects`} render={ () => <ProjectContainer />} />
-          <Route exact path={`/xpo/members/${slug}`} render={ () => <MainProfile isCurrentUser={isCurrentUser} />} />
+          <Route path={`/xpo/members/:slug/following`} render={ () => <Following />} />
+          <Route path={`/xpo/members/:slug/followers`} render={ () => <Followers />} />
+          <Route path={`/xpo/members/:slug/suggestions`} render={ () => <SuggestionContainer />} />
+          <Route path={`/xpo/members/:slug/anticipations`} render={ () => <AncticipationContainer />} />
+          <Route path={`/xpo/members/:slug/projects`} render={ () => <ProjectContainer />} />
+          <Route exact path={`/xpo/members/:slug`} render={ () => <MainProfile isCurrentUser={isCurrentUser} />} />
           <Redirect to="/404" />
           
         </Switch>

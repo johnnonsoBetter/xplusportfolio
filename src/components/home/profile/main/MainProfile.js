@@ -81,7 +81,7 @@ export default function MainProfile({isCurrentUser}) {
                                         <Grid item xs={6}  >
                                             {/* <LoadingButton color="success" disableRipple variant="contained" fullWidth  sx={{mt: 2}} endIcon={<FolderRounded />}  > New </LoadingButton> */}
                                             <Tooltip title="Add Project">
-                                                <IconButton onClick={() => history.push('#create_project')} disableRipple>  
+                                                <IconButton disableRipple>  
                                                     <FolderRounded />
                                                     <AddRounded fontSize="0.6em" />
                                                 </IconButton> 

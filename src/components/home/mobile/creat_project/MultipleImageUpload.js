@@ -112,6 +112,10 @@ function Images({imageURLs, setImageURLs, setImages, images}) {
     setActiveStep(step);
   };
 
+  useEffect(() => {
+    setActiveStep(images.length - 1)
+  }, [images])
+
 
 
   return (

@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 export default function AnticipationActivityOwner({created_at, user, isCurrentUser}) {
 
     const date_created = moment(created_at).fromNow()
-    const {name, image} = user
+    const {name, image, slug} = user
 
     return (
         <Box  my={1} display="flex" width="100%" alignItems="center" justifyContent="space-between" >
@@ -32,11 +32,11 @@ export default function AnticipationActivityOwner({created_at, user, isCurrentUs
                     </Box>
 
                 :
-                <Link to="/xpo/members/john-doe"  style={{textDecoration: "none", display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
+                <Link to={`/xpo/members/${slug}`}  style={{textDecoration: "none", display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
         
                 <ListItemIcon >
                     
-                    <Avatar src={image} alt={name} > ME</Avatar>
+                    <Avatar src={image} alt={name} > {name[0]}</Avatar>
                 </ListItemIcon>
                 <Stack  >
                     

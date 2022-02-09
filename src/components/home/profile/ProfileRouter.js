@@ -54,7 +54,7 @@ export default function ProfileRouter({isCurrentUser}) {
       <Box sx={{ width: '100%' }} my={2}>
         
         
-        <ListSubheader  sx={{borderRadius: "0px", bgcolor: "white", zIndex: 500}}>
+        <ListSubheader  sx={{bgcolor: "white", zIndex: 500}}>
           <MyTabs slug={slug}/>
         </ListSubheader>
         <Switch>

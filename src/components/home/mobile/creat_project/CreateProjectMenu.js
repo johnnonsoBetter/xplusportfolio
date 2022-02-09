@@ -1,5 +1,5 @@
 import { LoadingButton, LocalizationProvider, DatePicker } from '@mui/lab'
-import {  Box, Divider, Typography, Avatar, TextField, Chip, IconButton, CircularProgress, Grid, Autocomplete } from '@mui/material'
+import {  Box, Divider, Typography, Avatar, TextField, Chip, IconButton, CircularProgress, Grid, Autocomplete, Button } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import {Paper} from '@mui/material/';
 import InputBase from '@mui/material/InputBase';
@@ -155,6 +155,10 @@ const Loader = () => {
 
 
 
+
+
+
+
 export default function CreateProjectMenu() {
 
   const {authAxios} = useContext(FetchContext)
@@ -263,6 +267,30 @@ export default function CreateProjectMenu() {
                         </Box>
 
                     </Grid>
+
+                    <Grid item xs={6} >
+                        <Box  mx={2} my={1} >
+
+                            <Box display="flex" alignItems="center"   justifyContent="space-between" >
+                                <TextField id="outlined-basic" fullWidth label="Live Url *" variant="outlined" />
+                                
+                            </Box>
+
+                        </Box>
+
+                    </Grid>
+
+                    <Grid item xs={6} >
+                        <Box  mx={2} my={1} >
+
+                            <Box display="flex" alignItems="center"   justifyContent="space-between" >
+                                <TextField id="outlined-basic" fullWidth label="Github Url *" variant="outlined" />
+                                
+                            </Box>
+
+                        </Box>
+
+                    </Grid>
                 
                     <Grid item xs={12}  >
                          <Box  mx={2} my={1} >
@@ -275,7 +303,7 @@ export default function CreateProjectMenu() {
                                     fullWidth
                                     multiline
                                     rows={4}
-                                    defaultValue="Default Value"
+                                    defaultValue=""
                                     /> 
                             </Box>
 
@@ -284,7 +312,7 @@ export default function CreateProjectMenu() {
 
                     </Grid>
 
-                    <Grid item xs={12}  >
+                    <Grid item xs={6}  >
                          <Box  mx={2} my={1} >
 
                                     
@@ -315,30 +343,17 @@ export default function CreateProjectMenu() {
 
                     
 
+                  
+
                     <Grid item xs={12} >
                       <MultipleImageUpload images={images} imageURLs={imageURLs} setImages={setImages} setImageURLs={setImageURLs} />
                     </Grid>
                 </Grid>
 
-           
-            
-
-            
-
-            
-           
-            
-
-            <Box  mx={1}  style={{
-            }}   justifyContent='center' display='flex' alignItems="center" >
-                             <AnticipationCoverSelectors setAnticipationCoverId={setAnticipationCoverId} setImg={setImg} setTextColor={setTextColor} anticipationCovers={anticipationCovers} />
-
-            </Box>
-
-
-          
             <Box m={2}>
-
+                <Box mx={2} my={1} >
+                    <Button disabled fullWidth variant='contained' >Create Project</Button>
+                </Box>
             </Box>
             </form>
             </>

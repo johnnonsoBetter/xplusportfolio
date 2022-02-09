@@ -1,23 +1,21 @@
 
 
 
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
 
-import { AccessTimeOutlined, EmojiObjectsOutlined, HowToVoteOutlined, InsertLinkOutlined, ModeCommentOutlined, PublishedWithChangesOutlined, PushPinOutlined, TaskRounded, ThumbUpOutlined } from '@mui/icons-material';
-import { Badge, Button, Chip, IconButton, Tooltip } from '@mui/material';
-import ProjectActivityOwner from '../project_activity/ProjectActivityOwner';
+import { AccessTimeOutlined, TaskRounded } from '@mui/icons-material';
+import {Button, Chip, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import AnticipationActivityOwner from './AnticipationActivityOwner';
-import { blue, deepOrange, orange, yellow } from '@mui/material/colors';
 
 import moment from 'moment';
 import { AuthContext } from '../../../../../context/AuthContext';
+import SubscribeButton from '../../../../shared/SubscriberButton';
+import LikerButton from '../../../../shared/LikerButton';
 
 
 
@@ -27,10 +25,23 @@ function AnticipationActivity({anticipation}) {
 
 
   const {authState} = React.useContext(AuthContext)
-  const {body, cover, due_date, total_subscribers, total_likes, created_at, user} = anticipation
+  const {
+    body, 
+    cover, 
+    due_date, 
+    total_subscribers, 
+    total_likes, 
+    created_at, 
+    user, 
+    is_subscribed,
+    a_slug,
+    liked,
+  } = anticipation
   const {image, text_color} = cover
   const {slug} = JSON.parse(authState.userInfo)
   const isCurrentUser = user.slug === slug 
+  const [totalSubScribers, setTotalSubScribers] = useState(total_subscribers)
+  const [totalLikes, setTotalLikes] = useState(total_likes)
   
   
 
@@ -89,7 +100,7 @@ function AnticipationActivity({anticipation}) {
       
       <Paper elevation={0} >
         <Link to="/xpo/kpo" style={{textDecoration: "none"}} >
-        <Typography color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> {total_subscribers} subscribers</Typography>
+        <Typography color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> {totalSubScribers} subscribers</Typography>
         </Link>
         
       </Paper>
@@ -98,14 +109,7 @@ function AnticipationActivity({anticipation}) {
             
             <Box py={1} mx={2} display="flex" justifyContent="flex-start" alignItems="center"  >
             
-            <Tooltip title="likes" sx={{mr: 2}} >
-                <IconButton size="small" >
-                    <Badge color="info" badgeContent={total_likes} >
-                        <ThumbUpOutlined  fontSize='small' />
-                    </Badge>
-                </IconButton>
-                
-            </Tooltip> 
+            <LikerButton liked={liked} a_slug={a_slug} totalLikes={totalLikes} setTotalLikes={setTotalLikes}  />
             
 
             <Tooltip sx={{ml: 1}} title="expires" > 
@@ -118,7 +122,16 @@ function AnticipationActivity({anticipation}) {
               !isCurrentUser &&
               <Tooltip sx={{mr: 2}} title="Subscribe to anticipation" > 
 
-                <Button  >Subscribe</Button>
+                
+                <SubscribeButton setTotalSubScribers={setTotalSubScribers} totalSubScribers={totalSubScribers} a_slug={a_slug}  is_subscribed={is_subscribed} TypeButton={Button} buttonStyle={
+                  {
+                    fullWidth: false,
+                    variant: '',
+                    size: 'small',
+                    isIconButton: false
+                  
+                  }
+                } />
             </Tooltip> 
 
             }
@@ -134,3 +147,6 @@ function AnticipationActivity({anticipation}) {
 }
 
 export default AnticipationActivity;
+
+
+

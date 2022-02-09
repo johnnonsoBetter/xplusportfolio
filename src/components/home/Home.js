@@ -72,7 +72,7 @@ export default function Home(props) {
 
 
   useEffect(() => {
-    console.log("app has done somethings ")
+   
     if(somethingWentWrong){
         const newSnackInfo = Object.assign(snackInfo, {})
 

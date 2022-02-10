@@ -7,8 +7,8 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
 
-import { AccessTimeOutlined, TaskRounded } from '@mui/icons-material';
-import {Button, Chip, Tooltip } from '@mui/material';
+import { AccessTimeOutlined, DisabledByDefaultRounded, InsertLinkRounded, TaskRounded } from '@mui/icons-material';
+import {Button, Chip, IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import AnticipationActivityOwner from './AnticipationActivityOwner';
 
@@ -36,18 +36,16 @@ function AnticipationActivity({anticipation}) {
     is_subscribed,
     a_slug,
     liked,
+    expired,
+    defaulted,
+    fulfilled,
+    project_slug
   } = anticipation
   const {image, text_color} = cover
   const {slug} = JSON.parse(authState.userInfo)
   const isCurrentUser = user.slug === slug 
   const [totalSubScribers, setTotalSubScribers] = useState(total_subscribers)
   const [totalLikes, setTotalLikes] = useState(total_likes)
-  
-  
-
- 
-
-
   const expires = moment().to(moment(due_date))
 
 
@@ -71,10 +69,28 @@ function AnticipationActivity({anticipation}) {
           <Box display="flex" width="100%" justifyContent="space-between" alignItems="center" >
             <AnticipationActivityOwner isCurrentUser={isCurrentUser} created_at={created_at} user={user}  />
 
-            
-            <Tooltip title="onprogress" sx={{mr: 2}} >
-            <TaskRounded color="disabled"  />
-            </Tooltip>
+            {
+              
+                
+
+                fulfilled ? 
+                <Tooltip title="View live"  >
+                    <IconButton LinkComponent={Link} to={`/xpo/projects/${project_slug}/`}   size="small">
+                        <InsertLinkRounded />
+                    </IconButton>
+                </Tooltip>
+                : 
+                defaulted ?
+                <Tooltip title="Defaulted" sx={{mr: 2}} >
+                    <DisabledByDefaultRounded color='error' />
+                </Tooltip>
+                : 
+                <Tooltip title="onprogress" sx={{mr: 2}} >
+                  <TaskRounded color="disabled"  />
+                </Tooltip>
+
+
+            }
           </Box>
     
       </Paper>
@@ -109,30 +125,41 @@ function AnticipationActivity({anticipation}) {
             
             <Box py={1} mx={2} display="flex" justifyContent="flex-start" alignItems="center"  >
             
-            <LikerButton liked={liked} a_slug={a_slug} totalLikes={totalLikes} setTotalLikes={setTotalLikes}  />
+            <LikerButton likeUrl={`/api/v1/anticipations/${a_slug}/likes`} liked={liked} a_slug={a_slug} totalLikes={totalLikes} setTotalLikes={setTotalLikes}  />
             
 
             <Tooltip sx={{ml: 1}} title="expires" > 
-                <Chip size='small' variant="outlined" avatar={<AccessTimeOutlined  />} label={expires} />
+                <Chip size='small' variant="outlined" avatar={<AccessTimeOutlined  />} label={ expired ? "expired" :  expires} />
             </Tooltip>
             
             </Box>
 
             {
               !isCurrentUser &&
-              <Tooltip sx={{mr: 2}} title="Subscribe to anticipation" > 
+              <>
+                {
 
+                  !expired &&
                 
-                <SubscribeButton setTotalSubScribers={setTotalSubScribers} totalSubScribers={totalSubScribers} a_slug={a_slug}  is_subscribed={is_subscribed} TypeButton={Button} buttonStyle={
-                  {
-                    fullWidth: false,
-                    variant: '',
-                    size: 'small',
-                    isIconButton: false
-                  
+                <Tooltip sx={{mr: 2}} title="Subscribe to anticipation" > 
+                    
+                    
+                    <SubscribeButton  setTotalSubScribers={setTotalSubScribers} totalSubScribers={totalSubScribers} a_slug={a_slug}  is_subscribed={is_subscribed} TypeButton={Button} buttonStyle={
+                      {
+                        fullWidth: false,
+                        variant: '',
+                        size: 'small',
+                        isIconButton: false
+                      
+                      }
+                    } />
+                </Tooltip> 
+
                   }
-                } />
-            </Tooltip> 
+              
+              
+              </>
+              
 
             }
 

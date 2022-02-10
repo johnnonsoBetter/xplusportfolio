@@ -4,7 +4,7 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import { FetchContext } from "../../context/FetchContext"
 
-export default function LikerButton({liked, a_slug, setTotalLikes, totalLikes}) {
+export default function LikerButton({liked, a_slug, setTotalLikes, totalLikes, likeUrl}) {
 
     const [isLiked, setIsLiked] = useState(liked)
     const {authAxios} = useContext(FetchContext)
@@ -39,7 +39,7 @@ export default function LikerButton({liked, a_slug, setTotalLikes, totalLikes}) 
         setunLikedTrue(true)
         setTotalLikes(totalLikes - 1)
   
-        authAxios.delete(`/api/v1/anticipations/${a_slug}/likes`).then(res => {
+        authAxios.delete(likeUrl).then(res => {
             console.log(res)
         }).catch(err => {
             setIsLiked(true)
@@ -59,7 +59,7 @@ export default function LikerButton({liked, a_slug, setTotalLikes, totalLikes}) 
             <Tooltip title="unlike" sx={{mr: 2}}  >
                 <IconButton disabled={unLikedTrue} onClick={unLike} size="small" >
                     <Badge color="info" badgeContent={totalLikes} >
-                        <ThumbUpOutlined  fontSize='small' />
+                        <ThumbUpOutlined color="info"  fontSize='small' />
                     </Badge>
                 </IconButton>
                 

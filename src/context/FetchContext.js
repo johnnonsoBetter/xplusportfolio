@@ -56,8 +56,6 @@ const FetchProvider = ({children}) => {
 
                 window.location.href = '/login'
                
-            }else{
-                setSomethingWentWrong(true)
             }
             
 

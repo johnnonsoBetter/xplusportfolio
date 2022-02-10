@@ -20,64 +20,25 @@ import { AuthContext } from '../../../../context/AuthContext';
 
 
 const validationSchema = yup.object({
-    body: yup
-      .string('Please type in an anticipation')
-      .required('anticipation body cannot be empty')
+    title: yup 
+      .string("Please enter title")
+      .required("Title is required"),
+    description: yup
+      .string("Please enter description")
+      .required("Description is required"),
+    githubLink: yup 
+       .string("Please enter github link")
+       .required("Github link is required"),
+    liveLink: yup 
+      .string("Please enter a live link")
+      .required("Live link is required"),
+    anticipation_id: null
 });
 
 
 
-
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 4
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 2
-  }
-};
  
 
-
-function AnticipationCoverSelectors(props) {
-
-  const {anticipationCovers, setImg, setTextColor, setAnticipationCoverId} = props
-
-  return (
-    <Carousel responsive={responsive} >
-             
-    {
-      anticipationCovers.map(cover => {
-        const {name, id, image, text_color} = cover 
-        return (
-          <Box key={id} px={4} m={2} >
-              <Chip  variant='outlined' label={name} clickable avatar={<Avatar src={image} />} 
-            onClick={() => {
-              setAnticipationCoverId(id)
-              setImg(image)
-              setTextColor(text_color)
-            }}
-            />
-          </Box>
-          
-          
-        )
-      })
-    }
-    </Carousel>
-  )
-}
 
 function Input(props) {
   const {formik, img, textColor} = props
@@ -119,26 +80,7 @@ function Input(props) {
   );
 }
 
-function CustomDate(props) {
-  const { dueDate, setDueDate} = props
- 
 
-  return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        label="fulfillment date"
-        shouldDisableDate={isPast}
-        views={['day']}
-        value={dueDate}
-        onChange={(newValue) => {
-          setDueDate(newValue);
-        }}
-        renderInput={(params) => <TextField sx={{width: 150}} {...params} size='small' variant="standard" />}
-       
-      />
-    </LocalizationProvider>
-  );
-}
 
 
 const Loader = () => {
@@ -163,33 +105,41 @@ export default function CreateProjectMenu() {
 
   const {authAxios} = useContext(FetchContext)
   const [loading, setLoading] = useState(true)
-  const [anticipationCovers, setAnticipationCovers] = useState([])
-  const [textColor, setTextColor] = useState('')
-  const [img, setImg] = useState('')
   const history = useHistory()
-  const [anticipationCoverId, setAnticipationCoverId] = useState(0)
   const [dueDate, setDueDate] = useState(nextDay(new Date(), -1))
   const [loadingBtn, setLoadingBtn] = useState(false)
   const [images, setImages] = useState([])
   const [imageURLs, setImageURLs] = useState([])
+  const [technologies, setTechnologies] = useState([])
+  const [tools, setTools] = useState([])
+
  
   const {setSomethingWentWrong} = useContext(AuthContext)
+ 
 
 
   const formik = useFormik({
     initialValues: {
-      body: ''
+      title: '',
+      liveLink: '',
+      githubLink: '',
+      description: '',
+      anticipation_id: null
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      setLoadingBtn(true)
-      authAxios.post('api/v1/anticipations', {
-        anticipation: {
-          body: values.body,
-          anticipation_cover_id: anticipationCoverId,
-          due_date: dueDate
-        }
-      }).then(res => {
+      console.log(values)
+
+
+
+      var postData = JSON.stringify(values);
+      var formData = new FormData();
+      formData.append("project", postData);
+      formData.append('tools', tools)
+      
+      images.forEach((img , index) => formData.append('image' + index, img))
+
+      authAxios.post('api/v1/projects', formData).then(res => {
         console.log(res)
         setDueDate(nextDay(new Date(), -1))
         setLoadingBtn(false)
@@ -208,14 +158,11 @@ export default function CreateProjectMenu() {
   useEffect(() => {
 
    
-    authAxios.get('api/v1/anticipation_covers').then(res => {
+    authAxios.get('api/v1/technologies').then(res => {
 
       const {data} = res
-      const {image, text_color, id} = data[0]
-      setAnticipationCovers(data)
-      setAnticipationCoverId(id)
-      setImg(image)
-      setTextColor(text_color)
+    
+      setTechnologies(data)
       setLoading(false)
 
     }).catch(err => {
@@ -260,7 +207,18 @@ export default function CreateProjectMenu() {
                         <Box  mx={2} my={1} >
 
                             <Box display="flex" alignItems="center"   justifyContent="space-between" >
-                                <TextField id="outlined-basic" fullWidth label="Title" variant="outlined" />
+                                <TextField 
+                                  fullWidth
+                                  label="Title" 
+                                  variant="outlined"
+                                  type="text"
+                                  name="title"
+                                  value={formik.values.title}
+                                  onChange={formik.handleChange}
+                                  error={formik.touched.title && Boolean(formik.errors.title)}
+                                  helperText={formik.touched.title && formik.errors.title}
+                                 
+                                 />
                                 
                             </Box>
 
@@ -272,7 +230,18 @@ export default function CreateProjectMenu() {
                         <Box  mx={2} my={1} >
 
                             <Box display="flex" alignItems="center"   justifyContent="space-between" >
-                                <TextField id="outlined-basic" fullWidth label="Live Url *" variant="outlined" />
+                            <TextField
+                                fullWidth
+                                label="Live Link" 
+                                variant="outlined"
+                                type="text"
+                                name="liveLink"
+                                value={formik.values.liveLink}
+                                onChange={formik.handleChange}
+                                error={formik.touched.liveLink && Boolean(formik.errors.liveLink)}
+                                helperText={formik.touched.liveLink && formik.errors.liveLink}
+                               
+                               />
                                 
                             </Box>
 
@@ -284,7 +253,18 @@ export default function CreateProjectMenu() {
                         <Box  mx={2} my={1} >
 
                             <Box display="flex" alignItems="center"   justifyContent="space-between" >
-                                <TextField id="outlined-basic" fullWidth label="Github Url *" variant="outlined" />
+                              <TextField
+                                  fullWidth
+                                  label="Github Link" 
+                                  variant="outlined"
+                                  type="text"
+                                  name="githubLink"
+                                  value={formik.values.githubLink}
+                                  onChange={formik.handleChange}
+                                  error={formik.touched.githubLink && Boolean(formik.errors.githubLink)}
+                                  helperText={formik.touched.githubLink && formik.errors.githubLink}
+                                
+                                />
                                 
                             </Box>
 
@@ -297,14 +277,20 @@ export default function CreateProjectMenu() {
 
                                     
                             <Box display="flex" alignItems="center"   justifyContent="space-between" >
-                                    <TextField
-                                    id="outlined-multiline-static"
-                                    label="Description"
-                                    fullWidth
-                                    multiline
-                                    rows={4}
-                                    defaultValue=""
-                                    /> 
+                              <TextField
+                                  fullWidth
+                                  multiline
+                                  rows={4}
+                                  label="Description" 
+                                  variant="outlined"
+                                  type="text"
+                                  name="description"
+                                  value={formik.values.description}
+                                  onChange={formik.handleChange}
+                                  error={formik.touched.description && Boolean(formik.errors.description)}
+                                  helperText={formik.touched.description && formik.errors.description}
+                                
+                                />
                             </Box>
 
 
@@ -312,7 +298,7 @@ export default function CreateProjectMenu() {
 
                     </Grid>
 
-                    <Grid item xs={6}  >
+                    <Grid item xs={12}  >
                          <Box  mx={2} my={1} >
 
                                     
@@ -320,17 +306,19 @@ export default function CreateProjectMenu() {
                                 <Autocomplete
                                     multiple
                                     id="tags-outlined"
-                                    options={top100Films}
-                                    getOptionLabel={(option) => option.title}
-                                    defaultValue={[top100Films[13]]}
+                                    options={technologies}
+                                    getOptionLabel={(option) => option.name}
+                                    onChange={(event, value) => setTools(value.map(t => t.id))}
                                     filterSelectedOptions
                                     sx={{minWidth: 250}}
+                                    
                                     renderInput={(params) => (
                                     <TextField
                                         {...params}
                                         fullWidth
                                         label="Select tools"
                                         placeholder="Select tools you implemented project with"
+                                        
                                     />
                                     )}
                                 />
@@ -352,7 +340,7 @@ export default function CreateProjectMenu() {
 
             <Box m={2}>
                 <Box mx={2} my={1} >
-                    <Button disabled fullWidth variant='contained' >Create Project</Button>
+                    <Button type='submit' fullWidth variant='contained' >Create Project</Button>
                 </Box>
             </Box>
             </form>
@@ -367,131 +355,3 @@ export default function CreateProjectMenu() {
 
 
 
-
-
-const top100Films = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'The Godfather: Part II', year: 1974 },
-    { title: 'The Dark Knight', year: 2008 },
-    { title: '12 Angry Men', year: 1957 },
-    { title: "Schindler's List", year: 1993 },
-    { title: 'Pulp Fiction', year: 1994 },
-    {
-      title: 'The Lord of the Rings: The Return of the King',
-      year: 2003,
-    },
-    { title: 'The Good, the Bad and the Ugly', year: 1966 },
-    { title: 'Fight Club', year: 1999 },
-    {
-      title: 'The Lord of the Rings: The Fellowship of the Ring',
-      year: 2001,
-    },
-    {
-      title: 'Star Wars: Episode V - The Empire Strikes Back',
-      year: 1980,
-    },
-    { title: 'Forrest Gump', year: 1994 },
-    { title: 'Inception', year: 2010 },
-    {
-      title: 'The Lord of the Rings: The Two Towers',
-      year: 2002,
-    },
-    { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-    { title: 'Goodfellas', year: 1990 },
-    { title: 'The Matrix', year: 1999 },
-    { title: 'Seven Samurai', year: 1954 },
-    {
-      title: 'Star Wars: Episode IV - A New Hope',
-      year: 1977,
-    },
-    { title: 'City of God', year: 2002 },
-    { title: 'Se7en', year: 1995 },
-    { title: 'The Silence of the Lambs', year: 1991 },
-    { title: "It's a Wonderful Life", year: 1946 },
-    { title: 'Life Is Beautiful', year: 1997 },
-    { title: 'The Usual Suspects', year: 1995 },
-    { title: 'Léon: The Professional', year: 1994 },
-    { title: 'Spirited Away', year: 2001 },
-    { title: 'Saving Private Ryan', year: 1998 },
-    { title: 'Once Upon a Time in the West', year: 1968 },
-    { title: 'American History X', year: 1998 },
-    { title: 'Interstellar', year: 2014 },
-    { title: 'Casablanca', year: 1942 },
-    { title: 'City Lights', year: 1931 },
-    { title: 'Psycho', year: 1960 },
-    { title: 'The Green Mile', year: 1999 },
-    { title: 'The Intouchables', year: 2011 },
-    { title: 'Modern Times', year: 1936 },
-    { title: 'Raiders of the Lost Ark', year: 1981 },
-    { title: 'Rear Window', year: 1954 },
-    { title: 'The Pianist', year: 2002 },
-    { title: 'The Departed', year: 2006 },
-    { title: 'Terminator 2: Judgment Day', year: 1991 },
-    { title: 'Back to the Future', year: 1985 },
-    { title: 'Whiplash', year: 2014 },
-    { title: 'Gladiator', year: 2000 },
-    { title: 'Memento', year: 2000 },
-    { title: 'The Prestige', year: 2006 },
-    { title: 'The Lion King', year: 1994 },
-    { title: 'Apocalypse Now', year: 1979 },
-    { title: 'Alien', year: 1979 },
-    { title: 'Sunset Boulevard', year: 1950 },
-    {
-      title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
-      year: 1964,
-    },
-    { title: 'The Great Dictator', year: 1940 },
-    { title: 'Cinema Paradiso', year: 1988 },
-    { title: 'The Lives of Others', year: 2006 },
-    { title: 'Grave of the Fireflies', year: 1988 },
-    { title: 'Paths of Glory', year: 1957 },
-    { title: 'Django Unchained', year: 2012 },
-    { title: 'The Shining', year: 1980 },
-    { title: 'WALL·E', year: 2008 },
-    { title: 'American Beauty', year: 1999 },
-    { title: 'The Dark Knight Rises', year: 2012 },
-    { title: 'Princess Mononoke', year: 1997 },
-    { title: 'Aliens', year: 1986 },
-    { title: 'Oldboy', year: 2003 },
-    { title: 'Once Upon a Time in America', year: 1984 },
-    { title: 'Witness for the Prosecution', year: 1957 },
-    { title: 'Das Boot', year: 1981 },
-    { title: 'Citizen Kane', year: 1941 },
-    { title: 'North by Northwest', year: 1959 },
-    { title: 'Vertigo', year: 1958 },
-    {
-      title: 'Star Wars: Episode VI - Return of the Jedi',
-      year: 1983,
-    },
-    { title: 'Reservoir Dogs', year: 1992 },
-    { title: 'Braveheart', year: 1995 },
-    { title: 'M', year: 1931 },
-    { title: 'Requiem for a Dream', year: 2000 },
-    { title: 'Amélie', year: 2001 },
-    { title: 'A Clockwork Orange', year: 1971 },
-    { title: 'Like Stars on Earth', year: 2007 },
-    { title: 'Taxi Driver', year: 1976 },
-    { title: 'Lawrence of Arabia', year: 1962 },
-    { title: 'Double Indemnity', year: 1944 },
-    {
-      title: 'Eternal Sunshine of the Spotless Mind',
-      year: 2004,
-    },
-    { title: 'Amadeus', year: 1984 },
-    { title: 'To Kill a Mockingbird', year: 1962 },
-    { title: 'Toy Story 3', year: 2010 },
-    { title: 'Logan', year: 2017 },
-    { title: 'Full Metal Jacket', year: 1987 },
-    { title: 'Dangal', year: 2016 },
-    { title: 'The Sting', year: 1973 },
-    { title: '2001: A Space Odyssey', year: 1968 },
-    { title: "Singin' in the Rain", year: 1952 },
-    { title: 'Toy Story', year: 1995 },
-    { title: 'Bicycle Thieves', year: 1948 },
-    { title: 'The Kid', year: 1921 },
-    { title: 'Inglourious Basterds', year: 2009 },
-    { title: 'Snatch', year: 2000 },
-    { title: '3 Idiots', year: 2009 },
-    { title: 'Monty Python and the Holy Grail', year: 1975 },
-  ];

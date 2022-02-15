@@ -10,12 +10,13 @@ import Typography from '@mui/material/Typography';
 import { AccessTimeOutlined, DisabledByDefaultRounded, InsertLinkRounded, TaskRounded } from '@mui/icons-material';
 import {Button, Chip, IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
-import AnticipationActivityOwner from './AnticipationActivityOwner';
+
 
 import moment from 'moment';
 import { AuthContext } from '../../../../../context/AuthContext';
 import SubscribeButton from '../../../../shared/SubscriberButton';
 import LikerButton from '../../../../shared/LikerButton';
+import ActivityOwner from '../ActivityOwner';
 
 
 
@@ -24,7 +25,7 @@ import LikerButton from '../../../../shared/LikerButton';
 function AnticipationActivity({anticipation}) {
 
 
-  const {authState} = React.useContext(AuthContext)
+  const {authState, isCurrentUser} = React.useContext(AuthContext)
   const {
     body, 
     cover, 
@@ -42,8 +43,7 @@ function AnticipationActivity({anticipation}) {
     project_slug
   } = anticipation
   const {image, text_color} = cover
-  const {slug} = JSON.parse(authState.userInfo)
-  const isCurrentUser = user.slug === slug 
+ 
   const [totalSubScribers, setTotalSubScribers] = useState(total_subscribers)
   const [totalLikes, setTotalLikes] = useState(total_likes)
   const expires = moment().to(moment(due_date))
@@ -69,7 +69,7 @@ function AnticipationActivity({anticipation}) {
         }}
       >
           <Box display="flex" width="100%" justifyContent="space-between" alignItems="center" >
-            <AnticipationActivityOwner isCurrentUser={isCurrentUser} created_at={created_at} user={user}  />
+            <ActivityOwner  created_at={created_at} user={user}  />
 
             {
               
@@ -137,7 +137,7 @@ function AnticipationActivity({anticipation}) {
             </Box>
 
             {
-              !isCurrentUser &&
+              !isCurrentUser(user.slug) &&
               <>
                 {
 

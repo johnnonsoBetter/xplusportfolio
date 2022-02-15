@@ -8,160 +8,43 @@ import StepContent from '@mui/material/StepContent';
 import Typography from '@mui/material/Typography';
 import { Avatar, Badge, IconButton, Tooltip } from '@mui/material';
 import { CheckCircleRounded, ThumbUpOutlined } from '@mui/icons-material';
+import ActivityOwner from '../../activities/ActivityOwner';
+import SuggestionLabel from './SuggestionLabel';
 
 
-export default function SuggestionList() {
+export default function SuggestionList({suggestions, project}) {
 
  
 
   return (
     <Box sx={{ width: "100%" }}>
       <Stepper  orientation="vertical">
-        <Step active >
-            <StepLabel
-              StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
-            >
-              <Box display="flex" justifyContent="space-between" alignItems="center"  sx={{mr: 3}} >
-              <Typography variant="body2"> John Paul</Typography>
-              <Typography variant="body2"> 1 week ago</Typography>
-             
-
-              </Box>
-               
-
-              
-            </StepLabel>
-            <StepContent>
-              <Typography textAlign="left" variant="body2">
-
-              For each ad campaign that you create, 
-              </Typography>
-              
-                
-                    <Box sx={{ mb: 2, my: 2, mr: 2 }} display="flex" alignItems="center"  justifyContent="flex-start">
-                    <Tooltip title="like" sx={{mr: 2}}  >
-                        <IconButton size="small" >
-                            <Badge color="info" badgeContent={13} >
-                                <ThumbUpOutlined />
-                            </Badge>
-                        </IconButton>
-                        
-                    </Tooltip> 
-
-                    <CheckCircleRounded color="success" />
-                </Box>
         
-            </StepContent>
-        </Step>
 
-        <Step active >
-            <StepLabel
-              StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
-            >
-              <Box display="flex" justifyContent="space-between" alignItems="center"  sx={{mr: 3}} >
-              <Typography variant="body2"> John Paul</Typography>
-              <Typography variant="body2"> 1 week ago</Typography>
-             
+        {
+          suggestions.map(suggestion => {
+            const {user, created_at, id, content, done} = suggestion
+            return (
+              <Step active key={id} >
+                  <StepLabel
+                    StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
+                  >
+                    <SuggestionLabel suggestion={suggestion}  project={project} created_at={created_at} user={user} />
+                    
 
-              </Box>
-               
+                    
+                  </StepLabel>
+                  <StepContent>
+                    <Typography textAlign="left" variant="body2">
 
-              
-            </StepLabel>
-            <StepContent>
-              <Typography textAlign="left" variant="body2">
+                        {content}
+                    </Typography>
 
-              For each ad campaign that you create, 
-              </Typography>
-              
-                
-                    <Box sx={{ mb: 2, my: 2, mr: 2 }} display="flex" alignItems="center"  justifyContent="flex-start">
-                    <Tooltip title="like" sx={{mr: 2}}  >
-                        <IconButton size="small" >
-                            <Badge color="info" badgeContent={13} >
-                                <ThumbUpOutlined />
-                            </Badge>
-                        </IconButton>
-                        
-                    </Tooltip> 
-
-                    <CheckCircleRounded color="success" />
-                </Box>
-        
-            </StepContent>
-        </Step>
-        <Step active >
-            <StepLabel
-              StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
-            >
-              <Box display="flex" justifyContent="space-between" alignItems="center"  sx={{mr: 3}} >
-              <Typography variant="body2"> John Paul</Typography>
-              <Typography variant="body2"> 1 week ago</Typography>
-             
-
-              </Box>
-               
-
-              
-            </StepLabel>
-            <StepContent>
-              <Typography textAlign="left" variant="body2">
-
-              For each ad campaign that you create, 
-              </Typography>
-              
-                
-                    <Box sx={{ mb: 2, my: 2, mr: 2 }} display="flex" alignItems="center"  justifyContent="flex-start">
-                    <Tooltip title="like" sx={{mr: 2}}  >
-                        <IconButton size="small" >
-                            <Badge color="info" badgeContent={13} >
-                                <ThumbUpOutlined />
-                            </Badge>
-                        </IconButton>
-                        
-                    </Tooltip> 
-
-                    <CheckCircleRounded color="success" />
-                </Box>
-        
-            </StepContent>
-        </Step>
-        <Step active >
-            <StepLabel
-              StepIconComponent={()=> <Avatar src="/images/selfie.jpeg" />}
-            >
-              <Box display="flex" justifyContent="space-between" alignItems="center"  sx={{mr: 3}} >
-              <Typography variant="body2"> John Paul</Typography>
-              <Typography variant="body2"> 1 week ago</Typography>
-             
-
-              </Box>
-               
-
-              
-            </StepLabel>
-            <StepContent>
-              <Typography textAlign="left" variant="body2">
-
-              For each ad campaign that you create, 
-              </Typography>
-              
-                
-                    <Box sx={{ mb: 2, my: 2, mr: 2 }} display="flex" alignItems="center"  justifyContent="flex-start">
-                    <Tooltip title="like" sx={{mr: 2}}  >
-                        <IconButton size="small" >
-                            <Badge color="info" badgeContent={13} >
-                                <ThumbUpOutlined />
-                            </Badge>
-                        </IconButton>
-                        
-                    </Tooltip> 
-
-                    <CheckCircleRounded color="success" />
-                </Box>
-        
-            </StepContent>
-        </Step>
+                  </StepContent>
+              </Step>
+            )
+          })
+        }
       </Stepper>
      
     </Box>

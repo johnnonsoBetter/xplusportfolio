@@ -8,8 +8,8 @@ export default function Followers() {
 
     return (
         <Box my={2} >
-            {/* <MembersLoader /> */}
-            <MemberList />
+            <MembersLoader />
+            {/* <MemberList /> */}
         </Box>  
         
     )

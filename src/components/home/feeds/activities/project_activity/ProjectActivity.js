@@ -14,11 +14,11 @@ import SwipeableViews from 'react-swipeable-views';
 
 import { InsertLinkOutlined} from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
-import ProjectActivityOwner from '../project_activity/ProjectActivityOwner';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../context/AuthContext';
 import LikerButton from '../../../../shared/LikerButton';
 import VoteButton from '../../../../shared/VoteButton';
+import ActivityOwner from '../ActivityOwner';
 
 
 
@@ -39,9 +39,8 @@ function ProjectActivity(props) {
 
 
 
-  const {authState} = React.useContext(AuthContext)
-  const {slug} = JSON.parse(authState.userInfo)
-  const isCurrentUser = user.slug === slug 
+  const {authState, isCurrentUser} = React.useContext(AuthContext)
+
   const [totalLikes, setTotalLikes] = useState(total_likes)
   const [totalVotes, setTotalVotes] = useState(total_votes)
   const theme = useTheme();
@@ -77,7 +76,7 @@ function ProjectActivity(props) {
         }}
       >
           <Box >
-          <ProjectActivityOwner created_at={created_at} isCurrentUser={isCurrentUser} user={user} />
+          <ActivityOwner created_at={created_at} user={user} />
             </Box>
         
         <Box display="flex" width="100%" justifyContent="flex-end" >

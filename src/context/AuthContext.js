@@ -73,7 +73,13 @@ const AuthProvider = ({ children }) => {
         logUserOut,
         isAuthenticated,
         somethingWentWrong,
-        setSomethingWentWrong: (wrong) => setSomethingWentWrong(wrong)
+        setSomethingWentWrong: (wrong) => setSomethingWentWrong(wrong),
+        isCurrentUser: (slug) => {
+
+          const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+
+          return userInfo['slug'] === slug
+        }
         
       }}
     >

@@ -38,7 +38,7 @@ export default function  AncticipationContainer() {
   
 
     useEffect(() => {   
-        console.log("Making")
+       
 
         authAxios.get(`/api/v1/users/${slug}/anticipations`).then(res => {
             console.log(res)

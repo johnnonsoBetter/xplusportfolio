@@ -1,7 +1,7 @@
 
 
 
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -16,41 +16,32 @@ import { ChatBubbleOutlined, ChatBubbleOutlineRounded, CropFreeOutlined, EmojiOb
 import { Badge, IconButton, Tooltip } from '@mui/material';
 import ProjectActivityOwner from '../project_activity/ProjectActivityOwner';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../../../context/AuthContext';
+import LikerButton from '../../../../shared/LikerButton';
 
 
 
+function ProjectActivity(props) {
+  const {project} = props
+  const {
+    created_at, user,
+    total_likes,
+    project_photos,
+    github_link,
+    live_link,
+    title,
+    liked,
+  } = project
 
 
 
-
-
-const images = [
-  {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'Bird',
-    imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'Bali, Indonesia',
-    imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
-  },
-  {
-    label: 'Goč, Serbia',
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-];
-
-function ProjectActivity() {
+  const {authState} = React.useContext(AuthContext)
+  const {slug} = JSON.parse(authState.userInfo)
+  const isCurrentUser = user.slug === slug 
+  const [totalLikes, setTotalLikes] = useState(total_likes)
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const maxSteps = project_photos.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -75,11 +66,13 @@ function ProjectActivity() {
           height: 50,
           pl: 2,
           bgcolor: 'background.default',
+          borderTopLeftRadius: "10px",
+          borderTopRightRadius:"10px"
           
         }}
       >
           <Box >
-          <ProjectActivityOwner />
+          <ProjectActivityOwner created_at={created_at} isCurrentUser={isCurrentUser} user={user} />
             </Box>
         
         <Box display="flex" width="100%" justifyContent="flex-end" >
@@ -87,22 +80,32 @@ function ProjectActivity() {
             <Box mx={1}  >
                 
                 
-                <Tooltip title="Review later" >
+                {/* <Tooltip title="Review later" >
                     <IconButton size="small" >
                         <PushPinOutlined />
                     </IconButton>
-                </Tooltip>
+                </Tooltip> */}
 
                 <Tooltip title="View live" >
+                    
+                    <a rel="noopener noreferrer" href={live_link} target="_blank">
+
                     <IconButton  size="small">
                         <InsertLinkOutlined />
                     </IconButton>
+
+                    </a>
                 </Tooltip>
 
                 <Tooltip title="View repo" >
-                    <IconButton size="small"  >
+                <a rel="noopener noreferrer" href={github_link} target="_blank">
+
+                    <IconButton size="small"  target="_blank" rel="noopener noreferrer" >
                         <img src="/images/repo.png" alt="repo" />
                     </IconButton>
+
+                </a>
+                    
                 </Tooltip>
 
                 
@@ -117,20 +120,20 @@ function ProjectActivity() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {images.map((step, index) => (
-          <div key={step.label}>
+        {project_photos.map((step, index) => (
+          <div key={step.img_url}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
                 component="img"
                 sx={{
-                  height: 255,
+                  height: 355,
                   display: 'block',
                   maxWidth: "100%",
                   overflow: 'hidden',
                   width: '100%',
                 }}
-                src={step.imgPath}
-                alt={step.label}
+                src={step.img_url}
+              
               />
             ) : null}
           </div>
@@ -167,7 +170,7 @@ function ProjectActivity() {
       />
       <Paper elevation={0} >
         <Link to="/xpo/projects/90" style={{textDecoration: "none"}} >
-        <Typography color="MenuText" fontWeight={600} noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}> Todo-Application</Typography>
+        <Typography color="MenuText" fontWeight={600} noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}> {title}</Typography>
         </Link>
         
       </Paper>
@@ -185,28 +188,22 @@ function ProjectActivity() {
             </Tooltip>
 
             
-
+{/* 
             <Tooltip title="suggestions" sx={{mr: 2}} >
                 <IconButton size="small" >
                     <Badge color="warning" badgeContent={25} >
                         <EmojiObjectsOutlined   fontSize='small'/>
                     </Badge>
                 </IconButton>
-            </Tooltip>
+            </Tooltip> */}
 
-            <Tooltip title="like"  >
-                <IconButton size="small" >
-                    <Badge  color="info" badgeContent={25} >
-                        <ThumbUpOutlined  fontSize='small' />
-                    </Badge>
-                </IconButton>
-                
-            </Tooltip> 
+                <LikerButton likeUrl={`/api/v1/projects/${project.slug}/likes`} liked={liked}  totalLikes={totalLikes} setTotalLikes={setTotalLikes}  />
+            
             </Box>
             <Box py={1} mx={1} display="flex" justifyContent="flex-end"  >
 
             <Link to="/xpo/kpo" style={{textDecoration: "none"}} >
-              <Typography color="MenuText" variant="body2" noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}>22 comments</Typography>
+              <Typography color="MenuText" variant="body2" noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}>15 Suggestions</Typography>
             </Link>
             
            

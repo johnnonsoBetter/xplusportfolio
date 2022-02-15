@@ -1,20 +1,19 @@
-import { LoadingButton, LocalizationProvider, DatePicker } from '@mui/lab'
-import {  Box, Divider, Typography, Avatar, TextField, Chip, IconButton, CircularProgress, Grid, Autocomplete, Button } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
+import {  Box, Divider, Typography, TextField, IconButton, CircularProgress, Grid, Autocomplete} from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
-import {Paper} from '@mui/material/';
-import InputBase from '@mui/material/InputBase';
-import Carousel from 'react-multi-carousel';
+
 import 'react-multi-carousel/lib/styles.css';
 import { FetchContext } from "../../../../context/FetchContext";
-import { AddPhotoAlternateRounded, CloseRounded } from '@mui/icons-material';
+import { CloseRounded } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import isPast from 'date-fns/isPast'
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+
 import nextDay from 'date-fns/nextDay'
 import MultipleImageUpload from './MultipleImageUpload'
 import { AuthContext } from '../../../../context/AuthContext';
+import MyAnticipations from './MyAnticipations';
+import AnticipationToggle from './AnticipationToggle';
 
 
 
@@ -40,48 +39,6 @@ const validationSchema = yup.object({
  
 
 
-function Input(props) {
-  const {formik, img, textColor} = props
-  return (
-    <Paper
-      component="form"
-      sx={{  my: 2,  width: "100%", justifyContent: "center", display: 'flex', alignItems: 'center'}}
-      autoComplete='off'
-      elevation={3}
-    >
-    
-      <InputBase
-        
-        sx={{ flex: 1, height: "100%", 
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        pl: 1,
-        backgroundImage: `url(${img})`,
-        backgroundSize: 'cover',
-        color: textColor,
-        minHeight: 400, fontWeight: "bolder", textTransform: "capitalize", fontSize: "1.6em", width: "100%", }}
-        placeholder="What are you working on?"
-        type='text'
-        inputProps={{ 'aria-label': 'search google maps' }}
-        multiline
-        fullWidth
-        color='white'
-        autoFocus
-        
-        type="body"
-        name="body"
-        value={formik.values.body}
-        onChange={formik.handleChange}
-        error={formik.touched.body && Boolean(formik.errors.body)}
-        helperText={formik.touched.body && formik.errors.body}
-        
-      />
-    
-    </Paper>
-  );
-}
-
-
-
 
 const Loader = () => {
 
@@ -91,6 +48,10 @@ const Loader = () => {
     </Box>
   )
 }
+
+
+
+
 
 
 
@@ -112,6 +73,7 @@ export default function CreateProjectMenu() {
   const [imageURLs, setImageURLs] = useState([])
   const [technologies, setTechnologies] = useState([])
   const [tools, setTools] = useState([])
+  const [checked, setChecked] = useState(false)
 
  
   const {setSomethingWentWrong} = useContext(AuthContext)
@@ -128,10 +90,13 @@ export default function CreateProjectMenu() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values)
+      
+
+      if(images.length < 1 || tools.length < 1)
+        return
 
 
-
+      setLoadingBtn(true)
       var postData = JSON.stringify(values);
       var formData = new FormData();
       formData.append("project", postData);
@@ -143,9 +108,12 @@ export default function CreateProjectMenu() {
         console.log(res)
         setDueDate(nextDay(new Date(), -1))
         setLoadingBtn(false)
+        setImageURLs([])
+        setImages([])
+        setTools([])
         formik.resetForm()
       }).catch(err => {
-        console.log(err)
+        
         setLoadingBtn(false)
       })
     
@@ -178,9 +146,15 @@ export default function CreateProjectMenu() {
     return (
         <Box position="relative" height="100%" sx={{width: {sm: 550}}} >
           <Box display='flex' justifyContent='space-between' alignItems='center' >
-              <Typography variant='h6' mx={2}  color="ButtonText" fontWeight={700}>
-                New Project
-              </Typography>
+              
+              <Box display='flex' justifyContent='space-between' alignItems='center' >
+                <Typography variant='h6' mx={2}  color="ButtonText" fontWeight={700}>
+                 
+                  {checked ? "Fulfill Anticipation" : "New Project"}
+                </Typography>
+
+                <AnticipationToggle checked={checked} setChecked={setChecked} />
+              </Box>
              
 
               <Box px={2} my={1} >
@@ -299,6 +273,12 @@ export default function CreateProjectMenu() {
                     </Grid>
 
                     <Grid item xs={12}  >
+
+                         <MyAnticipations openAnticipationList={checked} />
+
+                    </Grid>
+
+                    <Grid item xs={12}  >
                          <Box  mx={2} my={1} >
 
                                     
@@ -340,7 +320,7 @@ export default function CreateProjectMenu() {
 
             <Box m={2}>
                 <Box mx={2} my={1} >
-                    <Button type='submit' fullWidth variant='contained' >Create Project</Button>
+                    <LoadingButton loading={loadingBtn} type='submit' fullWidth variant='contained' >Create Project</LoadingButton>
                 </Box>
             </Box>
             </form>

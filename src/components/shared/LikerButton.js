@@ -4,7 +4,7 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import { FetchContext } from "../../context/FetchContext"
 
-export default function LikerButton({liked, a_slug, setTotalLikes, totalLikes, likeUrl}) {
+export default function LikerButton({liked, setTotalLikes, totalLikes, likeUrl}) {
 
     const [isLiked, setIsLiked] = useState(liked)
     const {authAxios} = useContext(FetchContext)
@@ -20,7 +20,7 @@ export default function LikerButton({liked, a_slug, setTotalLikes, totalLikes, l
         setLikedTrue(true)
         setTotalLikes(totalLikes + 1)
   
-        authAxios.post(`/api/v1/anticipations/${a_slug}/likes`).then(res => {
+        authAxios.post(likeUrl).then(res => {
             
             setLikedTrue(true)
         }).catch(err => {

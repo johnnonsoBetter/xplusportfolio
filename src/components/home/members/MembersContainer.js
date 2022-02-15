@@ -49,6 +49,13 @@ export default function MembersContainer() {
          
         })
 
+
+        return () => {
+            setLoading(true)
+            setSomethingWentWrong(false)
+            setUsers([])
+        }
+
     }, [])
     
     return (

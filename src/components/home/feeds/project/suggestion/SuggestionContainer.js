@@ -1,7 +1,10 @@
+import React, { useContext, useEffect, useState } from 'react'
 import { LightbulbOutlined } from '@mui/icons-material';
-import { Box, Divider, IconButton, InputBase, Paper, Tooltip } from '@mui/material'
-import React from 'react'
+import { Box, CircularProgress, Divider, IconButton, InputBase, Paper, Tooltip } from '@mui/material'
+
 import SuggestionList from './SuggestionList';
+import { FetchContext } from '../../../../../context/FetchContext';
+import { AuthContext } from '../../../../../context/AuthContext';
 
 
 function Search() {
@@ -33,15 +36,55 @@ function Search() {
   
 
 
-export default function SuggestionContainer () {
+export default function SuggestionContainer ({slug}) {
+
+  const {authAxios} = useContext(FetchContext)
+  const {setSomethingWentWrong} = useContext(AuthContext)
+  const [loading, setLoading] = useState(true)
+  const [suggestionList, setSuggestionList] = useState([])
+
+
+  useEffect(() => {   
+       
+
+    authAxios.get(`/api/v1/projects/${slug}/suggestions`).then(res => {
+       console.log("this are the same data", res.data)
+      
+      
+        setLoading(false)
+    }).catch(err => {
+
+        setSomethingWentWrong(true)
+    })
+
+
+    return () => {
+        setSuggestionList([])
+        setLoading(true)
+        setSomethingWentWrong(false)
+    }
+}, [])
+
+  
+
 
 
     return (
-        <Box width="100%"> 
-           <Search />
-           <Box my={3} >
-               <SuggestionList />
-           </Box>
-        </Box>
+
+      <>
+        {
+          loading ?
+          <Box >
+            <CircularProgress />
+          </Box> : 
+          <Box width="100%" px={2}> 
+              <Search />
+              <Box my={3} >
+                  <SuggestionList />
+              </Box>
+          </Box>
+        }
+      </>
+        
     )
 }

@@ -61,15 +61,6 @@ export default function ProjectContainer() {
 
 
 
-    useEffect(() => {
-
-        authAxios.get('api/v1/projects')
-
-        return () => {
-
-        }
-    }, [])
-
 
     return (
         <Box>

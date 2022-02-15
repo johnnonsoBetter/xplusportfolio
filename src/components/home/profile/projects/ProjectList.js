@@ -41,7 +41,7 @@ export default function ProjectList({projects, totalProjects, fetchMoreData}) {
                    projects.map((project, index) => {
 
                     return (
-                        <ListItem disablePadding key={project.slug} >
+                        <ListItem disablePadding key={project.slug + index} >
                             <ProjectActivity project={project} />
                         </ListItem>
                     )

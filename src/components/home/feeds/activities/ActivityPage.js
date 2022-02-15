@@ -88,9 +88,9 @@ export default function ActivityPage() {
             <MyMiniInfo />
 
            
-                <ProjectActivity />
+                {/* <ProjectActivity />
                 {/* <AnticipationActivity /> */}
-                <ProjectActivity />
+                {/* <ProjectActivity />  */}
             
             
         </Box>

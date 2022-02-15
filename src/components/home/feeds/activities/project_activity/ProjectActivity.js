@@ -12,8 +12,8 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 
-import {  HowToVoteOutlined, InsertLinkOutlined, ModeCommentOutlined, PushPinOutlined, ThumbUpOutlined } from '@mui/icons-material';
-import { Badge, IconButton, Tooltip } from '@mui/material';
+import { InsertLinkOutlined} from '@mui/icons-material';
+import { IconButton, Tooltip } from '@mui/material';
 import ProjectActivityOwner from '../project_activity/ProjectActivityOwner';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../context/AuthContext';
@@ -83,13 +83,7 @@ function ProjectActivity(props) {
         <Box display="flex" width="100%" justifyContent="flex-end" >
             
             <Box mx={1}  >
-                
-                
-                {/* <Tooltip title="Review later" >
-                    <IconButton size="small" >
-                        <PushPinOutlined />
-                    </IconButton>
-                </Tooltip> */}
+
 
                 <Tooltip title="View live" >
                     
@@ -174,7 +168,7 @@ function ProjectActivity(props) {
         }
       />
       <Paper elevation={0} >
-        <Link to="/xpo/projects/90" style={{textDecoration: "none"}} >
+        <Link to={`/xpo/projects/${project.slug}`} style={{textDecoration: "none"}} >
         <Typography color="MenuText" fontWeight={600} noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}> {title}</Typography>
         </Link>
         
@@ -193,7 +187,7 @@ function ProjectActivity(props) {
             </Box>
             <Box py={1} mx={1} display="flex" justifyContent="flex-end"  >
 
-            <Link to="/xpo/kpo" style={{textDecoration: "none"}} >
+            <Link to={`/xpo/projects/${project.slug}`} style={{textDecoration: "none"}} >
               <Typography color="MenuText" variant="body2" noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}>{total_suggestions} Suggestions</Typography>
             </Link>
             

@@ -12,12 +12,13 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 
-import { ChatBubbleOutlined, ChatBubbleOutlineRounded, CropFreeOutlined, EmojiObjectsOutlined, HowToVoteOutlined, InsertLinkOutlined, ModeCommentOutlined, PushPinOutlined, ThumbUpOutlined } from '@mui/icons-material';
+import {  HowToVoteOutlined, InsertLinkOutlined, ModeCommentOutlined, PushPinOutlined, ThumbUpOutlined } from '@mui/icons-material';
 import { Badge, IconButton, Tooltip } from '@mui/material';
 import ProjectActivityOwner from '../project_activity/ProjectActivityOwner';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../context/AuthContext';
 import LikerButton from '../../../../shared/LikerButton';
+import VoteButton from '../../../../shared/VoteButton';
 
 
 
@@ -26,11 +27,14 @@ function ProjectActivity(props) {
   const {
     created_at, user,
     total_likes,
+    total_votes,
     project_photos,
     github_link,
     live_link,
     title,
     liked,
+    voted,
+    total_suggestions,
   } = project
 
 
@@ -39,6 +43,7 @@ function ProjectActivity(props) {
   const {slug} = JSON.parse(authState.userInfo)
   const isCurrentUser = user.slug === slug 
   const [totalLikes, setTotalLikes] = useState(total_likes)
+  const [totalVotes, setTotalVotes] = useState(total_votes)
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = project_photos.length;
@@ -178,32 +183,18 @@ function ProjectActivity(props) {
         <Paper  elevation={0} sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <Box py={1} mx={2} display="flex" justifyContent="flex-end"  >
             
-            <Tooltip title="vote" sx={{mr: 2}} >
-                <IconButton size="small">
-                    <Badge color="info" badgeContent={25} >
-                        <HowToVoteOutlined fontSize='small' />
-                    </Badge>
-                </IconButton>
+          
 
-            </Tooltip>
-
+              <VoteButton voteUrl={`/api/v1/projects/${project.slug}/voters`} voted={voted}  totalVotes={totalVotes} setTotalVotes={setTotalVotes}  />
             
-{/* 
-            <Tooltip title="suggestions" sx={{mr: 2}} >
-                <IconButton size="small" >
-                    <Badge color="warning" badgeContent={25} >
-                        <EmojiObjectsOutlined   fontSize='small'/>
-                    </Badge>
-                </IconButton>
-            </Tooltip> */}
-
+  
                 <LikerButton likeUrl={`/api/v1/projects/${project.slug}/likes`} liked={liked}  totalLikes={totalLikes} setTotalLikes={setTotalLikes}  />
             
             </Box>
             <Box py={1} mx={1} display="flex" justifyContent="flex-end"  >
 
             <Link to="/xpo/kpo" style={{textDecoration: "none"}} >
-              <Typography color="MenuText" variant="body2" noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}>15 Suggestions</Typography>
+              <Typography color="MenuText" variant="body2" noWrap={true} textAlign="left" sx={{mx: 2, py: 1}}>{total_suggestions} Suggestions</Typography>
             </Link>
             
            

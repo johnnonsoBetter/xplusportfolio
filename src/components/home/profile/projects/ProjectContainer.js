@@ -5,6 +5,7 @@ import { AuthContext } from '../../../../context/AuthContext'
 import { FetchContext } from '../../../../context/FetchContext'
 import ProjectList from './ProjectList'
 import ProjectListLoader from './ProjectListLoader'
+import Empty from '../../../shared/Empty'
 
 export default function ProjectContainer() {
 
@@ -67,8 +68,16 @@ export default function ProjectContainer() {
            {
                loading ?
                <ProjectListLoader /> :
+               <>
+                {
+                     projects.length === 0 ? 
+                     <Empty emptyDetail="No Project Yet" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
+                     <ProjectList projects={projects} fetchMoreData={fetchMoreData}  />
+
+                }
+               
+               </>
               
-               <ProjectList projects={projects} fetchMoreData={fetchMoreData}  />
 
            }
         </Box>

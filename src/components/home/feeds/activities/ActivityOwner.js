@@ -39,10 +39,10 @@ export default function ActivityOwner({created_at, user}) {
                 :
                 <Link to={`/xpo/members/${slug}`}  style={{textDecoration: "none", display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
         
-                {/* <ListItemIcon >
+                <ListItemIcon >
                     
                     <Avatar src={image} alt={name} > {name[0]}</Avatar>
-                </ListItemIcon> */}
+                </ListItemIcon>
                 <Stack  >
                     
             

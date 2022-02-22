@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { FetchContext } from '../../../context/FetchContext'
 
 
-export default function Member({user}) {
+export default function Member({user, noFollow}) {
     const {name, slug, total_projects, total_anticipations, repu_coin, is_following} = user
 
     return (
@@ -38,7 +38,11 @@ export default function Member({user}) {
             </Link>
             
             <Box width="100%"  my={2} display="flex" justifyContent="center" >
-               <FollowButton is_following={is_following} slug={slug} />
+                {
+                    noFollow ? null :
+                    <FollowButton is_following={is_following} slug={slug} />
+                }
+               
             </Box>
         </Paper>
     )

@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useTheme } from '@emotion/react'
 
 
-export default function MemberList({users, totalMembers, fetchMoreData}) {
+export default function MemberList({users, totalMembers, fetchMoreData, noFollow}) {
 
     const theme = useTheme()
     const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -43,7 +43,7 @@ export default function MemberList({users, totalMembers, fetchMoreData}) {
                     return (
                         <Grid key={user.slug + index} item xs={6} sm={4} md={4}  >
                             <Box p={1} >
-                            <Member user={user} />
+                            <Member noFollow={noFollow} user={user} />
                             </Box>
                             
                         </Grid>

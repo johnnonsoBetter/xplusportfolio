@@ -109,7 +109,7 @@ export default function MainProfile({isCurrentUser}) {
                 </Grid>
 
 
-                <Grid item  xs={12} md={12}  >
+                {/* <Grid item  xs={12} md={12}  >
                     <Paper    >
                         <Box display="flex" alignItems="center"  p={1} >
                            <BuildRounded color="action" fontSize="1.2rem" />
@@ -126,7 +126,7 @@ export default function MainProfile({isCurrentUser}) {
                         
                         </Box>
                     </Paper>
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={4} sm={4} md={4}  >
                     <Paper   component={Link}  to={`${pathname}/anticipations`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >

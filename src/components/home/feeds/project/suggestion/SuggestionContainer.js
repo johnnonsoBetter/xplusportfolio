@@ -87,7 +87,7 @@ export default function SuggestionContainer ({slug, user, project}) {
               <Box my={3} >
                    {
                      suggestions.length === 0 ?
-                     <Empty emptyDetail="No Suggestion found" sx={{minHeight: "300px"}}/> : 
+                     <Empty emptyDetail="No Suggestion found" sx={{minHeight: "70px"}}/> : 
                      <SuggestionList project={project} suggestions={suggestions} />
                    }
                   

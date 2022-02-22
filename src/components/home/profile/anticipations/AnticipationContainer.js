@@ -5,6 +5,7 @@ import { AuthContext } from '../../../../context/AuthContext'
 import { FetchContext } from '../../../../context/FetchContext'
 import AnticipationList from './AnticipationList'
 import AnticipationListLoader from './AnticipationListLoader'
+import Empty from '../../../shared/Empty'
 
 export default function  AncticipationContainer() {
 
@@ -65,8 +66,16 @@ export default function  AncticipationContainer() {
                 loading ?
                 <AnticipationListLoader />
                 : 
-                <AnticipationList anticipations={anticipations} fetchMoreData={fetchMoreData} totalAnticipations={totalAnticipations} />
+                <>
+                {
+                    anticipations.length === 0 ? 
+                    <Empty emptyDetail="No Anticipation Yet" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
+                    <AnticipationList anticipations={anticipations} fetchMoreData={fetchMoreData} totalAnticipations={totalAnticipations} />
 
+                }
+                
+                </>
+               
             }
         </Box>
     )

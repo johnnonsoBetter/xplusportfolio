@@ -11,8 +11,7 @@ import ProjectActivity from '../../feeds/activities/project_activity/ProjectActi
 export default function ProjectList({projects, totalProjects, fetchMoreData}) {
 
     const theme = useTheme()
-    const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
-    const matchesXs = useMediaQuery(theme.breakpoints.up('xs'));
+   
 
     return (
         <Box py={1} className="member-container" sx={{width: "100%", scrollbarColor: "red", scrollbarWidth: {display: "none"}, overflowY: "auto"}} >

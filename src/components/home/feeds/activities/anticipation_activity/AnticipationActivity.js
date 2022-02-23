@@ -117,9 +117,9 @@ function AnticipationActivity({anticipation}) {
         > <Typography variant="h5" sx={{px: 1}} textAlign='center' > {body}</Typography> </Box>
       
       <Paper elevation={0} >
-        <Link to="/xpo/kpo" style={{textDecoration: "none"}} >
+        
         <Typography color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> {totalSubScribers} subscribers</Typography>
-        </Link>
+      
         
       </Paper>
       

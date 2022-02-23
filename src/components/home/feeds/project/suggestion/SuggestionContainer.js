@@ -8,7 +8,64 @@ import { AuthContext } from '../../../../../context/AuthContext';
 import Empty from '../../../../shared/Empty';
 
 
-function CreateSuggestion() {
+function CreateSuggestion(props) {
+  const {setSuggestions, suggestions, project, setProject} = props
+  const {authAxios} = useContext(FetchContext)
+  const [disable, setDisable] = useState(false)
+  const [content, setContent] = useState('')
+  const {setSomethingWentWrong, isCurrentUser} = useContext(AuthContext)
+
+    const makeSuggestion = (e) => {
+      e.preventDefault()
+
+      if(content === '') return 
+
+      setDisable(true)
+      authAxios.post('/api/v1/suggestions', {
+        suggestion: {
+          content,
+          project_id: project.id
+        }
+      }).then(res => {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+
+        console.log(res, "this is my own response to this project.")
+        const {content, id, done, created_at} = res.data
+        const newSuggestion = {
+          content,
+          id,
+          done,
+          created_at,
+          project_slug: project.slug,
+          user: {
+            image: userInfo['image'],
+            name: userInfo['image'],
+            slug: userInfo['slug']
+
+          }
+        }
+
+
+        const totalSuggestions = project.total_suggestions
+        const newProject = Object.assign(project, {})
+        
+
+       
+        newProject.total_suggestions = (totalSuggestions + 1)
+        console.log(newProject, "check out the same new project")
+        setSuggestions(suggestions.concat(newSuggestion))
+        setProject(newProject)
+        setContent('')
+        setDisable(false)
+
+      }).catch(err => {
+        setDisable(false)
+        setSomethingWentWrong(true)
+      })
+
+    }
+
+
     return (
       <Paper 
         elevation={1}
@@ -18,15 +75,20 @@ function CreateSuggestion() {
           sx={{ ml: 1, flex: 1}}
           type="text"
           placeholder="Make Suggestion "
-          
+          value={content}
           multiline
           rows={4}
+          onChange={(e) => {
+            e.preventDefault()
+
+            setContent(e.target.value)
+          }}
           
         />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
         <Tooltip title="Suggest" >
-            <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
+            <IconButton disabled={disable} onClick={makeSuggestion} color="primary" sx={{ p: '10px' }} aria-label="directions">
                 <LightbulbOutlined />
             </IconButton>
 
@@ -39,8 +101,8 @@ function CreateSuggestion() {
   
 
 
-export default function SuggestionContainer ({slug, user, project}) {
-
+export default function SuggestionContainer (props) {
+  const {slug, user, project, setProject} = props
   const {authAxios} = useContext(FetchContext)
   const {setSomethingWentWrong, isCurrentUser} = useContext(AuthContext)
   const [loading, setLoading] = useState(true)
@@ -64,7 +126,7 @@ export default function SuggestionContainer ({slug, user, project}) {
         setLoading(true)
         setSomethingWentWrong(false)
     }
-}, [])
+  }, [])
 
   
 
@@ -82,7 +144,7 @@ export default function SuggestionContainer ({slug, user, project}) {
           <Box width="100%" p={1}> 
               
               {
-                !isCurrentUser(user.slug) && <CreateSuggestion />
+                !isCurrentUser(user.slug) && <CreateSuggestion setSuggestions={setSuggestions} suggestions={suggestions} project={project} setProject={setProject} />
               }
               <Box my={3} >
                    {

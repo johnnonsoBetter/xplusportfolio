@@ -63,7 +63,7 @@ export default function Following() {
                 loading ?
                 <MembersLoader /> 
                 : 
-                <MemberList users={users} fetchMoreData={fetchMoreData} totalMembers={totalMembers}/>
+                <MemberList  users={users} fetchMoreData={fetchMoreData} totalMembers={totalMembers}/>
             }
            
         </Box>

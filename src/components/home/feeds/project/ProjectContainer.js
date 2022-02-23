@@ -134,7 +134,7 @@ export default function ProjectContainer() {
     
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <SuggestionContainer project={project} slug={slug} user={project.user} />
+        <SuggestionContainer setProject={setProject} project={project} slug={slug} user={project.user} />
 
         </Box>
       

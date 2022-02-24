@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { AuthContext } from '../../../../context/AuthContext'
 import { FetchContext } from '../../../../context/FetchContext'
+import Empty from '../../../shared/Empty'
 import MemberList from '../../members/MemberList'
 import MembersLoader from '../../members/MembersLoader'
 
@@ -63,7 +64,16 @@ export default function Following() {
                 loading ?
                 <MembersLoader /> 
                 : 
-                <MemberList  users={users} fetchMoreData={fetchMoreData} totalMembers={totalMembers}/>
+                <>
+                {
+                     users.length === 0 ?
+                     <Empty emptyDetail="No Followings" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
+                        
+
+                     <MemberList noFollow={true} users={users} fetchMoreData={fetchMoreData} totalMembers={totalMembers}/>
+                   }
+                
+                </>
             }
            
         </Box>

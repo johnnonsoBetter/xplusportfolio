@@ -82,12 +82,12 @@ export default function AppbarContent() {
                     <Box sx={{display: {xs: "flex", sm: "none"}, justifyContent: "space-between"}} >
                         
                    
-                            <IconButton LinkComponent={Link} to={`#pinned`} disableRipple sx={{mr: 1}}>
+                            {/* <IconButton LinkComponent={Link} to={`#pinned`} disableRipple sx={{mr: 1}}>
                                 
                                 <Badge color="error" badgeContent={5} >
                                     <PushPinOutlined />
                                 </Badge>
-                            </IconButton>
+                            </IconButton> */}
 
                         
 
@@ -103,7 +103,7 @@ export default function AppbarContent() {
                     
 
                     <Box sx={{display: {xs: "none", sm: "flex"}, justifyContent: "space-between"}} >
-                        <PinnedProjectMenu />
+                       
 
                         <NotificationMenu />
                     </Box>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -32,14 +32,23 @@ export default function NotificationMenu() {
   };
 
 
-  const {somethingWentWrong} = useContext(AuthContext)
+  const {setSomethingWentWrong} = useContext(AuthContext)
   const {authAxios} = useContext(FetchContext)
 
-  authAxios.get('api/v1/notifications').then(res => {
+
+
+  useEffect(() => {
+
+    authAxios.get('api/v1/notifications').then(res => {
       console.log(res)
   }).catch(err => {
       console.log(err)
   })
+
+    return () => {
+      setSomethingWentWrong(false)
+    }
+  }, [])
 
 
 

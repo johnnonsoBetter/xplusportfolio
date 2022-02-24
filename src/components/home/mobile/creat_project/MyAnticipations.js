@@ -1,14 +1,183 @@
 import { VerifiedRounded } from '@mui/icons-material'
-import { ButtonBase, Collapse, Paper, Tooltip, Typography } from '@mui/material'
+import { ButtonBase, Chip, CircularProgress, Collapse, MobileStepper, Paper, Tooltip, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../../../context/AuthContext'
+import {FetchContext} from '../../../../context/FetchContext'
+import Empty from '../../../shared/Empty'
+import Button from '@mui/material/Button';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
+import { useTheme } from '@emotion/react'
+import moment from 'moment'
 
 
-export default function MyAnticipations ({openAnticipationList, setAnticipationId}) {
+export default function MyAnticipations ({openAnticipationList, setAnticipationId, anticipationId}) {
+
+  const {authAxios} = useContext(FetchContext)
+  const {setSomethingWentWrong} = useContext(AuthContext)
+  const [anticipations, setAnticipations] = useState([])
+  const [loading, setLoading] = useState(true)
 
 
-    const Anticipation = () => (
-      <ButtonBase >
+
+  useEffect(() => {
+
+
+    authAxios.get('api/v1/unfulfilled_anticipations').then(res => {
+      setAnticipations(res.data)
+      setLoading(false)
+      setAnticipationId(res.data[0].id)
+    }).catch(err => {
+      setLoading(false)
+      setSomethingWentWrong(true)
+    })
+
+    return () => {
+      setSomethingWentWrong(false)
+      setLoading(true)
+      setAnticipations([])
+    }
+  }, [])
+
+
+
+
+    
+  
+  
+    
+  
+    return (
+      <Collapse  in={openAnticipationList} timeout="auto" unmountOnExit >
+      
+        <Box  mx={2} my={1} > 
+          
+          {
+                    loading ?
+                    <Box display='flex' minHeight={250} alignItems='center' justifyContent='center'>
+                        <CircularProgress />
+                    </Box>
+                    :
+                    <>
+
+                    {
+                     anticipations.length === 0 ?
+                     <Empty emptyDetail="No Unfulfilled Anticipation found" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
+                        
+
+                        <>
+                           <AnticipationList anticipationId={anticipationId} anticipations={anticipations} setAnticipationId={setAnticipationId} />
+                        </>
+                   }
+                    
+                    </>
+                }
+        </Box>
+      </Collapse>
+    )
+  }
+  
+  
+
+  const AnticipationList = (props) =>{
+    const {anticipations, setAnticipationId, anticipationId} = props
+    const theme = useTheme();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = anticipations.length;
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleStepChange = (step) => {
+    setActiveStep(step);
+  };
+
+
+    return (
+        <>
+        <Box sx={{ maxWidth: "100%", flexGrow: 1 }}>
+        <Paper
+          square
+          elevation={0}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            height: 50,
+            pl: 2,
+            bgcolor: 'background.default',
+          }}
+        >
+         
+        </Paper>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
+        >
+          {anticipations.map((anticipation, index) => (
+            <div key={anticipation.id}>
+              {Math.abs(activeStep - index) <= 2 ? (
+                 <Anticipation anticipationId={anticipationId} anticipation={anticipation} setAnticipationId={setAnticipationId} />
+            ) : null}
+            
+              
+            </div>
+          ))}
+        </SwipeableViews>
+        <MobileStepper
+          steps={maxSteps}
+          position="static"
+          activeStep={activeStep}
+          nextButton={
+            <Button
+              size="small"
+              onClick={handleNext}
+              disabled={activeStep === maxSteps - 1}
+            >
+              Next
+              {theme.direction === 'rtl' ? (
+                <KeyboardArrowLeft />
+              ) : (
+                <KeyboardArrowRight />
+              )}
+            </Button>
+          }
+          backButton={
+            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+              {theme.direction === 'rtl' ? (
+                <KeyboardArrowRight />
+              ) : (
+                <KeyboardArrowLeft />
+              )}
+              Back
+            </Button>
+          }
+        />
+      </Box>
+
+        </>
+    )
+  }
+
+
+  const Anticipation = ({anticipation, setAnticipationId, anticipationId}) => {
+
+    const {cover, due_date, id, body} = anticipation
+    const {image, text_color} = cover
+    const expires = moment().to(moment(due_date))
+
+    return (
+      <>
+          <ButtonBase onClick={() => setAnticipationId(id)} >
       <Box  sx={{ flexGrow: 1 }}
         component={Paper}
         square
@@ -28,13 +197,19 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
       >
            <Box display='flex' alignItems='center' >
                   
-                  <Tooltip title='Me'>
-                  <VerifiedRounded color='success' />
-                  </Tooltip>
+                  
+                  {
+                    anticipationId === id &&
+                    <Chip size="small" avatar={<VerifiedRounded color='warning' />}  label="Selected" />
+
+
+                  }
+                  
+                 
              
               <Box mx={1} >
-                  <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} variant="body2" color="ButtonShadow" noWrap={true}> 2days </Typography>
-
+                  <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} variant="body2" color="ButtonShadow" noWrap={true}> expires in {expires} </Typography>
+  
               </Box>
               </Box>
     
@@ -42,37 +217,29 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
       
         <Box
         
+
         sx={{
-            minHeight: 255,
-            display: 'flex',
-            justifyContent: "center",
-            alignItems: "center",
-            maxWidth: "100%",
-            overflow: 'hidden',
-            width: '100%',
-             backgroundImage: `url(https://images.unsplash.com/photo-1609602644879-dd158c2b56b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGV4dHVyZSUyMGJhY2tncm91bmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60)`,
-            backgroundSize: 'cover',
-            color: "white"
-           
-        }}
-      > <Typography variant="h5" sx={{px: 1}} textAlign='center' > Where are we going to add some of those things and make the same timer that</Typography> </Box>
+          minHeight: 255,
+          display: 'flex',
+          justifyContent: "center",
+          alignItems: "center",
+          maxWidth: "100%",
+          overflow: 'hidden',
+          width: '100%',
+          backgroundImage: `url(${image})`,
+          backgroundSize: 'cover',
+          color: text_color
+      }}
+      > <Typography variant="h5" sx={{px: 1}} textAlign='center' > {body}</Typography> </Box>
       
       </Box>    
   
       </ButtonBase>
-    )
-  
-  
-    
-  
-    return (
-      <Collapse  in={openAnticipationList} timeout="auto" unmountOnExit >
-      
-        <Box  mx={2} my={1} > 
-          <Anticipation />
-        </Box>
-      </Collapse>
+      </>
     )
   }
+  
+  
+  
   
   

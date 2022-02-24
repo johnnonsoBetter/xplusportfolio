@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
 
-import { AccessTimeOutlined, DisabledByDefaultRounded, InsertLinkRounded, TaskRounded } from '@mui/icons-material';
+import { AccessTimeOutlined, CheckOutlined, DisabledByDefaultRounded, InsertLinkRounded, TaskRounded } from '@mui/icons-material';
 import {Button, Chip, IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -130,9 +130,18 @@ function AnticipationActivity({anticipation}) {
             <LikerButton likeUrl={`/api/v1/anticipations/${a_slug}/likes`} liked={liked} a_slug={a_slug} totalLikes={totalLikes} setTotalLikes={setTotalLikes}  />
             
 
-            <Tooltip sx={{ml: 1}} title="expires" > 
+            
+
+            {
+              fulfilled ? 
+             
+              <Chip size='small' variant="outlined" avatar={<CheckOutlined  />} label="Fulfilled" /> 
+              : 
+              <Tooltip sx={{ml: 1}} title="expires" > 
                 <Chip size='small' variant="outlined" avatar={<AccessTimeOutlined  />} label={ expired ? "expired" :  expires} />
-            </Tooltip>
+              </Tooltip>
+      
+            }
             
             </Box>
 

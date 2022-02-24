@@ -74,6 +74,8 @@ export default function CreateProjectMenu() {
   const [technologies, setTechnologies] = useState([])
   const [tools, setTools] = useState([])
   const [checked, setChecked] = useState(false)
+  const [anticipationId, setAnticipationId] = useState(null)
+
 
  
   const {setSomethingWentWrong} = useContext(AuthContext)
@@ -91,13 +93,15 @@ export default function CreateProjectMenu() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       
-
+      const newValues = Object.assign({},values)
+      newValues.anticipation_id = anticipationId
       if(images.length < 1 || tools.length < 1)
         return
 
 
       setLoadingBtn(true)
-      var postData = JSON.stringify(values);
+  
+      var postData = JSON.stringify(newValues);
       var formData = new FormData();
       formData.append("project", postData);
       formData.append('tools', tools)
@@ -272,11 +276,7 @@ export default function CreateProjectMenu() {
 
                     </Grid>
 
-                    <Grid item xs={12}  >
-
-                         <MyAnticipations openAnticipationList={checked} />
-
-                    </Grid>
+                   
 
                     <Grid item xs={12}  >
                          <Box  mx={2} my={1} >
@@ -306,6 +306,12 @@ export default function CreateProjectMenu() {
 
 
                             </Box>
+
+                    </Grid>
+
+                    <Grid item xs={12}  >
+
+                    <MyAnticipations anticipationId={anticipationId} setAnticipationId={setAnticipationId} openAnticipationList={checked}  />
 
                     </Grid>
 

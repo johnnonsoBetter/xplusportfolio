@@ -8,7 +8,7 @@ import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min
 import {AuthContext} from '../../../../context/AuthContext'
 import {FetchContext} from '../../../../context/FetchContext'
 
-export default function MainProfile({isCurrentUser}) {
+export default function MainProfile() {
 
     const {setSomethingWentWrong} = useContext(AuthContext)
     const {authAxios} = useContext(FetchContext)
@@ -20,7 +20,7 @@ export default function MainProfile({isCurrentUser}) {
     useEffect(() => {
 
         authAxios.get(`api/v1/users/${slug}`).then(res => {
-            console.log("please i would really like you to checkout y", res)
+  
             const {user} = res.data 
             setProfile(user)
             setLoading(false)
@@ -51,9 +51,7 @@ export default function MainProfile({isCurrentUser}) {
 
 const Loader = () => {
     const {pathname} = useLocation()
-    const history = useHistory()
-    const {isCurrentUser} = useContext(AuthContext)
-    const {slug} = useParams()
+    
 
     return (
         <Box my={1} mx={1} >
@@ -127,24 +125,7 @@ const Loader = () => {
             </Grid>
 
 
-            {/* <Grid item  xs={12} md={12}  >
-                <Paper    >
-                    <Box display="flex" alignItems="center"  p={1} >
-                       <BuildRounded color="action" fontSize="1.2rem" />
-                       <Typography sx={{ml: 1}} variant="body2" > Skills</Typography>
-                        
-                    </Box>
-                    <Box display="flex" flexWrap="wrap" >
-                        <Chip label="Ruby on rails" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="React" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="Heroku" variant="outlined" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="Git" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="Github" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="Ruby on rails" variant="outlined" sx={{mx: 1, my: 1}}/>
-                    
-                    </Box>
-                </Paper>
-            </Grid> */}
+     
 
             <Grid item xs={4} sm={4} md={4}  >
                 <Paper   component={Link}  to={`${pathname}/anticipations`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >

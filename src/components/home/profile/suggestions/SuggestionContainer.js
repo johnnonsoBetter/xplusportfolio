@@ -1,5 +1,5 @@
 
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, Paper, Skeleton, Stack } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { AuthContext } from '../../../../context/AuthContext';
@@ -44,9 +44,7 @@ export default function SuggestionContainer () {
 
                 {
                     loading ?
-                    <Box display='flex' minHeight={250} alignItems='center' justifyContent='center'>
-                        <CircularProgress />
-                    </Box>
+                    <Loader />
                     :
                     <>
 
@@ -72,5 +70,56 @@ export default function SuggestionContainer () {
 
            
         </Box>
+    )
+}
+
+
+const Loader = () => {
+
+    const Load = () => (
+        <Box my={2}  >
+        <Paper sx={{p: 2}} >
+
+       
+        <Box display='flex' justifyContent='space-between' alignItems='center' >
+                
+                 <Stack  >
+                 
+         
+                 <Box maxWidth={120}>
+                     <Skeleton variant='text' width={70} />
+                 </Box>
+                 <Box maxWidth={120}>
+                     <Skeleton variant='text' width={70} />                    
+                 </Box>
+                 
+                  
+             </Stack>
+
+             <Box display='flex'  alignItems='center' >
+                
+                 
+
+                
+             </Box>
+        </Box>
+
+        <Box my={2} display='flex' alignItems='center' flexWrap='wrap' >
+            
+          <Skeleton variant='text' width="90%" />
+                  
+        </Box>
+        </Paper>
+    </Box>
+    )
+
+
+    return (
+        <>
+            <Load /> 
+            <Load />
+            <Load />
+            <Load />
+        </>
     )
 }

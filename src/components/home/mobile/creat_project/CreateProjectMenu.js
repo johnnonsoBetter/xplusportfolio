@@ -14,6 +14,7 @@ import MultipleImageUpload from './MultipleImageUpload'
 import { AuthContext } from '../../../../context/AuthContext';
 import MyAnticipations from './MyAnticipations';
 import AnticipationToggle from './AnticipationToggle';
+import UploadLoading from './UploadLoading';
 
 
 
@@ -323,6 +324,12 @@ export default function CreateProjectMenu() {
                       <MultipleImageUpload images={images} imageURLs={imageURLs} setImages={setImages} setImageURLs={setImageURLs} />
                     </Grid>
                 </Grid>
+
+                <Box m={2}>
+                  <Box mx={2} my={1} >
+                    <UploadLoading />
+                  </Box>
+               </Box>
 
             <Box m={2}>
                 <Box mx={2} my={1} >

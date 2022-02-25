@@ -40,7 +40,7 @@ export default function NotificationMenu() {
   useEffect(() => {
 
     authAxios.get('api/v1/notifications').then(res => {
-      console.log(res)
+     
   }).catch(err => {
       console.log(err)
   })
@@ -75,14 +75,14 @@ export default function NotificationMenu() {
           elevation: 0,
           sx: {
             
-            width: '33ch',
+            width: '35ch',
             minHeight: 510,
             maxHeight: 510,
             borderRadius: "10px",
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
+            mt: 0.4,
             '& .MuiAvatar-root': {
-              width: 45,
+              width: 55,
               height: 32,
               ml: -0.5,
               mr: 1,

@@ -155,7 +155,7 @@ const Profile = ({profile}) => {
                         linkedin_url ? 
                         <a rel="noopener noreferrer" href={linkedin_url} target="_blank">
 
-                            <IconButton size="small"  >
+                            <IconButton size="small" target="_blank" rel="noopener noreferrer"  >
                                
                                 <img src="/images/linkedin.png" alt="linkedin" />
                             </IconButton>

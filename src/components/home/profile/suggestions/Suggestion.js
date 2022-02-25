@@ -45,7 +45,7 @@ export default function Suggestion({suggestion}) {
                    
                     
 
-                    <Tooltip title={project_title}   sx={{mx: 1}} >
+                    <Tooltip title="View Project"   sx={{mx: 1}} >
                         <IconButton LinkComponent={Link} to={`/xpo/projects/${project_slug}`} >
                         <FolderRounded  fontSize='small' />
                         </IconButton>

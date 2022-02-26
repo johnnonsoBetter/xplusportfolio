@@ -19,10 +19,11 @@ import NotificationList from './NotificationList';
 export default function NotificationMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 //   const {authAxios} = useContext(FetchContext)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const open = Boolean(anchorEl);
  // const {logUserOut} = React.useContext(AuthContext)
   const history = useHistory()
+  const [notifications, setNotifications] = useState([])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -39,16 +40,32 @@ export default function NotificationMenu() {
 
   useEffect(() => {
 
-    authAxios.get('api/v1/notifications').then(res => {
-     
-  }).catch(err => {
-      console.log(err)
-  })
+    setLoading(true)
+    if (open) {
+      console.log(loading, "this is the loading")
+
+      authAxios.get('api/v1/notifications', {params: {status: 'unread'}}).then(res => {
+
+      
+        setNotifications(res.data)
+        setLoading(false)
+       
+    }).catch(err => {
+       setSomethingWentWrong(true)
+    })
+
+
+    }
+
 
     return () => {
       setSomethingWentWrong(false)
+      
+      setNotifications([])
+      
+     
     }
-  }, [])
+  }, [open])
 
 
 
@@ -75,7 +92,7 @@ export default function NotificationMenu() {
           elevation: 0,
           sx: {
             
-            width: '35ch',
+            width: '32ch',
             minHeight: 510,
             maxHeight: 510,
             borderRadius: "10px",
@@ -115,7 +132,12 @@ export default function NotificationMenu() {
                 </Tooltip>
             </Box>
         </MenuItem>
-        <NotificationList />
+   
+        {
+          loading ?
+          <NotificationLoader /> :
+          <NotificationList notifications={notifications} handleClose={handleClose} />
+        }
 
 
       </Menu>

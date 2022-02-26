@@ -28,10 +28,7 @@ function Members({members}) {
                                     <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body1" noWrap={true}> {member.name}</Typography>
                                     
                                     </Box>
-                                    <Box maxWidth={120} >
-                                        <Typography sx={{textTransform: "capitalize"}} variant="body2" color="ButtonShadow" noWrap={true}> {member.about}</Typography>
-                                    
-                                    </Box>
+                                   
 
                                 
                                 </Stack>

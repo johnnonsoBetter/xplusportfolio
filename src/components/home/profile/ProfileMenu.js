@@ -24,7 +24,7 @@ export default function ProfileMenu() {
             setProfile(user)
              setLoading(false)
         }).catch(err => {
-            console.log(err)
+            setSomethingWentWrong(true)
         })
 
 

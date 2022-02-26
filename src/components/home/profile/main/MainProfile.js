@@ -25,7 +25,7 @@ export default function MainProfile() {
             setProfile(user)
             setLoading(false)
         }).catch(err => {
-            console.log(err)
+            setSomethingWentWrong(true)
         })
 
 

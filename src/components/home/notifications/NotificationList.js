@@ -2,256 +2,45 @@ import { FolderRounded } from '@mui/icons-material'
 import { Avatar, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
+import AnticipationLike from './types/AnticipationLike'
+import ProjectUpvote from './types/ProjectUpvote'
 
-export default function NotificationList() {
+export default function NotificationList({notifications, handleClose}) {
     
 
 
     return (
         <List  >
-            <ListItem  disablePadding >
-           
-            <ListItemButton disableRipple  >
+            {
+                notifications.map((notification, index) => {
 
-            <Box display='flex' justifyContent='space-between' alignItems='center' >
-                <ListItemIcon>
-           
-                     
-                <Avatar style={{width: "42px", height: "42px"}} sx={{width: 24, height: 24}} sizes='large' >
-                     <FolderRounded  /> 
-                     </Avatar>
-  
-                </ListItemIcon>
+                    const {object, type} = notification
 
-                <Box >
+                    return (
+                        <ListItem  disablePadding onClick={handleClose}  >
+                            <Notification handleClose={handleClose} key={type + index} object={object} type={type}  />
 
-                    <ListItemText>
-                        New Project Nofitication
-                    </ListItemText>
-                    <ListItemText >
-                        <Typography noWrap='true' maxWidth={250}>
-                        A todo application that will really make sfdsfsfsfsfd
-                        </Typography>
-                       
-                    </ListItemText>
 
-                </Box>
-
-              
-
-           </Box>
-
-
-
-            </ListItemButton>
-           
-
-            </ListItem>
-
-
-            <ListItem  disablePadding >
-           
-            <ListItemButton disableRipple  >
-
-            <Box display='flex' justifyContent='space-between' alignItems='center' >
-                <ListItemIcon>
-           
-                     
-                <Avatar style={{width: "42px", height: "42px"}} sx={{width: 24, height: 24}} sizes='large' >
-                     <FolderRounded  /> 
-                     </Avatar>
-  
-                </ListItemIcon>
-
-                <Box >
-
-                    <ListItemText>
-                        New Project Nofitication
-                    </ListItemText>
-                    <ListItemText >
-                        <Typography noWrap='true' maxWidth={250}>
-                        A todo application that will really make sfdsfsfsfsfd
-                        </Typography>
-                       
-                    </ListItemText>
-
-                </Box>
-
-              
-
-           </Box>
-
-
-
-            </ListItemButton>
-           
-
-            </ListItem>
-
-
-
-            <ListItem  disablePadding >
-           
-            <ListItemButton disableRipple  >
-
-            <Box display='flex' justifyContent='space-between' alignItems='center' >
-                <ListItemIcon>
-           
-                     
-                <Avatar style={{width: "42px", height: "42px"}} sx={{width: 24, height: 24}} sizes='large' >
-                     <FolderRounded  /> 
-                     </Avatar>
-  
-                </ListItemIcon>
-
-                <Box >
-
-                    <ListItemText>
-                        New Project Nofitication
-                    </ListItemText>
-                    <ListItemText >
-                        <Typography noWrap='true' maxWidth={250}>
-                        A todo application that will really make sfdsfsfsfsfd
-                        </Typography>
-                       
-                    </ListItemText>
-
-                </Box>
-
-              
-
-           </Box>
-
-
-
-            </ListItemButton>
-           
-
-            </ListItem>
-
-
-
-            <ListItem  disablePadding >
-           
-            <ListItemButton disableRipple  >
-
-            <Box display='flex' justifyContent='space-between' alignItems='center' >
-                <ListItemIcon>
-           
-                     
-                <Avatar style={{width: "42px", height: "42px"}} sx={{width: 24, height: 24}} sizes='large' >
-                     <FolderRounded  /> 
-                     </Avatar>
-  
-                </ListItemIcon>
-
-                <Box >
-
-                    <ListItemText>
-                        New Project Nofitication
-                    </ListItemText>
-                    <ListItemText >
-                        <Typography noWrap='true' maxWidth={250}>
-                        A todo application that will really make sfdsfsfsfsfd
-                        </Typography>
-                       
-                    </ListItemText>
-
-                </Box>
-
-              
-
-           </Box>
-
-
-
-            </ListItemButton>
-           
-
-            </ListItem>
-
-
-
-            <ListItem  disablePadding >
-           
-            <ListItemButton disableRipple  >
-
-            <Box display='flex' justifyContent='space-between' alignItems='center' >
-                <ListItemIcon>
-           
-                     
-                <Avatar style={{width: "42px", height: "42px"}} sx={{width: 24, height: 24}} sizes='large' >
-                     <FolderRounded  /> 
-                     </Avatar>
-  
-                </ListItemIcon>
-
-                <Box >
-
-                    <ListItemText>
-                        New Project Nofitication
-                    </ListItemText>
-                    <ListItemText >
-                        <Typography noWrap='true' maxWidth={250}>
-                        A todo application that will really make sfdsfsfsfsfd
-                        </Typography>
-                       
-                    </ListItemText>
-
-                </Box>
-
-              
-
-           </Box>
-
-
-
-            </ListItemButton>
-           
-
-            </ListItem>
-
-
-
-            <ListItem  disablePadding >
-           
-            <ListItemButton disableRipple  >
-
-            <Box display='flex' justifyContent='space-between' alignItems='center' >
-                <ListItemIcon>
-           
-                     
-                <Avatar style={{width: "42px", height: "42px"}} sx={{width: 24, height: 24}} sizes='large' >
-                     <FolderRounded  /> 
-                     </Avatar>
-  
-                </ListItemIcon>
-
-                <Box >
-
-                    <ListItemText>
-                        New Project Nofitication
-                    </ListItemText>
-                    <ListItemText >
-                        <Typography noWrap='true' maxWidth={250}>
-                        A todo application that will really make sfdsfsfsfsfd
-                        </Typography>
-                       
-                    </ListItemText>
-
-                </Box>
-
-              
-
-           </Box>
-
-
-
-            </ListItemButton>
-           
-
-            </ListItem>
+                        </ListItem>
+                    )
+                })
+            }
            
         </List>
+    )
+}
+
+
+const Notification = ({object, type, handleClose}) => {
+
+    return (
+        <>
+            {
+                type === "AnticipationLikeNotification" ?
+                <AnticipationLike anticipation={object['anticipation']} /> : 
+                type === "UpvoteNotification" ? 
+                <ProjectUpvote project={object['project']} /> : null
+            }
+        </>
     )
 }

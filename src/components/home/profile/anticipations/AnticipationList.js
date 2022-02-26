@@ -38,7 +38,7 @@ export default function AnticipationList({anticipations, totalAnticipations, fet
                    anticipations.map((anticipation, index) => {
 
                     return (
-                        <ListItem disablePadding key={anticipation.id} >
+                        <ListItem disablePadding key={anticipation.id}  id={anticipation.a_slug} >
                             <AnticipationActivity anticipation={anticipation} />
                         </ListItem>
                     )

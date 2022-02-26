@@ -62,7 +62,7 @@ export default function NotificationMenu() {
                 </Tooltip>
 
                 <Tooltip title="View All">   
-                    <IconButton size='small' >
+                    <IconButton size='small' onClick={() => history.push('/xpo/notifications')} >
                         <ViewAgendaOutlined  fontSize='0.9rem' />
                     </IconButton>
                 </Tooltip>

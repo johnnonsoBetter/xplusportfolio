@@ -78,7 +78,7 @@ const Loader = () => {
 
     const Load = () => (
         <Box my={2}  >
-        <Paper sx={{p: 2}} >
+        <Paper sx={{p: 2}} elevation={0} >
 
        
         <Box display='flex' justifyContent='space-between' alignItems='center' >

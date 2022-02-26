@@ -1,25 +1,27 @@
 import { PsychologyRounded,  ThumbUpRounded } from '@mui/icons-material'
-import { Avatar,  ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material'
+import { Avatar,  ListItemButton, ListItemIcon, Typography } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import { Box } from '@mui/system'
 import React from 'react' 
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 
-export default function AnticipationLike({anticipation}) {
+export default function AnticipationLike({anticipation, user_slug}) {
 
-    const {body} = anticipation
+    const {body, slug} = anticipation
+    const history = useHistory()
 
     return (
       
            
-            <ListItemButton disableRipple  >
+            <ListItemButton disableGutters disableRipple  onClick={() => history.push(`/xpo/my_profile/${user_slug}/anticipations/` )} >
 
-            <Box display='flex' justifyContent='space-between' alignItems='center' >
+            <Box display='flex' justifyContent='space-between' alignItems='center'  >
                 <ListItemIcon>
            
                      
-                <Avatar  style={{width: "42px", height: "42px"}} sx={{backgroundColor: blue[400]}} sizes='large' >
-                        <ThumbUpRounded   fontSize='small' />
+                <Avatar   style={{width: "42px", height: "42px"}} sx={{backgroundColor: blue[400]}} sizes='large' >
+                        <ThumbUpRounded   fontSize='0.7rem' />
                 </Avatar>
   
                 </ListItemIcon>
@@ -27,21 +29,21 @@ export default function AnticipationLike({anticipation}) {
                 <Box >
 
                     
-                    <Box display='flex' alignItems='center' >
+                    <Box display='flex' alignItems='center'  >
 
-                    <ListItemText>
-                        Anticipation Like
-                        
-                    </ListItemText>
+                    
+                    <Typography variant='body1'>
+                    Anticipation Like
+                    </Typography>
                     
 
                     </Box>
-                    <ListItemText >
-                        <Typography noWrap='true' maxWidth={250}>
+                    <Typography variant='body2' >
+                        <Typography noWrap='true' maxWidth={200}>
                             {body}
                         </Typography>
                        
-                    </ListItemText>
+                    </Typography>
 
                 </Box>
 

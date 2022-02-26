@@ -14,11 +14,11 @@ export default function NotificationList({notifications, handleClose}) {
             {
                 notifications.map((notification, index) => {
 
-                    const {object, type} = notification
+                    const {object, type, user_slug} = notification
 
                     return (
                         <ListItem  disablePadding onClick={handleClose}  >
-                            <Notification handleClose={handleClose} key={type + index} object={object} type={type}  />
+                            <Notification user_slug={user_slug} handleClose={handleClose} key={type + index} object={object} type={type}  />
 
 
                         </ListItem>
@@ -31,13 +31,13 @@ export default function NotificationList({notifications, handleClose}) {
 }
 
 
-const Notification = ({object, type, handleClose}) => {
+const Notification = ({object, type, handleClose, user_slug}) => {
 
     return (
         <>
             {
                 type === "AnticipationLikeNotification" ?
-                <AnticipationLike anticipation={object['anticipation']} /> : 
+                <AnticipationLike anticipation={object['anticipation']} user_slug={user_slug} /> : 
                 type === "UpvoteNotification" ? 
                 <ProjectUpvote project={object['project']} /> : null
             }

@@ -11,17 +11,15 @@ import { Badge, Typography } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { FetchContext } from '../../../context/FetchContext';
 import { AuthContext } from '../../../context/AuthContext';
-import { NotificationsOutlined, PlaylistAddCheckOutlined } from '@mui/icons-material';
+import { NotificationsOutlined, PlaylistAddCheckOutlined, PlaylistAddCheckRounded, ViewAgendaOutlined, ViewAgendaRounded } from '@mui/icons-material';
 import NotificationLoader from './NofiticationLoader';
 import NotificationList from './NotificationList';
 
 
 export default function NotificationMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-//   const {authAxios} = useContext(FetchContext)
   const [loading, setLoading] = useState(true)
   const open = Boolean(anchorEl);
- // const {logUserOut} = React.useContext(AuthContext)
   const history = useHistory()
   const [notifications, setNotifications] = useState([])
 
@@ -52,6 +50,7 @@ export default function NotificationMenu() {
        
     }).catch(err => {
        setSomethingWentWrong(true)
+       
     })
 
 
@@ -92,7 +91,7 @@ export default function NotificationMenu() {
           elevation: 0,
           sx: {
             
-            width: '32ch',
+            width: '30ch',
             minHeight: 510,
             maxHeight: 510,
             borderRadius: "10px",
@@ -125,18 +124,32 @@ export default function NotificationMenu() {
         <MenuItem  disableRipple focusRipple={false} >
             <Box display="flex" width="100%" justifyContent="space-between" alignItems="center"  >
                 <Typography>Notifications</Typography>
+                
+
+                <Box display="flex" width="100%" justifyContent="flex-end" alignItems="center" >
                 <Tooltip title="Mark all as read">   
-                    <IconButton disableRipple>
-                        <PlaylistAddCheckOutlined />
+                    <IconButton >
+                        <PlaylistAddCheckRounded/>
                     </IconButton>
                 </Tooltip>
+
+                <Tooltip title="View All">   
+                    <IconButton size='small' >
+                        <ViewAgendaOutlined  fontSize='0.9rem' />
+                    </IconButton>
+                </Tooltip>
+
+                </Box>
             </Box>
         </MenuItem>
    
         {
           loading ?
           <NotificationLoader /> :
-          <NotificationList notifications={notifications} handleClose={handleClose} />
+          <Box px={2} >
+            <NotificationList notifications={notifications} handleClose={handleClose} />
+          </Box>
+          
         }
 
 

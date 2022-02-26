@@ -127,9 +127,9 @@ export default function DrawerMenu() {
                     <Alert onClose={handleClose} severity='error'  sx={{ width: '100%' }}>
                     {"Something went wrong!!"}
                     
-                </Alert>
-            </Snackbar>
-                <Box >
+                    </Alert>
+                </Snackbar>
+                <Box maxWidth='100%' >
                     {
                         drawerComponent === "search" ? 
                         <SearchMenu /> :

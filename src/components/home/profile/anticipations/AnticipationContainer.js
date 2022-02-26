@@ -16,7 +16,6 @@ export default function  AncticipationContainer() {
     const {slug} = useParams()
     const [totalAnticipations, setTotalAnticipations] = useState(0)
     const [page, setPage] = useState(0)
-    const [totalMembers, setTotalMembers] = useState(0)
 
 
 

@@ -1,6 +1,6 @@
 import { PsychologyRounded,  ThumbUpRounded } from '@mui/icons-material'
 import { Avatar,  ListItemButton, ListItemIcon, Typography } from '@mui/material'
-import { blue } from '@mui/material/colors'
+import { blue, purple } from '@mui/material/colors'
 import { Box } from '@mui/system'
 import React from 'react' 
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
@@ -20,7 +20,7 @@ export default function AnticipationLike({anticipation, user_slug}) {
                 <ListItemIcon>
            
                      
-                <Avatar   style={{width: "42px", height: "42px"}} sx={{backgroundColor: blue[400]}} sizes='large' >
+                <Avatar   style={{width: "42px", height: "42px"}} sx={{backgroundColor: purple[400]}} sizes='large' >
                         <ThumbUpRounded   fontSize='0.7rem' />
                 </Avatar>
   

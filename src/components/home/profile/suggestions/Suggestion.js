@@ -21,7 +21,7 @@ export default function Suggestion({suggestion}) {
 
     return (
        <Box my={2}  >
-           <Paper sx={{p: 2}} >
+           <Paper sx={{p: 2}} elevation={0}>
 
           
            <Box display='flex' justifyContent='space-between' alignItems='center' >
@@ -29,10 +29,7 @@ export default function Suggestion({suggestion}) {
                     <Stack  >
                     
             
-                    <Box maxWidth={120}>
-                        <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} color="ButtonText" variant="body2" noWrap={true}> created_at</Typography>
-
-                    </Box>
+                   
                     <Box maxWidth={120}>
                         <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} variant="body2" color="ButtonShadow" noWrap={true}> {date_created}</Typography>
                        

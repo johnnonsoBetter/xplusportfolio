@@ -1,22 +1,26 @@
 import { FolderRounded, HowToVoteRounded, PsychologyRounded, ThumbUpOutlined, ThumbUpRounded } from '@mui/icons-material'
-import { Avatar, ListItem, ListItemButton, ListItemIcon, Typography } from '@mui/material'
+import { Avatar, ListItem, ListItemButton, ListItemIcon, Paper, Typography } from '@mui/material'
 import { blue, orange } from '@mui/material/colors'
 import { Box } from '@mui/system'
 import React from 'react' 
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 
-export default function ProjectUpvote({project}) {
+export default function ProjectUpvote({project, markAsSeen}) {
 
     const {title, slug} = project
     const history = useHistory()
 
     return (
   
-           
-            <ListItemButton disableGutters disableRipple  onClick={() => history.push(`/xpo/projects/${slug}`)}  >
+       
 
-            <Box display='flex' justifyContent='space-between' alignItems='center' flexWrap='wrap' >
+            <ListItemButton disableGutters disableRipple  onClick={() => {
+                markAsSeen()
+                history.push(`/xpo/projects/${slug}`)}
+            }  >
+                 
+                 <Box display='flex' justifyContent='space-between' alignItems='center' flexWrap='wrap' >
                 <ListItemIcon>
            
                      
@@ -39,7 +43,7 @@ export default function ProjectUpvote({project}) {
 
                     </Box>
                     <Typography variant='body2' >
-                        <Typography noWrap='true' maxWidth={250}>
+                        <Typography noWrap='true' maxWidth="80%">
                             {title}
                         </Typography>
                        
@@ -52,9 +56,13 @@ export default function ProjectUpvote({project}) {
            </Box>
 
 
+                
+           
+
+
 
             </ListItemButton>
-           
+     
 
     )
 }

@@ -1,11 +1,27 @@
 import { FolderRounded } from '@mui/icons-material'
 import { Avatar, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useContext } from 'react'
+import { FetchContext } from '../../../context/FetchContext'
 import AnticipationLike from './types/AnticipationLike'
 import ProjectUpvote from './types/ProjectUpvote'
 
 export default function NotificationList({notifications, handleClose}) {
+
+    const {authAxios} = useContext(FetchContext)
+    
+
+    const markAsSeen = (id) => {
+
+
+        authAxios.put(`api/v1/notifications/${id}`).then(res => {
+            
+        }).catch(err => {
+            
+        })
+
+        handleClose()
+    }
     
 
 
@@ -14,10 +30,10 @@ export default function NotificationList({notifications, handleClose}) {
             {
                 notifications.map((notification, index) => {
 
-                    const {object, type, user_slug} = notification
+                    const {object, type, user_slug, id} = notification
 
                     return (
-                        <ListItem  disablePadding onClick={handleClose}  >
+                        <ListItem  disablePadding onClick={() => markAsSeen(id)}  >
                             <Notification user_slug={user_slug} handleClose={handleClose} key={type + index} object={object} type={type}  />
 
 
@@ -31,7 +47,8 @@ export default function NotificationList({notifications, handleClose}) {
 }
 
 
-const Notification = ({object, type, handleClose, user_slug}) => {
+const Notification = ({object, type,  user_slug}) => {
+
 
     return (
         <>

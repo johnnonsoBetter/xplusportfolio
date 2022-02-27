@@ -6,6 +6,7 @@ import { AuthContext } from '../../../context/AuthContext'
 import { FetchContext } from '../../../context/FetchContext'
 import NotificationLoader from '../notifications/NofiticationLoader'
 import NotificationList from '../notifications/NotificationList'
+import Empty from '../../shared/Empty'
 
 export default function NotificationMenu() {
 
@@ -17,11 +18,31 @@ export default function NotificationMenu() {
   const [loading, setLoading] = useState(true)
   const {setSomethingWentWrong} = useContext(AuthContext)
   const {authAxios} = useContext(FetchContext)
+  const [changed, setChanged] = useState(false)
+  const [disabled, setDisabled] = useState(false)
+
+
+
+
+  const markAllAsRead = () => {
+
+    setDisabled(true)
+
+
+    authAxios.get('api/v1/mark_all_notifications').then(res => {
+
+        setChanged(!changed)
+        setDisabled(false)
+    }).catch(err => {
+        setSomethingWentWrong(true)
+        setDisabled(false)
+    })
+  }
 
 
 
   useEffect(() => {
-
+      setLoading(true)
       authAxios.get('api/v1/notifications', {params: {status: 'unread'}}).then(res => {
 
       
@@ -44,7 +65,7 @@ export default function NotificationMenu() {
       
      
     }
-  }, [])
+  }, [changed])
 
 
     return (
@@ -56,7 +77,7 @@ export default function NotificationMenu() {
 
                 <Box display="flex" width="100%" justifyContent="flex-end" alignItems="center" >
                 <Tooltip title="Mark all as read">   
-                    <IconButton >
+                    <IconButton disabled={disabled} onClick={markAllAsRead}  >
                         <PlaylistAddCheckRounded/>
                     </IconButton>
                 </Tooltip>
@@ -75,7 +96,15 @@ export default function NotificationMenu() {
             {
             loading ?
             <NotificationLoader /> :
-            <NotificationList notifications={notifications}  />
+            <> 
+                {
+                    notifications.length === 0 ?
+                    <Empty emptyDetail="No Unread Notifications!" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
+                    
+                    <NotificationList notifications={notifications}  />
+                }
+            </>
+            
             }
             
             </>

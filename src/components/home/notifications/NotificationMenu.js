@@ -14,6 +14,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import { NotificationsOutlined, PlaylistAddCheckOutlined, PlaylistAddCheckRounded, ViewAgendaOutlined, ViewAgendaRounded } from '@mui/icons-material';
 import NotificationLoader from './NofiticationLoader';
 import NotificationList from './NotificationList';
+import Empty from '../../shared/Empty';
 
 
 export default function NotificationMenu() {
@@ -22,6 +23,10 @@ export default function NotificationMenu() {
   const open = Boolean(anchorEl);
   const history = useHistory()
   const [notifications, setNotifications] = useState([])
+  const {setSomethingWentWrong} = useContext(AuthContext)
+  const {authAxios} = useContext(FetchContext)
+  const [changed, setChanged] = useState(false)
+  const [disabled, setDisabled] = useState(false)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,8 +36,23 @@ export default function NotificationMenu() {
   };
 
 
-  const {setSomethingWentWrong} = useContext(AuthContext)
-  const {authAxios} = useContext(FetchContext)
+ 
+
+
+  const markAllAsRead = () => {
+
+    setDisabled(true)
+
+
+    authAxios.get('api/v1/mark_all_notifications').then(res => {
+
+        setChanged(!changed)
+        setDisabled(false)
+    }).catch(err => {
+        setSomethingWentWrong(true)
+        setDisabled(false)
+    })
+  }
 
 
 
@@ -64,7 +84,7 @@ export default function NotificationMenu() {
       
      
     }
-  }, [open])
+  }, [open, changed])
 
 
 
@@ -128,7 +148,7 @@ export default function NotificationMenu() {
 
                 <Box display="flex" width="100%" justifyContent="flex-end" alignItems="center" >
                 <Tooltip title="Mark all as read">   
-                    <IconButton >
+                    <IconButton disabled={disabled} onClick={markAllAsRead}  >
                         <PlaylistAddCheckRounded/>
                     </IconButton>
                 </Tooltip>
@@ -150,8 +170,17 @@ export default function NotificationMenu() {
           loading ?
           <NotificationLoader /> :
           <Box px={2} >
-            <NotificationList notifications={notifications} handleClose={handleClose} />
+            
+            <> 
+                {
+                    notifications.length === 0 ?
+                    <Empty emptyDetail="No Unread Notifications!" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
+                    
+                    <NotificationList notifications={notifications} handleClose={handleClose} />
+                }
+            </>
           </Box>
+
           
         }
 

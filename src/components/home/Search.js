@@ -1,183 +1,218 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import { Avatar, IconButton, List, ListItem, ListItemIcon, Paper, Stack, Typography } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { Fragment } from 'react';
+import { useState, useContext } from 'react';
+import { AsyncTypeahead, Menu } from 'react-bootstrap-typeahead';
+import Paper from '@mui/material/Paper';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+import { Avatar, ListItemIcon, Stack, Typography } from '@mui/material';
+import InputBase from '@mui/material/InputBase';
+import { ListItem } from '@mui/material';
+import { Box } from '@mui/system';
 import { Link } from 'react-router-dom';
-import { Folder, PsychologyOutlined } from '@mui/icons-material';
-import { purple, red } from '@mui/material/colors';
+import {FetchContext} from '../../context/FetchContext'
+// Import as a module in your JS
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+import { FolderRounded, PsychologyRounded } from '@mui/icons-material';
+import { orange, purple } from '@mui/material/colors';
+
+const SEARCH_URI = 'https://api.github.com/search/users';
+
+const Search = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [options, setOptions] = useState([]);
+  const {authAxios} = useContext(FetchContext)
+
+  useState(() => {
+
+    return () => {
+      setOptions([])
+    }
+  }, [])
 
 
-export default function Search() {
+  const handleSearch = (query) => {
+    setIsLoading(true);
+
+      authAxios.get('api/v1/search', {params: {query,}}).then(res => {
+        console.log(res.data)
+        setOptions(res.data)
+        setIsLoading(false)
+      })
+  };
+
+  // Bypass client-side filtering by returning `true`. Results are already
+  // filtered by the search endpoint, so no need to do it again.
+  const filterBy = () => true;
+
   return (
-    <Autocomplete
-      id="country-select-demo"
-      sx={{ width: "50%", display: {xs: 'none', sm: 'none', md: 'block'}}}
-      size="small"
-      options={countries}
-      autoHighlight
-      getOptionLabel={(option) => option.label}
-      renderOption={(props, option) => (
-        <SearchList />
-      )}
-      renderInput={(params) => (
-        <Paper
-        elevation={2}
-        sx={{ p: '1px 3px', display: 'flex', alignItems: 'center' }}
-        >
-          <TextField
-          {...params}
-          
-          variant="standard"
-          fullWidth
-          size="small"
-          label="  Search"
-          
-        />
+    <AsyncTypeahead
+      filterBy={filterBy}
+      id="async-example"
+      isLoading={isLoading}
+      labelKey="login"
+      minLength={3}
+      onSearch={handleSearch}
+      style={{
+        backgroundColor: "white"
+      }}
+      renderInput={({ inputRef, referenceElementRef, ...inputProps }) => (
        
-        </Paper>
+        <Paper
+      component="form"
+      
+      sx={{ display: 'flex', alignItems: 'center', width: {xs: "100%", sm: "100%", md: 450, lg: 400}, height: 40}}
+    >
+      
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+      
+       
+        {...inputProps}
+        
+          ref={(input) => {
+            // Be sure to correctly handle these refs. In many cases, both can simply receive
+            // the underlying input node, but `referenceElementRef can receive a wrapper node if
+            // your custom input is more complex (See TypeaheadInputMulti for an example).
+            inputRef(input);
+            referenceElementRef(input);
+          }}
+      />
+
+       
+      
+      
+    </Paper>
+      )}
+      options={options}
+      placeholder="Search for Projects, User, Anticipa...."
+     
+      renderMenu={(results, menuProps) => (
+        <Menu   {...menuProps}>
+          {results.map((result, index) => {
+
+            const {id, object, type, user_slug} = result
+
+            return (
+            
+            
+ 
+              <Box key={id}>
+                {
+                  type === "User" ? 
+                  <User user={object} /> : type === "Anticipation" ?
+                  <Anticipation anticipation={object} user_slug={user_slug} /> : 
+                  type === "Project" ? 
+                  <Project project={object} /> : null
+                }
+                    
+              </Box>
+            
+           )
+          })}
+        </Menu>
+
         
       )}
     />
   );
-}
+};
+
+export default Search
 
 
 
-const SearchList = () => {
+
+const User = ({user}) => {
+
+  const {slug, name, image} = user
+
 
   return (
-    <List sx={{my: 2}} >
-                <ListItem  >
-                    <Link to={`/xpo/projects/${4}`} style={{textDecoration: "none", width: "100%"}} >
-
-                        <Box display="flex" width="100%" alignItems="center" >
-                            
-                            <ListItemIcon>
-                            <Avatar sx={{backgroundColor: purple[300]}} > <Folder /> </Avatar>
-                                
-                            </ListItemIcon>
-                            <Stack  >
-                                
-                                
-                                <Box  maxWidth="90" >
-                                    <Typography variant="body2" sx={{textTransform: "capitalize"}} color="ButtonText"> Todo application</Typography>
-                                </Box>
-                                <Box maxWidth="95%" >
-                                <Typography  variant="body2" color="ButtonShadow" noWrap={true}> A todo list application that helps "</Typography>
-                                </Box>
-                            
-                            </Stack>
-                        </Box>
-                    </Link>
-
-                </ListItem>
-
-                <ListItem  >
-                    <Link to={`/xpo/projects/${4}`} style={{textDecoration: "none", width: "100%"}} >
-
-                        <Box display="flex" width="100%" alignItems="center" >
-                            
-                            <ListItemIcon>
-                            <Avatar sx={{backgroundColor: purple[300]}} > <Folder  /> </Avatar>
-                                
-                            </ListItemIcon>
-                            <Stack  >
-                                
-                                
-                                <Box  maxWidth="90" >
-                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body2"> Todo application</Typography>
-                                </Box>
-                                <Box maxWidth="95%" >
-                                <Typography  variant="body2" color="ButtonShadow" noWrap={true}> A todo list application that helps "</Typography>
-                                </Box>
-                            
-                            </Stack>
-                        </Box>
-                    </Link>
-
-                </ListItem>
-
-                <ListItem  >
-                    <Link to={`/xpo/projects/${4}`} style={{textDecoration: "none", width: "100%"}} >
-
-                        <Box display="flex" width="100%" alignItems="center" >
-                            
-                            <ListItemIcon>
-                            <Avatar src="/images/selfie.jpeg" sx={{backgroundColor: purple[200]}} />
-                                
-                            </ListItemIcon>
-                            <Stack  >
-                                
-                                
-                                <Box maxWidth="90" >
-                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body2"> Chukwuma obi kemi</Typography>
-                                </Box>
-                                <Box maxWidth="95%" >
-                                <Typography  variant="body2" color="ButtonShadow" noWrap={true}>  A Ruby on rails developer </Typography>
-                                </Box>
-                            
-                            </Stack>
-                        </Box>
-                    </Link>
-
-                </ListItem>
-
-                <ListItem  >
-                    <Link to={`/xpo/projects/${4}`} style={{textDecoration: "none", width: "100%"}} >
-
-                        <Box display="flex" width="100%" alignItems="center" >
-                            
-                            <ListItemIcon>
-                            <Avatar sx={{backgroundColor: red[300]}} > <PsychologyOutlined  /> </Avatar>
-                                
-                            </ListItemIcon>
-                            <Stack  >
-                                
-                                
-                                <Box  maxWidth="90" >
-                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body2"> Todo application</Typography>
-                                </Box>
-                                <Box maxWidth="95%" >
-                                <Typography  variant="body2" color="ButtonShadow" noWrap={true}> A todo list application that helps "</Typography>
-                                </Box>
-                            
-                            </Stack>
-                        </Box>
-                    </Link>
-
-                </ListItem>
-
-                
-            </List>
+    
+          < ListItem >
+              
+                  <Box display="flex" component={Link} sx={{textDecoration: "none"}} to={`/xpo/members/${slug}`} width="100%" alignItems="center" >
+                      
+                      <ListItemIcon>
+                      <Avatar src={image} >
+                        {name[0]}
+                      </Avatar>
+                          
+                      </ListItemIcon>
+                      <Stack  >
+                          
+                          
+                          <Box maxWidth="90" >
+                              <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body2"> {name}</Typography>
+                          </Box>
+                         
+                      </Stack>
+                  </Box>
+             
+          </ListItem>
   )
 }
 
 
+const Anticipation = ({anticipation, user_slug}) => {
 
-// From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
-const countries = [
-  { code: 'AD', label: 'Andorra', phone: '376' },
-  {
-    code: 'AE',
-    label: 'United Arab Emirates',
-    phone: '971',
-  },
-  { code: 'AF', label: 'Afghanistan', phone: '93' },
-  {
-    code: 'AG',
-    label: 'Antigua and Barbuda',
-    phone: '1-268',
-  },
-  { code: 'VN', label: 'Vietnam', phone: '84' },
-  { code: 'VU', label: 'Vanuatu', phone: '678' },
-  { code: 'WF', label: 'Wallis and Futuna', phone: '681' },
-  { code: 'WS', label: 'Samoa', phone: '685' },
-  { code: 'XK', label: 'Kosovo', phone: '383' },
-  { code: 'YE', label: 'Yemen', phone: '967' },
-  { code: 'YT', label: 'Mayotte', phone: '262' },
-  { code: 'ZA', label: 'South Africa', phone: '27' },
-  { code: 'ZM', label: 'Zambia', phone: '260' },
-  { code: 'ZW', label: 'Zimbabwe', phone: '263' },
-];
+  const {body} = anticipation
+
+
+  return (
+    
+          < ListItem >
+              
+                  <Box display="flex" component={Link} sx={{textDecoration: "none"}} to={`/xpo/members/${user_slug}/anticipations`} width="100%" alignItems="center" >
+                      
+                      <ListItemIcon>
+                      <Avatar sx={{backgroundColor: purple[400]}} > <PsychologyRounded /> </Avatar>
+                          
+                      </ListItemIcon>
+                      <Stack  >
+                          
+                          
+                          <Box maxWidth="90%"  >
+                              <Typography noWrap='true'  sx={{textTransform: "capitalize", maxWidth: {xs: 220, sm: 290, md: 300}}} color="ButtonText" variant="body2"> {body}</Typography>
+                          </Box>
+                         
+                      </Stack>
+                  </Box>
+             
+          </ListItem>
+  )
+}
+
+
+const Project = ({project}) => {
+
+  const {slug, title, description} = project
+
+
+  return (
+    
+          < ListItem >
+              
+                  <Box display="flex" component={Link} sx={{textDecoration: "none"}} to={`/xpo/projects/${slug}`} width="100%" alignItems="center" >
+                      
+                      <ListItemIcon>
+                      <Avatar sx={{backgroundColor: orange[400]}} > <FolderRounded /> </Avatar>
+                          
+                      </ListItemIcon>
+                      <Stack  >
+                          
+                          
+                          <Box maxWidth="90%"  >
+                              <Typography noWrap='true' sx={{textTransform: "capitalize", maxWidth: {xs: 220, sm: 290, md: 300}}} color="ButtonText" variant="body2"> {title}</Typography>
+                          </Box>
+
+                          <Box maxWidth="90%"  >
+                              <Typography noWrap='true' sx={{textTransform: "capitalize", maxWidth: {xs: 220, sm: 290, md: 300}}} color="ButtonText" variant="body2"> {description}</Typography>
+                          </Box>
+                         
+                      </Stack>
+                  </Box>
+             
+          </ListItem>
+  )
+}

@@ -76,13 +76,13 @@ const Profile = ({profile}) => {
 
             <Box position="absolute" bottom={-30} left={20} >
           
-                <Avatar src={image}  alt="my pics" alt={name} sx={{width: 90, height: 90, border: "2px solid white"}}> {name[0]} </Avatar>
+                <Avatar src='/images/pics.jpg'  alt="my pics" alt={name} sx={{width: 90, height: 90, border: "2px solid white"}}> {name[0]} </Avatar>
                 {/* <Avatar src={image} alt={name} > {name[0]}</Avatar> */}
             </Box>
 
 
         </Box>
-        
+         
 
         <Box mt={5} mb={2} >
             <Typography textAlign="left" color="ButtonText" marginBottom fontWeight={600} sx={{textTransform: "capitalize"}}> {name} </Typography>
@@ -99,7 +99,7 @@ const Profile = ({profile}) => {
                 <Box  >
 
                     {
-                        website_url ? 
+                        !website_url ? 
                         <a rel="noopener noreferrer" href={website_url} target="_blank">
 
                             <IconButton size="small"  >
@@ -126,7 +126,7 @@ const Profile = ({profile}) => {
                 <Box  >
 
                     {
-                        github_url ? 
+                        !github_url ? 
                         <a rel="noopener noreferrer" href={github_url} target="_blank">
 
                             <IconButton size="small"  >
@@ -149,29 +149,7 @@ const Profile = ({profile}) => {
                 
 
               
-                <Box >
-
-                    {
-                        linkedin_url ? 
-                        <a rel="noopener noreferrer" href={linkedin_url} target="_blank">
-
-                            <IconButton size="small" target="_blank" rel="noopener noreferrer"  >
-                               
-                                <img src="/images/linkedin.png" alt="linkedin" />
-                            </IconButton>
-
-                        </a>
-                        : 
-                        <>
-                        <Tooltip title="Add Linkedin" sx={{mr: 2}}  >
-                            <Chip clickable label='LinkedIn' color='info' avatar={<AddRounded fontSize="0.6em"  sx={{color: "white"}} />}  />
-
-                    
-                        </Tooltip>
-                        </>
-                    }
-
-                </Box>
+               
             </Box>
         </Box>
 

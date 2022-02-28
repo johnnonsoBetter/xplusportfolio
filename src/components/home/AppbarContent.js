@@ -50,7 +50,10 @@ export default function AppbarContent() {
             <Box sx={{ml: 3}} flexGrow={10} display="flex"   >
                 
                 <Box display="flex" width="100%" justifyContent="flex-end" alignItems="center" >
-                    <Search />
+                        <Box sx={{display: {xs: 'none', sm: 'none', md: 'block'}}} >
+                            <Search />
+                        </Box>
+                        
 
                         <Tooltip  LinkComponent={Link} to={`#search`} title="Feeds" sx={{display: {xs: "none", sm: "block", md: "none"}}}>
                             <IconButton disableRipple>
@@ -81,13 +84,7 @@ export default function AppbarContent() {
             
                     <Box sx={{display: {xs: "flex", sm: "none"}, justifyContent: "space-between"}} >
                         
-                   
-                            {/* <IconButton LinkComponent={Link} to={`#pinned`} disableRipple sx={{mr: 1}}>
-                                
-                                <Badge color="error" badgeContent={5} >
-                                    <PushPinOutlined />
-                                </Badge>
-                            </IconButton> */}
+            
 
                         
 

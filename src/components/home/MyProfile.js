@@ -23,6 +23,8 @@ export default function MyProfile() {
   const open = Boolean(anchorEl);
   const {logUserOut, authState} = React.useContext(AuthContext)
   const {slug} = JSON.parse(authState.userInfo)
+  const {userInfo} = authState
+  const {name, image} = JSON.parse(authState.userInfo)
  
   const history = useHistory()
 
@@ -56,7 +58,9 @@ export default function MyProfile() {
         <Tooltip title="My Profile">
            
             <IconButton onClick={handleClick} disableRipple>
-                <Avatar  alt="My Profile" src="/images/pics.jpg" sx={{ width: 32, height: 32 }} />
+                <Avatar  alt={name[0]}  src={image} sx={{width: 32, height: 32, fontSize: "0.7em"}} >
+                  {name[0]}
+                </Avatar>
             </IconButton>
             
         </Tooltip>

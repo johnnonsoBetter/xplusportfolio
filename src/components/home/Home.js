@@ -14,6 +14,9 @@ import { useHistory } from 'react-router-dom';
 import BottomNav from './BottomNav';
 import { Alert, Snackbar } from '@mui/material';
 import { AuthContext } from '../../context/AuthContext';
+import { ActionCableProvider } from '@thrash-industries/react-actioncable-provider';
+import { HomeInfoContextProvider } from '../../context/HomeInfoContext';
+
 
 
 export default function Home(props) {
@@ -29,6 +32,7 @@ export default function Home(props) {
     message: '',
     severity: ''
   })
+  const [totalNotifications, setTotalNotifications] = useState(0)
   const {somethingWentWrong} = useContext(AuthContext)
 
   const notifyForOffline = () => {
@@ -90,41 +94,55 @@ export default function Home(props) {
 
   return (
     <React.Fragment>
-      <CssBaseline />
-        
-       <DrawerContextProvider 
-          value={{
-            drawerOpen,
-            drawerComponent,
-            fullScreen,
-            setFullScreen: (fullScreen) => setFullScreen(fullScreen),
-            setDrawerComponent: (component) => setDrawerComponent(component),
-            setDrawerOpen: (drawerOpen) => setDrawerOpen(drawerOpen),
-            closeDrawer: () => history.goBack()
-          }}
-        > 
-              <Snackbar sx={{zIndex: 500000}} open={openSnack} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity={snackInfo.severity}  sx={{ width: '100%' }}>
-                {snackInfo.message}
-                
-              </Alert>
-            </Snackbar>
-            <DrawerMenu />
-            <MyAppbar />
-            <Toolbar />
-            <Container sx={{mb: 10, pr: {xs: "0px", sm: "0px"}, pl: {xs: "0px", sm: "0px"}}}>
-            <Box sx={{ my: {xs: 0, sm: 0, md: 2} }}>
-              <Switch >
+      <ActionCableProvider url={'ws://localhost:3001/cable'} >
 
-                
-                <Route  path={path} render={() =>  <Feed /> } />
-                
-              </Switch>
-            </Box>
-            
-          </Container>
-          <BottomNav />
-        </DrawerContextProvider>  
+        <CssBaseline />
+        <HomeInfoContextProvider
+          value={{
+            totalNotifications,
+            setTotalNotifications: (total) => setTotalNotifications(total),
+          }}
+        >
+        
+        <DrawerContextProvider 
+           value={{
+             drawerOpen,
+             drawerComponent,
+             fullScreen,
+             setFullScreen: (fullScreen) => setFullScreen(fullScreen),
+             setDrawerComponent: (component) => setDrawerComponent(component),
+             setDrawerOpen: (drawerOpen) => setDrawerOpen(drawerOpen),
+             closeDrawer: () => history.goBack()
+           }}
+         > 
+               <Snackbar sx={{zIndex: 500000}} open={openSnack} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
+                 <Alert onClose={handleClose} severity={snackInfo.severity}  sx={{ width: '100%' }}>
+                 {snackInfo.message}
+                 
+               </Alert>
+             </Snackbar>
+             <DrawerMenu />
+             <MyAppbar />
+             <Toolbar />
+             <Container sx={{mb: 10, pr: {xs: "0px", sm: "0px"}, pl: {xs: "0px", sm: "0px"}}}>
+             <Box sx={{ my: {xs: 0, sm: 0, md: 2} }}>
+               <Switch >
+ 
+                 
+                 <Route  path={path} render={() =>  <Feed /> } />
+                 
+               </Switch>
+             </Box>
+             
+           </Container>
+           <BottomNav />
+         </DrawerContextProvider>  
+
+         </HomeInfoContextProvider>
+
+
+      </ActionCableProvider>
+      
        
     </React.Fragment>
   );

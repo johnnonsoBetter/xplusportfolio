@@ -5,6 +5,7 @@ import AnticipationLike from './AnticipationLIke'
 import ProjectUpvote from './ProjectUpvote'
 import {FetchContext} from '../../../context/FetchContext'
 import { AuthContext } from '../../../context/AuthContext'
+import HomeInfoContext from '../../../context/HomeInfoContext'
 
 
 const Notification = ({object, type, user_slug, seen, id}) => {
@@ -12,6 +13,7 @@ const Notification = ({object, type, user_slug, seen, id}) => {
     const {authAxios} = useContext(FetchContext)
     const {setSomethingWentWrong} = useContext(AuthContext)
     const [read, setRead] = useState(seen)
+    const {setTotalNotifications} = useContext(HomeInfoContext)
 
     
 
@@ -19,6 +21,9 @@ const Notification = ({object, type, user_slug, seen, id}) => {
 
 
         authAxios.put(`api/v1/notifications/${id}`).then(res => {
+            console.log(res.data)
+            const {total_notifications} = res.data
+            setTotalNotifications(total_notifications)
             setRead(true)
         }).catch(err => {
             setSomethingWentWrong(true)

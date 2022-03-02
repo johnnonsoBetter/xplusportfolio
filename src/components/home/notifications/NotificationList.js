@@ -3,20 +3,24 @@ import { Avatar, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typ
 import { Box } from '@mui/system'
 import React, { useContext } from 'react'
 import { FetchContext } from '../../../context/FetchContext'
+import HomeInfoContext from '../../../context/HomeInfoContext'
 import AnticipationLike from './types/AnticipationLike'
+import NewAnticipation from './types/NewAnticipation'
 import ProjectUpvote from './types/ProjectUpvote'
 
 export default function NotificationList({notifications, handleClose}) {
 
     const {authAxios} = useContext(FetchContext)
+    const {setTotalNotifications} = useContext(HomeInfoContext)
     
 
     const markAsSeen = (id) => {
 
 
         authAxios.put(`api/v1/notifications/${id}`).then(res => {
-            
-        }).catch(err => {
+
+            const {total_notifications} = res.data 
+            setTotalNotifications(total_notifications)
             
         })
 
@@ -56,7 +60,9 @@ const Notification = ({object, type,  user_slug}) => {
                 type === "AnticipationLikeNotification" ?
                 <AnticipationLike anticipation={object['anticipation']} user_slug={user_slug} /> : 
                 type === "UpvoteNotification" ? 
-                <ProjectUpvote project={object['project']} /> : null
+                <ProjectUpvote project={object['project']} /> : 
+                type === "NewAnticipationNotification" ? 
+                <NewAnticipation anticipation={object['anticipation']} user_slug={user_slug} /> : null
             }
         </>
     )

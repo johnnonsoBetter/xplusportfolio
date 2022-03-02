@@ -120,16 +120,16 @@ export default function DrawerMenu() {
     
     return (
         <div>
-             <Dialog  sx={{pr: 0, pl: 0}} open={drawerOpen} fullScreen={fullScreen}  >
+             <Dialog  sx={{pr: 0, borderRadius: "40px", pl: 0}} open={drawerOpen} fullScreen={fullScreen}  >
                 
-                <DialogContent sx={{pr: "2px", pl: 0}}>
+                <DialogContent sx={{pr: "2px", borderRadius: "20px",  pl: 0}}>
                 <Snackbar sx={{zIndex: 500000}} open={somethingWentWrong} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={2000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity='error'  sx={{ width: '100%' }}>
                     {"Something went wrong!!"}
                     
                     </Alert>
                 </Snackbar>
-                <Box maxWidth='100%' >
+                <Box   maxWidth='100%' sx={{borderRadius: "20px",}} >
                     {
                         drawerComponent === "search" ? 
                         <SearchMenu /> :

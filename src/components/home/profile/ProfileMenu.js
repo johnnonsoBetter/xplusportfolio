@@ -76,7 +76,7 @@ const Profile = ({profile}) => {
 
             <Box position="absolute" bottom={-30} left={20} >
           
-                <Avatar src='/images/pics.jpg'  alt="my pics" alt={name} sx={{width: 90, height: 90, border: "2px solid white"}}> {name[0]} </Avatar>
+                <Avatar src={image}  alt={name} sx={{width: 90, height: 90, border: "2px solid white", fontSize: "1.4em"}}> {name[0]} </Avatar>
                 {/* <Avatar src={image} alt={name} > {name[0]}</Avatar> */}
             </Box>
 

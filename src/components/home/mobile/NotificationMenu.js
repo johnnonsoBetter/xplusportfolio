@@ -7,19 +7,21 @@ import { FetchContext } from '../../../context/FetchContext'
 import NotificationLoader from '../notifications/NofiticationLoader'
 import NotificationList from '../notifications/NotificationList'
 import Empty from '../../shared/Empty'
+import HomeInfoContext from '../../../context/HomeInfoContext'
 
 export default function NotificationMenu() {
 
 
     const history = useHistory()
   const [notifications, setNotifications] = useState([])
-
+  const {setTotalNotifications} = useContext(HomeInfoContext)
   
   const [loading, setLoading] = useState(true)
   const {setSomethingWentWrong} = useContext(AuthContext)
   const {authAxios} = useContext(FetchContext)
   const [changed, setChanged] = useState(false)
   const [disabled, setDisabled] = useState(false)
+  
 
 
 
@@ -45,8 +47,9 @@ export default function NotificationMenu() {
       setLoading(true)
       authAxios.get('api/v1/notifications', {params: {status: 'unread'}}).then(res => {
 
-      
-        setNotifications(res.data)
+        const {total_notifications, notifications} = res.data['notification_info']
+        setNotifications(notifications)
+        setTotalNotifications(total_notifications)
         setLoading(false)
        
     }).catch(err => {

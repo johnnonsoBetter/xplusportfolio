@@ -6,6 +6,7 @@ import AnticipationActivity from './anticipation_activity/AnticipationActivity';
 import ProjectActivity from './project_activity/ProjectActivity';
 import '../../../../App.css'
 import {useHistory} from 'react-router-dom'
+import FeedLoader from '../../../shared/FeedLoader';
 
 
 const AnticipationCreator = ()=> {
@@ -86,6 +87,7 @@ export default function ActivityPage() {
     return (
         <Box className="activity-container" sx={{width: "100%",  height: "calc(99vh - 85px)", scrollbarWidth: {display: "none"}, overflowY: "auto"}}>
             <MyMiniInfo />
+            <FeedLoader />
 
            
                 {/* <ProjectActivity />

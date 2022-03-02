@@ -15,9 +15,10 @@ import { NotificationsOutlined, PlaylistAddCheckOutlined, PlaylistAddCheckRounde
 import NotificationLoader from './NofiticationLoader';
 import NotificationList from './NotificationList';
 import Empty from '../../shared/Empty';
+import HomeInfoContext from '../../../context/HomeInfoContext';
 
 
-export default function NotificationMenu() {
+export default function NotificationMenu({total_notifications}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [loading, setLoading] = useState(true)
   const open = Boolean(anchorEl);
@@ -27,6 +28,7 @@ export default function NotificationMenu() {
   const {authAxios} = useContext(FetchContext)
   const [changed, setChanged] = useState(false)
   const [disabled, setDisabled] = useState(false)
+  const {totalNotifications, setTotalNotifications} = useContext(HomeInfoContext)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,8 +66,9 @@ export default function NotificationMenu() {
 
       authAxios.get('api/v1/notifications', {params: {status: 'unread'}}).then(res => {
 
-      
-        setNotifications(res.data)
+        const {total_notifications, notifications} = res.data['notification_info']
+        setNotifications(notifications)
+        setTotalNotifications(total_notifications)
         setLoading(false)
        
     }).catch(err => {
@@ -96,7 +99,7 @@ export default function NotificationMenu() {
         <Tooltip title="Notifications">
             <IconButton onClick={handleClick} disableRipple sx={{mr: 1}}>
                         
-                <Badge color="error" badgeContent={5} >
+                <Badge color="error" badgeContent={totalNotifications} >
                     <NotificationsOutlined />
                 </Badge>
             </IconButton>

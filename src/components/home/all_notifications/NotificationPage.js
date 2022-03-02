@@ -4,13 +4,14 @@ import { Box } from '@mui/system'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../context/AuthContext'
 import { FetchContext } from '../../../context/FetchContext'
+import HomeInfoContext from '../../../context/HomeInfoContext'
 import NotificationList from './NotificationList'
 
 export default function NotificationPage() {
 
     const {authAxios} = useContext(FetchContext)
     const {setSomethingWentWrong} = useContext(AuthContext)
-
+    const {setTotalNotifications} = useContext(HomeInfoContext)
     const [loading, setLoading] = useState(false)
     const [notifications, setNotifications] = useState([])
     const [page, setPage] = useState(0)
@@ -26,9 +27,10 @@ export default function NotificationPage() {
 
 
         authAxios.get('api/v1/mark_all_notifications').then(res => {
-
+        
             setChanged(!changed)
             setDisabled(false)
+            
         }).catch(err => {
             setSomethingWentWrong(true)
             setDisabled(false)
@@ -41,7 +43,11 @@ export default function NotificationPage() {
         
         authAxios.get('api/v1/notifications', {params: {page: page}}).then(res => {
             const {data} = res 
-            setNotifications(notifications.concat(data))
+            
+            const {total_notifications} = res.data['notification_info']
+
+            setNotifications(notifications.concat(res.data['notification_info'].notifications))
+            setTotalNotifications(total_notifications)
             setPage(page + 1)
             setTotalMembers(notifications.length)
        }).catch(err => {
@@ -57,8 +63,9 @@ export default function NotificationPage() {
     useEffect(() => {
         setLoading(true)
         authAxios.get('api/v1/notifications', {params: {page: 1}}).then(res => {
-             const {data} = res 
-             setNotifications(data)
+            const {total_notifications} = res.data['notification_info']
+            setNotifications(res.data['notification_info'].notifications)
+            setTotalNotifications(total_notifications)
              setLoading(false)
              setPage(page + 1)
         }).catch(err => {

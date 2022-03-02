@@ -183,12 +183,10 @@ export default function CreateAnticipationMenu() {
           due_date: dueDate
         }
       }).then(res => {
-        console.log(res)
         setDueDate(nextDay(new Date(), -1))
         setLoadingBtn(false)
         formik.resetForm()
       }).catch(err => {
-        console.log(err)
         setLoadingBtn(false)
       })
     

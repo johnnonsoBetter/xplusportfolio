@@ -1,47 +1,52 @@
 
-import { Badge, Box, IconButton, Tooltip, Typography } from '@mui/material'
-import React, { useContext } from 'react'
+import { Alert, Badge, Box, Chip, IconButton, Snackbar, Tooltip, Typography, Zoom } from '@mui/material'
+import React, { useContext, useEffect, useState } from 'react'
 import Search from './Search'
 import NotificationMenu from './notifications/NotificationMenu'
 import PinnedProjectMenu from './pins/PinnedProjectMenu'
 import MyProfile from './MyProfile'
 import { Link, useLocation } from 'react-router-dom'
-import { AppsOutlined, NotificationsOutlined, PeopleAltOutlined, PushPinOutlined } from '@mui/icons-material'
+import { AppsOutlined, NotificationsOutlined, NotificationsRounded, PeopleAltOutlined, PushPinOutlined } from '@mui/icons-material'
 import { useRouteMatch } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
 import DrawerContext from '../../context/DrawerContext'
+import HomeInfoContext from '../../context/HomeInfoContext'
 
-export default function AppbarContent() {
+export default function AppbarContent({user, notify}) {
     
     const {path} = useRouteMatch()
     const {pathname} = useLocation()
     const {setDrawerOpen, setFullScreen, setDrawerComponent} = useContext(DrawerContext) 
+    const [progress, setProgress] = useState(0)
+    const [openNotify, setOpenNotify] = useState(true)
+    const {totalNotifications} = useContext(HomeInfoContext)
 
-    const openMobileSearch = () => {
+    // useEffect(() => {
 
-        setDrawerOpen(true)
-        setDrawerComponent('search')
-        setFullScreen(true)
-    }
+    //     const timer = setInterval((e) => {
 
-    const openMobileNotification = () => {
+    //         console.log("hello ", e, "and the same progress", progress)
 
-        setDrawerOpen(true)
-        setDrawerComponent('notification')
-        setFullScreen(true)
-    }
+    //         setProgress((progress) => (progress + 1))
 
-    const openMobilePinnedProject = () => {
-
-        setDrawerOpen(true)
-        setDrawerComponent('pinned')
-        setFullScreen(true)
-    }
-
+    //         if(progress >= 10) {
+                
+    //             setOpenNotify(false)
+    //             clearInterval(timer)
+                
+    //         }
+    //         //setProgress(0)
+             
+            
+    //     }, 1000);
+    //     return () => {
+    //     clearInterval(timer);
+    //     };
+    // }, [progress])
 
 
     return (
-        <Box width="100%" display="flex" alignItems="center" justifyContent="space-between" >
+        <Box width="100%" display="flex" position='relative' alignItems="center" justifyContent="space-between" >
             <Box flexGrow={2} >
                 <Box component="img" srcSet="/images/xlogo.png" alt="logo" width={120} maxWidth="80%" />
                
@@ -91,7 +96,7 @@ export default function AppbarContent() {
                      
                             <IconButton to={`#notification`} LinkComponent={Link}  disableRipple sx={{mr: 1}}>
                             
-                                <Badge color="error" badgeContent={5} >
+                                <Badge color="error" badgeContent={totalNotifications} >
                                     <NotificationsOutlined />
                                 </Badge>
                             </IconButton>
@@ -110,6 +115,16 @@ export default function AppbarContent() {
                 </Box>
                
             </Box>
+
+            <Zoom >
+            <Box position='absolute' zIndex={100000} bottom={-45} display='flex' justifyContent='center' width='100%'  >
+                <Chip label="New Post Available" sx={{color: "white", fontWeight: 700}} clickable avatar={<NotificationsRounded color='error' sx={{color: "white"}} />} color='info' size='large' />
+            </Box>
+
+
+
+            </Zoom>
+            
         </Box>
     )
 

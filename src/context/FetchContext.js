@@ -8,7 +8,7 @@ const {Provider} = FetchContext
 const FetchProvider = ({children}) => {
     
     const authAxios = axios.create({
-        baseURL: process.env.NODE_ENV === 'development'? 'http://localhost:3001' : 'http://localhost:3001'
+        baseURL: process.env.NODE_ENV === 'development'? 'http://localhost:3001' : 'https://xplusportfolio.herokuapp.com'
     })
 
     const {isAuthenticated, setAuthState, setSomethingWentWrong} = useContext(AuthContext)

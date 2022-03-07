@@ -91,7 +91,7 @@ export default function Home(props) {
 
   return (
     <React.Fragment>
-      <ActionCableProvider url={ process.env.NODE_ENV === 'development'? 'ws://localhost:3001/cable' : 'ws://xplusportfoliob.herokuapp.com/cable'} >
+      <ActionCableProvider url={'ws://xplusportfoliob.herokuapp.com/cable'} >
 
         <CssBaseline />
         <HomeInfoContextProvider

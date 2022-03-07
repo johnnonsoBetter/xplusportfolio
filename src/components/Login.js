@@ -78,7 +78,7 @@ export default function Login(){
       setLoginLoading(true)
         
       publicFetch.post(
-        `api/v1/auth/sign_in`,
+        `/api/v1/auth/sign_in`,
         values
       ).then((response) => {
         

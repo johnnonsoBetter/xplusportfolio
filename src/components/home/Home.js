@@ -26,7 +26,6 @@ export default function Home(props) {
   const [drawerComponent, setDrawerComponent] = useState(null)
   const [fullScreen, setFullScreen] = useState(false)
   const history = useHistory()
-  const location = useLocation()
   const [openSnack, setOpenSnack] = useState(false)
   const [snackInfo, setSnackInfo] = useState({
     message: '',
@@ -34,6 +33,8 @@ export default function Home(props) {
   })
   const [totalNotifications, setTotalNotifications] = useState(0)
   const {somethingWentWrong} = useContext(AuthContext)
+  const [newPostAvailable, setNewPostAvailable] = useState(false)
+  const [showFriendsActivities, setShowFriendsActivites] = useState(false)
 
   const notifyForOffline = () => {
 
@@ -86,10 +87,6 @@ export default function Home(props) {
          
         setOpenSnack(true)
     }
-
-    
-      
-  
   }, [somethingWentWrong])
 
   return (
@@ -100,6 +97,10 @@ export default function Home(props) {
         <HomeInfoContextProvider
           value={{
             totalNotifications,
+            newPostAvailable, 
+            showFriendsActivities,
+            setShowFriendsActivites: (show) => setShowFriendsActivites(show),
+            setNewPostAvailable: (avaliable) => setNewPostAvailable(avaliable),
             setTotalNotifications: (total) => setTotalNotifications(total),
           }}
         >

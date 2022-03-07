@@ -39,7 +39,7 @@ export default function AnticipationList({anticipations, totalAnticipations, fet
 
                     return (
                         <ListItem disablePadding key={anticipation.id}  id={anticipation.a_slug} >
-                            <AnticipationActivity anticipation={anticipation} />
+                            <AnticipationActivity anticipation={anticipation} typePackge={{}} showType={false} />
                         </ListItem>
                     )
                    })

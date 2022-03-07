@@ -1,102 +1,97 @@
 import { PsychologyRounded } from '@mui/icons-material';
 import { Avatar, Box, Divider, IconButton, InputBase, Paper, Skeleton, Stack } from '@mui/material'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ActivityLoader from './ActivityLoader';
 import AnticipationActivity from './anticipation_activity/AnticipationActivity';
 import ProjectActivity from './project_activity/ProjectActivity';
 import '../../../../App.css'
 import {useHistory} from 'react-router-dom'
 import FeedLoader from '../../../shared/FeedLoader';
+import { FetchContext } from '../../../../context/FetchContext';
+import { AuthContext } from '../../../../context/AuthContext';
+import ActivityList from './ActivityList';
+import HomeInfoContext from '../../../../context/HomeInfoContext';
 
-
-const AnticipationCreator = ()=> {
-    const history = useHistory()
-
-
-    return (
-      <Paper
-        component="form"
-        sx={{ p: '2px 4px', display: "flex", alignItems: 'center', width: "100%" }}
-      >
-      
-        <InputBase
-          sx={{ ml: 1, flex: 1, width: "100%"}}
-          fullWidth
-          autoFocus={false}
-          onClick={() => history.push('#create_anticipation')}
-          
-          placeholder="What are you working on? "
-          inputProps={{ 'aria-label': 'What are you working on?' }}
-        />
-        
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton onClick={() => history.push('#create_anticipation')} color="primary" sx={{ p: '10px' }} aria-label="directions">
-          <PsychologyRounded  />
-        </IconButton>
-        
-      </Paper>
-    );
-  }
-
-function MyMiniInfo() {
-
-        return (
-            <Box>
-                <Paper elevation={0} sx={{minHeight: 10, width: "100%"}} >
-                    <Box display="flex" p={1} width="100%" alignItems="center" justifyContent="flex-start" >
-                        <Box width="20%" height="100%" display="flex" justifyContent="center" >
-                            <Avatar src="/images/pics.jpg" alt="pics" width={50} height={50} sx={{mr: 2}}/>
-                        </Box>
-    
-                        <Stack width="70%" sx={{my: 2}}   >
-                            <AnticipationCreator />
-                            
-                        </Stack>
-                       
-                       
-                    </Box>
-                   
-                </Paper>
-            </Box>
-        )
-    }
-    
-    
-    function MyMiniInfoLoader() {
-    
-        return (
-            <Box>
-                <Paper elevation="none" sx={{minHeight: 300, borderRadius: "10px"}} >
-                    <Box display="flex" width="100%" alignItems="center" >
-                        <Skeleton variant="circular" width={50} height={50} sx={{mr: 2}}/>
-                        <Stack width="70%" >
-                            <Skeleton variant="text" type="text" width="40%"  />
-                            <Skeleton variant="text" type="text" width="66%"  />
-                            
-                            
-                        </Stack>
-                    </Box>
-                </Paper>
-            </Box>
-        )
-    }
 
 
 export default function ActivityPage() {
 
+    const {authAxios} = useContext(FetchContext)
+    const {setSomethingWentWrong} = useContext(AuthContext)
+    const [finished, setFinished] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [activities, setActivities] = useState([])
+    const [page, setPage] = useState(1)
+    const [totalActivities, setTotalActivities] = useState(0)
+    const {showFriendsActivities, setShowFriendsActivites, setNewPostAvailable} = useContext(HomeInfoContext)
+
+
+
+    const fetchMoreData = () => {
+        
+        authAxios.get(  showFriendsActivities ? 'api/v1/friends_activities'  :'api/v1/all_activities', {params: {page: page}}).then(res => {
+            const {data} = res 
+
+
+            
+            setPage(page + 1)
+            setActivities(activities.concat(data))
+            setTotalActivities(activities.length)
+       }).catch(err => {
+        
+           console.log(err.response)
+
+           const {exception, status} = err.response 
+
+           console.log(exception)
+
+           if(status === 500){
+               console.log("Stop it")
+               setFinished(true)
+           }
+                
+        
+       })
+    }
+
+
+   
+
+    useEffect(() => {
+        setLoading(true)
+        setNewPostAvailable(false)
+        authAxios.get(showFriendsActivities ? 'api/v1/friends_activities'  :'api/v1/all_activities', {params: {page: 1}}).then(res => {
+             const {data} = res 
+             setActivities(data)
+             setLoading(false)
+             setPage(page + 1)
+             setNewPostAvailable(false)
+             setShowFriendsActivites(false)
+             setNewPostAvailable(false)
+        }).catch(err => {
+         
+            setSomethingWentWrong(true)
+         
+        })
+
+
+        return () => {
+            setLoading(true)
+            setSomethingWentWrong(false)
+            setActivities([])
+            setShowFriendsActivites(false)
+            setFinished(false)
+        }
+
+    }, [showFriendsActivities])
+
     return (
         <Box className="activity-container" sx={{width: "100%",  height: "calc(99vh - 85px)", scrollbarWidth: {display: "none"}, overflowY: "auto"}}>
-            <MyMiniInfo />
-            <FeedLoader />
-
-           
-                {/* <ProjectActivity />
-                {/* <AnticipationActivity /> */}
-                {/* <ProjectActivity />  */}
-            
-            
+                <ActivityList loading={loading} finished={finished} totalActivities={totalActivities} activities={activities} fetchMoreData={fetchMoreData} />
         </Box>
     )
 }
+
+
 
 

@@ -15,7 +15,7 @@ export default function  AncticipationContainer() {
     const [anticipations, setAnticipations] = useState([])
     const {slug} = useParams()
     const [totalAnticipations, setTotalAnticipations] = useState(0)
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(1)
 
 
 
@@ -25,7 +25,7 @@ export default function  AncticipationContainer() {
             const {data} = res 
             setAnticipations(data)
             setPage(page + 1)
-            setTotalAnticipations(anticipations.length)
+            
        }).catch(err => {
         
            console.log(err)
@@ -40,9 +40,10 @@ export default function  AncticipationContainer() {
     useEffect(() => {   
        
 
-        authAxios.get(`/api/v1/users/${slug}/anticipations`).then(res => {
+        authAxios.get(`/api/v1/users/${slug}/anticipations`, {params: {page: page}}).then(res => {
             console.log(res)
             setAnticipations(res.data)
+            setTotalAnticipations(res.data.length)
             setLoading(false)
         }).catch(err => {
     

@@ -67,31 +67,25 @@ function ElevationScroll(props) {
 
 
 export default function MyAppbar(props) {
-  const {totalNotifications, setTotalNotifications} = useContext(HomeInfoContext)
+  const {totalNotifications, setTotalNotifications, newPostAvailable, setNewPostAvailable} = useContext(HomeInfoContext)
   const {isCurrentUser, authState} = useContext(AuthContext)
   const {slug} = JSON.parse(authState.userInfo)
   
 
 
-    const handleRecieveNotification = (res) => {
+    const handleRecieveNewAnticipation = (res) => {
 
-      console.log(res)
+      const {sender_slug, receivers, isPost} = res
 
-      const {sender_slug, receivers, isPost} = res.data
-
-      console.log(isCurrentUser(sender_slug), "this is really the sender")
-      
       if(!isCurrentUser(sender_slug)){
-
+        
         if(receivers.map(rec => rec.slug).includes(slug)){
           
           const thePackage = receivers.find(rec => (rec.slug === slug))
-
           const {total_notifications} = thePackage
           setTotalNotifications(total_notifications)
-
-
-
+          if(isPost)
+            setNewPostAvailable(true)
 
         }
         
@@ -99,35 +93,61 @@ export default function MyAppbar(props) {
  
     }
 
+    const handleRecieveAnticipationLike = (res) => {
+     
+      const {sender_slug, receivers, isPost} = res
+
+      if(isCurrentUser(sender_slug)){
+        
+        if(receivers.map(rec => rec.slug).includes(slug)){
+          
+          const thePackage = receivers.find(rec => (rec.slug === slug))
+          const {total_notifications} = thePackage
+          setTotalNotifications(total_notifications)
+       
+
+        }
+
+       
+        
+      }
+ 
+    }
+
+
 
     return (
         <>
-        <ActionCableConsumer channel="NewAnticipationChannel"
-        onReceived={handleRecieveNotification}  >
-        <Box   >
-            <ElevationScroll   {...props}>
-                <AppBar sx={{backgroundColor: "white"}} >
-                    <Container  sx={{pr: {xs: "0px", sm: 1}, pl: {xs: "0px", sm: 1}}} >
-                        <Toolbar >
-                        <AppbarContent total_notifications={totalNotifications} />
-                        </Toolbar>
-                    </Container>      
-                </AppBar>
-            </ElevationScroll>
-        </Box>
+        <ActionCableConsumer channel="NewAnticipationChannel" onReceived={handleRecieveNewAnticipation}  >
+          
 
-         {/* <Box sx={{display: {xs: 'block', sm: 'none'}}} >
-            <HideOnScroll  {...props}>
-                <AppBar sx={{backgroundColor: "white"}} >
-                    <Container  >
-                        <Toolbar >
-                        <AppbarContent />
-                        </Toolbar>
-                    </Container>      
-                </AppBar>
-            </HideOnScroll>
-        </Box>  */}
-        
+
+          <Box   >
+          <ActionCableConsumer  channel="AnticipationLikeChannel" onReceived={handleRecieveAnticipationLike}  >
+              <ElevationScroll   {...props}>
+                  <AppBar sx={{backgroundColor: "white"}} >
+                      <Container  sx={{pr: {xs: "0px", sm: 1}, pl: {xs: "0px", sm: 1}}} >
+                          <Toolbar >
+                          <AppbarContent total_notifications={totalNotifications} />
+                          </Toolbar>
+                      </Container>      
+                  </AppBar>
+              </ElevationScroll>
+              </ActionCableConsumer>
+          </Box>
+
+          {/* <Box sx={{display: {xs: 'block', sm: 'none'}}} >
+              <HideOnScroll  {...props}>
+                  <AppBar sx={{backgroundColor: "white"}} >
+                      <Container  >
+                          <Toolbar >
+                          <AppbarContent />
+                          </Toolbar>
+                      </Container>      
+                  </AppBar>
+              </HideOnScroll>
+          </Box>  */}
+  
         </ActionCableConsumer>
         </>
     )

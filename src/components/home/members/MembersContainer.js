@@ -14,7 +14,7 @@ export default function MembersContainer() {
 
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(1)
     const [totalMembers, setTotalMembers] = useState(0)
 
 
@@ -23,8 +23,9 @@ export default function MembersContainer() {
         
         authAxios.get('api/v1/users', {params: {page: page}}).then(res => {
             const {data} = res 
-            setUsers(users.concat(data))
+            
             setPage(page + 1)
+            setUsers(users.concat(data))
             setTotalMembers(users.length)
        }).catch(err => {
         

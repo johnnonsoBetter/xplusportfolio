@@ -7,22 +7,27 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
 
-import { AccessTimeOutlined, CheckOutlined, DisabledByDefaultRounded, InsertLinkRounded, TaskRounded } from '@mui/icons-material';
-import {Button, Chip, IconButton, Tooltip } from '@mui/material';
+import { AccessTimeOutlined, ArrowDownwardRounded, CheckOutlined, DisabledByDefaultRounded, InsertLinkRounded, TaskRounded } from '@mui/icons-material';
+import {Avatar, Button, Chip, Divider, IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-
+import {ArrowDown} from '@mui/icons-material'
 import moment from 'moment';
 import { AuthContext } from '../../../../../context/AuthContext';
 import SubscribeButton from '../../../../shared/SubscriberButton';
 import LikerButton from '../../../../shared/LikerButton';
 import ActivityOwner from '../ActivityOwner';
+import { purple } from '@mui/material/colors';
+
+import ActivityType from '../AnticipationType';
 
 
 
 
 
-function AnticipationActivity({anticipation}) {
+function AnticipationActivity({anticipation, showType, typePackge}) {
+
+  const {owner_name, owner_slug, action_type} = typePackge 
 
 
   const {authState, isCurrentUser} = React.useContext(AuthContext)
@@ -58,16 +63,59 @@ function AnticipationActivity({anticipation}) {
         square
         elevation={0}
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
+          
+          
           bgcolor: 'background.default',
           borderTopLeftRadius: "10px",
           borderTopRightRadius:"10px"
           
         }}
-      >
+      > 
+
+
+          
+
+          {
+            showType && 
+
+            <>
+
+              {
+                action_type === "anticipation.create" ?
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='Anticipated 👨‍🔧 👨‍🔧' /> :
+                action_type === "anticipation.like" ? 
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='Likes 👍 👍' /> :
+                action_type === "anticipation.subscribe" ? 
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='Subscribed 🗒 🗒' /> :
+                null
+                
+
+
+              }
+
+            
+            </>
+
+
+            
+          }
+        
+        
+          <Paper 
+          elevation={0}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            height: 50,
+            pl: 2,
+          
+        
+            
+          }}
+          >
+
+
+          
           <Box display="flex" width="100%" justifyContent="space-between" alignItems="center" >
             <ActivityOwner  created_at={created_at} user={user}  />
 
@@ -175,7 +223,7 @@ function AnticipationActivity({anticipation}) {
             }
 
             
-            
+          </Paper>
         </Paper>
 
       

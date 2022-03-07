@@ -1,5 +1,5 @@
 
-import { Alert, Badge, Box, Chip, IconButton, Snackbar, Tooltip, Typography, Zoom } from '@mui/material'
+import { Alert, Badge, Box, Chip, IconButton, Avatar, Tooltip, Typography, Zoom } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import Search from './Search'
 import NotificationMenu from './notifications/NotificationMenu'
@@ -11,6 +11,7 @@ import { useRouteMatch } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
 import DrawerContext from '../../context/DrawerContext'
 import HomeInfoContext from '../../context/HomeInfoContext'
+import {blue} from '@mui/material/colors'
 
 export default function AppbarContent({user, notify}) {
     
@@ -19,30 +20,9 @@ export default function AppbarContent({user, notify}) {
     const {setDrawerOpen, setFullScreen, setDrawerComponent} = useContext(DrawerContext) 
     const [progress, setProgress] = useState(0)
     const [openNotify, setOpenNotify] = useState(true)
-    const {totalNotifications} = useContext(HomeInfoContext)
 
-    // useEffect(() => {
+    const {totalNotifications, newPostAvailable, setNewPostAvailable, setShowFriendsActivites} = useContext(HomeInfoContext)
 
-    //     const timer = setInterval((e) => {
-
-    //         console.log("hello ", e, "and the same progress", progress)
-
-    //         setProgress((progress) => (progress + 1))
-
-    //         if(progress >= 10) {
-                
-    //             setOpenNotify(false)
-    //             clearInterval(timer)
-                
-    //         }
-    //         //setProgress(0)
-             
-            
-    //     }, 1000);
-    //     return () => {
-    //     clearInterval(timer);
-    //     };
-    // }, [progress])
 
 
     return (
@@ -116,14 +96,25 @@ export default function AppbarContent({user, notify}) {
                
             </Box>
 
-            <Zoom >
-            <Box position='absolute' zIndex={100000} bottom={-45} display='flex' justifyContent='center' width='100%'  >
-                <Chip label="New Post Available" sx={{color: "white", fontWeight: 700}} clickable avatar={<NotificationsRounded color='error' sx={{color: "white"}} />} color='info' size='large' />
-            </Box>
+            {
+                newPostAvailable ?
+                
+               
+                    <Box position='absolute' zIndex={100000} bottom={-49} display='flex' justifyContent='center' width='100%'  >
+                        <Chip onClick={() => {
 
+                            setShowFriendsActivites(true)
+                           
+                            
+                            
+                        }} label="New Post Available" sx={{color: "white", fontWeight: 600}} clickable avatar={ <Avatar sx={{bgcolor: blue[400]}} > <NotificationsRounded  sx={{color: "white"}} />   </Avatar>  } color='info' size='large' />
+                    </Box>
+               
+                : null
+            
 
+            }
 
-            </Zoom>
             
         </Box>
     )

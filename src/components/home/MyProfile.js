@@ -12,6 +12,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { FetchContext } from '../../context/FetchContext';
 import { LogoutOutlined, ModeEditOutlineOutlined, PersonOutlineRounded } from '@mui/icons-material';
+import { stringAvatar } from '../../utils/stringUtil';
 
 
 
@@ -58,9 +59,8 @@ export default function MyProfile() {
         <Tooltip title="My Profile">
            
             <IconButton onClick={handleClick} disableRipple>
-                <Avatar  alt={name[0]}  src={image} sx={{width: 32, height: 32, fontSize: "0.7em"}} >
-                  {name[0]}
-                </Avatar>
+               
+                <Avatar  {...stringAvatar(name, 32, 32, "0.6em")} src={image} alt="pics"  />
             </IconButton>
             
         </Tooltip>

@@ -29,7 +29,7 @@ export default function ProjectContainer() {
             setTotalProjects(projects.length)
        }).catch(err => {
         
-           console.log(err)
+           
         
        })
     }

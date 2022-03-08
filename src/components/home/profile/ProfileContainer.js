@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 export default function ProfileContainer({isCurrentUser}) {
 
   const {slug} = useParams()
-  console.log(slug)
+ 
   return (
     <List
       sx={{

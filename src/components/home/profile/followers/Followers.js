@@ -22,13 +22,11 @@ export default function Followers() {
         
         authAxios.get(`/api/v1/users/${slug}/followers`, {params: {page: page}}).then(res => {
             const {data} = res 
-            console.log("this is my own resources", res)
             setUsers(users.concat(data))
             setPage(page + 1)
             setTotalMembers(users.length)
        }).catch(err => {
         
-           console.log(err)
         
        })
     }
@@ -39,7 +37,6 @@ export default function Followers() {
         setLoading(true)
         authAxios.get(`/api/v1/users/${slug}/followers`, {params: {page: 1}}).then(res => {
              const {data} = res 
-             console.log("this is my own resources", res)
              setUsers(data)
              setLoading(false)
              setPage(page + 1)

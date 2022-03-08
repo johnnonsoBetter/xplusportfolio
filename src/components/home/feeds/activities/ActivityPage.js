@@ -39,14 +39,13 @@ export default function ActivityPage() {
             setTotalActivities(activities.length)
        }).catch(err => {
         
-           console.log(err.response)
+      
 
            const {exception, status} = err.response 
 
-           console.log(exception)
 
            if(status === 500){
-               console.log("Stop it")
+            
                setFinished(true)
            }
                 

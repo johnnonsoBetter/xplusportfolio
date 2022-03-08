@@ -12,6 +12,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import DrawerContext from '../../context/DrawerContext'
 import HomeInfoContext from '../../context/HomeInfoContext'
 import {blue} from '@mui/material/colors'
+import PushConsentNotify from '../shared/PushConsentNotify'
+import usePushNotifications from '../shared/usePushNotifications'
 
 export default function AppbarContent({user, notify}) {
     
@@ -20,6 +22,27 @@ export default function AppbarContent({user, notify}) {
     const {setDrawerOpen, setFullScreen, setDrawerComponent} = useContext(DrawerContext) 
     const [progress, setProgress] = useState(0)
     const [openNotify, setOpenNotify] = useState(true)
+
+    const {
+        userConsent,
+        pushNotificationSupported,
+        userSubscription,
+        onClickAskUserPermission,
+        onClickSusbribeToPushNotification,
+        onClickSendSubscriptionToPushServer,
+        pushServerSubscriptionId,
+        onClickSendNotification,
+        error,
+        loading
+      } = usePushNotifications();
+
+      const userConsentIsGranted = userConsent === 'granted' 
+
+
+      console.log(userConsentIsGranted)
+
+
+    
 
     const {totalNotifications, newPostAvailable, setNewPostAvailable, setShowFriendsActivites} = useContext(HomeInfoContext)
 
@@ -38,6 +61,12 @@ export default function AppbarContent({user, notify}) {
                         <Box sx={{display: {xs: 'none', sm: 'none', md: 'block'}}} >
                             <Search />
                         </Box>
+
+                        
+                        {
+                           ( !userConsentIsGranted && pushNotificationSupported) && <PushConsentNotify />
+                            
+                        }
                         
 
                         <Tooltip  LinkComponent={Link} to={`#search`} title="Feeds" sx={{display: {xs: "none", sm: "block", md: "none"}}}>
@@ -45,6 +74,8 @@ export default function AppbarContent({user, notify}) {
                                 <SearchIcon />
                             </IconButton>
                         </Tooltip>
+
+                        
 
 
                         <Tooltip  LinkComponent={Link} to={`/xpo`} title="Feeds" sx={{display: {xs: "none", sm: "block"}}}>

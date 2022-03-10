@@ -15,6 +15,7 @@ import queryString from 'query-string'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import SetReset from './components/SetReset';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ProjectReview from './components/project_review/ProjectReview';
 
 const theme = createTheme({
   typography: {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/update_password" render={() => <UpdatePassword />} />  
             <Route path='/api' render={() => <SetReset /> } />        
             <Route  path="/xpo" render={() => isAuthenticated() ? <Home /> : <Redirect to='/login' /> } />
+            <Route  path="/project_review" render={() => isAuthenticated() ? <ProjectReview /> : <Redirect to='/login' /> } />
             <Route exact  path='/' render={() => isAuthenticated() ? <Redirect to="/xpo" /> : <Redirect to='/login' /> } />
             <Route exact path="/404" render={() => <NoPageFound />} />
             <Redirect to="/404" />
@@ -52,14 +54,6 @@ function App() {
   );
 }
 
-
-// <Box height='calc(99vh - 64px)'  position='fixed' bottom={0} right={0} left={0} >
-
-//           <iframe src="https://www.codeyplus.com/" height="100%" width="100%" >
-
-// </iframe>
-
-//           </Box>
 
 
 

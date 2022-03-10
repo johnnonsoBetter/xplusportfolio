@@ -16,7 +16,7 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
     
     return (
         <Box py={1} mb={2} className="member-container" sx={{width: "100%", scrollbarColor: "red", scrollbarWidth: {display: "none"}, overflowY: "auto"}} >
-    
+            
 
            <InfiniteScroll
            dataLength={activities.length}
@@ -50,19 +50,14 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
                     }
                 </Box>
 
-
-              
-
                 {
 
                    !loading &&
 
                    activities.map((the_activity, index) => {
 
-
                     const {id, action_type, owner_name, owner_slug, activity, created_at} = the_activity 
-                    console.log(owner_name)
-
+                  
                     return (
                             
                             <Box key={id + index} width='100%' >

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const pushServerPublicKey = "BJd6ViGey4vLCefbD1gw41_JW08pGM00Pkl1Tv2R_yW3s5IqMMqw14Qf793sdvLRzYH89y_Kt-M8IY75keq-Q2U=";
+const pushServerPublicKey = "BHmOMZDjNiZwvGlmRguoUrysp3g9e0-NSJkKQJ1f4WdPkvxi-jfDXdYq-B_uVdvE4T8f30DUxAMyQPUJ8kMTMdk=";
 
 
 function urlBase64ToUint8Array(base64String) {

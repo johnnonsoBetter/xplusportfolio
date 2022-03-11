@@ -78,9 +78,9 @@ export default function ProjectPreview(props) {
           
           <Zoom in={true} >
           
-             <Paper  elevation={4} sx={{height: 'calc(99vh - 64px)', mt: 1, mb: 1, p: 1, mx: 1, borderRadius: "20px"}} >
+             <Paper  elevation={4} sx={{height: 'calc(99vh - 64px)', mt: 1, mb: 1, mx: 1, borderRadius: "15px"}} >
 
-             <iframe  src="https://xplusportfolio.herokuapp.com/" style={{border: 0}} height="100%" width="100%" >
+             <iframe  src="https://xplusportfolio.herokuapp.com/" style={{border: 0, borderRadius: "15px"}} height="100%" width="100%" >
 
             </iframe>
 

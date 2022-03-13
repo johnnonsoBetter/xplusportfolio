@@ -46,11 +46,10 @@ export default function Project() {
         PaperProps={{
           elevation: 0,
           sx: {
-            overflow: 'auto',
+            overflow: 'visible',
             borderRadius: "10px",
             maxWidth: 320,
-            minHeight: ITEM_HEIGHT * 4.5,
-            maxHeight: 60 * 4.5,
+            minHeight: 200,
             
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
             mt: 1.5,
@@ -77,14 +76,14 @@ export default function Project() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-       <Box p={1} maxWidth={320} minWidth={300} >
+       <Box p={1} py={2} maxWidth={320} minWidth={300} >
            
           <Box my={1}>
-              <Typography  fontWeight={700} >
+              <Typography  fontWeight={800} >
                   Todo Application
               </Typography>
 
-              <Typography  variant='body2'  >
+              <Typography  sx={{my: 2}} variant='body2'  >
               To address issues that do not require attention, run: npm audit fiTo address all issues (including breaking changes), run:
                 npm audit fix --force
 
@@ -92,26 +91,10 @@ export default function Project() {
               </Typography>
           </Box>
 
-          <Box my={1} >
-
-                <Typography   fontWeight={700} >
-                  Technology Utilized
-                </Typography>
+         
 
 
-              <Chip label="React" color='info' sx={{mx: 1, my: 1}}/>
-              <Chip label="React" color='info' sx={{mx: 1, my: 1}}/>
-              <Chip label="React" color='info' sx={{mx: 1, my: 1}}/>
-              <Chip label="React" color='info' sx={{mx: 1, my: 1}}/>
-              <Chip label="React" color='info' sx={{mx: 1, my: 1}}/>
-              <Chip label="React" color='info' sx={{mx: 1, my: 1}}/>
-              <Chip label="React" color='info' sx={{mx: 1, my: 1}}/><Chip label="React" color='info' sx={{mx: 1, my: 1}}/>
-
-              
-          </Box>
-
-
-          <Box  px={2} mt={2} display="flex" width="100%" alignItems="center" justifyContent="flex-start" >
+          <Box   px={2} mt={2} display="flex" width="100%" alignItems="center" justifyContent="flex-start" >
 
             {
 

@@ -4,7 +4,7 @@ import ReviewToolbar from './ReviewToolbar';
 import { ProjectReviewContextProvider } from '../../context/ProjectReviewContext';
 import ActivitiyDialog from './ActivitiyDialog';
 import ProjectIframe from './project/ProjectIframe';
-import { Box } from '@mui/material';
+import { Box, Slide } from '@mui/material';
 
 
 
@@ -24,6 +24,7 @@ import { Box } from '@mui/material';
   const [open, setOpen] = React.useState(false);
   const [canvasObject, setCanvasObject] = useState({brushColor: "grey"}) 
   const [isDrawMode, setIsDrawMode] = useState(false)
+  const [fullWidth, setFullWidth] = useState(true)
 
 
   const handleClickOpen = () => {
@@ -55,6 +56,8 @@ import { Box } from '@mui/material';
           open,
           canvasObject,
           isDrawMode,
+          fullWidth,
+          setFullWidth,
           setIsDrawMode,
           handleClickOpen,
           handleClose,
@@ -72,7 +75,20 @@ import { Box } from '@mui/material';
 
         <ProjectIframe />
       
-        <ReviewToolbar />
+
+        
+       
+        {
+          fullWidth && 
+          <Slide in={true} direction='left'>
+            <Box >
+              <ReviewToolbar />
+            </Box>
+          </Slide>
+
+        }
+
+       
 
     
       </ProjectReviewContextProvider>

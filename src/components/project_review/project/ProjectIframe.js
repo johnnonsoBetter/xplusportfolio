@@ -1,21 +1,21 @@
 import React, { useContext } from 'react' 
-import { Grid, IconButton, Paper, Divider, Box } from '@mui/material';
-import { ArrowLeftRounded, ArrowRightRounded, FiberManualRecordRounded, RefreshRounded } from '@mui/icons-material';
+import { Grid, IconButton, Paper, Divider, Box, Tooltip } from '@mui/material';
+import { ArrowLeftRounded, ArrowRightRounded, FiberManualRecordRounded, FullscreenExitOutlined, FullscreenOutlined, RefreshRounded } from '@mui/icons-material';
 import ProjectReviewContext from '../../../context/ProjectReviewContext';
 import { Canvas } from '../canvas/Canvas';
 
 export default function  ProjectIframe() {
 
-    const {screenPoint, isDrawMode} = useContext(ProjectReviewContext)
+    const {screenPoint, isDrawMode, fullWidth, setFullWidth} = useContext(ProjectReviewContext)
 
     return (
 
          
    
-      <Grid container justifyContent='center' >
-      <Grid item  sm={screenPoint} zeroMinWidth   >
+      <Grid container justifyContent='center'  >
+      <Grid item  xs={screenPoint} sx={{pr: 2}}   >
         
-           <Paper  elevation={10} sx={{height: 'calc(99vh - 20px)', mt: 1, mb: 1, mx: 1, borderRadius: "15px"}} >
+           <Paper  elevation={10} sx={{width: "100%", height: 'calc(99vh - 20px)',  mt: 1, mb: 1, mx: 1, borderRadius: "15px"}} >
             <Box sx={{borderRadius: "15px"}} display='flex' alignItems='center' justifyContent='space-between' >
               
               <Box >
@@ -32,6 +32,24 @@ export default function  ProjectIframe() {
 
               <Box mx={1}>
                 <FiberManualRecordRounded color={isDrawMode ? "success" : "error"} />
+
+               
+                <Tooltip title={fullWidth ?  'Hide tools' : 'Show tools' }   >
+                  <IconButton onClick={() => setFullWidth(!fullWidth)} >
+                    
+                    {
+                      fullWidth ?
+                      <FullscreenOutlined />
+                      :
+                      
+                      <FullscreenExitOutlined />
+                    }
+                  </IconButton>
+                </Tooltip>
+
+
+
+
               </Box>
 
             </Box>
@@ -39,7 +57,7 @@ export default function  ProjectIframe() {
 
             <Box width='100%' height="100%" sx={{position: 'relative'}} id="capture" >
 
-            <iframe name='iframe' id='iframe'  src="https://www.tutorialrepublic.com" style={{border: 0, borderBottomRightRadius: "15px", borderBottomLeftRadius: "15px"}} height="95%" width="100%" >
+            <iframe name='iframe' id='iframe'  src="https://www.tutorialrepublic.com" style={{border: 'none', borderBottomRightRadius: "15px", borderBottomLeftRadius: "15px"}} height="95%" width="100%" >
 
             </iframe>
             {

@@ -70,22 +70,6 @@ export default function ReviewToolbar() {
   const {handleClickOpen, isDrawMode, setIsDrawMode} = useContext(ProjectReviewContext)
 
 
-  const ResizerTool = () => (
-    <>
-      {
-        !isDrawMode && 
-        <Slide in={true} direction='left'>
-          <ListItem   >
-                <ListItemIcon>
-                  
-                    <Resizer />
-                </ListItemIcon>
-              
-            </ListItem>
-        </Slide>
-      }
-    </>
-  )
 
   const DrawModeActivator = () =>{ 
     
@@ -156,7 +140,20 @@ export default function ReviewToolbar() {
 
 
               
-              <ResizerTool />
+              <>
+                {
+                  !isDrawMode && 
+                  <Slide in={true} direction='left'>
+                    <ListItem   >
+                          <ListItemIcon>
+                            
+                              <Resizer />
+                          </ListItemIcon>
+                        
+                      </ListItem>
+                  </Slide>
+                }
+              </>
 
               
       

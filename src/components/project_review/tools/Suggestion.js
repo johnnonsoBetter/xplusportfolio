@@ -14,6 +14,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import { LoadingButton } from '@mui/lab';
+import html2canvas from 'html2canvas';
+
 
   
   const grey = {
@@ -84,12 +86,28 @@ import { LoadingButton } from '@mui/lab';
 export default function Suggestion() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const [imageUrl, setImageUrl] = React.useState(null)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
+  const $support = (function () {
+    const canvas = document.createElement("canvas"),
+        ctx = canvas.getContext("2d");
+
+    return {
+        canvas: !!ctx,
+        imageData: !!ctx.getImageData,
+        dataURL: !!canvas.toDataURL,
+        btoa: !!window.btoa,
+    };
+  })();
+
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -156,6 +174,22 @@ export default function Suggestion() {
 
            </Box>
 
+           <Box >
+             {
+               imageUrl && 
+               <img style={{maxWidth: "100%", width: "90%"}} src={imageUrl} />
+
+             }
+            
+           </Box>
+
+           <Box my={2}>
+
+             
+            </Box>
+
+
+
 
           <Box my={2}>
 
@@ -173,3 +207,8 @@ export default function Suggestion() {
     </React.Fragment>
   );
 }
+
+
+
+
+

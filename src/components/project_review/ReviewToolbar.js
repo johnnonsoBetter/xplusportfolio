@@ -1,5 +1,5 @@
 import { AppRegistrationRounded, AspectRatioRounded, ColorLensRounded, ComputerRounded, InsertCommentRounded, InsertLinkRounded, LaptopRounded, NoteAddRounded } from '@mui/icons-material'
-import { Avatar, Divider, IconButton, List, ListItem, ListItemIcon, Slider, Tooltip } from '@mui/material'
+import { Avatar, Divider, IconButton, Slide, List, ListItem, ListItemIcon, Slider, Tooltip } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useContext } from 'react'
 import LaptopRoundedIcon from '@mui/icons-material/LaptopRounded';
@@ -9,6 +9,7 @@ import MuiDrawer from '@mui/material/Drawer';
 import ColorPicker from './tools/ColorPicker';
 import Resizer from './tools/Resizer';
 import Suggestion from './tools/Suggestion';
+import Info from './info/Info'
 
 
 
@@ -66,7 +67,75 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function ReviewToolbar() {
 
-  const {handleClickOpen} = useContext(ProjectReviewContext)
+  const {handleClickOpen, isDrawMode, setIsDrawMode} = useContext(ProjectReviewContext)
+
+
+  const ResizerTool = () => (
+    <>
+      {
+        !isDrawMode && 
+        <Slide in={true} direction='left'>
+          <ListItem   >
+                <ListItemIcon>
+                  
+                    <Resizer />
+                </ListItemIcon>
+              
+            </ListItem>
+        </Slide>
+      }
+    </>
+  )
+
+  const DrawModeActivator = () =>{ 
+    
+    const activateDrawMode = () => {
+      setIsDrawMode(!isDrawMode)
+    }
+    
+    return (
+
+      <ListItem   >
+          <ListItemIcon>
+            
+            <Tooltip title="Capture And Draw" >
+
+            <IconButton onClick={activateDrawMode} color={isDrawMode ? 'warning' : 'inherit'} >
+              <AppRegistrationRounded />
+            </IconButton>
+
+
+            </Tooltip>
+              
+          </ListItemIcon>
+        
+        </ListItem>
+
+  )}
+
+  const ColorPickerTool = () => {
+
+    return (
+
+      <>
+      {
+        isDrawMode && 
+        <Slide in={true} direction='left'>
+         <ListItem   >
+            <ListItemIcon>
+              
+                <ColorPicker />
+            </ListItemIcon>
+          
+          </ListItem>
+        </Slide>
+      }
+    </>
+      
+    )
+  }
+
+
     return (
     
 
@@ -79,37 +148,15 @@ export default function ReviewToolbar() {
             
               
 
-              <ListItem   >
-                <ListItemIcon>
-                  
-                  <Tooltip title="Capture And Draw" >
-
-                  <IconButton >
-                    <AppRegistrationRounded />
-                  </IconButton>
-
-
-                  </Tooltip>
-                   
-                </ListItemIcon>
               
-              </ListItem>
+              <DrawModeActivator />
 
-              <ListItem   >
-                <ListItemIcon>
-                  
-                    <ColorPicker />
-                </ListItemIcon>
-              
-              </ListItem>
 
-              <ListItem   >
-                <ListItemIcon>
-                  
-                    <Resizer />
-                </ListItemIcon>
+              <ColorPickerTool />
+
+
               
-              </ListItem>
+              <ResizerTool />
 
               
       
@@ -178,6 +225,18 @@ export default function ReviewToolbar() {
                 </ListItemIcon>
               
               </ListItem>
+
+
+              <ListItem   >
+                <ListItemIcon>
+                  
+                <Info />
+                </ListItemIcon>
+              
+              </ListItem>
+
+
+            
 
             
               

@@ -6,16 +6,31 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import {  ColorLensRounded } from '@mui/icons-material';
 import { SketchPicker } from 'react-color';
+import ProjectReviewContext from '../../../context/ProjectReviewContext';
 
 export default function ColorPicker() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const {canvasObject, setCanvasObject} = React.useContext(ProjectReviewContext)
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleChangeComplete = (color, event) => {
+
+    const {hex} = color
+    const newCanvasObject = Object.assign({}, canvasObject) 
+    newCanvasObject.brushColor = hex
+    setCanvasObject(newCanvasObject)
+
+
+  };
+
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -71,6 +86,7 @@ export default function ColorPicker() {
        <Box p={1} >
         <SketchPicker
             color='#fff'
+            onChangeComplete={handleChangeComplete}
             
         />
        </Box>

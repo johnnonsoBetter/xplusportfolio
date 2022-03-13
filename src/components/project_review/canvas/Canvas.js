@@ -1,27 +1,23 @@
 import React, { useContext, useEffect } from "react";
+import CanvasDraw from "react-canvas-draw";
 import ProjectReviewContext from "../../../context/ProjectReviewContext";
 import '../../../css/canva.css'
 
 export function Canvas() {
-  const {
-    canvasRef,
-    prepareCanvas,
-    startDrawing,
-    finishDrawing,
-    draw,
-  } = useContext(ProjectReviewContext)
 
-  useEffect(() => {
-    prepareCanvas();
-  }, []);
-
+  const {canvasObject} = useContext(ProjectReviewContext)
+  const {brushColor} = canvasObject
+ 
   return (
-    <canvas
-      onMouseDown={startDrawing}
-      onMouseUp={finishDrawing}
-      onMouseMove={draw}
-      ref={canvasRef}
-      id="canvas"
-    />
+    <CanvasDraw
+      brushRadius={2}
+      brushColor={brushColor}
+      style={{
+        width: "100%",
+        height: "100%",
+        backgroundColor: '#00000000',
+      
+      }}
+  />
   );
 }

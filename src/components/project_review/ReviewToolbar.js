@@ -1,185 +1,200 @@
-import { AppRegistrationRounded, ColorLensRounded, ComputerRounded, InsertCommentRounded, InsertLinkRounded, LaptopRounded, NoteAddRounded } from '@mui/icons-material'
-import { IconButton, Slider, Tooltip } from '@mui/material'
+import { AppRegistrationRounded, AspectRatioRounded, ColorLensRounded, ComputerRounded, InsertCommentRounded, InsertLinkRounded, LaptopRounded, NoteAddRounded } from '@mui/icons-material'
+import { Avatar, Divider, IconButton, List, ListItem, ListItemIcon, Slider, Tooltip } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useContext } from 'react'
 import LaptopRoundedIcon from '@mui/icons-material/LaptopRounded';
 import ProjectReviewContext from '../../context/ProjectReviewContext';
+import { styled, useTheme } from '@mui/material/styles';
+import MuiDrawer from '@mui/material/Drawer';
+import ColorPicker from './tools/ColorPicker';
+import Resizer from './tools/Resizer';
+import Suggestion from './tools/Suggestion';
+
+
+
+const drawerWidth = 240;
+
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(9)} + 1px)`,
+  },
+});
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
+
+
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
+);
 
 
 export default function ReviewToolbar() {
 
-
-  const {setScreenPoint, screenPoint} = useContext(ProjectReviewContext)
-
-
-
-
-
-
+  const {handleClickOpen} = useContext(ProjectReviewContext)
     return (
-        <Box display='flex' width='100%' justifyContent='space-around' alignItems='center'>
+    
 
-          <Box display='flex' width='100%' justifyContent='flex-start' alignItems='center' >
+        <Drawer  variant="permanent" anchor='right' open={false}>
+          <DrawerHeader sx={{display: "flex", justifyContent: 'center'}}>
+            <Avatar src='/images/logo.png' />
+          </DrawerHeader>
+          <Divider />
+          <List>
+            
+              
 
-          <Tooltip title="View repo" >
-              <a rel="noopener noreferrer" href='https://github.com/' target="_blank">
+              <ListItem   >
+                <ListItemIcon>
+                  
+                  <Tooltip title="Capture And Draw" >
+
+                  <IconButton >
+                    <AppRegistrationRounded />
+                  </IconButton>
+
+
+                  </Tooltip>
+                   
+                </ListItemIcon>
+              
+              </ListItem>
+
+              <ListItem   >
+                <ListItemIcon>
+                  
+                    <ColorPicker />
+                </ListItemIcon>
+              
+              </ListItem>
+
+              <ListItem   >
+                <ListItemIcon>
+                  
+                    <Resizer />
+                </ListItemIcon>
+              
+              </ListItem>
+
+              
+      
+          </List>
+          <Divider />
+          <List>
+            
+              
+
+              <ListItem   >
+                <ListItemIcon>
+                 <Suggestion />
+                   
+                </ListItemIcon>
+              
+              </ListItem>
+
+              <ListItem   >
+                <ListItemIcon>
+                  
+                    <Tooltip title="Add Note" >
+
+                      <IconButton onClick={handleClickOpen} >
+                      <NoteAddRounded />
+                      </IconButton>
+
+                  </Tooltip>
+                </ListItemIcon>
+              
+              </ListItem>
+
+             
+          </List>
+
+          <Divider />
+          <List>
+            
+              
+
+              <ListItem   >
+                <ListItemIcon>
+                  
+                  <Tooltip title="View Repo" >
 
                   <IconButton size="small"  target="_blank" rel="noopener noreferrer" >
                       <img src="/images/repo.png" alt="repo" />
                   </IconButton>
 
-              </a>
-                  
-              </Tooltip>
 
-
-              <Tooltip title="View live" >
-                  
-                  <a rel="noopener noreferrer" href='https://www.codeyplus.com/' target="_blank">
-
-                  <IconButton  size="small">
-                      <InsertLinkRounded />
-                  </IconButton>
-
-                  </a>
-              </Tooltip>
-
-              <Tooltip title="Take Note" >
-
-                <IconButton >
-                  <NoteAddRounded />
-                </IconButton>
-
-
-              </Tooltip>
-
-              <Tooltip title="Add Suggestion" >
-
-                <IconButton >
-                  <InsertCommentRounded />
-                </IconButton>
-
-
-              </Tooltip>
-
-             
-         
-
-
-          </Box>
-
-          <Box display='flex' width='100%' justifyContent='center' alignItems='center' >
-
-
-          <img src='/images/smartphone.png' width={32} height={32} />
-
-          </Box>
-
-          <Box display='flex' width='100%' justifyContent='flex-end' alignItems='center' >
-
-         
-
-
-            <Slider
-              size="small"
+                  </Tooltip>
+                   
+                </ListItemIcon>
               
-              aria-label="Small"
-              step={12}
-              marks
-              defaultValue={100}
-       
-              sx={{width: 120, mr: 2}}
-              onChange={(e) => {
-                console.log(e.target.value)
-                let value = e.target.value
-                //setScreenPoint(e.target.valule)
-                switch(value){
-                  case 0: 
-                    setScreenPoint(3)
-                    break
-                  case 12: 
-                    setScreenPoint(4)
-                    break
-                  case 24: 
-                    setScreenPoint(5)
-                    break
-                  case 36: 
-                    setScreenPoint(6)
-                    break
-                  case 48: 
-                    setScreenPoint(7)
-                    break
-                  case 60: 
-                    setScreenPoint(8)
-                    break
-                  case 72: 
-                    setScreenPoint(9)
-                    break
-                  case 84: 
-                    setScreenPoint(10)
-                    break
-                  case 96: 
-                    setScreenPoint(11)
-                    break
-                  case 100: 
-                    setScreenPoint(12)
-                    break
-                
+              </ListItem>
+
+              <ListItem   >
+                <ListItemIcon>
                   
+                    <Tooltip title="View Live" >
 
-                  default: 
-                  setScreenPoint(12)
+                      <IconButton >
+                      <InsertLinkRounded />
+                      </IconButton>
 
-                  
-                }
-              }}
-            />
-
-
-            {/* <Tooltip title="Edit Pencil-Color" >
-
-            <IconButton >
-              <InsertCommentRounded />
-            </IconButton>
-
-
-            </Tooltip> */}
-
-            <Tooltip title="Edit Pencil-Color" >
-
-              <IconButton >
-                <ColorLensRounded />
-              </IconButton>
-
-
-            </Tooltip>
-
-            <Tooltip title="Capture And Draw" >
-
-              <IconButton >
-                <AppRegistrationRounded />
-              </IconButton>
-
-
-            </Tooltip>
-
-
-
-
-
-          </Box>
-       
-
-       
-
-
-         
-
-        
+                  </Tooltip>
+                </ListItemIcon>
+              
+              </ListItem>
 
             
-  
-
-        </Box>
+              
+      
+          </List>
+        </Drawer>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,105 +1,132 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import  React, { useEffect, useRef, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { Grid, IconButton, Paper, Tooltip, Zoom } from '@mui/material';
-import { InsertLinkRounded, NoteAddRounded } from '@mui/icons-material';
 import ReviewToolbar from './ReviewToolbar';
 import { ProjectReviewContextProvider } from '../../context/ProjectReviewContext';
+import ActivitiyDialog from './ActivitiyDialog';
+import ProjectIframe from './project/ProjectIframe';
+import { Box } from '@mui/material';
 
-function ElevationScroll(props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-    target: window ? window() : undefined,
-  });
 
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
-}
 
-ElevationScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
 
-export default function ProjectPreview(props) {
+
+
+
+
+
+
+
+ export default function ProjectPreview() {
+
 
   const [screenPoint, setScreenPoint] = React.useState(12)
+  const [resizeValue, setResizeValue] = useState(100)
+  const [open, setOpen] = React.useState(false);
+
+  const [isDrawing, setIsDrawing] = useState(false)
+  const canvasRef = useRef(null);
+  const contextRef = useRef(null);
 
 
+
+  const prepareCanvas = () => {
+    const canvas = canvasRef.current
+    canvas.width = window.innerWidth * 2;
+    canvas.height = window.innerHeight * 2;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
+
+    const context = canvas.getContext("2d")
+    context.scale(2, 2);
+    context.lineCap = "round";
+    context.strokeStyle = "black";
+    context.lineWidth = 5;
+    contextRef.current = context;
+  };
+
+  const startDrawing = ({ nativeEvent }) => {
+    const { offsetX, offsetY } = nativeEvent;
+    contextRef.current.beginPath();
+    contextRef.current.moveTo(offsetX, offsetY);
+    setIsDrawing(true);
+  };
+
+  const finishDrawing = () => {
+    contextRef.current.closePath();
+    setIsDrawing(false);
+  };
+
+  const draw = ({ nativeEvent }) => {
+    if (!isDrawing) {
+      return;
+    }
+    const { offsetX, offsetY } = nativeEvent;
+    contextRef.current.lineTo(offsetX, offsetY);
+    contextRef.current.stroke();
+  };
+
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d")
+    context.fillStyle = "white"
+    context.fillRect(0, 0, canvas.width, canvas.height)
+  }
+
+
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+  useEffect(() => {
+
+    return () => {
+      setScreenPoint(12)
+      setResizeValue(100)
+      setOpen(false)
+    }
+  }, [])
 
   return (
-    <React.Fragment>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <ProjectReviewContextProvider 
 
         value={{
           screenPoint,
+          resizeValue,
+          open,
+          handleClickOpen,
+          handleClose,
+          setResizeValue,
           setScreenPoint,
+          canvasRef,
+          contextRef,
+          prepareCanvas,
+          startDrawing,
+          finishDrawing,
+          clearCanvas,
+          draw,
+          
         }}
       
       >
 
+        <ActivitiyDialog />
 
-
-  
-      <ElevationScroll {...props}>
-        <AppBar sx={{backgroundColor: "white"}}>
-          <Toolbar>
-            <ReviewToolbar />
-              
-        
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-      <Toolbar />
-     
-
-      <Grid container justifyContent='center' >
-
-
-      
-        <Grid item  sm={screenPoint}   >
-          
-          <Zoom in={true} >
-          
-             <Paper  elevation={4} sx={{height: 'calc(99vh - 64px)', mt: 1, mb: 1, mx: 1, borderRadius: "15px"}} >
-
-             <iframe  src="https://xplusportfolio.herokuapp.com/" style={{border: 0, borderRadius: "15px"}} height="100%" width="100%" >
-
-            </iframe>
-
-
-             </Paper>
-
-            
-         
-          </Zoom>
-
+        <ProjectIframe />
         
 
-     
-        </Grid>
 
-      
+        <ReviewToolbar />
 
-      </Grid>
+    
       </ProjectReviewContextProvider>
-    </React.Fragment>
+    </Box>
   );
 }

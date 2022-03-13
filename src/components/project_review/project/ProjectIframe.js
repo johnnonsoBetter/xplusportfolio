@@ -42,13 +42,15 @@ export default function  ProjectIframe() {
 
             </iframe>
 
+            <Box width='100%' sx={{position: 'absolute', left: 0, right: 0, bottom: 40, top: 0}} >
+                        <Canvas  />
+                    </Box>
+
                 
-                <Grid container sx={{position: 'absolute', left: 0, bottom: 0, top: 0}} >
+                <Grid container justifyContent='center'   >
 
                     <Grid item sm={screenPoint} >
-                    <Box width='100%'  >
-                        <Canvas />
-                    </Box>
+                    
 
 
                     </Grid>

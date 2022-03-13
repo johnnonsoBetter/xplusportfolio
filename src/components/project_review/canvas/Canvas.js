@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import ProjectReviewContext from "../../../context/ProjectReviewContext";
-
+import '../../../css/canva.css'
 
 export function Canvas() {
   const {
@@ -21,12 +21,7 @@ export function Canvas() {
       onMouseUp={finishDrawing}
       onMouseMove={draw}
       ref={canvasRef}
-      width='100%'
-      height='100%'
-      style={{
-          height: '100%',
-          width: '100%'
-      }}
+      id="canvas"
     />
   );
 }

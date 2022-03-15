@@ -17,11 +17,6 @@ import usePushNotifications from '../shared/usePushNotifications'
 
 export default function AppbarContent({user, notify}) {
     
-    const {path} = useRouteMatch()
-    const {pathname} = useLocation()
-    const {setDrawerOpen, setFullScreen, setDrawerComponent} = useContext(DrawerContext) 
-    const [progress, setProgress] = useState(0)
-    
 
     const {
         userConsent,
@@ -55,8 +50,22 @@ export default function AppbarContent({user, notify}) {
 
                         
                         {
-                           (openNotify && pushNotificationSupported) && <PushConsentNotify openNotify={openNotify} setOpenNotify={setOpenNotify} />
+                               pushNotificationSupported &&
+                               <>
+                                    {
+                                        openNotify && 
+                                        <>
+
+                                            {
+                                                !subCompleted && <PushConsentNotify openNotify={openNotify} setOpenNotify={setOpenNotify} />
+                                            }
+
+                                        </>
+                                        
                             
+                                    }
+                               </>
+        
                         }
                         
 

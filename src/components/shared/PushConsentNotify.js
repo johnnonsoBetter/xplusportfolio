@@ -19,12 +19,16 @@ export default function PushConsentNotify({openNotify, setOpenNotify}) {
   const {
     onClickAskUserPermission,
     subCompleted,
+    userConsent
   } = usePushNotifications();
 
 
   React.useEffect(() => {
 
-    if(subCompleted) handleClose()
+    if(subCompleted) {
+      setOpenNotify(false)
+      handleClose()
+    } 
     
   }, [subCompleted])
 
@@ -110,13 +114,17 @@ export default function PushConsentNotify({openNotify, setOpenNotify}) {
             <Box my={1} >
 
             <Typography variant='body2' textAlign='center' >
-                Push Notification is a core-feature of this application, to enjoy this feature please hit the subscibe button below. 
+                Push Notification is a core-feature of this application, to enjoy this feature please {userConsent === 'denied' ? 'allow push notification' : 'hit the subscibe button below. '} 
             </Typography>
 
             </Box>
 
             <Box display='flex' justifyContent='center'>
-                <Chip color='info' onClick={onClickAskUserPermission} clickable label="Subscribe" avatar={<Avatar sx={{bgcolor: blue[600], color: "white"}} >  <NotificationsRounded  sx={{color: "white"}}/> </Avatar>} />
+                {
+                  userConsent === 'pending' &&
+                  <Chip color='info' onClick={onClickAskUserPermission} clickable label="Subscribe" avatar={<Avatar sx={{bgcolor: blue[600], color: "white"}} >  <NotificationsRounded  sx={{color: "white"}}/> </Avatar>} />
+
+                }
             </Box>
            
 

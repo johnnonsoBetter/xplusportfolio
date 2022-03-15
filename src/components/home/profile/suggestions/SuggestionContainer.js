@@ -21,7 +21,7 @@ export default function SuggestionContainer () {
 
     useEffect(() => {
 
-       
+        setLoading(true)
         authAxios.get(`/api/v1/users/${slug}/suggestions`).then(res => {
             setSuggestions(res.data)
             setLoading(false)
@@ -35,7 +35,7 @@ export default function SuggestionContainer () {
             setLoading(true)
             setSuggestions([])
         }
-    }, [])
+    }, [slug])
 
     return (
         <Box width="100%"> 

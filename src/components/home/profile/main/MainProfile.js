@@ -18,7 +18,7 @@ export default function MainProfile() {
 
 
     useEffect(() => {
-
+        setLoading(true)
         authAxios.get(`api/v1/users/${slug}`).then(res => {
   
             const {user} = res.data 
@@ -34,7 +34,7 @@ export default function MainProfile() {
             setProfile(null)
             setLoading(true)
         }
-    }, [])
+    }, [slug])
    
     
 

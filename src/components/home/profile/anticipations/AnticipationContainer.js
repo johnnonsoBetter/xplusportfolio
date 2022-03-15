@@ -28,7 +28,7 @@ export default function  AncticipationContainer() {
             
        }).catch(err => {
         
-           console.log(err)
+       
         
        })
     }
@@ -38,16 +38,16 @@ export default function  AncticipationContainer() {
   
 
     useEffect(() => {   
-       
-
+        
+        setLoading(true)
         authAxios.get(`/api/v1/users/${slug}/anticipations`, {params: {page: page}}).then(res => {
-            console.log(res)
+            
             setAnticipations(res.data)
             setTotalAnticipations(res.data.length)
             setLoading(false)
         }).catch(err => {
     
-            console.log(err)
+       
             setSomethingWentWrong(true)
         })
 
@@ -56,7 +56,7 @@ export default function  AncticipationContainer() {
             setAnticipations([])
             setLoading(true)
         }
-    }, [])
+    }, [slug])
 
 
 

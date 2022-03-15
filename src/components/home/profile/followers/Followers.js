@@ -53,7 +53,7 @@ export default function Followers() {
             setUsers([])
         }
 
-    }, [])
+    }, [slug])
     
     return (
         <Box px={1} >

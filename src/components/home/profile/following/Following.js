@@ -55,7 +55,7 @@ export default function Following() {
             setUsers([])
         }
 
-    }, [])
+    }, [slug])
     
     return (
         <Box px={1} >

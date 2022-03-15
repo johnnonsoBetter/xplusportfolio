@@ -40,14 +40,13 @@ export default function ProjectContainer() {
 
     useEffect(() => {   
        
-
+        setLoading(true)
         authAxios.get(`/api/v1/users/${slug}/projects`).then(res => {
-            console.log(res)
+            
             setProjects(res.data)
             setLoading(false)
         }).catch(err => {
     
-            console.log(err)
             setSomethingWentWrong(true)
         })
 
@@ -56,7 +55,7 @@ export default function ProjectContainer() {
             setProjects([])
             setLoading(true)
         }
-    }, [])
+    }, [slug])
 
 
 

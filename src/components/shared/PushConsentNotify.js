@@ -121,7 +121,7 @@ export default function PushConsentNotify({setOpenNotify}) {
 
             <Box display='flex' justifyContent='center'>
                 {
-                  userConsent === 'pending' &&
+                  userConsent === 'default' &&
                   <Chip color='info' onClick={onClickAskUserPermission} clickable label="Subscribe" avatar={<Avatar sx={{bgcolor: blue[600], color: "white"}} >  <NotificationsRounded  sx={{color: "white"}}/> </Avatar>} />
 
                 }

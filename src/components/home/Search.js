@@ -24,17 +24,21 @@ const Search = () => {
 
   useState(() => {
 
+    if(isLoading) {
+      setOptions([])
+    }
+
     return () => {
       setOptions([])
     }
-  }, [])
+  }, [isLoading])
 
 
   const handleSearch = (query) => {
     setIsLoading(true);
 
       authAxios.get('api/v1/search', {params: {query,}}).then(res => {
-        console.log(res.data)
+     
         setOptions(res.data)
         setIsLoading(false)
       })

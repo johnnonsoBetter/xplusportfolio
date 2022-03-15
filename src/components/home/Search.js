@@ -94,7 +94,7 @@ const Search = () => {
         <Menu   {...menuProps}>
           {results.map((result, index) => {
 
-            const {id, object, type, user_slug, owner} = result
+            const {id, object, type, owner} = result
 
             return (
             

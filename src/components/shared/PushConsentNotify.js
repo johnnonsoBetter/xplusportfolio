@@ -13,7 +13,7 @@ import usePushNotifications from '../shared/usePushNotifications';
 
 
 
-export default function PushConsentNotify({openNotify, setOpenNotify}) {
+export default function PushConsentNotify({setOpenNotify}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const {

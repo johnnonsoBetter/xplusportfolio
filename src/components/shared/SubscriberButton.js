@@ -42,7 +42,7 @@ export default function SubscribeButton({is_subscribed, a_slug, setTotalSubScrib
         setTotalSubScribers(totalSubScribers - 1)
   
         authAxios.delete(`/api/v1/anticipations/${a_slug}/suscribers`).then(res => {
-            console.log(res)
+            
         }).catch(err => {
             setIsSubscribed(true)
             setunSubscribeTrue(false)

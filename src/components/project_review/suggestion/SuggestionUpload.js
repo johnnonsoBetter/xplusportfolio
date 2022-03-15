@@ -1,83 +1,49 @@
-import * as React from "react";
-import { Upload } from "@progress/kendo-react-upload"
+import React, { useCallback } from "react";
+import styled from "@emotion/styled";
+import Uploady from "@rpldy/uploady";
+import withPasteUpload from "@rpldy/upload-paste";
+import UploadPreview from "@rpldy/upload-preview";
+import UploadButton from "@rpldy/upload-button"
+import { Box } from "@mui/system";
+import { Button, InputAdornment, InputBase, Typography } from "@mui/material";
 
 
+export default function SuggestionUpload ({image, setImage, setImageUrl}) {
+   
+    const uploadImage = (e) => {
 
-export default function SuggestionUpload() {
+        e.preventDefault()
+        const newImage = e.target.files[0]
+        console.log(newImage)
+        setImage(newImage)
+        setImageUrl(URL.createObjectURL(newImage))
+        
+        
+    }
+    
+	return (
+        <Box display='flex' flexDirection='column' alignItems='center' justifyContent='center' >
 
+           
 
-    const [file, setFile] = React.useState()
+                    <InputBase
+                      sx={{ ml: 1, flex: 1 }}
+                      
+                      onChange={uploadImage }
+                      endAdornment={
+                        <InputAdornment position="start">
+                          <Box component='img' width={24} src="/images/photo.png" />
+                        </InputAdornment>
+                      }
+                      size="small"
+                      sx={{p: 0, border: 'none', maxWidth: 200}}
+                      type='file' accept='image/*' className="form-control" 
+                    />
+               
+            
 
+            <Typography variant='body2' > Upload screen shot</Typography>
 
-    const onAdd = event => {
-        console.log(event.newState);
-        // setState({
-        //     files: event.newState
-        // });
-    };
-
-    const onRemove = event => {
-        // setState({
-        //     files: event.newState
-        // });
-    };
-
-    const onProgress = event => {
-        // setState({
-        //     files: event.newState
-        // });
-    };
-
-    const onStatusChange = event => {
-        // setState({
-        //     files: event.newState
-        // });
-    };
-
-    const handlePaste = e => {
-        if (e.clipboardData.files.length) {
-            const fileObject = e.clipboardData.files[0];
-            const file = {
-                getRawFile: () => fileObject,
-                name: fileObject.name,
-                size: fileObject.size,
-                status: 2,
-                progress: 0
-            };
-
-            // const filesState = files.map(f => ({ ...f }));
-            // filesState.push(file);
-
-            console.log(file)
-        } else {
-            alert('No image data was found in your clipboard. Copy an image first or take a screenshot.');
-        }
-    };
-
-
-    return (
-
-        <div
-            onPaste={handlePaste}
-        >
-            <Upload
-                autoUpload={false}
-                batch={false}
-                multiple={true}
-                file={file}
-                onAdd={onAdd}
-                onRemove={onRemove}
-                onProgress={onProgress}
-                onStatusChange={onStatusChange}
-                withCredentials={false}
-                saveUrl={"https://demos.telerik.com/kendo-ui/service-v4/upload/save"}
-                removeUrl={
-                    "https://demos.telerik.com/kendo-ui/service-v4/upload/remove"
-                }
-            />
-            <div style={{ marginTop: 5, padding: 10, fontStyle: 'italic', color: 'red', border: '1px solid red', height: 500 }}>Paste Area</div>
-        </div>
-
+        </Box>
     )
-}
-
+};

@@ -12,13 +12,14 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 
-import { InsertLinkOutlined} from '@mui/icons-material';
+import { InsertLinkOutlined, LinkOffOutlined, OpenInNewOutlined} from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../context/AuthContext';
 import LikerButton from '../../../../shared/LikerButton';
 import VoteButton from '../../../../shared/VoteButton';
 import ActivityOwner from '../ActivityOwner';
+import { useHistory, useLocation, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
@@ -35,8 +36,11 @@ function ProjectActivity(props) {
     liked,
     voted,
     total_suggestions,
+    slug,
   } = project
+  
 
+  //href={origin`/project_review/${slug}`}
 
 
   const {authState, isCurrentUser} = React.useContext(AuthContext)
@@ -46,6 +50,10 @@ function ProjectActivity(props) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = project_photos.length;
+  
+  const params = useHistory()
+
+  console.log(params)
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -89,17 +97,17 @@ function ProjectActivity(props) {
                     <a rel="noopener noreferrer" href={live_link} target="_blank">
 
                     <IconButton  size="small">
-                        <InsertLinkOutlined />
+                        <LinkOffOutlined />
                     </IconButton>
 
                     </a>
                 </Tooltip>
 
-                <Tooltip title="View repo" >
-                <a rel="noopener noreferrer" href={github_link} target="_blank">
+                <Tooltip title="Review project" >
+                <a rel="noopener noreferrer" href={`${window.location.origin}/project_review/${slug}`} target="_blank">
 
                     <IconButton size="small"  target="_blank" rel="noopener noreferrer" >
-                        <img src="/images/repo.png" alt="repo" />
+                        <OpenInNewOutlined fontSize='small' />
                     </IconButton>
 
                 </a>

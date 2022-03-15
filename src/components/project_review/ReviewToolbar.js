@@ -67,7 +67,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function ReviewToolbar() {
 
-  const {handleClickOpen, isDrawMode, setIsDrawMode} = useContext(ProjectReviewContext)
+  const {handleClickOpen, isDrawMode, setIsDrawMode, project} = useContext(ProjectReviewContext)
+
+  
+  const {
+    user,
+    github_link,
+    live_link,
+    title,
+    liked,
+    voted,
+    description,
+    slug,
+  } = project
 
 
 
@@ -198,9 +210,16 @@ export default function ReviewToolbar() {
                   
                   <Tooltip title="View Repo" >
 
-                  <IconButton size="small"  target="_blank" rel="noopener noreferrer" >
+                  
+
+                  <a rel="noopener noreferrer" href={github_link} target="_blank">
+
+                    
+                    <IconButton size="small"  target="_blank" rel="noopener noreferrer" >
                       <img src="/images/repo.png" alt="repo" />
                   </IconButton>
+
+                  </a>
 
 
                   </Tooltip>
@@ -214,9 +233,17 @@ export default function ReviewToolbar() {
                   
                     <Tooltip title="View Live" >
 
+                    <a rel="noopener noreferrer" href={live_link} target="_blank">
+
+                    
+                  
                       <IconButton >
                       <InsertLinkRounded />
                       </IconButton>
+
+                    </a>
+
+                      
 
                   </Tooltip>
                 </ListItemIcon>

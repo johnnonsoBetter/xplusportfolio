@@ -41,7 +41,7 @@ function App() {
             <Route path="/update_password" render={() => <UpdatePassword />} />  
             <Route path='/api' render={() => <SetReset /> } />        
             <Route  path="/xpo" render={() => isAuthenticated() ? <Home /> : <Redirect to='/login' /> } />
-            <Route  path="/project_review" render={() => isAuthenticated() ? <ProjectReview /> : <Redirect to='/login' /> } />
+            <Route  path="/project_review/:slug" render={() => isAuthenticated() ? <ProjectReview /> : <Redirect to='/login' /> } />
             <Route exact  path='/' render={() => isAuthenticated() ? <Redirect to="/xpo" /> : <Redirect to='/login' /> } />
             <Route exact path="/404" render={() => <NoPageFound />} />
             <Redirect to="/404" />

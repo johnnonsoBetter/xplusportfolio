@@ -36,6 +36,9 @@ export default function Home(props) {
   const [newPostAvailable, setNewPostAvailable] = useState(false)
   const [showFriendsActivities, setShowFriendsActivites] = useState(false)
 
+
+  const [image, setImage] = useState(null)
+
   const notifyForOffline = () => {
 
     const newSnackInfo = Object.assign(snackInfo, {})
@@ -110,6 +113,8 @@ export default function Home(props) {
              drawerOpen,
              drawerComponent,
              fullScreen,
+             image, 
+             setImage,
              setFullScreen: (fullScreen) => setFullScreen(fullScreen),
              setDrawerComponent: (component) => setDrawerComponent(component),
              setDrawerOpen: (drawerOpen) => setDrawerOpen(drawerOpen),

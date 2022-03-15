@@ -28,6 +28,9 @@ export default function usePushNotifications() {
   const [loading, setLoading] = useState(true);
   //to manage async actions
 
+  const [subCompleted, setSubCompleted] = useState(false)
+  // to give give info about a sucessfull push subscription.
+
   const {authAxios} = useContext(FetchContext)
 
   useEffect(() => {
@@ -36,6 +39,8 @@ export default function usePushNotifications() {
       setError(false);
 
     }
+
+    return () => setSubCompleted(false)
   }, []);
   //if the push notifications are supported, registers the service worker
   //this effect runs only the first render
@@ -62,7 +67,7 @@ export default function usePushNotifications() {
     setLoading(true);
     setError(false);
     askUserPermission().then(consent => {
-      console.log("we have received the ")
+     
       setSuserConsent(consent);
 
 
@@ -73,18 +78,21 @@ export default function usePushNotifications() {
           code: 0
         });
       }else if(consent === 'granted'){
-          console.log("Granted")
+         
           createNotificationSubscription().then(subscription => {
-              console.log("i have finally subscribed")
+              
               setUserSubscription(subscription);
               
             authAxios.post("/api/v1/web_push_notifications", {subscription: subscription})
             .then(function(response) {
-                console.log(response, "this is  the main response")
+
+                console.log("I have completed hte sub")
+                setSubCompleted(true)
                 setPushServerSubscriptionId(response.id);
                 setLoading(false);
             })
             .catch(err => {
+                console.log("err has occured")
                 setLoading(false);
                 setError(err);
             });
@@ -159,6 +167,7 @@ export default function usePushNotifications() {
     pushNotificationSupported,
     userSubscription,
     error,
-    loading
+    loading,
+    subCompleted
   };
 }

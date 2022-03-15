@@ -1,19 +1,39 @@
+import { useTheme } from '@emotion/react'
 import { CancelOutlined, CheckOutlined, FolderRounded, ModeEditRounded, VerifiedRounded } from '@mui/icons-material'
-import { Stack, Tooltip, Typography, IconButton, Paper, TextField, InputBase } from '@mui/material'
+import { Stack, Tooltip, Typography, IconButton, Paper, TextField, InputBase, useMediaQuery } from '@mui/material'
 import { Box } from '@mui/system'
 import moment from 'moment'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import { AuthContext } from '../../../../context/AuthContext'
+import DrawerContext from '../../../../context/DrawerContext'
 import { FetchContext } from '../../../../context/FetchContext'
 
 
 export default function Suggestion({suggestion}) {
 
-    const {done, created_at, project_slug, project_title, id} = suggestion
+    const {done, created_at, project_slug, image_url, id} = suggestion
+    const {drawerOpen, setDrawerOpen, setImage, image, setDrawerComponent, setFullScreen, drawerComponent} = useContext(DrawerContext)
+    const theme = useTheme()
     const date_created = moment(created_at).fromNow()
     const [content, setContent] = useState(suggestion.content)
     const [edit, setEdit] = useState(false)
+    const matches = useMediaQuery(theme.breakpoints.down('sm'));
+   
+
+
+
+    const viewImage = () => {
+
+        setImage(image_url)
+        setDrawerOpen(true)
+        
+        setDrawerComponent('image_viewer')
+
+        if (matches) setFullScreen(true)
+        
+    }
+   
 
 
 
@@ -39,7 +59,18 @@ export default function Suggestion({suggestion}) {
                 </Stack>
 
                 <Box display='flex'  alignItems='center' >
-                   
+
+
+
+                   {
+                       image_url && 
+                       <Tooltip  title="View suggestion image"    >
+                            <IconButton onClick={viewImage} >
+                                <img src='/images/picture.png' alt='bug pics' width={16}  />
+                            </IconButton>
+                       
+                        </Tooltip>
+                   }
                     
 
                     <Tooltip title="View Project"   sx={{mx: 1}} >

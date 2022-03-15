@@ -7,7 +7,8 @@ import CircularProgress, {
   circularProgressClasses,
 } from '@mui/material/CircularProgress';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
-import { Chip, Typography } from '@mui/material';
+import { Chip, Slide, Typography } from '@mui/material';
+import { CheckCircleRounded } from '@mui/icons-material';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -22,7 +23,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 
-export default function UploadLoading() {
+export default function UploadLoading({done}) {
     const [progress, setProgress] = React.useState(10);
 
     const progressMessage = () => {
@@ -56,17 +57,39 @@ export default function UploadLoading() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-   
-      <BorderLinearProgress variant="determinate" value={progress <= 90 ? progress : 90} />
-      <Box my={1} display='flex' justifyContent='center' flexDirection='column' alignItems='center' >
-          <Chip label={progress <= 90 ? progress + '%' : 90 + '%'} color='info' />
-          <Typography variant='body2' sx={{my: 0.5, textTransform: 'downcase'}} >
 
-              {
-                  progressMessage() 
-              }
-          </Typography>
-      </Box>
+      {
+
+        done ?
+        <Slide in={true} direction='top' >
+           <Box my={1} display='flex' justifyContent='center' flexDirection='column' alignItems='center' >
+          <CheckCircleRounded color='success'/>
+          <Typography variant='body2' > Upload Done!</Typography>
+        </Box>
+
+        </Slide>
+       
+
+        : 
+
+        <>
+
+        <BorderLinearProgress variant="determinate" value={progress <= 90 ? progress : 90} />
+            <Box my={1} display='flex' justifyContent='center' flexDirection='column' alignItems='center' >
+            <Chip label={progress <= 90 ? progress + '%' : 90 + '%'} color='info' />
+            <Typography variant='body2' sx={{my: 0.5, textTransform: 'downcase'}} >
+
+                {
+                    progressMessage() 
+                }
+            </Typography>
+        </Box>
+        
+        </>
+        
+      }
+   
+      
       
     </Box>
   );

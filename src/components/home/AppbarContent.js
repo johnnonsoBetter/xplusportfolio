@@ -21,30 +21,21 @@ export default function AppbarContent({user, notify}) {
     const {pathname} = useLocation()
     const {setDrawerOpen, setFullScreen, setDrawerComponent} = useContext(DrawerContext) 
     const [progress, setProgress] = useState(0)
-    const [openNotify, setOpenNotify] = useState(true)
+    
 
     const {
         userConsent,
         pushNotificationSupported,
-        userSubscription,
-        onClickAskUserPermission,
-        onClickSusbribeToPushNotification,
-        onClickSendSubscriptionToPushServer,
-        pushServerSubscriptionId,
-        onClickSendNotification,
-        error,
-        loading
+        subCompleted
       } = usePushNotifications();
 
-      const userConsentIsGranted = userConsent === 'granted' 
+    const [openNotify, setOpenNotify] = useState(userConsent !== 'granted')
+    const {totalNotifications, newPostAvailable, setShowFriendsActivites} = useContext(HomeInfoContext)
 
 
-      console.log(userConsentIsGranted)
-
-
-    
-
-    const {totalNotifications, newPostAvailable, setNewPostAvailable, setShowFriendsActivites} = useContext(HomeInfoContext)
+    useEffect(() => {
+        if(subCompleted) setOpenNotify(false)
+    }, [subCompleted])
 
 
 
@@ -64,7 +55,7 @@ export default function AppbarContent({user, notify}) {
 
                         
                         {
-                           ( !userConsentIsGranted && pushNotificationSupported) && <PushConsentNotify />
+                           (openNotify && pushNotificationSupported) && <PushConsentNotify openNotify={openNotify} setOpenNotify={setOpenNotify} />
                             
                         }
                         

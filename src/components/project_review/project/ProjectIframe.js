@@ -6,8 +6,8 @@ import { Canvas } from '../canvas/Canvas';
 
 export default function  ProjectIframe() {
 
-    const {screenPoint, isDrawMode, fullWidth, setFullWidth} = useContext(ProjectReviewContext)
-
+    const {screenPoint, isDrawMode, fullWidth, setFullWidth, project} = useContext(ProjectReviewContext)
+    const {live_link} = project
     return (
 
          
@@ -57,7 +57,7 @@ export default function  ProjectIframe() {
 
             <Box width='100%' height="100%" sx={{position: 'relative'}} id="capture" >
 
-            <iframe name='iframe' id='iframe'  src="https://www.tutorialrepublic.com" style={{border: 'none', borderBottomRightRadius: "15px", borderBottomLeftRadius: "15px"}} height="95%" width="100%" >
+            <iframe name='iframe' id='iframe'  src={live_link} style={{border: 'none', borderBottomRightRadius: "15px", borderBottomLeftRadius: "15px"}} height="95%" width="100%" >
 
             </iframe>
             {

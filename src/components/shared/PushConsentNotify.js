@@ -3,55 +3,39 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
 import { NotificationsRounded } from '@mui/icons-material';
 import { Chip } from '@mui/material';
 import { blue } from '@mui/material/colors';
-import usePushNotifications from './usePushNotifications';
+import usePushNotifications from '../shared/usePushNotifications';
 
 
 
-const PermissionRequester = () => {
-
-  const {
-    userConsent,
-    pushNotificationSupported,
-    userSubscription,
-    onClickAskUserPermission,
-    onClickSusbribeToPushNotification,
-    onClickSendSubscriptionToPushServer,
-    pushServerSubscriptionId,
-    onClickSendNotification,
-    error,
-    loading
-  } = usePushNotifications();
-
-  return (
-    <Box display='flex' justifyContent='center'>
-        <Chip color='info' onClick={onClickAskUserPermission} clickable label="Subscribe" avatar={<Avatar sx={{bgcolor: blue[600], color: "white"}} >  <NotificationsRounded  sx={{color: "white"}}/> </Avatar>} />
-    </Box>
-  )
-}
-
-
-
-export default function PushConsentNotify() {
+export default function PushConsentNotify({openNotify, setOpenNotify}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const {
+    onClickAskUserPermission,
+    subCompleted,
+  } = usePushNotifications();
+
+
+  React.useEffect(() => {
+
+    if(subCompleted) handleClose()
+    
+  }, [subCompleted])
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -131,11 +115,9 @@ export default function PushConsentNotify() {
 
             </Box>
 
-            <PermissionRequester />
-                
-            
-           
-
+            <Box display='flex' justifyContent='center'>
+                <Chip color='info' onClick={onClickAskUserPermission} clickable label="Subscribe" avatar={<Avatar sx={{bgcolor: blue[600], color: "white"}} >  <NotificationsRounded  sx={{color: "white"}}/> </Avatar>} />
+            </Box>
            
 
         </Box>

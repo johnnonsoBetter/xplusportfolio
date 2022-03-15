@@ -5,17 +5,19 @@ import { blue, green, orange } from '@mui/material/colors'
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FetchContext } from '../../../context/FetchContext'
+import { stringAvatar } from '../../../utils/stringUtil'
 
 
 export default function Member({user, noFollow}) {
-    const {name, slug, total_projects, total_anticipations, repu_coin, is_following} = user
+    const {name, slug, total_projects, total_anticipations, repu_coin, is_following, image} = user
 
     return (
         <Paper  elevation={0} sx={{minHeight: 260, borderRadius: "10px"}} >
             <Link to={`/xpo/members/${slug}`}  style={{textDecoration: 'none'}} >
                 <Stack rowGap={2} >
                     <Box  width="100%" display="flex" justifyContent="center" >
-                       <Avatar src="/images/pics.jpg" alt="pics" sx={{width: 70, height: 70, my: 3}} />
+  
+                       <Avatar  {...stringAvatar(name, 50, 50)} src={image} alt="pics" sx={{width: 70, height: 70, my: 3}} />
                     </Box>
                     <Box width="100%" display="flex" justifyContent="center" >
                         <Typography marginBottom color="GrayText" sx={{maxWidth: "80%"}} variant="body2" noWrap={true} > {name}</Typography>

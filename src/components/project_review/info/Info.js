@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import {  CloseOutlined, InfoOutlined, InsertCommentRounded, ScreenshotRounded} from '@mui/icons-material';
 import {Link} from 'react-router-dom'
+import ProjectReviewContext from '../../../context/ProjectReviewContext';
 
 
 
@@ -16,6 +17,11 @@ const ITEM_HEIGHT = 48;
 export default function Project() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const {project} = React.useContext(ProjectReviewContext)
+
+  const {user, description, title} = project
+  const {image, name, slug} = user
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -80,30 +86,28 @@ export default function Project() {
            
           <Box my={1}>
               <Typography  fontWeight={800} >
-                  Todo Application
+                  {title}
               </Typography>
 
               <Typography  sx={{my: 2}} variant='body2'  >
-              To address issues that do not require attention, run: npm audit fiTo address all issues (including breaking changes), run:
-                npm audit fix --force
-
-                    Run `npm audit` for details.
+              {description}
               </Typography>
           </Box>
 
          
 
 
-          <Box   px={2} mt={2} display="flex" width="100%" alignItems="center" justifyContent="flex-start" >
+          <Box   px={1} mt={2} display="flex" width="100%" alignItems="center" justifyContent="flex-start" >
 
             {
 
                 
-                <Link to={`/xpo/members/`}  style={{textDecoration: "none", justifyContent: "flex-start" , display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
+                <Link to={`/xpo/members/${slug}`}  style={{textDecoration: "none", justifyContent: "flex-start" , display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
         
               
                     
-                    <Avatar src='/images/pics.jpg' alt="John" > {"john"}</Avatar>
+                    <Avatar src={image}  alt={name} > {name[0]} </Avatar>
+
                 
                 <Stack  >
                     

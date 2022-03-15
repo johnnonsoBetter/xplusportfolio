@@ -31,7 +31,7 @@ const ResizeTool = () => {
 
         sx={{width: 120, mr: 2}}
         onChange={(e) => {
-            console.log(e.target.value)
+          
             let value = e.target.value
             //setScreenPoint(e.target.valule)
             switch(value){

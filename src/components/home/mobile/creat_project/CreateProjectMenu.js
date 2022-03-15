@@ -325,11 +325,11 @@ export default function CreateProjectMenu() {
                     </Grid>
                 </Grid>
 
-                <Box m={2}>
+                {/* <Box m={2}>
                   <Box mx={2} my={1} >
                     <UploadLoading />
                   </Box>
-               </Box>
+               </Box> */}
 
             <Box m={2}>
                 <Box mx={2} my={1} >

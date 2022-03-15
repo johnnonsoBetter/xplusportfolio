@@ -1,85 +1,32 @@
-import * as React from 'react';
-import {Box, Typography} from '@mui/material';
+import React, {useContext, useEffect, useState} from 'react';
+import {Box, TextField, Typography} from '@mui/material';
 import Menu from '@mui/material/Menu';
 
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import {  CloseOutlined, InsertCommentRounded, Link, ScreenshotRounded} from '@mui/icons-material';
-import { styled } from '@mui/material/styles';
-import InputUnstyled from '@mui/base/InputUnstyled';
 import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
 
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import DirectionsIcon from '@mui/icons-material/Directions';
 import { LoadingButton } from '@mui/lab';
-import html2canvas from 'html2canvas';
 
-
-  
-  const grey = {
-    50: '#F3F6F9',
-    100: '#E7EBF0',
-    200: '#E0E3E7',
-    300: '#CDD2D7',
-    400: '#B2BAC2',
-    500: '#A0AAB4',
-    600: '#6F7E8C',
-    700: '#3E5060',
-    800: '#2D3843',
-    900: '#1A2027',
-  };
-  
-  const StyledInputElement = styled('input')(
-    ({ theme, width}) => `
-    
-    font-size: 0.7rem;
-    font-family: IBM Plex Sans, sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-    border: 0px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-    border-radius: 8px;
-    padding: 5px 5px;
-    transition: all 150ms ease;
-    width: 190px;
-   
-  `,
-  );
-  
-  const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-    return (
-      <InputUnstyled disabled components={{ Input: StyledInputElement }} {...props}  ref={ref} />
-    );
-  });
-
- function UrlDisplay() {
-    return <CustomInput  aria-label="Demo input" placeholder="Type something..." />;
-}
+import SuggestionUpload from '../suggestion/SuggestionUpload'
+import * as yup from 'yup';
+import { useFormik } from 'formik';
+import { FetchContext } from '../../../context/FetchContext';
+import ProjectReviewContext from '../../../context/ProjectReviewContext';
+import UploadLoading from '../../home/mobile/creat_project/UploadLoading';
 
 
 
- function Input() {
-  return (
-    <Paper
+const validationSchema = yup.object({
+  content: yup 
+    .string("Please enter suggestion")
+    .required("suggestion is required"),
+});
 
-      sx={{  display: 'flex', alignItems: 'center', width: "100%" }}
-      elevation={0}
-    >
-      <InputBase
-        sx={{  flex: 1 }}
-        multiline
-        autoFocus={false}
-        rows={5}
-        placeholder="Type Suggestion"
-        
-      />
-     
-    </Paper>
-  );
-}
+
+
+
 
 
 
@@ -87,6 +34,14 @@ export default function Suggestion() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [imageUrl, setImageUrl] = React.useState(null)
+  const [image, setImage] = React.useState(null)
+  const [loadingBtn, setLoadingBtn] = React.useState(false)
+  const {authAxios} = useContext(FetchContext)
+  const {project} = useContext(ProjectReviewContext)
+  const [done, setDone] = useState(false)
+  
+
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -94,18 +49,53 @@ export default function Suggestion() {
     setAnchorEl(null);
   };
 
+  useEffect(() => {
 
-  const $support = (function () {
-    const canvas = document.createElement("canvas"),
-        ctx = canvas.getContext("2d");
+    return () => {
+      setImageUrl(null)
+      setImage(null)
+      setLoadingBtn(false)
+      setDone(false)
+    }
+  }, [open])
 
-    return {
-        canvas: !!ctx,
-        imageData: !!ctx.getImageData,
-        dataURL: !!canvas.toDataURL,
-        btoa: !!window.btoa,
-    };
-  })();
+
+
+
+
+  const formik = useFormik({
+    initialValues: {
+      content: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      
+      setLoadingBtn(true)
+
+      var formData = new FormData();
+      formData.append("content", values.content);
+      
+      if(image) formData.append('image', image)
+
+      formData.append('project_id', project ? project.slug : null)
+      authAxios.post('api/v1/suggestions', formData).then(res => {
+
+       
+        setDone(true)
+        setImage(null)
+        formik.resetForm()
+
+
+      }).catch(err => {
+        
+        setLoadingBtn(false)
+      })
+    
+      
+    },
+  });
+
+
 
 
   return (
@@ -135,7 +125,7 @@ export default function Suggestion() {
           sx: {
             overflow: 'visible',
             borderRadius: "10px",
-            maxWidth: 250,
+            maxWidth: 260,
             
             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
             mt: 1.5,
@@ -162,10 +152,10 @@ export default function Suggestion() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-       <Box p={1} maxWidth={250} >
+       <Box p={1} width={260} maxWidth={260} >
            
-           <Box display='flex' alignItems='center' justifyContent='space-between'>
-            <UrlDisplay />
+           <Box display='flex' alignItems='center' justifyContent='flex-end'>
+          
            
             <IconButton onClick={handleClose}>
                 <CloseOutlined />
@@ -174,10 +164,10 @@ export default function Suggestion() {
 
            </Box>
 
-           <Box >
+           <Box height={ imageUrl ? 140 : 0}>
              {
                imageUrl && 
-               <img style={{maxWidth: "100%", width: "90%"}} src={imageUrl} />
+               <img style={{maxWidth: "100%", width: "100%", maxHeight: "100%", objectFit: 'cover', objectPosition: '50% 50%'}} src={imageUrl} />
 
              }
             
@@ -185,22 +175,64 @@ export default function Suggestion() {
 
            <Box my={2}>
 
+              <SuggestionUpload image={image} setImage={setImage} setImageUrl={setImageUrl}/>
              
             </Box>
 
 
 
+          <form onSubmit={formik.handleSubmit}>
 
           <Box my={2}>
 
-              <Input />
+          <Paper
+
+            sx={{  display: 'flex', alignItems: 'center', width: "100%" }}
+            elevation={0}
+            >
+            <TextField
+              sx={{  flex: 1 }}
+              multiline
+
+              rows={5}
+              placeholder="Type Suggestion"
+              autoCapitalize
+              autoFocus
+              
+              name="content"
+              value={formik.values.content}
+              onChange={formik.handleChange}
+              error={formik.touched.content && Boolean(formik.errors.content)}
+              helperText={formik.touched.content && formik.errors.content}
+            />
+
+          
+            
+
+          </Paper>
           </Box>
 
           <Box >
-              <LoadingButton variant='contained' fullWidth color='success' >
-                  Make suggestion
+            {
+              loadingBtn ?
+
+              <UploadLoading done={done}/>
+              :
+
+              <LoadingButton loading={loadingBtn} type='submit' variant='contained' fullWidth color='success' >
+                Make suggestion
               </LoadingButton>
+
+
+            }
+           
+            
           </Box>
+
+
+
+          </form>
+          
 
        </Box>
       </Menu>

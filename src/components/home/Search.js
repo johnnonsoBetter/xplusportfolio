@@ -90,7 +90,7 @@ const Search = () => {
         <Menu   {...menuProps}>
           {results.map((result, index) => {
 
-            const {id, object, type, user_slug} = result
+            const {id, object, type, user_slug, owner} = result
 
             return (
             
@@ -100,7 +100,7 @@ const Search = () => {
                 {
                   type === "User" ? 
                   <User user={object} /> : type === "Anticipation" ?
-                  <Anticipation anticipation={object} user_slug={user_slug} /> : 
+                  <Anticipation anticipation={object} owner={owner}  /> : 
                   type === "Project" ? 
                   <Project project={object} /> : null
                 }
@@ -154,16 +154,17 @@ const User = ({user}) => {
 }
 
 
-const Anticipation = ({anticipation, user_slug}) => {
+const Anticipation = ({anticipation, owner}) => {
 
   const {body} = anticipation
+  const {slug} = owner
 
 
   return (
     
           < ListItem >
               
-                  <Box display="flex" component={Link} sx={{textDecoration: "none"}} to={`/xpo/members/${user_slug}/anticipations`} width="100%" alignItems="center" >
+                  <Box display="flex" component={Link} sx={{textDecoration: "none"}} to={`/xpo/members/${slug}/anticipations`} width="100%" alignItems="center" >
                       
                       <ListItemIcon>
                       <Avatar sx={{backgroundColor: purple[400]}} > <PsychologyRounded /> </Avatar>

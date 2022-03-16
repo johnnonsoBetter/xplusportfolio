@@ -97,7 +97,7 @@ export default function NotificationMenu({total_notifications}) {
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
        
         <Tooltip title="Notifications">
-            <IconButton onClick={handleClick} disableRipple sx={{mr: 1}}>
+            <IconButton  onClick={handleClick} disableRipple sx={{mr: 1}}>
                         
                 <Badge color="error" badgeContent={totalNotifications} >
                     <NotificationsOutlined />

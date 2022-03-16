@@ -76,6 +76,7 @@ export default function CreateProjectMenu() {
   const [tools, setTools] = useState([])
   const [checked, setChecked] = useState(false)
   const [anticipationId, setAnticipationId] = useState(null)
+  const [done, setDone] = useState(false)
 
 
  
@@ -111,6 +112,7 @@ export default function CreateProjectMenu() {
 
       authAxios.post('api/v1/projects', formData).then(res => {
         console.log(res)
+        setDone(true)
         setDueDate(nextDay(new Date(), -1))
         setLoadingBtn(false)
         setImageURLs([])
@@ -325,15 +327,16 @@ export default function CreateProjectMenu() {
                     </Grid>
                 </Grid>
 
-                {/* <Box m={2}>
-                  <Box mx={2} my={1} >
-                    <UploadLoading />
-                  </Box>
-               </Box> */}
-
+                <UploadLoading done={done}/> 
             <Box m={2}>
                 <Box mx={2} my={1} >
-                    <LoadingButton loading={loadingBtn} type='submit' fullWidth variant='contained' >Create Project</LoadingButton>
+                    {
+                      loading ? 
+                      <UploadLoading done={done}/> 
+                      : 
+                      <LoadingButton loading={loadingBtn} type='submit' fullWidth variant='contained' >Create Project</LoadingButton>
+
+                    }
                 </Box>
             </Box>
             </form>

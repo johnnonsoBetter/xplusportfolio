@@ -7,7 +7,7 @@ import CircularProgress, {
   circularProgressClasses,
 } from '@mui/material/CircularProgress';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
-import { Chip, Slide, Typography } from '@mui/material';
+import { Chip, Slide, Typography, Zoom } from '@mui/material';
 import { CheckCircleRounded } from '@mui/icons-material';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -61,13 +61,13 @@ export default function UploadLoading({done}) {
       {
 
         done ?
-        <Slide in={true} direction='top' >
+        <Zoom in={true}  >
            <Box my={1} display='flex' justifyContent='center' flexDirection='column' alignItems='center' >
           <CheckCircleRounded color='success'/>
           <Typography variant='body2' > Upload Done!</Typography>
         </Box>
 
-        </Slide>
+        </Zoom>
        
 
         : 

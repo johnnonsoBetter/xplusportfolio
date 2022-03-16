@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
-import { Apps, PeopleOutlineRounded, Search } from '@mui/icons-material';
+import { Apps, BubbleChartRounded, PeopleOutlineRounded, Search } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
+import { Box } from '@mui/material';
+import ResourcesMobileLink from './resources/ResourcesMobileLink';
 
 
 export default function BottomNav() {
@@ -43,10 +45,13 @@ export default function BottomNav() {
             setValue(newValue);
           }}
         >
-            <BottomNavigationAction disableRipple LinkComponent={Link} to="/xpo" label="Feeds" type="link" icon={<Apps />} />
-          <BottomNavigationAction disableRipple LinkComponent={Link} to={`/xpo/members`} label="Members" icon={<PeopleOutlineRounded />} />
+            <BottomNavigationAction disableRipple LinkComponent={Link} to="/xpo" label="Feeds" type="link" icon={<Apps fontSize='24px' />} />
+          <BottomNavigationAction disableRipple LinkComponent={Link} to={`/xpo/members`} label="Members" icon={<PeopleOutlineRounded fontSize='24px'/>} />
           
-          <BottomNavigationAction disableRipple LinkComponent={Link} to={`#search`} label="Search" icon={<Search />} />
+          
+          <BottomNavigationAction disableRipple LinkComponent={Link} to={`#search`} label="Search" icon={<Search fontSize='24px' />} />
+          
+          <ResourcesMobileLink />
           
                      
         </BottomNavigation>

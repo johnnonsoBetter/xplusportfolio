@@ -6,7 +6,7 @@ import NotificationMenu from './notifications/NotificationMenu'
 import PinnedProjectMenu from './pins/PinnedProjectMenu'
 import MyProfile from './MyProfile'
 import { Link, useLocation } from 'react-router-dom'
-import { AppsOutlined, NotificationsOutlined, NotificationsRounded, PeopleAltOutlined, PushPinOutlined } from '@mui/icons-material'
+import { AppsOutlined, BubbleChartRounded, NotificationsOutlined, NotificationsRounded, PeopleAltOutlined, PushPinOutlined } from '@mui/icons-material'
 import { useRouteMatch } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
 import DrawerContext from '../../context/DrawerContext'
@@ -14,6 +14,7 @@ import HomeInfoContext from '../../context/HomeInfoContext'
 import {blue} from '@mui/material/colors'
 import PushConsentNotify from '../shared/PushConsentNotify'
 import usePushNotifications from '../shared/usePushNotifications'
+import ResourcesTabLink from './resources/ResourcesTabLink'
 
 export default function AppbarContent({user, notify}) {
     
@@ -82,6 +83,12 @@ export default function AppbarContent({user, notify}) {
                             <IconButton disableRipple>
                                 <AppsOutlined />
                             </IconButton>
+                        </Tooltip>
+
+                        <Tooltip  LinkComponent={Link} to={`/xpo`} title="Resources" sx={{display: {xs: "none", sm: "block"}}}>
+                            
+                                <ResourcesTabLink />
+                           
                         </Tooltip>
               
                         <Tooltip title="Members" sx={{display: {xs: "none", sm: "block"}}}>

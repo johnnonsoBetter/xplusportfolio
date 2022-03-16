@@ -35,6 +35,7 @@ export default function Home(props) {
   const {somethingWentWrong} = useContext(AuthContext)
   const [newPostAvailable, setNewPostAvailable] = useState(false)
   const [showFriendsActivities, setShowFriendsActivites] = useState(false)
+  const [resourcesLinksIsOpen, setResourcesLinksIsOpen] = useState(false)
 
 
   const [image, setImage] = useState(null)
@@ -102,9 +103,12 @@ export default function Home(props) {
             totalNotifications,
             newPostAvailable, 
             showFriendsActivities,
+            resourcesLinksIsOpen,
+            setResourcesLinksIsOpen,
             setShowFriendsActivites: (show) => setShowFriendsActivites(show),
             setNewPostAvailable: (avaliable) => setNewPostAvailable(avaliable),
             setTotalNotifications: (total) => setTotalNotifications(total),
+            
           }}
         >
         

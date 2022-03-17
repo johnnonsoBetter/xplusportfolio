@@ -11,14 +11,16 @@ export default function ResourcesLink() {
         {link: 'communities', name: 'Communities', imgPath: 'communities.png'},
         {link: 'learning', name: 'Learning', imgPath: 'book.png'},
         {link: 'job_boards', name: 'Job Boards', imgPath: 'suitcase.png'},
-        {link: 'side_incomes', name: 'Side Income', imgPath: 'passive-income.png'}
+        {link: 'side_incomes', name: 'Side Income', imgPath: 'passive-income.png'},
+        {link: 'recruitment_agencies', name: 'Agencies', imgPath: 'contract.png'},
+
        
     ]
     
     return (
             
             
-            <List  sx={{ width: '100%', maxWidth: 360, minHeight: 300, bgcolor: 'background.paper', borderRadius: "10px" }} component="nav" 
+            <List  sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', borderRadius: "10px" }} component="nav" 
                 subheader={<ListSubheader  component={
                     () => (
                     <Box p={2} display="flex" justifyContent="space-between">

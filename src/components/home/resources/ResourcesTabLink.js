@@ -28,7 +28,7 @@ export default function ResourcesTabLink() {
   };
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', mx: 1, alignItems: 'center', textAlign: 'center' }}>
+      <Box sx={{  display: {xs: 'none', sm: 'flex', lg: 'none'}, mx: 1, alignItems: 'center', textAlign: 'center' }}>
        
     
           <IconButton

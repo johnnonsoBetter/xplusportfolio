@@ -56,6 +56,7 @@ export default function Home(props) {
     newSnackInfo.severity = 'success'
     setSnackInfo(newSnackInfo)
     setOpenSnack(true)
+    window.location.reload()
   }
 
 

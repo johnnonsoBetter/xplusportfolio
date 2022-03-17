@@ -11,6 +11,7 @@ import MyProfileContainer from '../../my_profile/MyProfileContainer';
 import ProfileContainer from '../../profile/ProfileContainer';
 import ProjectContainer from '../project/ProjectContainer';
 import ActivityPage from './ActivityPage';
+import Communities from './resources/Communities';
 
 export default function ActivityContainer() {
 
@@ -21,6 +22,7 @@ export default function ActivityContainer() {
         <Box width="100%">
             
             <Switch >
+                <Route path={`/xpo/communities`} render={() => <Communities />} />
                 <Route path={`/xpo/projects/:slug`} render={() => <ProjectContainer />} />
                 <Route path={`/xpo/members/:slug`} render={() => <ProfileContainer  />} />
                 <Route  path={`/xpo/members`} render={() => <MembersContainer />} />

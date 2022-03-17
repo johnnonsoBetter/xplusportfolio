@@ -37,7 +37,7 @@ export default function AppbarContent({user, notify}) {
 
     return (
         <Box width="100%" display="flex" position='relative' alignItems="center" justifyContent="space-between" >
-            <Box flexGrow={2} >
+            <Box flexGrow={2}  >
                 <Box component="img" srcSet="/images/xlogo.png" alt="logo" width={120} maxWidth="80%" />
                
             </Box>

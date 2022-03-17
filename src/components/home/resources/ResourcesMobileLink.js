@@ -31,7 +31,9 @@ export default function ResourcesMobileLink() {
        
      
         
-        <BottomNavigationAction disableRipple  onClick={handleClick}  label="Resources" icon={<Box component="img" srcSet="/images/google-assistant.png" alt="bubble" width={24}  />} />
+        <BottomNavigationAction disableRipple  onClick={handleClick}  label="Resources" icon={<img component="img" srcSet="/images/google-assistant.png" alt="bubble" width={24}  />} />
+      
+        
     
       <Menu
         anchorEl={anchorEl}
@@ -60,7 +62,7 @@ export default function ResourcesMobileLink() {
               display: 'block',
               position: 'absolute',
               bottom: 0,
-              right: 37,
+              right: 33,
               width: 10,
               height: 10,
               bgcolor: 'background.paper',

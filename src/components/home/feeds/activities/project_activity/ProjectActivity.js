@@ -40,8 +40,6 @@ function ProjectActivity(props) {
   } = project
   
 
-  //href={origin`/project_review/${slug}`}
-
 
   const {authState, isCurrentUser} = React.useContext(AuthContext)
 
@@ -52,8 +50,6 @@ function ProjectActivity(props) {
   const maxSteps = project_photos.length;
   
   const params = useHistory()
-
-  console.log(params)
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -131,6 +127,7 @@ function ProjectActivity(props) {
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
                 component="img"
+                loading='lazy'
                 sx={{
                   height: 355,
                   display: 'block',

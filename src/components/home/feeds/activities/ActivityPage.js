@@ -85,7 +85,7 @@ export default function ActivityPage() {
     }, [showFriendsActivities])
 
     return (
-        <Box className="activity-container" sx={{width: "100%",  height: "calc(99vh - 85px)", scrollbarWidth: {display: "none"}, overflowY: "auto"}}>
+        <Box className="activity-container" >
                 <ActivityList loading={loading} finished={finished} totalActivities={totalActivities} activities={activities} fetchMoreData={fetchMoreData} />
         </Box>
     )

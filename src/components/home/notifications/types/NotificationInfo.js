@@ -6,17 +6,16 @@ import React from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 
-export default function AnticipationLike({anticipation, user_slug, markAsSeen}) {
+export default function NotificationInfo({ link, body, title, icon, backgroundColor}) {
 
-    const {body, slug} = anticipation
     const history = useHistory()
 
     return (
       
         
             <ListItemButton disableGutters disableRipple  onClick={() => {
-                markAsSeen()
-                history.push(`/xpo/my_profile/${user_slug}/anticipations/` )
+               
+                history.push(link)
             }} >
                 
 
@@ -24,8 +23,9 @@ export default function AnticipationLike({anticipation, user_slug, markAsSeen}) 
                     <ListItemIcon>
             
                         
-                    <Avatar   style={{width: "42px", height: "42px"}} sx={{backgroundColor: purple[400]}} sizes='large' >
-                            <ThumbUpRounded   fontSize='0.7rem' />
+                    <Avatar   style={{width: "42px", height: "42px"}} sx={{backgroundColor,}} sizes='large' >
+                            
+                            {icon}
                     </Avatar>
     
                     </ListItemIcon>
@@ -36,8 +36,8 @@ export default function AnticipationLike({anticipation, user_slug, markAsSeen}) 
                         <Box display='flex' alignItems='center'  >
 
                         
-                        <Typography variant='body1'>
-                        Anticipation Like
+                        <Typography fontWeight={700} variant='body1'>
+                            {title}
                         </Typography>
                         
 

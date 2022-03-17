@@ -1,11 +1,11 @@
-import { CheckBoxRounded, VerifiedRounded } from '@mui/icons-material'
+import { CheckBoxRounded, HowToVoteRounded, PsychologyRounded, ThumbUpRounded, VerifiedRounded } from '@mui/icons-material'
 import { Box, Grid, IconButton, Paper, Stack, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import { useContext, useState } from 'react'
-import AnticipationLike from './AnticipationLIke'
-import ProjectUpvote from './ProjectUpvote'
 import {FetchContext} from '../../../context/FetchContext'
 import { AuthContext } from '../../../context/AuthContext'
 import HomeInfoContext from '../../../context/HomeInfoContext'
+import NotificationInfo from './NotificationInfo'
+import { orange, purple } from '@mui/material/colors'
 
 
 const Notification = ({object, type, user_slug, seen, id}) => {
@@ -73,12 +73,30 @@ const Notification = ({object, type, user_slug, seen, id}) => {
         <>
             {
                 type === "AnticipationLikeNotification" ?
-                <AnticipationLike markAsSeen={markAsSeen} anticipation={object['anticipation']} user_slug={user_slug} /> : 
+                <NotificationInfo markAsSeen={markAsSeen} body={object['anticipation'].body} link={`/xpo/my_profile/${user_slug}/anticipations/`} title="Anticipation Like" backgroundColor={purple[400]} icon={<ThumbUpRounded    fontSize='0.7rem' />}/>
+                : 
                 type === "UpvoteNotification" ? 
-                <ProjectUpvote markAsSeen={markAsSeen} project={object['project']} /> : null
+                <NotificationInfo markAsSeen={markAsSeen} body={object['project'].title} link={`/xpo/projects/${object['project'].slug}`} title="Project Upvote"  backgroundColor={orange[400]} icon={ <HowToVoteRounded   fontSize='0.7rem' />}/> 
+                :
+                type === "NewAnticipationNotification" ?
+                <NotificationInfo markAsSeen={markAsSeen} body={object['anticipation'].body} link={`/xpo/my_profile/${user_slug}/anticipations/`} title="New Anticipation" backgroundColor={purple[400]} icon={ <PsychologyRounded   fontSize='0.7rem' />}/> : 
+                type === "ProjectLikeNotification" ? 
+                <NotificationInfo markAsSeen={markAsSeen} body={object['project'].title} link={`/xpo/projects/${object['project'].slug}`} title="Project Like" backgroundColor={orange[400]} icon={ <ThumbUpRounded   fontSize='0.7rem' />}/> 
+                : null
             }
         </>
-              
+
+        {/* {
+                type === "AnticipationLikeNotification" ?
+                <AnticipationLike anticipation={object['anticipation']} user_slug={user_slug} /> : 
+                type === "NewAnticipationNotification" ? 
+                <NewAnticipation anticipation={object['anticipation']} user_slug={user_slug} /> : 
+                type === "UpvoteNotification" ? 
+                <ProjectUpvote project={object['project']} /> : 
+                type === "ProjectLikeNotification" ? 
+                <ProjectLike project={object['project']} /> : null
+            }
+               */}
     </Box>
     </Paper>
 </Box>

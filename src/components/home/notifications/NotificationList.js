@@ -1,12 +1,11 @@
-import { FolderRounded } from '@mui/icons-material'
+import { FolderRounded, HowToVoteRounded, PsychologyRounded, ThumbUpRounded } from '@mui/icons-material'
 import { Avatar, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useContext } from 'react'
 import { FetchContext } from '../../../context/FetchContext'
 import HomeInfoContext from '../../../context/HomeInfoContext'
-import AnticipationLike from './types/AnticipationLike'
-import NewAnticipation from './types/NewAnticipation'
-import ProjectUpvote from './types/ProjectUpvote'
+import NotificationInfo from './types/NotificationInfo'
+
 
 export default function NotificationList({notifications, handleClose}) {
 
@@ -56,14 +55,19 @@ const Notification = ({object, type,  user_slug}) => {
 
     return (
         <>
-            {
-                type === "AnticipationLikeNotification" ?
-                <AnticipationLike anticipation={object['anticipation']} user_slug={user_slug} /> : 
-                type === "UpvoteNotification" ? 
-                <ProjectUpvote project={object['project']} /> : 
-                type === "NewAnticipationNotification" ? 
-                <NewAnticipation anticipation={object['anticipation']} user_slug={user_slug} /> : null
-            }
-        </>
+        {
+            type === "AnticipationLikeNotification" ?
+            <NotificationInfo  body={object['anticipation'].body} link={`/xpo/my_profile/${user_slug}/anticipations/`} title="Anticipation Like" icon={<ThumbUpRounded   fontSize='0.7rem' />}/>
+            : 
+            type === "UpvoteNotification" ? 
+            <NotificationInfo  body={object['project'].title} link={`/xpo/projects/${object['project'].slug}`} title="Project Upvote" icon={ <HowToVoteRounded   fontSize='0.7rem' />}/> 
+            :
+            type === "NewAnticipationNotification" ?
+            <NotificationInfo  body={object['anticipation'].body} link={`/xpo/my_profile/${user_slug}/anticipations/`} title="New Anticipation" icon={ <PsychologyRounded   fontSize='0.7rem' />}/> : 
+            type === "ProjectLikeNotification" ? 
+            <NotificationInfo  body={object['project'].title} link={`/xpo/projects/${object['project'].slug}`} title="Project Like" icon={ <ThumbUpRounded   fontSize='0.7rem' />}/> 
+            : null
+        }
+    </>
     )
 }

@@ -3,8 +3,7 @@ import React from 'react'
 import '../../../App.css'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useTheme } from '@emotion/react'
-import ProjectUpvote from './ProjectUpvote'
-import AnticipationLike from './AnticipationLIke'
+
 import Notification from './Notification'
 
 

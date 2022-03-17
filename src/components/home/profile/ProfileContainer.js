@@ -6,6 +6,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import ProfileMenu from './ProfileMenu';
 import ProfileRouter from './ProfileRouter';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import '../../../css/InfiniteList.css'
 
 export default function ProfileContainer({isCurrentUser}) {
 
@@ -13,11 +14,12 @@ export default function ProfileContainer({isCurrentUser}) {
  
   return (
     <List
+      id="profile_container"
       sx={{
         width: '100%',
         position: 'relative',
         overflow: 'auto',
-        maxHeight: {sm: "calc(99vh - 60px)", xs: "calc(96vh - 85px)"},
+        height: {sm: "calc(99vh - 45px)", xs: "calc(99vh - 30px)"},
         '& ul': { padding: 0 },
       }}
       subheader={<li />}

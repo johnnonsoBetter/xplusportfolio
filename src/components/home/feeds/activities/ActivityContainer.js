@@ -1,5 +1,5 @@
 import {  Box } from '@mui/material'
-import React from 'react'
+import React, {useRef} from 'react'
 
 import { Switch, Route } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom';
@@ -20,10 +20,30 @@ import SideIncomes from './resources/SideIncomes';
 export default function ActivityContainer() {
 
     const {path} = useRouteMatch()
+    const containerRef = useRef()
+
+
+
+    var lastScrollTop = 0;
+
+    // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+    // containerRef.addEventListener("scroll", function(){ // or window.addEventListener("scroll"....
+    // var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+    // if (st > lastScrollTop){
+    //     // downscroll code
+
+    //     console.log("hey i am being scrolled down")
+    // } else {
+    //     // upscroll code
+    //     console.log("hey i am being scrolled up")
+    // }
+    // lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    // }, false);
+
 
 
     return (
-        <Box width="100%">
+        <Box width="100%" >
             
             <Switch >
                 <Route path={`/xpo/communities`} render={() => <Communities />} />

@@ -1,0 +1,23 @@
+.infinite-scroll-component::-webkit-scrollbar {
+    display: none!important;
+}
+
+.infinite-scroll-component {
+    -ms-overflow-style: none!important;
+    scrollbar-width: none!important;
+    
+}
+#profile_container {
+    -ms-overflow-style: none!important;
+    scrollbar-width: none!important;
+}
+
+
+#profile_container::-webkit-scrollbar {
+    display: none!important;
+}
+
+
+::-webkit-scrollbar {
+    display: none!important;
+}

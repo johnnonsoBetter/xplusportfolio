@@ -5,7 +5,7 @@ import { useTheme } from '@emotion/react'
 import AnticipationActivity from './anticipation_activity/AnticipationActivity'
 import MyMiniInfo from '../../../shared/MyMiniInfo'
 import FeedLoader from '../../../shared/FeedLoader'
-
+import '../../../../css/InfiniteList.css'
 
 export default function ActivityList({activities, totalActivities, fetchMoreData, loading, finished }) {
 
@@ -15,7 +15,7 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
   
     
     return (
-        <Box py={1} mb={2} className="member-container" sx={{width: "100%", scrollbarColor: "red", scrollbarWidth: {display: "none"}, overflowY: "auto"}} >
+        <Box py={1} mb={2} className="activity-container"  sx={{width: "100%", scrollbarColor: "red", scrollbarWidth: {display: "none"}, overflowY: "auto"}} >
             
 
            <InfiniteScroll

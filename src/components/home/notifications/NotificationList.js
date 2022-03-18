@@ -70,7 +70,7 @@ const Notification = ({object, type,  user_slug}) => {
             type === "NewAnticipationNotification" ?
             <NotificationInfo  body={anticipation.body} link={`/xpo/my_profile/${user_slug}/anticipations/`} title="New Anticipation" color={blue[400]} icon={ <PsychologyRounded   fontSize='0.7rem' />}/> : 
             type === "ProjectLikeNotification" ? 
-            <NotificationInfo  body={project.title} link={`/xpo/projects/${project.slug}`} title="Project Like" color={orange[400]} icon={ <ThumbUpRounded   fontSize='0.7rem' />}/> 
+            <NotificationInfo   body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message='likes your project ' /> 
             : null
         }
     </>

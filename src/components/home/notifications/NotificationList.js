@@ -68,7 +68,7 @@ const Notification = ({object, type,  user_slug}) => {
             <NotificationInfo  body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message='upvoted your project '  /> 
             :
             type === "NewAnticipationNotification" ?
-            <NotificationInfo  body={anticipation.body} link={`/xpo/my_profile/${user_slug}/anticipations/`} title="New Anticipation" color={blue[400]} icon={ <PsychologyRounded   fontSize='0.7rem' />}/> : 
+            <NotificationInfo  body={anticipation.body} action_owner={action_owner} total_performers={0} event_message='anticipates ' color={blue[400]} link={`/xpo/my_profile/${user_slug}/anticipations/`}/> : 
             type === "ProjectLikeNotification" ? 
             <NotificationInfo   body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message='likes your project ' /> 
             : null

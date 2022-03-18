@@ -25,7 +25,7 @@ export default function ResourcesLink() {
                     () => (
                     <Box p={2} display="flex" justifyContent="space-between">
                         
-                        <Typography color="ButtonText" variant="body2" sx={{textAlign: "left"}}> Resources</Typography>
+                        <Typography color="ButtonText" variant="body2" fontWeight={600} sx={{textAlign: "left"}}> Resources</Typography>
                     </Box> )
                 
                 } sx={{textAlign: "left"}} >  </ListSubheader>}  >
@@ -45,7 +45,7 @@ export default function ResourcesLink() {
                                 <Stack  >
                                    
                                     <Box  >
-                                    <Typography sx={{textTransform: "capitalize"}} color="InfoText" variant="body2" noWrap={true}> {pageLink.name}</Typography>
+                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body2" noWrap={true}> {pageLink.name}</Typography>
                                     
                                     </Box>
                                    

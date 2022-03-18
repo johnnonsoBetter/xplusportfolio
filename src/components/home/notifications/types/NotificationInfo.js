@@ -21,7 +21,7 @@ const getTruncatedBody = (body) => {
 }
 
 
-export default function NotificationInfo({ link, body, icon, event_message, action_owner, total_performers, backgroundColor}) {
+export default function NotificationInfo({ link,  body, color, event_message, action_owner, total_performers, backgroundColor}) {
 
     const history = useHistory()
     const {name, image} = action_owner
@@ -44,7 +44,7 @@ export default function NotificationInfo({ link, body, icon, event_message, acti
                         
                         <Avatar src='/images/pics.jpg' style={{width: "32px", height: "32px"}} sx={{backgroundColor,}} sizes='small' >
                                 
-                                {icon}
+                            
                         </Avatar>
     
                     </Box>
@@ -52,7 +52,6 @@ export default function NotificationInfo({ link, body, icon, event_message, acti
                     <Box flexGrow={1} >
 
                             
-
                             <Typography variant='body2'>
                             
                                 <Box component="span" sx={{fontWeight: 700, color: stringToColor(name)}}  >
@@ -63,8 +62,8 @@ export default function NotificationInfo({ link, body, icon, event_message, acti
                                 <Box component="span" >
                                     
                                     {
-                                        total_performers > 1 &&
-                                        'and 3 others '
+                                        total_performers > 0 &&
+                                        `and ${total_performers} others ` 
                                     }
                                 </Box>
 
@@ -75,7 +74,7 @@ export default function NotificationInfo({ link, body, icon, event_message, acti
 
                                 
 
-                                <Box component="span" sx={{fontWeight: 700, color: blue[500]}} >
+                                <Box component="span" sx={{fontWeight: 700, color,}} >
                                 {truncatedBody}
                                 </Box>
                             </Typography>

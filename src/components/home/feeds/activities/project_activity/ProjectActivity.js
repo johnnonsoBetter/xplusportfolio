@@ -70,10 +70,7 @@ function ProjectActivity({project, typePackge, showType}) {
         square
         elevation={0}
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
+        
           bgcolor: 'background.default',
           borderTopLeftRadius: "10px",
           borderTopRightRadius:"10px"

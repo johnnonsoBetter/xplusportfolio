@@ -12,6 +12,8 @@ export default function NotificationList({notifications, handleClose}) {
 
     const {authAxios} = useContext(FetchContext)
     const {setTotalNotifications} = useContext(HomeInfoContext)
+
+    console.log(notifications)
     
 
     const markAsSeen = (id) => {
@@ -53,12 +55,14 @@ export default function NotificationList({notifications, handleClose}) {
 
 const Notification = ({object, type,  user_slug}) => {
 
+    const {anticipation, project, action_owner, total_performers} = object
+
 
     return (
         <>
         {
             type === "AnticipationLikeNotification" ?
-            <NotificationInfo  body={object['anticipation'].body} link={`/xpo/my_profile/${user_slug}/anticipations/`} title="Anticipation Like" backgroundColor={purple[400]} icon={<ThumbUpRounded   fontSize='0.7rem' />}/>
+            <NotificationInfo  body={object['anticipation'].body} action_owner={action_owner} total_performers={total_performers} event_message='likes your anticipation ' link={`/xpo/my_profile/${user_slug}/anticipations/`} title="Anticipation Like" backgroundColor={purple[400]} icon={<ThumbUpRounded   fontSize='0.7rem' />}/>
             : 
             type === "UpvoteNotification" ? 
             <NotificationInfo  body={object['project'].title} link={`/xpo/projects/${object['project'].slug}`} title="Project Upvote" backgroundColor={orange[400]} icon={ <HowToVoteRounded   fontSize='0.7rem' />}/> 

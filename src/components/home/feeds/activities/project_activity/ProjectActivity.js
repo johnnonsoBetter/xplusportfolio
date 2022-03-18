@@ -20,11 +20,15 @@ import LikerButton from '../../../../shared/LikerButton';
 import VoteButton from '../../../../shared/VoteButton';
 import ActivityOwner from '../ActivityOwner';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
+import ActivityType from '../ActivityType';
 
 
 
-function ProjectActivity(props) {
-  const {project} = props
+function ProjectActivity({project, typePackge, showType}) {
+
+ 
+  const {owner_name, owner_slug, action_type} = typePackge 
+
   const {
     created_at, user,
     total_likes,
@@ -39,9 +43,6 @@ function ProjectActivity(props) {
     slug,
   } = project
   
-
-
-  const {authState, isCurrentUser} = React.useContext(AuthContext)
 
   const [totalLikes, setTotalLikes] = useState(total_likes)
   const [totalVotes, setTotalVotes] = useState(total_votes)
@@ -79,6 +80,49 @@ function ProjectActivity(props) {
           
         }}
       >
+         {
+            showType && 
+
+            <>
+
+              {
+                action_type === "project.create" ?
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='made this 🔥' /> :
+                action_type === "project.like" ? 
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='likes this 👍' /> :
+                action_type === "project.vote" ? 
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='voted this project 🗳️' /> :
+                action_type === "project.suggest" ? 
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='made suggestion to this 🗳️' /> :
+                null
+                
+
+
+              }
+
+            
+            </>
+
+
+            
+          }
+        
+        
+          <Paper 
+          elevation={0}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            height: 50,
+            pl: 2,
+          
+        
+            
+          }}
+          >
+
+
+          
           <Box >
           <ActivityOwner created_at={created_at} user={user} />
             </Box>
@@ -203,7 +247,7 @@ function ProjectActivity(props) {
             </Box>
             
         </Paper>
-
+        </Paper>
       
       
     </Box>

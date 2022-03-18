@@ -19,7 +19,7 @@ import LikerButton from '../../../../shared/LikerButton';
 import ActivityOwner from '../ActivityOwner';
 import { purple } from '@mui/material/colors';
 
-import ActivityType from '../AnticipationType';
+import ActivityType from '../ActivityType';
 
 
 
@@ -82,15 +82,15 @@ function AnticipationActivity({anticipation, showType, typePackge}) {
 
               {
                 action_type === "anticipation.create" ?
-                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='Anticipated 👨‍🔧 👨‍🔧' /> :
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='anticipate 👨‍🔧' /> :
                 action_type === "anticipation.like" ? 
-                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='Likes 👍 👍' /> :
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='likes this 👍' /> :
                 action_type === "anticipation.subscribe" ? 
-                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='Subscribed 🗒 🗒' /> :
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='subscribed to this 🗒' /> :
+                action_type === "anticipation.fulfill" ? 
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='fulfilled this ✨ ' /> :
                 null
                 
-
-
               }
 
             

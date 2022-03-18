@@ -6,6 +6,7 @@ import { Avatar, Box, Divider, IconButton, InputBase, Paper, Skeleton, Stack } f
 import {useHistory} from 'react-router-dom'
 import { stringAvatar, stringToColor } from '../../utils/stringUtil';
 import { AuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
@@ -44,13 +45,13 @@ const AnticipationCreator = ()=> {
 export default function MyMiniInfo() {
 
     const {authState} = React.useContext(AuthContext)
-    const {name, image} = JSON.parse(authState.userInfo)
+    const {name, image, slug} = JSON.parse(authState.userInfo)
 
     return (
         <Box>
             <Paper elevation={0} sx={{minHeight: 10, width: "100%"}} >
                 <Box display="flex" p={1} width="100%" alignItems="center" justifyContent="flex-start" >
-                    <Box width="20%" height="100%" display="flex" justifyContent="center" >
+                    <Box component={Link} sx={{textDecoration: 'none'}} to={`/xpo/my_profile/${slug}`} width="20%" height="100%" display="flex" justifyContent="center" >
 
                         <Avatar  {...stringAvatar(name, 50, 50)} src={image} alt="pics" width={50} height={50} />
                     </Box>

@@ -7,6 +7,7 @@ import moment from 'moment'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../../context/AuthContext'
+import { stringAvatar } from '../../../../utils/stringUtil'
 
 
 
@@ -41,7 +42,9 @@ export default function ActivityOwner({created_at, user}) {
         
                 <ListItemIcon >
                     
-                    <Avatar src={image} alt={name} > {name[0]}</Avatar>
+                   
+                    <Avatar  {...stringAvatar(name, 35, 35)} sx={{width: 35, height: 35,  fontSize: "0.9em"}} src={image} alt="pics" width={40} height={40} />
+                    
                 </ListItemIcon>
                 <Stack  >
                     

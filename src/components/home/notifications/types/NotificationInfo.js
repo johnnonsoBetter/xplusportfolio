@@ -4,7 +4,7 @@ import { blue, green, purple } from '@mui/material/colors'
 import { Box } from '@mui/system'
 import React from 'react' 
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import { stringToColor } from '../../../../utils/stringUtil'
+import { stringAvatar, stringToColor } from '../../../../utils/stringUtil'
 
 
 const getTruncatedBody = (body) => {
@@ -42,10 +42,9 @@ export default function NotificationInfo({ link,  body, color, event_message, ac
                     <Box display='flex' mx={1} justifyContent='center' >
             
                         
-                        <Avatar src='/images/pics.jpg' style={{width: "32px", height: "32px"}} sx={{backgroundColor,}} sizes='small' >
-                                
-                            
-                        </Avatar>
+                        
+                        <Avatar  style={{width: "32px", height: "32px"}}  {...stringAvatar(name, 35, 35)} src={image} alt="pics" width={40} height={40} />
+
     
                     </Box>
 

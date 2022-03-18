@@ -5,6 +5,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
 import { FetchContext } from '../../../context/FetchContext'
+import { stringAvatar } from '../../../utils/stringUtil'
 import ProfileRouter from './ProfileRouter'
 
 export default function ProfileMenu() {
@@ -76,8 +77,9 @@ const Profile = ({profile}) => {
 
             <Box position="absolute" bottom={-30} left={20} >
           
-                <Avatar src={image}  alt={name} sx={{width: 90, height: 90, border: "2px solid white", fontSize: "1.4em"}}> {name[0]} </Avatar>
                 {/* <Avatar src={image} alt={name} > {name[0]}</Avatar> */}
+                <Avatar  {...stringAvatar(name, 90, 90)} sx={{width: 90, height: 90, border: "2px solid white", fontSize: "1.4em"}} src={image} alt="pics" width={50} height={50} />
+
             </Box>
 
 

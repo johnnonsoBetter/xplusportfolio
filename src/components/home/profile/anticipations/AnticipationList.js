@@ -22,8 +22,8 @@ export default function AnticipationList({anticipations, totalAnticipations, fet
         scrollThreshold={1}
         hasMore={totalAnticipations !== anticipations.length}
         
-        height="200px"
-        // height={matchesSm ? "calc(99vh - 60px)" : matchesXs ?  "calc(98vh - 85px)": "calc(99vh - 85px)" }
+     
+        height={matchesSm ? "calc(99vh - 60px)" : matchesXs ?  "calc(98vh - 85px)": "calc(99vh - 85px)" }
         loader={
             finished ? null :
             <Box mb={2}> 

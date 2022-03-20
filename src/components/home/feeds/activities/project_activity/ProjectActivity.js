@@ -1,7 +1,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -12,7 +12,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 
-import { InsertLinkOutlined, LinkOffOutlined, OpenInNewOutlined} from '@mui/icons-material';
+import { InsertLinkOutlined, LinkOffOutlined, OpenInNewOutlined, UsbOff} from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../context/AuthContext';
@@ -27,7 +27,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function ProjectActivity({project, typePackge, showType}) {
 
- 
+  const {isCurrentUser} = useContext(AuthContext)
   const {owner_name, owner_slug, action_type} = typePackge 
 
   const {
@@ -141,16 +141,22 @@ function ProjectActivity({project, typePackge, showType}) {
                     </a>
                 </Tooltip>
 
-                <Tooltip title="Review project" >
-                <a rel="noopener noreferrer" href={`${window.location.origin}/project_review/${slug}`} target="_blank">
+                {
+                  !isCurrentUser(user.slug) &&
+                  <Tooltip title="Review project" >
+                  <a rel="noopener noreferrer" href={`${window.location.origin}/project_review/${slug}`} target="_blank">
 
-                    <IconButton size="small"  target="_blank" rel="noopener noreferrer" >
-                        <OpenInNewOutlined fontSize='small' />
-                    </IconButton>
+                      <IconButton size="small"  target="_blank" rel="noopener noreferrer" >
+                          <OpenInNewOutlined fontSize='small' />
+                      </IconButton>
 
-                </a>
-                    
-                </Tooltip>
+                  </a>
+                      
+                  </Tooltip>
+
+                }
+
+                
 
                 
 

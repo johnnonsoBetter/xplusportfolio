@@ -99,7 +99,7 @@ export default function ProjectContainer() {
 
     useEffect(() => {   
        
-
+      document.title = project ? `Project (${slug})` : "Project"
       authAxios.get(`/api/v1/projects/${slug}`).then(res => {
           const {project} = res.data
         
@@ -136,8 +136,6 @@ export default function ProjectContainer() {
     
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        {/* <SuggestionContainer setProject={setProject} project={project} slug={slug} user={project.user} /> */}
-
           <ProjectTab />
         </Box>
       

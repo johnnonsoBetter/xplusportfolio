@@ -48,6 +48,7 @@ export default function ProfileRouter({isCurrentUser}) {
   const {path} = useRouteMatch()
   const {pathname} = useLocation
   const {slug} = useParams()
+  
 
   return (
     

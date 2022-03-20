@@ -6,6 +6,7 @@ import { FetchContext } from '../../../../context/FetchContext'
 import ProjectList from './ProjectList'
 import ProjectListLoader from './ProjectListLoader'
 import Empty from '../../../shared/Empty'
+import HomeInfoContext from '../../../../context/HomeInfoContext'
 
 export default function ProjectContainer() {
 
@@ -17,6 +18,7 @@ export default function ProjectContainer() {
     const [totalProjects, setTotalProjects] = useState(0)
     const [page, setPage] = useState(0)
     const [totalMembers, setTotalMembers] = useState(0)
+    const {setTitleBarUserName, titleBarUserName} = useContext(HomeInfoContext)
 
 
 
@@ -39,7 +41,8 @@ export default function ProjectContainer() {
   
 
     useEffect(() => {   
-       
+        
+        document.title = titleBarUserName + '(Projects)'
         setLoading(true)
         authAxios.get(`/api/v1/users/${slug}/projects`).then(res => {
             

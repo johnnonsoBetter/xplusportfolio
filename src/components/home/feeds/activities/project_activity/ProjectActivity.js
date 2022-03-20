@@ -21,6 +21,7 @@ import VoteButton from '../../../../shared/VoteButton';
 import ActivityOwner from '../ActivityOwner';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import ActivityType from '../ActivityType';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 
@@ -167,18 +168,32 @@ function ProjectActivity({project, typePackge, showType}) {
           <div key={step.img_url}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
-                component="img"
-                loading='lazy'
-                sx={{
-                  height: 355,
-                  display: 'block',
-                  maxWidth: "100%",
-                  overflow: 'hidden',
-                  width: '100%',
-                }}
-                src={step.img_url}
+                
+                width="100%"
+                height={355}
+              >
+
+              <LazyLoadImage
+              alt={step.img_url}
+              effect="blur"
+              src={step.img_url}
+              width='100%'
+              style={{
+                height: 355,
+                display: 'block',
+                maxWidth: "100%",
+                overflow: 'hidden',
+                width: '100%',
+              }}
+              
               
               />
+
+
+              </Box>
+
+
+     
             ) : null}
           </div>
         ))}

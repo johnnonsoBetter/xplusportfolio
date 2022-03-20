@@ -327,14 +327,13 @@ export default function CreateProjectMenu() {
                     </Grid>
                 </Grid>
 
-                <UploadLoading done={done}/> 
             <Box m={2}>
                 <Box mx={2} my={1} >
                     {
-                      loading ? 
+                      loadingBtn ? 
                       <UploadLoading done={done}/> 
                       : 
-                      <LoadingButton loading={loadingBtn} type='submit' fullWidth variant='contained' >Create Project</LoadingButton>
+                      <LoadingButton  type='submit' fullWidth variant='contained' >Create Project</LoadingButton>
 
                     }
                 </Box>

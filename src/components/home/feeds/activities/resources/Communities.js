@@ -15,6 +15,8 @@ export default function Communities() {
 
     useEffect(() => {
 
+        document.title = "Communities"
+
 
         authAxios.get('api/v1/resources',  {params: {resources_type: 'community'}}).then(res => {
 

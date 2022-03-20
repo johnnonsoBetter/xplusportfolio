@@ -7,6 +7,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import {AuthContext} from '../../../../context/AuthContext'
 import {FetchContext} from '../../../../context/FetchContext'
+import HomeInfoContext from '../../../../context/HomeInfoContext'
 import FollowButton from '../../../shared/FollowButton'
 
 export default function MainProfile() {
@@ -16,9 +17,11 @@ export default function MainProfile() {
     const [profile, setProfile] = useState(null)
     const [loading, setLoading] = useState(true)
     const {slug} = useParams()
-
+    const {setTitleBarUserName} = useContext(HomeInfoContext)
 
     useEffect(() => {
+
+       
         setLoading(true)
         authAxios.get(`api/v1/users/${slug}`).then(res => {
   
@@ -36,6 +39,17 @@ export default function MainProfile() {
             setLoading(true)
         }
     }, [slug])
+
+
+    useEffect(() => {
+
+       
+        if(profile){
+            setTitleBarUserName(profile.name)
+            document.title = profile.name
+        }
+ 
+    }, [profile, slug])
    
     
 

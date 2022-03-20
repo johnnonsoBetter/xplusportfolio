@@ -6,6 +6,7 @@ import { FetchContext } from '../../../../context/FetchContext'
 import AnticipationList from './AnticipationList'
 import AnticipationListLoader from './AnticipationListLoader'
 import Empty from '../../../shared/Empty'
+import HomeInfoContext from '../../../../context/HomeInfoContext'
 
 export default function  AncticipationContainer() {
 
@@ -16,6 +17,7 @@ export default function  AncticipationContainer() {
     const {slug} = useParams()
     const [totalAnticipations, setTotalAnticipations] = useState(0)
     const [page, setPage] = useState(1)
+    const {titleBarUserName} = useContext(HomeInfoContext)
 
 
 
@@ -38,7 +40,7 @@ export default function  AncticipationContainer() {
   
 
     useEffect(() => {   
-        
+        document.title = titleBarUserName + ' (Anticipations)'
         setLoading(true)
         authAxios.get(`/api/v1/users/${slug}/anticipations`, {params: {page: page}}).then(res => {
             

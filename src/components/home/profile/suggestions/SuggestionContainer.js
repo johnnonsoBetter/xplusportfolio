@@ -1,9 +1,10 @@
 
-import { Box, CircularProgress, Paper, Skeleton, Stack } from '@mui/material';
+import { Box, Paper, Skeleton, Stack } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { AuthContext } from '../../../../context/AuthContext';
 import { FetchContext } from '../../../../context/FetchContext';
+import HomeInfoContext from '../../../../context/HomeInfoContext';
 import Empty from '../../../shared/Empty';
 import Suggestion from './Suggestion';
 
@@ -17,10 +18,11 @@ export default function SuggestionContainer () {
     const [loading, setLoading] = useState(true)
     const {slug} = useParams()
     const [suggestions, setSuggestions] = useState([])
+    const {titleBarUserName} = useContext(HomeInfoContext)
 
 
     useEffect(() => {
-
+        document.title = titleBarUserName + ' (Suggestions)'
         setLoading(true)
         authAxios.get(`/api/v1/users/${slug}/suggestions`).then(res => {
             setSuggestions(res.data)

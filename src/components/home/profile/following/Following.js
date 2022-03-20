@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { AuthContext } from '../../../../context/AuthContext'
 import { FetchContext } from '../../../../context/FetchContext'
+import HomeInfoContext from '../../../../context/HomeInfoContext'
 import Empty from '../../../shared/Empty'
 import MemberList from '../../members/MemberList'
 import MembersLoader from '../../members/MembersLoader'
@@ -17,6 +18,7 @@ export default function Following() {
     const [users, setUsers] = useState([])
     const [page, setPage] = useState(0)
     const [totalMembers, setTotalMembers] = useState(0)
+    const {titleBarUserName} = useContext(HomeInfoContext)
 
     const fetchMoreData = () => {
         
@@ -35,6 +37,7 @@ export default function Following() {
 
 
     useEffect(() => {
+        document.title = titleBarUserName + ' (Following)'
         setLoading(true)
         authAxios.get(`/api/v1/users/${slug}/followings`, {params: {page: 1}}).then(res => {
              const {data} = res 
@@ -56,6 +59,8 @@ export default function Following() {
         }
 
     }, [slug])
+
+
     
     return (
         <Box px={1} >

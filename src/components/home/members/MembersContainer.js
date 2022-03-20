@@ -38,6 +38,7 @@ export default function MembersContainer() {
    
 
     useEffect(() => {
+        document.title = "Members"
         setLoading(true)
         authAxios.get('api/v1/users', {params: {page: 1}}).then(res => {
              const {data} = res 

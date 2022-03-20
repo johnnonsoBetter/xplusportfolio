@@ -7,7 +7,7 @@ import moment from 'moment'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../../context/AuthContext'
-import { stringAvatar } from '../../../../utils/stringUtil'
+import { stringAvatar, stringToColor } from '../../../../utils/stringUtil'
 
 
 
@@ -40,17 +40,16 @@ export default function ActivityOwner({created_at, user}) {
                 :
                 <Link to={`/xpo/members/${slug}`}  style={{textDecoration: "none", display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
         
-                <ListItemIcon >
-                    
+            
                    
                     <Avatar  {...stringAvatar(name, 35, 35)} sx={{width: 35, height: 35,  fontSize: "0.9em"}} src={image} alt="pics" width={40} height={40} />
                     
-                </ListItemIcon>
-                <Stack  >
+             
+                <Stack sx={{mx: 1}}  >
                     
             
-                    <Box maxWidth={120}>
-                        <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} color="ButtonText" variant="body2" noWrap={true}> {name}</Typography>
+                    <Box maxWidth={120} >
+                        <Typography textAlign='left' sx={{ textTransform: "downcase", color: stringToColor(name) }}  variant="body2" noWrap={true}> {name}</Typography>
 
                     </Box><Box maxWidth={120}>
                         <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} variant="body2" color="ButtonShadow" noWrap={true}> {date_created}</Typography>

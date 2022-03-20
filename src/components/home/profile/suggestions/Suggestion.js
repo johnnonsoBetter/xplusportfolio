@@ -8,11 +8,12 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import { AuthContext } from '../../../../context/AuthContext'
 import DrawerContext from '../../../../context/DrawerContext'
 import { FetchContext } from '../../../../context/FetchContext'
+import ActivityOwner from '../../feeds/activities/ActivityOwner'
 
 
 export default function Suggestion({suggestion, showEdit=true}) {
 
-    const {done, created_at, project_slug, image_url, id} = suggestion
+    const {done, created_at, user, project_slug, image_url, id} = suggestion
     const {drawerOpen, setDrawerOpen, setImage, image, setDrawerComponent, setFullScreen, drawerComponent} = useContext(DrawerContext)
     const theme = useTheme()
     const date_created = moment(created_at).fromNow()
@@ -50,10 +51,11 @@ export default function Suggestion({suggestion, showEdit=true}) {
                     
             
                    
-                    <Box maxWidth={120}>
+                    {/* <Box maxWidth={120}>
                         <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} variant="body2" color="ButtonShadow" noWrap={true}> {date_created}</Typography>
                        
-                    </Box>
+                    </Box> */}
+                    <ActivityOwner user={user} created_at={created_at} />
                     
                      
                 </Stack>

@@ -47,6 +47,7 @@ import { FetchContext } from '../../context/FetchContext';
 
   useEffect(() => {
 
+    document.title = "Reviewing" + project ? project.title : null
     authAxios.get(`/api/v1/projects/${slug}`).then(res => {
       const {project} = res.data
     
@@ -67,6 +68,10 @@ import { FetchContext } from '../../context/FetchContext';
       setOpen(false)
     }
   }, [])
+
+
+
+  
 
   return (
     <Box sx={{ display: 'flex' }}>

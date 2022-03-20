@@ -38,6 +38,7 @@ export default function Home(props) {
   const [showFriendsActivities, setShowFriendsActivites] = useState(false)
   const [resourcesLinksIsOpen, setResourcesLinksIsOpen] = useState(false)
   const {authAxios} = useContext(FetchContext)
+  const [titleBarUserName, setTitleBarUserName] = useState(null)
 
 
   const [image, setImage] = useState(null)
@@ -71,7 +72,16 @@ export default function Home(props) {
     setOpenSnack(false);
   };
 
+
+  useEffect(() => {
+
+    document.title = totalNotifications >= 1 ? `Feeds (${totalNotifications})`: "Feeds" 
+
+
+  }, [totalNotifications])
+
   React.useEffect(() => {
+    
     window.addEventListener('offline', notifyForOffline);
     window.addEventListener('online', notifyForOnline);
 
@@ -124,6 +134,8 @@ export default function Home(props) {
             newPostAvailable, 
             showFriendsActivities,
             resourcesLinksIsOpen,
+            titleBarUserName,
+            setTitleBarUserName: (name) => setTitleBarUserName(name),
             setResourcesLinksIsOpen,
             setShowFriendsActivites: (show) => setShowFriendsActivites(show),
             setNewPostAvailable: (avaliable) => setNewPostAvailable(avaliable),

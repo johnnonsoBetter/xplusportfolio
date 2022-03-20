@@ -14,6 +14,8 @@ import { FetchContext } from '../../../../context/FetchContext';
 import { AuthContext } from '../../../../context/AuthContext';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import SuggestionContainer from './suggestion/SuggestionContainer';
+import ProjectTab from './ProjectTab';
+
 
 
  function Info(props) {
@@ -134,8 +136,9 @@ export default function ProjectContainer() {
     
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <SuggestionContainer setProject={setProject} project={project} slug={slug} user={project.user} />
+        {/* <SuggestionContainer setProject={setProject} project={project} slug={slug} user={project.user} /> */}
 
+          <ProjectTab />
         </Box>
       
       

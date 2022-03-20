@@ -83,7 +83,7 @@ export default function ResourcesTabLink() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <ResourcesLink />
+        <ResourcesLink closeMenu={handleClose} />
       </Menu>
     </React.Fragment>
   );

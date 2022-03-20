@@ -10,7 +10,7 @@ import DrawerContext from '../../../../context/DrawerContext'
 import { FetchContext } from '../../../../context/FetchContext'
 
 
-export default function Suggestion({suggestion}) {
+export default function Suggestion({suggestion, showEdit=true}) {
 
     const {done, created_at, project_slug, image_url, id} = suggestion
     const {drawerOpen, setDrawerOpen, setImage, image, setDrawerComponent, setFullScreen, drawerComponent} = useContext(DrawerContext)
@@ -101,25 +101,41 @@ export default function Suggestion({suggestion}) {
 
                }
 
+
+
+               
+
                </Box>
 
-                    {
-                        !done && 
-                        <>
-                        {
-                            !edit && 
-                            <Box flexBasis="9%" >
-                            <IconButton onClick={() => setEdit(true)} >
-                                <ModeEditRounded fontSize='small' color={'disabled'} />
-                            </IconButton>
-                            </Box>
+               {
 
+                showEdit &&
+                <>
+                
+                    {
+                            !done && 
+                            <>
+                            {
+                                !edit && 
+                                <Box flexBasis="9%" >
+                                <IconButton onClick={() => setEdit(true)} >
+                                    <ModeEditRounded fontSize='small' color={'disabled'} />
+                                </IconButton>
+                                </Box>
+
+                            }
+                            
+                            </>
                         }
                         
                         </>
+
+
                     }
+
+                    
                      
-           </Box>
+                </Box>
            </Paper>
        </Box>
     )

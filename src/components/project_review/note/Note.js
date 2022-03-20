@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from "draft-js";
+import { convertToRaw, EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {SendRounded } from '@mui/icons-material'
 import {IconButton, Typography, Zoom } from '@mui/material'
@@ -9,6 +9,11 @@ import { Box } from '@mui/system'
 
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
+import draftToHtml from 'draftjs-to-html';
+import parse from 'html-react-parser'
+
+
+
 
 
 
@@ -19,8 +24,24 @@ const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
 );
 
+
+
+
 useEffect(() => {
-    console.log(editorState);
+
+  const rawContentState = convertToRaw(editorState.getCurrentContent());
+
+
+
+const markup = draftToHtml(
+  
+  rawContentState, 
+);
+
+    console.log(parse(`${markup}`));
+
+    
+
 }, [editorState]);
 
 

@@ -74,8 +74,12 @@ export default function NotificationInfo({ link,  body, color, event_message, ac
                                 
 
                                 <Box component="span" sx={{fontWeight: 700, color,}} >
-                                {truncatedBody}
+                                    {truncatedBody}
                                 </Box>
+
+                                
+
+
                             </Typography>
 
                     

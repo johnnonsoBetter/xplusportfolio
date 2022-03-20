@@ -40,6 +40,7 @@ export default function ResourcesMobileLink() {
         id="account-menu"
         open={open}
         onClose={handleClose}
+        
         PaperProps={{
           elevation: 0,
           sx: {
@@ -74,7 +75,7 @@ export default function ResourcesMobileLink() {
         transformOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
       >
-        <ResourcesLink />
+        <ResourcesLink closeMenu={handleClose} />
       </Menu>
     </Box>
   );

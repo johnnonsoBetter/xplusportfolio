@@ -5,7 +5,7 @@ import {FetchContext} from '../../../context/FetchContext'
 import { AuthContext } from '../../../context/AuthContext'
 import HomeInfoContext from '../../../context/HomeInfoContext'
 import NotificationInfo from './NotificationInfo'
-import { orange, purple } from '@mui/material/colors'
+import { blue, orange, purple } from '@mui/material/colors'
 
 
 const Notification = ({object, type, user_slug, seen, id}) => {
@@ -14,6 +14,7 @@ const Notification = ({object, type, user_slug, seen, id}) => {
     const {setSomethingWentWrong} = useContext(AuthContext)
     const [read, setRead] = useState(seen)
     const {setTotalNotifications} = useContext(HomeInfoContext)
+    const {anticipation, project, action_owner, total_performers} = object
 
     
 
@@ -69,7 +70,7 @@ const Notification = ({object, type, user_slug, seen, id}) => {
 
     <Box   >
         
-        
+{/*         
         <>
             {
                 type === "AnticipationLikeNotification" ?
@@ -84,7 +85,31 @@ const Notification = ({object, type, user_slug, seen, id}) => {
                 <NotificationInfo markAsSeen={markAsSeen} body={object['project'].title} link={`/xpo/projects/${object['project'].slug}`} title="Project Like" backgroundColor={orange[400]} icon={ <ThumbUpRounded   fontSize='0.7rem' />}/> 
                 : null
             }
-        </>
+        </> */}
+
+        <>
+        {
+            type === "AnticipationLikeNotification" ?
+            <NotificationInfo markAsSeen={markAsSeen}  body={anticipation.body} action_owner={action_owner} total_performers={total_performers} event_message='likes your anticipation ' color={blue[400]} link={`/xpo/my_profile/${user_slug}/anticipations/`} />
+            : 
+            type === "UpvoteNotification" ? 
+            <NotificationInfo markAsSeen={markAsSeen} body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message='upvoted your project '  /> 
+            :
+            type === "NewAnticipationNotification" ?
+            <NotificationInfo  markAsSeen={markAsSeen} body={anticipation.body} action_owner={action_owner} total_performers={0} event_message='anticipates ' color={blue[400]} link={`/xpo/my_profile/${user_slug}/anticipations/`}/> : 
+            type === "ProjectLikeNotification" ? 
+            <NotificationInfo markAsSeen={markAsSeen}  body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message='likes your project ' /> 
+            : 
+            type === "AnticipationSubscriptionNotification" ?
+            <NotificationInfo markAsSeen={markAsSeen} body={anticipation.body} action_owner={action_owner} total_performers={total_performers} event_message='subscribed to your anticipation' color={blue[400]} link={`/xpo/my_profile/${user_slug}/anticipations/`}/> : 
+            type === "NewSuggestionNotification" ? 
+            <NotificationInfo markAsSeen={markAsSeen}  body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message={`contributed to your project`}  /> 
+            : null
+             
+             
+        
+        }
+    </>
 
         {/* {
                 type === "AnticipationLikeNotification" ?

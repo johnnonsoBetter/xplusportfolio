@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 
 
-export default function ResourcesLink() {
+export default function ResourcesLink({closeMenu}) {
 
     const resourcesPageLinks = [
         {link: 'communities', name: 'Communities', imgPath: 'communities.png'},
@@ -32,11 +32,11 @@ export default function ResourcesLink() {
                
                 {
                     resourcesPageLinks.map(pageLink => (
-                        <ListItem  key={pageLink.link} >
+                        <ListItem  key={pageLink.link}  >
                     
                         
                             <Box display="flex" width="100%" alignItems="center" justifyContent="space-between" >
-                                <Link to={`/xpo/${pageLink.link}`}  style={{textDecoration: "none", display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
+                                <Link onClick={closeMenu} to={`/xpo/${pageLink.link}`}  style={{textDecoration: "none", display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
                             
                                 <ListItemIcon  >
                                     

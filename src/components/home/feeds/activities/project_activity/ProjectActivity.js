@@ -89,8 +89,8 @@ function ProjectActivity({project, typePackge, showType}) {
                 <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='likes this 👍' /> :
                 action_type === "project.vote" ? 
                 <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='voted this project 🗳️' /> :
-                action_type === "project.suggest" ? 
-                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='made suggestion to this 🗳️' /> :
+                action_type === "suggestion.create" ? 
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='contributed to this 🗳️' /> :
                 null
                 
 

@@ -20,8 +20,8 @@ export default function NotificationMenu() {
   const {setSomethingWentWrong} = useContext(AuthContext)
   const {authAxios} = useContext(FetchContext)
   const [changed, setChanged] = useState(false)
-  const [disabled, setDisabled] = useState(false)
-  
+  const [disabled, setDisabled] = useState(notifications.length === 0)
+
 
 
 
@@ -48,6 +48,8 @@ export default function NotificationMenu() {
       authAxios.get('api/v1/notifications', {params: {status: 'unread'}}).then(res => {
 
         const {total_notifications, notifications} = res.data['notification_info']
+        if (notifications.length > 0)
+            setDisabled(false)
         setNotifications(notifications)
         setTotalNotifications(total_notifications)
         setLoading(false)

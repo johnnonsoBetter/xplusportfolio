@@ -12,6 +12,7 @@ export default function NotificationList({notifications, totalMembers, fetchMore
     const theme = useTheme()
     const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesXs = useMediaQuery(theme.breakpoints.up('xs'));
+    
   
     
     return (

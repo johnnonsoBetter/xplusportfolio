@@ -13,6 +13,8 @@ export default function NotificationList({notifications, handleClose}) {
     const {authAxios} = useContext(FetchContext)
     const {setTotalNotifications} = useContext(HomeInfoContext)
 
+    
+
     console.log(notifications)
     
 
@@ -71,7 +73,15 @@ const Notification = ({object, type,  user_slug}) => {
             <NotificationInfo  body={anticipation.body} action_owner={action_owner} total_performers={0} event_message='anticipates ' color={blue[400]} link={`/xpo/my_profile/${user_slug}/anticipations/`}/> : 
             type === "ProjectLikeNotification" ? 
             <NotificationInfo   body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message='likes your project ' /> 
+            : 
+            type === "AnticipationSubscriptionNotification" ?
+            <NotificationInfo  body={anticipation.body} action_owner={action_owner} total_performers={total_performers} event_message='subscribed to your anticipation' color={blue[400]} link={`/xpo/my_profile/${user_slug}/anticipations/`}/> : 
+            type === "NewSuggestionNotification" ? 
+            <NotificationInfo   body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message={`contributed to your project`}  /> 
             : null
+             
+             
+        
         }
     </>
     )

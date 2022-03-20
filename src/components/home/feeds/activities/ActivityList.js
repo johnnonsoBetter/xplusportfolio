@@ -6,12 +6,15 @@ import AnticipationActivity from './anticipation_activity/AnticipationActivity'
 import MyMiniInfo from '../../../shared/MyMiniInfo'
 import FeedLoader from '../../../shared/FeedLoader'
 import '../../../../css/InfiniteList.css'
+import ProjectActivity from './project_activity/ProjectActivity'
 
 export default function ActivityList({activities, totalActivities, fetchMoreData, loading, finished }) {
 
     const theme = useTheme()
     const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesXs = useMediaQuery(theme.breakpoints.up('xs'));
+
+    console.log(activities)
   
     
     return (
@@ -68,9 +71,9 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
                                     <AnticipationActivity anticipation={activity} typePackge={{owner_name, owner_slug, action_type, created_at}} showType={true} /> :
                                     action_type === "anticipation.subscribe" ? 
                                     <AnticipationActivity anticipation={activity} typePackge={{owner_name, owner_slug, action_type, created_at}} showType={true} /> :
+                                    action_type === "suggestion.create" ?
+                                    <ProjectActivity project={activity} typePackge={{owner_name, owner_slug, action_type, created_at}} showType={true} /> :
                                     null
-
-
                                 }
                             </Box>
                             

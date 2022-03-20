@@ -18,7 +18,7 @@ export default function Following() {
     const [users, setUsers] = useState([])
     const [page, setPage] = useState(0)
     const [totalMembers, setTotalMembers] = useState(0)
-    const {titleBarUserName} = useContext(HomeInfoContext)
+    const {titleBarUserName, appIsOffline} = useContext(HomeInfoContext)
 
     const fetchMoreData = () => {
         
@@ -58,7 +58,7 @@ export default function Following() {
             setUsers([])
         }
 
-    }, [slug])
+    }, [slug, appIsOffline])
 
 
     

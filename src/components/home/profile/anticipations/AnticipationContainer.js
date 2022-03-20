@@ -17,7 +17,7 @@ export default function  AncticipationContainer() {
     const {slug} = useParams()
     const [totalAnticipations, setTotalAnticipations] = useState(0)
     const [page, setPage] = useState(1)
-    const {titleBarUserName} = useContext(HomeInfoContext)
+    const {titleBarUserName, appIsOffline} = useContext(HomeInfoContext)
 
 
 
@@ -58,7 +58,7 @@ export default function  AncticipationContainer() {
             setAnticipations([])
             setLoading(true)
         }
-    }, [slug])
+    }, [slug, appIsOffline])
 
 
 

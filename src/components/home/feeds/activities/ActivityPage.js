@@ -23,7 +23,7 @@ export default function ActivityPage() {
     const [activities, setActivities] = useState([])
     const [page, setPage] = useState(1)
     const [totalActivities, setTotalActivities] = useState(0)
-    const {showFriendsActivities, setShowFriendsActivites, setNewPostAvailable} = useContext(HomeInfoContext)
+    const {showFriendsActivities, setShowFriendsActivites, setNewPostAvailable, appIsOffline} = useContext(HomeInfoContext)
 
 
 
@@ -82,7 +82,7 @@ export default function ActivityPage() {
             setFinished(false)
         }
 
-    }, [showFriendsActivities])
+    }, [showFriendsActivities, appIsOffline])
 
     return (
         <Box className="activity-container" >

@@ -39,6 +39,7 @@ export default function Home(props) {
   const [resourcesLinksIsOpen, setResourcesLinksIsOpen] = useState(false)
   const {authAxios} = useContext(FetchContext)
   const [titleBarUserName, setTitleBarUserName] = useState(null)
+  const [appIsOffline, setAppIsOffline] = useState(false)
 
 
   const [image, setImage] = useState(null)
@@ -54,12 +55,15 @@ export default function Home(props) {
 
   const notifyForOnline = () => {
 
+
     const newSnackInfo = Object.assign(snackInfo, {})
     newSnackInfo.message = "You are currently online"
     newSnackInfo.severity = 'success'
+    
     setSnackInfo(newSnackInfo)
     setOpenSnack(true)
-    window.location.reload()
+    setAppIsOffline(!appIsOffline)
+    // window.location.reload()
   }
 
 
@@ -78,7 +82,7 @@ export default function Home(props) {
     document.title = totalNotifications >= 1 ? `Feeds (${totalNotifications})`: "Feeds" 
 
 
-  }, [totalNotifications])
+  }, [totalNotifications, appIsOffline])
 
   React.useEffect(() => {
     
@@ -121,7 +125,7 @@ export default function Home(props) {
     
    
   }
-}, [])
+}, [appIsOffline])
 
   return (
     <React.Fragment>
@@ -135,6 +139,8 @@ export default function Home(props) {
             showFriendsActivities,
             resourcesLinksIsOpen,
             titleBarUserName,
+            appIsOffline,
+            setAppIsOffline,
             setTitleBarUserName: (name) => setTitleBarUserName(name),
             setResourcesLinksIsOpen,
             setShowFriendsActivites: (show) => setShowFriendsActivites(show),

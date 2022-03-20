@@ -18,7 +18,7 @@ export default function ProjectContainer() {
     const [totalProjects, setTotalProjects] = useState(0)
     const [page, setPage] = useState(0)
     const [totalMembers, setTotalMembers] = useState(0)
-    const {setTitleBarUserName, titleBarUserName} = useContext(HomeInfoContext)
+    const {setTitleBarUserName, titleBarUserName, appIsOffline} = useContext(HomeInfoContext)
 
 
 
@@ -58,7 +58,7 @@ export default function ProjectContainer() {
             setProjects([])
             setLoading(true)
         }
-    }, [slug])
+    }, [slug, appIsOffline])
 
 
 

@@ -17,7 +17,7 @@ export default function MainProfile() {
     const [profile, setProfile] = useState(null)
     const [loading, setLoading] = useState(true)
     const {slug} = useParams()
-    const {setTitleBarUserName} = useContext(HomeInfoContext)
+    const {setTitleBarUserName, appIsOffline} = useContext(HomeInfoContext)
 
     useEffect(() => {
 
@@ -49,7 +49,7 @@ export default function MainProfile() {
             document.title = profile.name
         }
  
-    }, [profile, slug])
+    }, [profile, slug, appIsOffline])
    
     
 

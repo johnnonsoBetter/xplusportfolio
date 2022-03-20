@@ -18,7 +18,7 @@ export default function Followers() {
     const [users, setUsers] = useState([])
     const [page, setPage] = useState(0)
     const [totalMembers, setTotalMembers] = useState(0)
-    const {titleBarUserName} = useContext(HomeInfoContext)
+    const {titleBarUserName, appIsOffline} = useContext(HomeInfoContext)
 
     const fetchMoreData = () => {
         
@@ -53,7 +53,7 @@ export default function Followers() {
             setUsers([])
         }
 
-    }, [slug])
+    }, [slug, appIsOffline])
     
     return (
         <Box px={1} >

@@ -5,6 +5,7 @@ import MembersLoader from './MembersLoader'
 import {useContext} from 'react'
 import {FetchContext} from '../../../context/FetchContext'
 import { AuthContext } from '../../../context/AuthContext'
+import HomeInfoContext from '../../../context/HomeInfoContext'
 
 
 export default function MembersContainer() {
@@ -16,6 +17,7 @@ export default function MembersContainer() {
     const [users, setUsers] = useState([])
     const [page, setPage] = useState(1)
     const [totalMembers, setTotalMembers] = useState(0)
+    const {appIsOffline} = useContext(HomeInfoContext)
 
 
 
@@ -58,7 +60,7 @@ export default function MembersContainer() {
             setUsers([])
         }
 
-    }, [])
+    }, [appIsOffline])
     
     return (
         <Box px={1} >

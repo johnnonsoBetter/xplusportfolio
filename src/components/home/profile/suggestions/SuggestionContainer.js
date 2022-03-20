@@ -18,7 +18,7 @@ export default function SuggestionContainer () {
     const [loading, setLoading] = useState(true)
     const {slug} = useParams()
     const [suggestions, setSuggestions] = useState([])
-    const {titleBarUserName} = useContext(HomeInfoContext)
+    const {titleBarUserName, appIsOffline} = useContext(HomeInfoContext)
 
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function SuggestionContainer () {
             setLoading(true)
             setSuggestions([])
         }
-    }, [slug])
+    }, [slug, appIsOffline])
 
     return (
         <Box width="100%"> 

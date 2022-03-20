@@ -13,7 +13,7 @@ import Suggestion from './Suggestion';
 export default function SuggestionContainer () {
 
     const {authAxios} = useContext(FetchContext)
-    const {setSomethingWentWrong} = useContext(AuthContext)
+    const {setSomethingWentWrong, isCurrentUser} = useContext(AuthContext)
     const [loading, setLoading] = useState(true)
     const {slug} = useParams()
     const [suggestions, setSuggestions] = useState([])
@@ -55,9 +55,13 @@ export default function SuggestionContainer () {
 
                         <>
                             {
-                                suggestions.map(suggestion => (
-                                    <Suggestion key={suggestions.id} suggestion={suggestion} />
-                                ))
+                                suggestions.map(suggestion => {
+
+                                    const {id, user} = suggestion 
+                                    
+                                return (
+                                    <Suggestion showEdit={isCurrentUser(user.slug)} key={id} suggestion={suggestion} />
+                                )})
                             }
                         </>
                    }

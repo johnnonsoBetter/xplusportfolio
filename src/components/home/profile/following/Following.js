@@ -68,7 +68,11 @@ export default function Following() {
                      users.length === 0 ?
                      <Empty emptyDetail="No Followings" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
                         
-                    <> </>
+                    <> 
+
+                        <MemberList noFollow={false} users={users} fetchMoreData={fetchMoreData} totalMembers={totalMembers}/>
+                    
+                    </>
                    }
                 
                 </>

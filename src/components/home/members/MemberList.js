@@ -43,7 +43,7 @@ export default function MemberList({users, totalMembers, fetchMoreData, noFollow
                     return (
                         <Grid key={user.slug + index} item xs={6} sm={4} md={4}  >
                             <Box p={1} >
-                            <Member noFollow={noFollow} user={user} />
+                                <Member noFollow={noFollow} user={user} />
                             </Box>
                             
                         </Grid>

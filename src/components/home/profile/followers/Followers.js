@@ -11,7 +11,7 @@ import MembersLoader from '../../members/MembersLoader'
 export default function Followers() {
 
     const {authAxios} = useContext(FetchContext)
-    const {setSomethingWentWrong} = useContext(AuthContext)
+    const {setSomethingWentWrong, isCurrentUser} = useContext(AuthContext)
     const {slug} = useParams()
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
@@ -25,9 +25,6 @@ export default function Followers() {
             setUsers(users.concat(data))
             setPage(page + 1)
             setTotalMembers(users.length)
-       }).catch(err => {
-        
-        
        })
     }
 
@@ -67,7 +64,7 @@ export default function Followers() {
                      <Empty emptyDetail="No Followers yet" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
                         
 
-                     <MemberList noFollow={true} users={users} fetchMoreData={fetchMoreData} totalMembers={totalMembers}/>
+                     <MemberList noFollow={isCurrentUser(slug) ? true : false} users={users} fetchMoreData={fetchMoreData} totalMembers={totalMembers}/>
                    }
                 
                 </>

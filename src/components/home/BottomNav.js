@@ -4,7 +4,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
 import { Apps, BubbleChartRounded, PeopleOutlineRounded, Search } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Box, Slide } from '@mui/material';
 import ResourcesMobileLink from './resources/ResourcesMobileLink';
 
 
@@ -32,7 +32,8 @@ export default function BottomNav() {
 
 
   return (
-    
+      <Slide in={true} direction='up' >
+
       <Paper  sx={{ position: 'fixed', zIndex: 500, bottom: 0, left: 0, right: 0, display: {xs: "block", sm: "none"}}} elevation={3}>
         <BottomNavigation
           showLabels
@@ -56,6 +57,11 @@ export default function BottomNav() {
                      
         </BottomNavigation>
       </Paper>
+
+
+
+      </Slide>
+     
     
   );
 }

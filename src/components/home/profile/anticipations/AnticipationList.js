@@ -3,9 +3,10 @@ import { List, ListItem, useMediaQuery } from '@mui/material'
 import { Box } from '@mui/system';
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component';
+import FeedLoader from '../../../shared/FeedLoader';
 import AnticipationActivity from '../../feeds/activities/anticipation_activity/AnticipationActivity'
 
-export default function AnticipationList({anticipations, totalAnticipations, fetchMoreData}) {
+export default function AnticipationList({anticipations, totalAnticipations, fetchMoreData, finished}) {
 
     const theme = useTheme()
     const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -21,6 +22,15 @@ export default function AnticipationList({anticipations, totalAnticipations, fet
         scrollThreshold={1}
         hasMore={totalAnticipations !== anticipations.length}
         
+        height="200px"
+        // height={matchesSm ? "calc(99vh - 60px)" : matchesXs ?  "calc(98vh - 85px)": "calc(99vh - 85px)" }
+        loader={
+            finished ? null :
+            <Box mb={2}> 
+                 <FeedLoader />   
+            </Box>
+             
+         }
         
         style={{
             display: "flex",

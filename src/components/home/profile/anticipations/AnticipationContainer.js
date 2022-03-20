@@ -13,9 +13,10 @@ export default function  AncticipationContainer() {
     const {authAxios} = useContext(FetchContext)
     const {setSomethingWentWrong} = useContext(AuthContext)
     const [loading, setLoading] = useState(true)
+    const [finished, setFinished] = useState(false)
     const [anticipations, setAnticipations] = useState([])
     const {slug} = useParams()
-    const [totalAnticipations, setTotalAnticipations] = useState(0)
+    const [totalAnticipations, setTotalAnticipations] = useState(1)
     const [page, setPage] = useState(1)
     const {titleBarUserName, appIsOffline} = useContext(HomeInfoContext)
 
@@ -25,12 +26,23 @@ export default function  AncticipationContainer() {
         
         authAxios.get(`/api/v1/users/${slug}/anticipations`, {params: {page: page}}).then(res => {
             const {data} = res 
-            setAnticipations(data)
+
+
+            console.log("fetching the more data that i amago ig t")
+
             setPage(page + 1)
+            setAnticipations(anticipations => anticipations.concat(data))
+            setTotalAnticipations(anticipations.length)
+            
             
        }).catch(err => {
         
-       
+            const {exception, status} = err.response 
+
+           if(status === 500){
+            
+               setFinished(true)
+           }
         
        })
     }
@@ -44,12 +56,13 @@ export default function  AncticipationContainer() {
         setLoading(true)
         authAxios.get(`/api/v1/users/${slug}/anticipations`, {params: {page: page}}).then(res => {
             
+            
             setAnticipations(res.data)
+            setPage(page => page + 1)
             setTotalAnticipations(res.data.length)
             setLoading(false)
         }).catch(err => {
     
-       
             setSomethingWentWrong(true)
         })
 
@@ -57,8 +70,16 @@ export default function  AncticipationContainer() {
         return () => {
             setAnticipations([])
             setLoading(true)
+            setFinished(false)
+            setTotalAnticipations(0)
+            setSomethingWentWrong(false)
         }
     }, [slug, appIsOffline])
+
+
+
+
+
 
 
 
@@ -72,7 +93,7 @@ export default function  AncticipationContainer() {
                 {
                     anticipations.length === 0 ? 
                     <Empty emptyDetail="No Anticipation Yet" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
-                    <AnticipationList anticipations={anticipations} fetchMoreData={fetchMoreData} totalAnticipations={totalAnticipations} />
+                    <AnticipationList anticipations={anticipations} fetchMoreData={fetchMoreData} totalAnticipations={totalAnticipations} finished={finished} loading={loading} />
 
                 }
                 

@@ -1,5 +1,5 @@
-import { Box, CircularProgress, Grid, LinearProgress, useMediaQuery } from '@mui/material'
-import React from 'react'
+import { Box, CircularProgress, Grid, LinearProgress, useMediaQuery, Typography } from '@mui/material'
+import React, { useContext, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useTheme } from '@emotion/react'
 import AnticipationActivity from './anticipation_activity/AnticipationActivity'
@@ -7,14 +7,15 @@ import MyMiniInfo from '../../../shared/MyMiniInfo'
 import FeedLoader from '../../../shared/FeedLoader'
 import '../../../../css/InfiniteList.css'
 import ProjectActivity from './project_activity/ProjectActivity'
+import HomeInfoContext from '../../../../context/HomeInfoContext'
 
 export default function ActivityList({activities, totalActivities, fetchMoreData, loading, finished }) {
 
     const theme = useTheme()
     const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesXs = useMediaQuery(theme.breakpoints.up('xs'));
-
-    console.log(activities)
+    const {hideBottomNav, setHideBottomNav} = useContext(HomeInfoContext)
+    const [y, setY] = useState(0)
   
     
     return (
@@ -26,14 +27,23 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
            next={fetchMoreData}
            scrollThreshold={1}
            hasMore={totalActivities !== activities.length}
-           loader={
-               finished ? null :
-               <Box mb={2}> 
-                    <FeedLoader />   
-               </Box>
-                
-            }
-           height={matchesSm ? "calc(99vh - 60px)" : matchesXs ?  "calc(98vh - 85px)": "calc(99vh - 85px)" }
+            onScroll={(e) => {
+                var st = e.target.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+                    // if (st > (y)){
+                    //     // downscroll code
+                    //     setHideBottomNav(true)
+                    // } else {
+                    //     // upscroll code
+                       
+                    //     setHideBottomNav(false)
+                    // }
+
+                    console.log(e.target.scrollTop)
+                setY(e.target.scrollTop) // For Mobile or negative scrolling
+
+             
+            }}
+           height={matchesSm ? "calc(99vh - 45px)" : matchesXs ?  "calc(98vh - 45px)": "calc(99vh - 45px)" }
             
            style={{
                display: "flex",
@@ -81,6 +91,18 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
                     )
                    })
                }
+               <Box p={1}  >
+
+              
+                    {
+                        totalActivities !== activities.length &&
+                        <>
+                            {!finished && <FeedLoader />  }
+                        </>
+                        
+
+                    }
+               </Box>
          </InfiniteScroll>
         </Box>
     )

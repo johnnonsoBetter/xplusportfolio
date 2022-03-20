@@ -326,17 +326,9 @@ const Profile = ({profile}) => {
                                 
                                 
                                 
-                                <Tooltip title="Fufilled" >
-                                    <Badge badgeContent={2} anchorOrigin={{vertical: 'top', horizontal: "left"}}>
-                                        <ArrowDropUpRounded color="success"/>
-                                    </Badge>
-                                </Tooltip>
+                                
                                 <Avatar sx={{bgcolor: "white"}} > <PsychologyRounded sx={{color: blue[500]}} /> </Avatar>
-                                <Tooltip title="Expired" >
-                                    <Badge badgeContent={8} >
-                                        <ArrowDropUpRounded color="error" />
-                                    </Badge>
-                                </Tooltip>
+                               
                             </Box>
                             <Box p={1} >
                                 <Typography variant="body2" > {total_anticipations} Anticipations</Typography>

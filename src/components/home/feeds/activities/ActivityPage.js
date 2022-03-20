@@ -23,7 +23,7 @@ export default function ActivityPage() {
     const [activities, setActivities] = useState([])
     const [page, setPage] = useState(1)
     const [totalActivities, setTotalActivities] = useState(0)
-    const {showFriendsActivities, setShowFriendsActivites, setNewPostAvailable, appIsOffline} = useContext(HomeInfoContext)
+    const {showFriendsActivities, setShowFriendsActivites, setNewPostAvailable, appIsOffline, totalNotifications} = useContext(HomeInfoContext)
 
 
 
@@ -34,7 +34,7 @@ export default function ActivityPage() {
 
 
             
-            setPage(page + 1)
+            setPage(page => page + 1)
             setActivities(activities.concat(data))
             setTotalActivities(activities.length)
        }).catch(err => {
@@ -57,13 +57,14 @@ export default function ActivityPage() {
    
 
     useEffect(() => {
+        document.title = totalNotifications >= 1 ? `Feeds (${totalNotifications})`: "Feeds"
         setLoading(true)
         setNewPostAvailable(false)
         authAxios.get(showFriendsActivities ? 'api/v1/friends_activities'  :'api/v1/all_activities', {params: {page: 1}}).then(res => {
              const {data} = res 
              setActivities(data)
              setLoading(false)
-             setPage(page + 1)
+             setPage(page => page + 1)
              setNewPostAvailable(false)
              setShowFriendsActivites(false)
              setNewPostAvailable(false)

@@ -28,7 +28,7 @@ export default function MemberList({users, totalMembers, fetchMoreData, noFollow
            style={{
                display: "flex",
                flexWrap: "wrap",
-               justifyContent: 'center',
+               justifyContent: 'flex-start',
                marginBottom: "20px"
                
                

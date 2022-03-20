@@ -17,6 +17,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { ActionCableProvider } from '@thrash-industries/react-actioncable-provider';
 import { HomeInfoContextProvider } from '../../context/HomeInfoContext';
 import { FetchContext } from '../../context/FetchContext';
+import Zoom from '@mui/material/Zoom'
 
 
 
@@ -40,6 +41,7 @@ export default function Home(props) {
   const {authAxios} = useContext(FetchContext)
   const [titleBarUserName, setTitleBarUserName] = useState(null)
   const [appIsOffline, setAppIsOffline] = useState(false)
+  const [hideBottomNav, setHideBottomNav] = useState(false)
 
 
   const [image, setImage] = useState(null)
@@ -59,11 +61,11 @@ export default function Home(props) {
     const newSnackInfo = Object.assign(snackInfo, {})
     newSnackInfo.message = "You are currently online"
     newSnackInfo.severity = 'success'
-    
+    setAppIsOffline(appIsOffline => !appIsOffline)
     setSnackInfo(newSnackInfo)
     setOpenSnack(true)
-    setAppIsOffline(!appIsOffline)
-    // window.location.reload()
+   
+  
   }
 
 
@@ -77,12 +79,7 @@ export default function Home(props) {
   };
 
 
-  useEffect(() => {
 
-    document.title = totalNotifications >= 1 ? `Feeds (${totalNotifications})`: "Feeds" 
-
-
-  }, [totalNotifications, appIsOffline])
 
   React.useEffect(() => {
     
@@ -140,6 +137,8 @@ export default function Home(props) {
             resourcesLinksIsOpen,
             titleBarUserName,
             appIsOffline,
+            hideBottomNav,
+            setHideBottomNav: (hide) => setHideBottomNav(hide),
             setAppIsOffline,
             setTitleBarUserName: (name) => setTitleBarUserName(name),
             setResourcesLinksIsOpen,
@@ -183,7 +182,16 @@ export default function Home(props) {
              </Box>
              
            </Container>
-           <BottomNav />
+
+
+           {
+             !hideBottomNav &&
+
+             <BottomNav />
+
+           }
+
+           
          </DrawerContextProvider>  
 
          </HomeInfoContextProvider>

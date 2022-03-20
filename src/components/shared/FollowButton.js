@@ -1,8 +1,9 @@
 import { LoadingButton } from "@mui/lab"
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { FetchContext } from "../../context/FetchContext"
 
 
-export default function FollowButton({is_following, slug}) {
+export default function FollowButton({is_following, slug, size, mx, variant, incrementFollowersCount, decrementFollowersCount}) {
 
     const [isFollowing, setIsFollowing] = useState(is_following)
     const {authAxios} = useContext(FetchContext)
@@ -18,6 +19,8 @@ export default function FollowButton({is_following, slug}) {
         setFollowTrue(true)
 
         authAxios.post(`/api/v1/users/${slug}/followings`, {id: slug}).then(res => {
+            if(incrementFollowersCount())
+                incrementFollowersCount()
           
         }).catch(err => {
             setIsFollowing(false)
@@ -34,6 +37,9 @@ export default function FollowButton({is_following, slug}) {
         setunFollowTrue(true)
 
         authAxios.delete(`/api/v1/users/${slug}/followings`, {id: slug}).then(res => {
+
+            if(decrementFollowersCount())
+                decrementFollowersCount()
          
         }).catch(err => {
             setIsFollowing(true)
@@ -47,9 +53,9 @@ export default function FollowButton({is_following, slug}) {
         {
            
             isFollowing ?
-            <LoadingButton disabled={unFollowTrue} size="small" sx={{mx: 1}} fullWidth variant="outlined" onClick={unfollowMember} > Unfollow </LoadingButton> 
+            <LoadingButton disabled={unFollowTrue}  size={size} fullWidth variant={variant} sx={{mx,}} onClick={unfollowMember} > Unfollow </LoadingButton> 
             :
-            <LoadingButton disabled={followTrue} disableElevation size="small" sx={{mx: 1}} fullWidth variant="outlined" onClick={followMember}  > Follow </LoadingButton>
+            <LoadingButton disabled={followTrue}  size={size} disableElevation  fullWidth variant={variant} sx={{mx,}} onClick={followMember}  > Follow </LoadingButton>
            
         }
         </>

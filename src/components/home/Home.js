@@ -16,6 +16,7 @@ import { Alert, Snackbar } from '@mui/material';
 import { AuthContext } from '../../context/AuthContext';
 import { ActionCableProvider } from '@thrash-industries/react-actioncable-provider';
 import { HomeInfoContextProvider } from '../../context/HomeInfoContext';
+import { FetchContext } from '../../context/FetchContext';
 
 
 
@@ -36,6 +37,7 @@ export default function Home(props) {
   const [newPostAvailable, setNewPostAvailable] = useState(false)
   const [showFriendsActivities, setShowFriendsActivites] = useState(false)
   const [resourcesLinksIsOpen, setResourcesLinksIsOpen] = useState(false)
+  const {authAxios} = useContext(FetchContext)
 
 
   const [image, setImage] = useState(null)
@@ -93,6 +95,23 @@ export default function Home(props) {
         setOpenSnack(true)
     }
   }, [somethingWentWrong])
+
+
+  useEffect(() => {
+    
+    authAxios.get('api/v1/notifications', {params: {status: 'unread'}}).then(res => {
+
+      const {total_notifications, notifications} = res.data['notification_info']
+      setTotalNotifications(total_notifications)
+     
+  })
+
+  return () => {
+    setTotalNotifications(0)
+    
+   
+  }
+}, [])
 
   return (
     <React.Fragment>

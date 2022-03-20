@@ -7,6 +7,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import {AuthContext} from '../../../../context/AuthContext'
 import {FetchContext} from '../../../../context/FetchContext'
+import FollowButton from '../../../shared/FollowButton'
 
 export default function MainProfile() {
 
@@ -193,7 +194,21 @@ const Profile = ({profile}) => {
     const history = useHistory()
     const {isCurrentUser} = useContext(AuthContext)
     const {slug} = useParams()
-    const {total_anticipations, total_suggestions, total_projects, repu_coin, total_project_votes, total_followings, total_followers} = profile
+    
+    const {total_anticipations, total_suggestions, total_projects, repu_coin, total_project_votes, total_followings, total_followers, is_following} = profile
+    const [totalFollowersCount, setTotalFollowersCount] = useState(total_followers)
+
+
+
+    const incrementFollowersCount =  () => {
+        setTotalFollowersCount((totalFollowersCount) => totalFollowersCount + 1)
+    }
+
+    const decrementFollowersCount =  () => {
+        setTotalFollowersCount((totalFollowersCount) => totalFollowersCount - 1)
+    }
+
+
     return (
         <Box my={1} mx={1} >
         <Grid container spacing={1} >
@@ -241,7 +256,7 @@ const Profile = ({profile}) => {
                         <Box display="flex" justifyContent="space-around">
                             <Box component={Link} to={`${pathname}/followers`}   sx={{textDecoration: 'none'}}>
                                 <PeopleAltRounded color="action" />
-                                <Typography color="GrayText" marginBottom variant="body2"   > {total_followers} followers</Typography>
+                                <Typography color="GrayText" marginBottom variant="body2"   > {totalFollowersCount} followers</Typography>
                             </Box>
 
                             <Divider sx={{ height: 48, m: 0.5 }} orientation="vertical" />
@@ -282,34 +297,12 @@ const Profile = ({profile}) => {
                                     </Grid>
                                 </Grid>
                             </Box> :
-                            <Box  >
-                                <LoadingButton  disableRipple variant="contained" fullWidth  sx={{mt: 2}}  > Follow </LoadingButton>
-                            </Box> 
+                            <FollowButton variant='contained' decrementFollowersCount={decrementFollowersCount} incrementFollowersCount={ incrementFollowersCount} mx={0} is_following={is_following} slug={slug}/>
 
                         }
                     </Stack>
                 </Paper>
             </Grid>
-
-
-            {/* <Grid item  xs={12} md={12}  >
-                <Paper    >
-                    <Box display="flex" alignItems="center"  p={1} >
-                       <BuildRounded color="action" fontSize="1.2rem" />
-                       <Typography sx={{ml: 1}} variant="body2" > Skills</Typography>
-                        
-                    </Box>
-                    <Box display="flex" flexWrap="wrap" >
-                        <Chip label="Ruby on rails" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="React" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="Heroku" variant="outlined" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="Git" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="Github" variant="outlined" sx={{mx: 1, my: 1}}/>
-                        <Chip label="Ruby on rails" variant="outlined" sx={{mx: 1, my: 1}}/>
-                    
-                    </Box>
-                </Paper>
-            </Grid> */}
 
             <Grid item xs={4} sm={4} md={4}  >
                 <Paper   component={Link}  to={`${pathname}/anticipations`}   sx={{minHeight: 130, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >

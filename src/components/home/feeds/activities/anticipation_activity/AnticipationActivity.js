@@ -18,6 +18,7 @@ import SubscribeButton from '../../../../shared/SubscriberButton';
 import LikerButton from '../../../../shared/LikerButton';
 import ActivityOwner from '../ActivityOwner';
 import { purple } from '@mui/material/colors';
+import Subscribers from './Subscribers'
 
 import ActivityType from '../ActivityType';
 
@@ -166,8 +167,7 @@ function AnticipationActivity({anticipation, showType, typePackge}) {
       
       <Paper elevation={0} >
         
-        <Typography color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> {totalSubScribers} subscribers</Typography>
-      
+        <Subscribers totalSubScribers={totalSubScribers} slug={a_slug} />
         
       </Paper>
       

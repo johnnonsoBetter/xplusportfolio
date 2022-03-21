@@ -62,7 +62,6 @@ export default function NotificationMenu({total_notifications}) {
 
     setLoading(true)
     if (open) {
-      console.log(loading, "this is the loading")
 
       authAxios.get('api/v1/notifications', {params: {status: 'unread'}}).then(res => {
 

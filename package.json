@@ -45,6 +45,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.0",
     "react-swipeable-views": "^0.14.0",
+    "react-virtuoso": "^2.8.3",
     "serve": "^13.0.2",
     "swiper": "^8.0.7",
     "web-vitals": "^0.2.4",

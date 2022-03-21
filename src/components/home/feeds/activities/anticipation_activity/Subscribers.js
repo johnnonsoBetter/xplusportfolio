@@ -21,20 +21,15 @@ const User = ({user}) => {
 
 
     return (
-        <Box display="flex" width="100%" alignItems="center" justifyContent="space-between" >
-
-            <Link to={`/xpo/members/${slug}`}  style={{textDecoration: "none", display: "flex", alignItems: "center"}} width="100%" alignItems="center" >
-    
         
-               
-                <Chip clickable color='info' avatar={<Avatar sx={{ fontSize: "0.9em", width: 0}} src='/images/pics.jpg' alt="pics" width={40} height={40} />} label="Hey my man" />
-       
+            <Link to={`/xpo/members/${slug}`}  style={{textDecoration: "none", margin: '10px', alignItems: "center"}} width="100%" alignItems="center" >
+    
+                <Chip  clickable  sx={{backgroundColor: stringToColor(name)}}  label={name} />
+
          
       
             </Link>
 
-
-    </Box>
     )
 }
 
@@ -101,8 +96,8 @@ export default function Subscribers({totalSubScribers, slug}) {
         PaperProps={{
           elevation: 0,
           sx: {
-            overflow: 'visible',
-            width: '20ch',
+            overflow: 'auto',
+            width: '27ch',
             minHeight: 250,
             maxHeight: 250,
             borderRadius: "10px",
@@ -139,18 +134,15 @@ export default function Subscribers({totalSubScribers, slug}) {
           <Box height={250} display='flex' alignItems='center' justifyContent='center' >
               <SubscribersLoader />
           </Box> : 
-          <Virtuoso
-          style={{ height: '250px' }}
-          totalCount={subscribers.length}
-          itemContent={index => {
-
-            return (
-              <MenuItem >
-                <User user={subscribers[index]} />
-              </MenuItem>
-            )
-          }}
-        />
+          <Box display='flex' justifyContent='flex-start' flexWrap='wrap'>
+            {
+              subscribers.map(subscriber => (
+               
+                <User key={subscriber.slug} user={subscriber} />
+             
+              ))
+            }
+          </Box>
 
           
         }

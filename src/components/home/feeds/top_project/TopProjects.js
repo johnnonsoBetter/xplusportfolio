@@ -1,46 +1,67 @@
+import { useTheme } from '@emotion/react'
 import { Folder, HowToVoteOutlined } from '@mui/icons-material'
-import { Avatar, Badge, Box, List, ListItem, ListItemButton, ListItemIcon, ListSubheader, Menu, MenuItem, Paper, Stack, Typography } from '@mui/material'
-import { deepOrange } from '@mui/material/colors'
-import React, { useState } from 'react'
+import { Avatar, Badge, Box, List, ListItem, ListItemButton, ListItemIcon, ListSubheader, Menu, MenuItem, MobileStepper, Paper, Stack, Typography } from '@mui/material'
+import { blue, deepOrange, orange } from '@mui/material/colors'
+import React, { useContext, useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import SwipeableViews from 'react-swipeable-views'
+import { AuthContext } from '../../../../context/AuthContext'
+import { FetchContext } from '../../../../context/FetchContext'
+import TopProject from './TopProject'
+import TopProjectsLoader from './TopProjectsLoader'
+import { autoPlay } from 'react-swipeable-views-utils';
+import HomeInfoContext from '../../../../context/HomeInfoContext'
 
 
-function Projects({projects}) {
 
-    const {path} = useRouteMatch()
+const AutoSwipeableView = autoPlay(SwipeableViews)
+
+
+function Projects({projects, setRank}) {
+
+
+    const theme = useTheme();
+    const [activeStep, setActiveStep] = React.useState(0);
+    const maxSteps = projects.length;
+
+
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      };
+    
+      const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+      };
+    
+      const handleStepChange = (step) => {
+        
+        setActiveStep(step);
+        setRank(step + 1)
+      };
+
 
     return (
         <>
-            {
-                projects.map(project => (
-                    <ListItem key={project.id} divider>
-                        <Link to={`/xpo/projects/${project.id}`} style={{textDecoration: "none", width: "100%"}} >
+           <AutoSwipeableView
+                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                index={activeStep}
+                onChangeIndex={handleStepChange}
+                enableMouseEvents
+            >
+                {projects.map((step, index) => (
+                <div key={step.photo}>
+                    {Math.abs(activeStep - index) <= 2 ? (
+                    
 
-                            <Box display="flex" width="100%" alignItems="center" >
-                                
-                                <ListItemIcon>
-                                <Avatar > <Folder /> </Avatar>
-                                    
-                                </ListItemIcon>
-                                <Stack  >
-                                    
-                                    
-                                    <Box maxWidth={140} >
-                                        <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body1"> {project.title}</Typography>
-                                    </Box>
-                                    <Box maxWidth={140} >
-                                    <Typography  variant="body2" color="ButtonShadow" noWrap={true}> {project.desc}</Typography>
-                                    </Box>
-                                
-                                </Stack>
-                            </Box>
-                        </Link>
-
-                    </ListItem>
-                ))
-            }
-
+                        <TopProject project={projects[index]} />
+                        
+            
+                    ) : null}
+                </div>
+                ))}
+            </AutoSwipeableView>
+            
         </>
         
     )
@@ -48,28 +69,66 @@ function Projects({projects}) {
 }
 
 export default function TopProjects() {
+    
+    const [projects, setProjects] = useState([])
+    const [loading, setLoading] = useState(true)
+    const {authAxios} = useContext(FetchContext)
+    const [rank, setRank] = useState(0)
+    const {setSomethingWentWrong} = useContext(AuthContext)
+    const {appIsOffline} = useContext(HomeInfoContext)
 
-    const [projects, setProjects] = useState([{id: 2, title: "Todo Application", desc: "A Todo dfsfsdsfsfsfsfsdfsfsappl"},
-     {id: 42, title: "Todo Application", desc: "A Todo applsdfsfsdfsdf"}, {id: 2, title: "Todo Application", desc: "A Todo sdfssfsfsdfsdffsfsdfsdfsappl"},
-     {id: 52, title: "Todo Application", desc: "A Todo applsdfsdfsdfs"},
-     {id: 92, title: "Todo Application", desc: "A Todo appsdfsl"}
-    ])
+
+
+
+    useEffect(() => {
+        setLoading(true)
+        authAxios.get('api/v1/top_projects').then(res => {
+            setProjects(res.data)
+            setLoading(false)
+        }).catch(err => {
+            setSomethingWentWrong(true);
+        })
+
+        return () => {
+
+            setProjects([])
+            setLoading(true)
+        }
+    }, [appIsOffline])
+
 
 
     return (
         
-            <List sx={{ width: '100%', maxWidth: 360, minHeight: 350, bgcolor: 'background.paper', borderRadius: "10px" }} component="nav" 
-                subheader={<ListSubheader  component={
-                    () => (
-                    <Box p={2} >
+            <Paper
+            square
+            elevation={2}
+            sx={{
+            width: '100%',
+            bgcolor: 'background.default',
+            borderRadius: "10px" 
+            
+            }}
+                >
+
+                    <Box p={2} width='100%' display='flex' justifyContent='space-between'  alignItems='center'>
                          <Typography color="ButtonText" variant="body2" sx={{textAlign: "left"}}> Top Projects</Typography>
-                    </Box> )
-                
-                }
-               
-               >  </ListSubheader>}  >
-                 <Projects projects={projects} />
-            </List>
+                         <Avatar sx={{width: 24, height: 24, backgroundColor: blue[500], color: "white", fontWeight: 500, fontSize: '0.8rem'}} >{rank}</Avatar>
+                    </Box>
+
+                    {
+                     loading ?
+                     <TopProjectsLoader /> :
+                    
+                     <Projects projects={projects} setRank={setRank} /> 
+                 }
+
+
+
+            </Paper>
+                 
+
+      
      
     )
 }

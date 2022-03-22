@@ -7,12 +7,13 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
-import { Avatar, Typography } from '@mui/material';
+import { Avatar, Button, Typography } from '@mui/material';
 import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { FetchContext } from '../../context/FetchContext';
 import { LogoutOutlined, ModeEditOutlineOutlined, PersonOutlineRounded } from '@mui/icons-material';
 import { stringAvatar } from '../../utils/stringUtil';
+import SubscribersLoader from '../shared/SubscribersLoader';
 
 
 
@@ -37,19 +38,19 @@ export default function MyProfile() {
   };
 
 
-//   const logout = () => {
+  const logout = () => {
 
-//     setLoading(true)
-//     authAxios.delete('api/v1/auth/sign_out').then((res) => {
+    setLoading(true)
+    authAxios.delete('api/v1/auth/sign_out').then((res) => {
 
-//         logUserOut()
-//         history.push('/login')
+        logUserOut()
+        history.push('/login')
       
-//     }).catch(err => {
-//         setLoading(false)
-//     })
+    }).catch(err => {
+        setLoading(false)
+    })
 
-//   }
+  }
 
 
   return (
@@ -115,7 +116,7 @@ export default function MyProfile() {
 
         <MenuItem disableRipple focusRipple={false} onClick={handleClose} >
        
-            <Box component={Link}  to="/xpo/edit_profile"    sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
+            <Box component={Link}  to="#edit_cover_photo"    sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
                
                 <ModeEditOutlineOutlined />
                 <Typography sx={{ml: 1}} color="ButtonText"> Edit Profile </Typography>
@@ -123,13 +124,26 @@ export default function MyProfile() {
             </Box>
         </MenuItem>
 
-        <MenuItem  disableRipple focusRipple={false} >
+        <MenuItem disableTouchRipple disableRipple focusRipple={false} >
        
-            <Box width="100%" color="ButtonText" display="flex" justifyContent="flex-start" alignItems="center">
-                <LogoutOutlined />
-                <Typography sx={{ml: 1}}> Logout </Typography>
+            
+
+            {
+              loading ? 
+              <Box  width="100%" color="ButtonText" display="flex" justifyContent="center" alignItems="center">
                 
-            </Box>
+                <SubscribersLoader />
+                <Typography > Logging out...</Typography>
+
+              </Box> :
+              <Box onClick={logout} disableTouchRipple disableElevation component={Button} size='small' width="100%"  display="flex" justifyContent="center" alignItems="center">
+                  <LogoutOutlined  />
+                  <Typography sx={{ml: 1}}> Logout </Typography>
+                  
+              </Box>
+
+            }
+           
         </MenuItem>
        
       </Menu>

@@ -1,6 +1,6 @@
 import { LoadingButton } from '@mui/lab'
 import { Alert, Box, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar, TextField, Typography, useMediaQuery } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { publicFetch } from '../utils/fetch';
@@ -68,6 +68,16 @@ export default function Login(){
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+
+  useEffect(() => {
+
+    document.title = "Login" 
+
+
+    return () => document.title = "Xplusportfolio"
+
+  }, [])
 
 
 

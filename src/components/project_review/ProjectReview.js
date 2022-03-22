@@ -47,7 +47,7 @@ import { FetchContext } from '../../context/FetchContext';
 
   useEffect(() => {
 
-    document.title = "Reviewing" + project ? project.title : null
+     document.title = "Project Review" 
     authAxios.get(`/api/v1/projects/${slug}`).then(res => {
       const {project} = res.data
     
@@ -66,6 +66,7 @@ import { FetchContext } from '../../context/FetchContext';
       setScreenPoint(12)
       setResizeValue(100)
       setOpen(false)
+      document.title = "Xplusportfolio"
     }
   }, [])
 

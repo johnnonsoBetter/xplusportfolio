@@ -4,6 +4,7 @@ import Member from './Member'
 import '../../../App.css'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useTheme } from '@emotion/react'
+import SubscribersLoader from '../../shared/SubscribersLoader'
 
 
 export default function MemberList({users, totalMembers, fetchMoreData, noFollow}) {
@@ -50,6 +51,10 @@ export default function MemberList({users, totalMembers, fetchMoreData, noFollow
                     )
                    })
                }
+                <Grid p={1} item xs={12}  >
+                    <SubscribersLoader />
+
+                </Grid>
          </InfiniteScroll>
         </Box>
     )

@@ -1,12 +1,8 @@
 import * as React from 'react';
-import {Avatar, BottomNavigationAction, Box, Chip, ListItemIcon, Stack, Typography} from '@mui/material';
+import {Box} from '@mui/material';
 import Menu from '@mui/material/Menu';
 
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import {  CloseOutlined, InfoOutlined, InsertCommentRounded, ScreenshotRounded} from '@mui/icons-material';
-import {Link} from 'react-router-dom'
-import ProjectReviewContext from '../../../context/ProjectReviewContext';
 import ResourcesLink from './ResourcesLink';
 
 

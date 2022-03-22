@@ -173,31 +173,25 @@ function ProjectActivity({project, typePackge, showType}) {
         {project_photos.map((step, index) => (
           <div key={step.img_url}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                
-                width="100%"
-                height={355}
-              >
+            
 
-              <LazyLoadImage
+              <Box
+              component='img'
               alt={step.img_url}
               effect="blur"
               src={step.img_url}
               width='100%'
-              style={{
+              sx={{
                 height: 355,
                 display: 'block',
                 maxWidth: "100%",
                 overflow: 'hidden',
+                objectFit: {xs: 'contain', sm: 'cover'},
                 width: '100%',
               }}
               
               
               />
-
-
-              </Box>
-
 
      
             ) : null}

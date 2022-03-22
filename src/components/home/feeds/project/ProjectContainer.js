@@ -99,6 +99,7 @@ export default function ProjectContainer() {
 
     useEffect(() => {   
        
+      setLoading(true)
       document.title = project ? `Project (${slug})` : "Project"
       authAxios.get(`/api/v1/projects/${slug}`).then(res => {
           const {project} = res.data
@@ -116,7 +117,7 @@ export default function ProjectContainer() {
           setLoading(true)
           setSomethingWentWrong(false)
       }
-  }, [])
+  }, [slug])
 
 
   return (

@@ -1,10 +1,11 @@
-import { AddAPhotoRounded, AddRounded, HowToVoteOutlined, LanguageOutlined, PersonAddAlt1Outlined, PersonAddAlt1Rounded, PsychologyOutlined, RequestQuoteOutlined } from '@mui/icons-material'
+import { AddAPhotoRounded, AddRounded, CloseRounded, EditRounded, HowToVoteOutlined, LanguageOutlined, PersonAddAlt1Outlined, PersonAddAlt1Rounded, PsychologyOutlined, RequestQuoteOutlined } from '@mui/icons-material'
 import { Avatar, Badge, Box, IconButton, Chip, Skeleton, Tooltip, Typography } from '@mui/material'
-import { orange } from '@mui/material/colors'
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { useParams, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
 import { FetchContext } from '../../../context/FetchContext'
+import  HomeInfoContext  from '../../../context/HomeInfoContext'
 import { stringAvatar } from '../../../utils/stringUtil'
 import ProfileRouter from './ProfileRouter'
 
@@ -15,6 +16,7 @@ export default function ProfileMenu() {
     const [profile, setProfile] = useState(null)
     const [loading, setLoading] = useState(true)
     const {slug} = useParams()
+    const {backcoverUrl }= useContext(HomeInfoContext)
 
 
     useEffect(() => {
@@ -41,7 +43,7 @@ export default function ProfileMenu() {
 
         document.title = profile ? profile.name : ''
 
-    }, [profile, slug])
+    }, [profile, slug, backcoverUrl])
 
     return (
         <>
@@ -63,31 +65,71 @@ export default function ProfileMenu() {
 const Profile = ({profile}) => {
 
     const {website_url, github_url, linkedin_url, name, about, backcover_imgurl, image } = profile
-    
+    const {isCurrentUser} = useContext(AuthContext)
+    const {slug} = useParams()
+    const history = useHistory()
+    const {backcoverUrl, setBackCoverUrl }= useContext(HomeInfoContext)
+
+
+    console.log("this is the background", backcoverUrl, backcover_imgurl)
+
+
+
+    useEffect(() => {   
+
+        setBackCoverUrl(backcover_imgurl)
+
+
+        return () => {
+            setBackCoverUrl(null)
+        }
+
+    }, [])
+
+
+
     return (
         <Box  mx={1} my={1}  >
         <Box position="relative" >
 
-            <Box
-                component="img"
-                sx={{
+      
+            <LazyLoadImage
+               alt="cover photo"
+              effect="blur"
+              src={backcoverUrl ? backcoverUrl : '/images/cover_default.png' } 
+              width='100%'
+              style={{
+                objectFit: 'cover',
                 height: 150,
                 display: 'block',
                 maxWidth: "100%",
                 overflow: 'hidden',
                 width: '100%',
                 borderRadius: "7px"
-                }}
-                src={backcover_imgurl ? backcover_imgurl : '/images/cover_default.png' }  
-                alt="cover photo"
-            />
+              }}
+              />
 
-            <Box position="absolute" bottom={-30} left={20} >
-          
-                {/* <Avatar src={image} alt={name} > {name[0]}</Avatar> */}
-                <Avatar  {...stringAvatar(name, 90, 90)} sx={{width: 90, height: 90, border: "2px solid white", fontSize: "1.4em"}} src={image} alt="pics" width={50} height={50} />
+                
 
-            </Box>
+                {
+                    isCurrentUser(slug) &&
+                    <Box position="absolute" top={5} right={5} >
+                        <Tooltip title="Edit Cover Photo" >  
+                        <IconButton size='small' onClick={() => {
+                            history.push('#edit_cover_photo')
+                        }} >
+                                <Avatar sx={{width: 32, height: 32}} ><EditRounded color='action' fontSize='0.5rem'/> </Avatar>
+                        </IconButton>
+
+                        </Tooltip>
+                    </Box>
+
+                }
+
+                <Box position="absolute" bottom={-30} left={20} >
+                    <Avatar  {...stringAvatar(name, 90, 90)} sx={{width: 90, height: 90, border: "2px solid white", fontSize: "1.4em"}} src={image} alt="pics" width={50} height={50} />
+
+                </Box>
 
 
         </Box>
@@ -103,63 +145,7 @@ const Profile = ({profile}) => {
 
             
 
-            <Box display="flex" justifyContent="flex-start" alignItems="center" flexWrap='wrap' >
-      
-                <Box  >
-
-                    {
-                        !website_url ? 
-                        <a rel="noopener noreferrer" href={website_url} target="_blank">
-
-                            <IconButton size="small"  >
-                            
-                                <LanguageOutlined sx={{color: "rgb(0 0 0 / 50%)", mr: 2}} />
-                            </IconButton>
-
-                        </a>
-                        : 
-                        <>
-                        <Tooltip title="Add Website" sx={{mr: 2}}  >
-                            <Chip clickable label='Website'  avatar={<AddRounded fontSize="0.6em"  sx={{color: "white"}} />}  />
-
-
-                        </Tooltip>
-                        </>
-                    }
-
-                    </Box>
-                
-
-              
-
-                <Box  >
-
-                    {
-                        !github_url ? 
-                        <a rel="noopener noreferrer" href={github_url} target="_blank">
-
-                            <IconButton size="small"  >
-                               
-                                <img src="/images/repo.png" alt="github"  />
-                            </IconButton>
-
-                        </a>
-                        : 
-                        <>
-                        <Tooltip title="Add Github" sx={{mr: 2}}  >
-                            <Chip clickable label='Github'  avatar={<AddRounded fontSize="0.6em"  sx={{color: "white"}} />}  />
-
-                    
-                        </Tooltip>
-                        </>
-                    }
-
-                </Box>
-                
-
-              
-               
-            </Box>
+           
         </Box>
 
     )

@@ -20,6 +20,7 @@ import ResetPassword from '../ResetPassword';
 import CreateProjectMenu from './mobile/creat_project/CreateProjectMenu';
 import { AuthContext } from '../../context/AuthContext';
 import ImageViewer from '../shared/ImageViewer';
+import CoverPhotoEdit from './my_profile/CoverPhotoEdit';
 
 export default function DrawerMenu() {
 
@@ -56,6 +57,11 @@ export default function DrawerMenu() {
             setDrawerOpen(true)
             setDrawerComponent('pinned')
             setFullScreen(true)
+        }else if (hash === "#edit_cover_photo" && matches){
+            // open the pinnedproject menu, when the pinned hash is found.
+            setDrawerOpen(true)
+            setDrawerComponent('edit_cover_photo')
+            setFullScreen(true)
         }
         else if (hash === "#notification" && matches){
             // open the notification menu, when the notification hash is found.
@@ -79,11 +85,7 @@ export default function DrawerMenu() {
                 setFullScreen(true)
         }
         else {
-            // close drawer menu and default drawer component
-
-            
-            
-
+ 
             if (hash === "#login"){
                 // open the login menu, when the login hash is found.
                 setDrawerOpen(true)
@@ -94,7 +96,13 @@ export default function DrawerMenu() {
                 else
                     setFullScreen(false)
                 
-            }else if(hash === "#search" && matchesSmSearch){
+            }
+            else if(hash === "#edit_cover_photo"){
+                setDrawerOpen(true)
+                setDrawerComponent('edit_cover_photo')
+                
+            }
+            else if(hash === "#search" && matchesSmSearch){
                 setDrawerOpen(true)
                 setDrawerComponent('search')
                 setFullScreen(true)
@@ -110,8 +118,8 @@ export default function DrawerMenu() {
                 
             }
             else{
-                setDrawerOpen(false)
                 setDrawerComponent(null)
+                setDrawerOpen(false) 
                 setFullScreen(false)
             }
             
@@ -151,6 +159,8 @@ export default function DrawerMenu() {
                         <CreateProjectMenu /> :
                         drawerComponent === "image_viewer" ? 
                         <ImageViewer  /> :
+                        drawerComponent === "edit_cover_photo" ?
+                        <CoverPhotoEdit /> :
                         null
 
                     }

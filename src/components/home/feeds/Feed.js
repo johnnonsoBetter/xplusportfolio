@@ -27,7 +27,7 @@ export default function Feed() {
                         
                         <Box mx={1} >
                         
-                        <TopMembers />
+                        <TopProjects />
                        
                         </Box>
                         <Box mx={1} my={2}sx={{display: {xs: "none", sm: "none", md: "block", lg: "none"}}} >
@@ -38,11 +38,11 @@ export default function Feed() {
                     
                 </Grid>
                 <Grid item sm={4} sx={{display: {xs: "none", sm: "none", md: "none"}}} md={4} lg={3} >
-                <TopMembers />
+                <TopProjects />
                 </Grid>
                 <Grid  item sm={4} sx={{display: {xs: "none", sm: "none", md: "none", lg: "none"}}} md={4} lg={3} >
                     
-                <TopMembers />
+                <TopProjects />
                 </Grid>
             </Grid>
         </Box>

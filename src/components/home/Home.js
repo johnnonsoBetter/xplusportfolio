@@ -42,6 +42,8 @@ export default function Home(props) {
   const [titleBarUserName, setTitleBarUserName] = useState(null)
   const [appIsOffline, setAppIsOffline] = useState(false)
   const [hideBottomNav, setHideBottomNav] = useState(false)
+  const [backcoverUrl, setBackCoverUrl] = useState(null)
+
 
 
   const [image, setImage] = useState(null)
@@ -138,6 +140,8 @@ export default function Home(props) {
             titleBarUserName,
             appIsOffline,
             hideBottomNav,
+            backcoverUrl,
+            setBackCoverUrl,
             setHideBottomNav: (hide) => setHideBottomNav(hide),
             setAppIsOffline,
             setTitleBarUserName: (name) => setTitleBarUserName(name),

@@ -227,20 +227,19 @@ const Profile = ({profile}) => {
         <Box my={1} mx={1} >
         <Grid container spacing={1} >
             <Grid item xs={6} md={3}  >
-                <Paper  sx={{minHeight: 130, display: 'flex', alignItems: 'center'}}  >
-                    <Box p={1} >
-                        <Stack >
-                            <Box width="100%" display="flex" justifyContent="center" >
-                                
-                                <HiveOutlined sx={{color: green[500]}} />
-                            </Box>
-                            <Box p={1} >
-                                <Typography variant="body2" > {repu_coin} Repu Coins</Typography>
-                            </Box>
-                        </Stack>
+                <a rel="noopener noreferrer" href='hey' target="_blank">
+                    <Paper  sx={{minHeight: 130, display: 'flex', alignItems: 'center'}}  >
                         
-                    </Box>
-                </Paper>
+
+                               
+
+                        
+                        <Box width='100%' display='flex' justifyContent='center' sx={{textDecoration: 'none'}} p={1} >
+                            <img  src="/images/repo.png" alt="github"  />
+                            
+                        </Box>
+                    </Paper>
+                </a>
             </Grid>
 
             

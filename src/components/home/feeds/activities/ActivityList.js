@@ -8,6 +8,7 @@ import FeedLoader from '../../../shared/FeedLoader'
 import '../../../../css/InfiniteList.css'
 import ProjectActivity from './project_activity/ProjectActivity'
 import HomeInfoContext from '../../../../context/HomeInfoContext'
+import SubscribersLoader from '../../../shared/SubscribersLoader'
 
 export default function ActivityList({activities, totalActivities, fetchMoreData, loading, finished }) {
 
@@ -27,22 +28,7 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
            next={fetchMoreData}
            scrollThreshold={1}
            hasMore={totalActivities !== activities.length}
-            onScroll={(e) => {
-                var st = e.target.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-                    // if (st > (y)){
-                    //     // downscroll code
-                    //     setHideBottomNav(true)
-                    // } else {
-                    //     // upscroll code
-                       
-                    //     setHideBottomNav(false)
-                    // }
-
-                    console.log(e.target.scrollTop)
-                setY(e.target.scrollTop) // For Mobile or negative scrolling
-
-             
-            }}
+            
            height={matchesSm ? "calc(99vh - 45px)" : matchesXs ?  "calc(98vh - 45px)": "calc(99vh - 45px)" }
             
            style={{
@@ -59,7 +45,7 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
                 <Box width='100%' >
                     <MyMiniInfo />
                     {
-                        loading && <FeedLoader />
+                        loading && <SubscribersLoader />
                     }
                 </Box>
 
@@ -97,7 +83,7 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
                     {
                         totalActivities !== activities.length &&
                         <>
-                            {!finished && <FeedLoader />  }
+                            {!finished && <SubscribersLoader />  }
                         </>
                         
 

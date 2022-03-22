@@ -24,7 +24,7 @@ const User = ({user}) => {
         
             <Link to={`/xpo/members/${slug}`}  style={{textDecoration: "none", margin: '10px', alignItems: "center"}} width="100%" alignItems="center" >
     
-                <Chip  clickable  sx={{backgroundColor: stringToColor(name)}}  label={name} />
+                <Chip  clickable avatar={<Avatar src={image} />}    label={name} />
 
          
       
@@ -86,7 +86,7 @@ export default function Subscribers({totalSubScribers, slug}) {
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
        
-      <Typography onClick={handleClick} component={Button} color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> {totalSubScribers} subscribers</Typography>
+      <Typography onMouseEnter={handleClick} onClick={handleClick} component={Button} color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> {totalSubScribers} subscribers</Typography>
 
       </Box>
       <Menu

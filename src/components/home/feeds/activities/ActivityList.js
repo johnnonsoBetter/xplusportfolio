@@ -67,7 +67,11 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
                                     <AnticipationActivity anticipation={activity} typePackge={{owner_name, owner_slug, action_type, created_at}} showType={true} /> :
                                     action_type === "anticipation.subscribe" ? 
                                     <AnticipationActivity anticipation={activity} typePackge={{owner_name, owner_slug, action_type, created_at}} showType={true} /> :
+                                    action_type === "anticipation.fulfill" ? 
+                                    <AnticipationActivity anticipation={activity} typePackge={{owner_name, owner_slug, action_type, created_at}} showType={true} /> :
                                     action_type === "suggestion.create" ?
+                                    <ProjectActivity project={activity} typePackge={{owner_name, owner_slug, action_type, created_at}} showType={true} /> :
+                                    action_type === "project.create" ?
                                     <ProjectActivity project={activity} typePackge={{owner_name, owner_slug, action_type, created_at}} showType={true} /> :
                                     null
                                 }

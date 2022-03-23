@@ -78,9 +78,15 @@ const Notification = ({object, type,  user_slug}) => {
             <NotificationInfo  body={anticipation.body} action_owner={action_owner} total_performers={total_performers} event_message='subscribed to your anticipation' color={blue[400]} link={`/xpo/my_profile/${user_slug}/anticipations/`}/> : 
             type === "NewSuggestionNotification" ? 
             <NotificationInfo   body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message={`contributed to your project`}  /> 
+            :
+            type === "NewProjectNotification" ?
+            <NotificationInfo  body={project.title} action_owner={action_owner} total_performers={total_performers} link={`/xpo/projects/${project.slug}`} color={orange[400]} event_message='added a new project'  /> 
+            : 
+            type === "FulfillAnticipationNotification" ?
+            <NotificationInfo  body={anticipation.body} action_owner={action_owner} total_performers={total_performers} event_message='fulfilled and completed' color={blue[400]} link={`/xpo/my_profile/${user_slug}/anticipations/`} />
             : null
              
-             
+            
         
         }
     </>

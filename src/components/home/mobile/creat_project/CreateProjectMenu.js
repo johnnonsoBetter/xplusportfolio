@@ -79,6 +79,10 @@ export default function CreateProjectMenu() {
   const [done, setDone] = useState(false)
 
 
+
+  console.log("this is the anticipation id", anticipationId)
+
+
  
   const {setSomethingWentWrong} = useContext(AuthContext)
  
@@ -119,6 +123,7 @@ export default function CreateProjectMenu() {
         setImages([])
         setTools([])
         formik.resetForm()
+        history.goBack()
       }).catch(err => {
         
         setLoadingBtn(false)
@@ -313,8 +318,11 @@ export default function CreateProjectMenu() {
                     </Grid>
 
                     <Grid item xs={12}  >
+                        {
+                          checked && 
+                          <MyAnticipations anticipationId={anticipationId} setAnticipationId={setAnticipationId} openAnticipationList={checked}  />
 
-                    <MyAnticipations anticipationId={anticipationId} setAnticipationId={setAnticipationId} openAnticipationList={checked}  />
+                        }
 
                     </Grid>
 

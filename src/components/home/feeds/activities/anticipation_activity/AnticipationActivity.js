@@ -89,7 +89,7 @@ function AnticipationActivity({anticipation, showType, typePackge}) {
                 action_type === "anticipation.subscribe" ? 
                 <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='subscribed to this 🗒' /> :
                 action_type === "anticipation.fulfill" ? 
-                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='fulfilled this ✨ ' /> :
+                <ActivityType owner_name={owner_name} owner_slug={owner_slug} created_at={typePackge.created_at} text='completed this ✨ ' /> :
                 null
                 
               }
@@ -198,7 +198,7 @@ function AnticipationActivity({anticipation, showType, typePackge}) {
               <>
                 {
 
-                  !expired &&
+                  !expired && !fulfilled &&
                 
                 <Tooltip sx={{mr: 2}} title="Subscribe to anticipation" > 
                     

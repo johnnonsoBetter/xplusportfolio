@@ -43,7 +43,7 @@ export default function NotificationInfo({ link,  body, color, event_message, ac
             
                         
                         
-                        <Avatar  style={{width: "32px", height: "32px"}}  {...stringAvatar(name, 35, 35)} src={image} alt="pics" width={40} height={40} />
+                        <Avatar  style={{width: "32px", height: "32px", fontSize: '0.9rem'}}  {...stringAvatar(name, 35, 35)} src={image} alt="pics" width={40} height={40} />
 
     
                     </Box>

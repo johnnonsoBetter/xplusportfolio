@@ -39,6 +39,7 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
       setSomethingWentWrong(false)
       setLoading(true)
       setAnticipations([])
+      setAnticipationId(null)
     }
   }, [])
 

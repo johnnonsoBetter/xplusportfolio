@@ -86,7 +86,7 @@ export default function Subscribers({totalSubScribers, slug}) {
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
        
-      <Typography onMouseEnter={handleClick} onClick={handleClick} component={Button} color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> {totalSubScribers} subscribers</Typography>
+      <Typography  onClick={handleClick} component={Button} color="MenuText" fontWeight={400} noWrap={true} textAlign="left" variant="body2" sx={{mx: 2, py: 2}}> {totalSubScribers} subscribers</Typography>
 
       </Box>
       <Menu

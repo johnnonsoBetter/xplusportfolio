@@ -1,5 +1,5 @@
-import { LinkOffOutlined, OpenInNewOutlined } from '@mui/icons-material';
-import { IconButton, Tooltip } from '@mui/material';
+import { HowToVoteOutlined, LinkOffOutlined, OpenInNewOutlined } from '@mui/icons-material';
+import { Badge, IconButton, Tooltip } from '@mui/material';
 import { Box } from '@mui/system'
 import React, { useContext, useState } from 'react'  
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
@@ -44,8 +44,21 @@ export default function TopProject({project}) {
             <Box display="flex" my={2}  width="100%" alignItems="center" justifyContent='space-between' >
                 
                 <Box >
-                    <VoteButton voteUrl={`/api/v1/projects/${slug}/voters`} voted={voted}  totalVotes={totalVotes} setTotalVotes={setTotalVotes}  />
 
+                    {
+                        isCurrentUser(user_slug) ?
+                        <Tooltip title={`${totalVotes} votes`} sx={{mr: 2}} >
+                        <IconButton disabled={true} size="small" >
+                            <Badge color="info" badgeContent={totalVotes} >
+                            <HowToVoteOutlined fontSize='small' />
+                            </Badge>
+                        </IconButton>
+                        
+                        </Tooltip> :
+                        <VoteButton voteUrl={`/api/v1/projects/${project.slug}/voters`} voted={voted}  totalVotes={totalVotes} setTotalVotes={setTotalVotes}  />
+
+                    }
+                    
                     <LikerButton likeUrl={`/api/v1/projects/${slug}/likes`} liked={liked}  totalLikes={totalLikes} setTotalLikes={setTotalLikes}  />
                 </Box>
 

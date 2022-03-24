@@ -67,7 +67,7 @@ function ElevationScroll(props) {
 
 
 export default function MyAppbar(props) {
-  const {totalNotifications, setTotalNotifications, newPostAvailable, setNewPostAvailable} = useContext(HomeInfoContext)
+  const {totalNotifications, setTotalNotifications, newPostAvailable, showFriendsActivities, setNewActivityId, setNewActivityPackage, setNewPostAvailable} = useContext(HomeInfoContext)
   const {isCurrentUser, authState} = useContext(AuthContext)
   const {slug} = JSON.parse(authState.userInfo)
   
@@ -77,6 +77,8 @@ export default function MyAppbar(props) {
 
       const {sender_slug, receivers, isPost} = res
 
+  
+
       if(!isCurrentUser(sender_slug)){
         
         if(receivers.map(rec => rec.slug).includes(slug)){
@@ -84,8 +86,10 @@ export default function MyAppbar(props) {
           const thePackage = receivers.find(rec => (rec.slug === slug))
           const {total_notifications} = thePackage
           setTotalNotifications(total_notifications)
-          if(isPost)
-            setNewPostAvailable(true)
+          if(isPost){
+              setNewPostAvailable(true)
+          }
+            
 
         }
         
@@ -93,7 +97,8 @@ export default function MyAppbar(props) {
  
     }
 
-    const handleRecieveAnticipationLike = (res) => {
+
+    const handleAnticipation = (res) => {
      
       const {sender_slug, receivers, isPost} = res
 
@@ -107,23 +112,82 @@ export default function MyAppbar(props) {
        
 
         }
-
-       
         
       }
  
     }
 
 
+    const handleRecieveProject = (res) => {
+
+      const {sender_slug, receivers, isPost} = res
+
+  
+
+      if(!isCurrentUser(sender_slug)){
+        
+        if(receivers.map(rec => rec.slug).includes(slug)){
+          
+          const thePackage = receivers.find(rec => (rec.slug === slug))
+          const {total_notifications} = thePackage
+          setTotalNotifications(total_notifications)
+          if(isPost){
+              setNewPostAvailable(true)
+          }
+            
+
+        }
+        
+      }
+ 
+    }
+
+    // const handleRecieveAnticipationLike = (res) => {
+     
+    //   const {sender_slug, receivers, isPost} = res
+
+    //   if(isCurrentUser(sender_slug)){
+        
+    //     if(receivers.map(rec => rec.slug).includes(slug)){
+          
+    //       const thePackage = receivers.find(rec => (rec.slug === slug))
+    //       const {total_notifications} = thePackage
+    //       setTotalNotifications(total_notifications)
+       
+
+    //     }
+        
+    //   }
+ 
+    // }
+
+    // const handleRecieveAnticipationSubScription = (res) => {
+     
+    //   const {sender_slug, receivers, isPost} = res
+
+    //   if(isCurrentUser(sender_slug)){
+        
+    //     if(receivers.map(rec => rec.slug).includes(slug)){
+          
+    //       const thePackage = receivers.find(rec => (rec.slug === slug))
+    //       const {total_notifications} = thePackage
+    //       setTotalNotifications(total_notifications)
+       
+
+    //     }
+        
+    //   }
+ 
+    // }
+
+
 
     return (
         <>
         <ActionCableConsumer channel="NewAnticipationChannel" onReceived={handleRecieveNewAnticipation}  >
-          
-
-
-          <Box   >
-          <ActionCableConsumer  channel="AnticipationLikeChannel" onReceived={handleRecieveAnticipationLike}  >
+        <ActionCableConsumer channel="ProjectChannel" onReceived={handleRecieveProject}  >
+        <ActionCableConsumer channel="AnticipationChannel" onReceived={handleAnticipation}  >
+      
               <ElevationScroll   {...props}>
                   <AppBar sx={{backgroundColor: "white"}} >
                       <Container  sx={{pr: {xs: "0px", sm: 1}, pl: {xs: "0px", sm: 1}}} >
@@ -134,20 +198,7 @@ export default function MyAppbar(props) {
                   </AppBar>
               </ElevationScroll>
               </ActionCableConsumer>
-          </Box>
-
-          {/* <Box sx={{display: {xs: 'block', sm: 'none'}}} >
-              <HideOnScroll  {...props}>
-                  <AppBar sx={{backgroundColor: "white"}} >
-                      <Container  >
-                          <Toolbar >
-                          <AppbarContent />
-                          </Toolbar>
-                      </Container>      
-                  </AppBar>
-              </HideOnScroll>
-          </Box>  */}
-  
+              </ActionCableConsumer>
         </ActionCableConsumer>
         </>
     )

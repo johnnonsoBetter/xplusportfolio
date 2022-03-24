@@ -12,8 +12,8 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 
-import { InsertLinkOutlined, LinkOffOutlined, OpenInNewOutlined, UsbOff} from '@mui/icons-material';
-import { IconButton, Tooltip } from '@mui/material';
+import { HowToVoteOutlined, InsertLinkOutlined, LinkOffOutlined, OpenInNewOutlined, UsbOff} from '@mui/icons-material';
+import { Badge, IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../context/AuthContext';
 import LikerButton from '../../../../shared/LikerButton';
@@ -239,8 +239,20 @@ function ProjectActivity({project, typePackge, showType}) {
             
           
 
-              <VoteButton voteUrl={`/api/v1/projects/${project.slug}/voters`} voted={voted}  totalVotes={totalVotes} setTotalVotes={setTotalVotes}  />
-            
+
+              {
+                isCurrentUser(user.slug) ?
+                <Tooltip title={`${totalVotes} votes`} sx={{mr: 2}} >
+                  <IconButton disabled={true} size="small" >
+                      <Badge color="info" badgeContent={totalVotes} >
+                      <HowToVoteOutlined fontSize='small' />
+                      </Badge>
+                  </IconButton>
+                
+                </Tooltip> :
+                <VoteButton voteUrl={`/api/v1/projects/${project.slug}/voters`} voted={voted}  totalVotes={totalVotes} setTotalVotes={setTotalVotes}  />
+
+              }
   
                 <LikerButton likeUrl={`/api/v1/projects/${project.slug}/likes`} liked={liked}  totalLikes={totalLikes} setTotalLikes={setTotalLikes}  />
             

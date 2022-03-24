@@ -15,9 +15,11 @@ import {blue} from '@mui/material/colors'
 import PushConsentNotify from '../shared/PushConsentNotify'
 import usePushNotifications from '../shared/usePushNotifications'
 import ResourcesTabLink from './resources/ResourcesTabLink'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function AppbarContent({user, notify}) {
     
+    const history = useHistory()
 
     const {
         userConsent,
@@ -26,7 +28,7 @@ export default function AppbarContent({user, notify}) {
       } = usePushNotifications();
 
     const [openNotify, setOpenNotify] = useState(userConsent !== 'granted')
-    const {totalNotifications, newPostAvailable, setShowFriendsActivites} = useContext(HomeInfoContext)
+    const {totalNotifications, showFriendsActivities, setNewPostAvailable, newPostAvailable, setShowFriendsActivites} = useContext(HomeInfoContext)
 
 
     useEffect(() => {
@@ -144,7 +146,9 @@ export default function AppbarContent({user, notify}) {
                     <Box position='absolute' zIndex={100000} bottom={-49} display='flex' justifyContent='center' width='100%'  >
                         <Chip onClick={() => {
 
+                    
                             setShowFriendsActivites(true)
+                            history.push('/xpo')
                            
                             
                             

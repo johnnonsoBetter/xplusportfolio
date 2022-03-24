@@ -43,6 +43,8 @@ export default function Home(props) {
   const [appIsOffline, setAppIsOffline] = useState(false)
   const [hideBottomNav, setHideBottomNav] = useState(false)
   const [backcoverUrl, setBackCoverUrl] = useState(null)
+  const [newActivityPackage, setNewActivityPackage] = useState({})
+  const [newActivityId, setNewActivityId] = useState(null)
 
 
 
@@ -141,7 +143,11 @@ export default function Home(props) {
             appIsOffline,
             hideBottomNav,
             backcoverUrl,
+            newActivityId,
+            newActivityPackage,
             setBackCoverUrl,
+            setNewActivityPackage,
+            setNewActivityId,
             setHideBottomNav: (hide) => setHideBottomNav(hide),
             setAppIsOffline,
             setTitleBarUserName: (name) => setTitleBarUserName(name),

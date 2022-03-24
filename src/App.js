@@ -14,6 +14,7 @@ import ForgotPassword from './components/ForgotPassword';
 import queryString from 'query-string'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import SetReset from './components/SetReset';
+import Homepage from './components/homepage/Homepage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectReview from './components/project_review/ProjectReview';
 
@@ -42,7 +43,7 @@ function App() {
             <Route path='/api' render={() => <SetReset /> } />        
             <Route  path="/xpo" render={() => isAuthenticated() ? <Home /> : <Redirect to='/login' /> } />
             <Route  path="/project_review/:slug" render={() => isAuthenticated() ? <ProjectReview /> : <Redirect to='/login' /> } />
-            <Route exact  path='/' render={() => isAuthenticated() ? <Redirect to="/xpo" /> : <Redirect to='/login' /> } />
+            <Route exact  path='/' render={() => isAuthenticated() ? <Redirect to="/xpo" /> : <Homepage /> } />
             <Route exact path="/404" render={() => <NoPageFound />} />
             <Redirect to="/404" />
             

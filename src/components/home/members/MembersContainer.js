@@ -12,6 +12,7 @@ export default function MembersContainer() {
 
     const {authAxios} = useContext(FetchContext)
     const {setSomethingWentWrong} = useContext(AuthContext)
+    const [finished, setFinished] = useState(false)
 
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
@@ -26,11 +27,18 @@ export default function MembersContainer() {
         authAxios.get('api/v1/users', {params: {page: page}}).then(res => {
             const {data} = res 
             
-            setPage(page + 1)
+            setPage(page => page + 1)
             setUsers(users.concat(data))
             setTotalMembers(users.length)
        }).catch(err => {
         
+        const {exception, status} = err.response 
+
+
+           if(status === 500){
+            
+               setFinished(true)
+           }
            
         
        })
@@ -46,7 +54,7 @@ export default function MembersContainer() {
              const {data} = res 
              setUsers(data)
              setLoading(false)
-             setPage(page + 1)
+             setPage(page => page + 1)
         }).catch(err => {
          
             setSomethingWentWrong(true)
@@ -58,18 +66,15 @@ export default function MembersContainer() {
             setLoading(true)
             setSomethingWentWrong(false)
             setUsers([])
+            
         }
 
     }, [appIsOffline])
     
     return (
         <Box px={1} >
-            {
-                loading ?
-                <MembersLoader /> 
-                : 
-                <MemberList users={users} fetchMoreData={fetchMoreData} totalMembers={totalMembers}/>
-            }
+           
+                <MemberList users={users} loading={loading} finished={finished} fetchMoreData={fetchMoreData} totalMembers={totalMembers}/>
            
         </Box>
     )

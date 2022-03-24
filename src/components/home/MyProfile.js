@@ -44,7 +44,7 @@ export default function MyProfile() {
     authAxios.delete('api/v1/auth/sign_out').then((res) => {
 
         logUserOut()
-        history.push('/login')
+        history.push('/')
       
     }).catch(err => {
         setLoading(false)

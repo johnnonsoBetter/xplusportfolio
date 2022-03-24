@@ -7,7 +7,7 @@ import { useTheme } from '@emotion/react'
 import SubscribersLoader from '../../shared/SubscribersLoader'
 
 
-export default function MemberList({users, totalMembers, fetchMoreData, noFollow}) {
+export default function MemberList({users, totalMembers, fetchMoreData, noFollow, loading, finished}) {
 
     const theme = useTheme()
     const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -36,23 +36,45 @@ export default function MemberList({users, totalMembers, fetchMoreData, noFollow
            }}
            
             >
-           
+
+                <Box width='100%' >
+                    
+                    {
+                        loading && <SubscribersLoader />
+                    }
+                </Box>
 
                 {
-                   users.map((user, index) => {
+                    !loading &&
 
-                    return (
-                        <Grid key={user.slug + index} item xs={6} sm={4} md={4}  >
-                            <Box p={1} >
-                                <Member noFollow={noFollow} user={user} />
-                            </Box>
-                            
-                        </Grid>
-                    )
-                   })
-               }
+                   
+                        users.map((user, index) => {
+     
+                         return (
+                             <Grid key={user.slug + index} item xs={6} sm={4} md={4}  >
+                                 <Box p={1} >
+                                     <Member noFollow={noFollow} user={user} />
+                                 </Box>
+                                 
+                             </Grid>
+                         )
+                        })
+                    
+                }
+           
+
+                
                 <Grid p={1} item xs={12}  >
-                    <SubscribersLoader />
+                  
+
+                    {
+                        totalMembers !== users.length &&
+                        <>
+                            {!finished && <SubscribersLoader />  }
+                        </>
+                        
+
+                    }
 
                 </Grid>
          </InfiniteScroll>

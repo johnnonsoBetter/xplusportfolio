@@ -6,8 +6,8 @@ import InputBase from '@mui/material/InputBase';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { FetchContext } from "../../../context/FetchContext";
-import { CloseRounded } from '@mui/icons-material';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { ArrowBackIosRounded } from '@mui/icons-material';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import isPast from 'date-fns/isPast'
@@ -186,6 +186,7 @@ export default function CreateAnticipationMenu() {
         setDueDate(nextDay(new Date(), -1))
         setLoadingBtn(false)
         formik.resetForm()
+        history.goBack()
       }).catch(err => {
         setLoadingBtn(false)
       })
@@ -221,19 +222,17 @@ export default function CreateAnticipationMenu() {
 
     return (
         <Box position="relative" height="100%" >
-          <Box display='flex' justifyContent='space-between' alignItems='center' >
-              <Typography variant='h6' mx={2}  color="ButtonText" fontWeight={700}>
-                Create Anticipation
-              </Typography>
-             
-
-              <Box px={2} my={1} >
-              <IconButton  onClick={() => history.goBack() } >
-                <CloseRounded />
-              </IconButton>
-              </Box>
               
-            </Box>
+
+              <Box p={1} sx={{color: "black", textDecoration: 'none'}} display='flex' component={Link} alignItems='center' >
+                
+                <ArrowBackIosRounded onClick={()=> history.goBack()} fontSize='small' />
+                <Typography onClick={()=> history.goBack()} sx={{ml: 1}} fontWeight={700}>Create Anticipation</Typography>
+
+                </Box>
+             
+              
+          
           {
 
             loading ?

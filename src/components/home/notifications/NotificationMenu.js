@@ -29,6 +29,7 @@ export default function NotificationMenu({total_notifications}) {
   const [changed, setChanged] = useState(false)
   const [disabled, setDisabled] = useState(false)
   const {totalNotifications, setTotalNotifications} = useContext(HomeInfoContext)
+  
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

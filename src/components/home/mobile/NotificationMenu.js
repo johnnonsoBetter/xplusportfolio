@@ -1,7 +1,7 @@
-import { ArrowBackIosNewRounded, BackupRounded, PlaylistAddCheckRounded, ViewAgendaOutlined } from '@mui/icons-material'
+import { ArrowBackIosNewRounded, ArrowBackIosRounded, BackupRounded, PlaylistAddCheckRounded, ViewAgendaOutlined } from '@mui/icons-material'
 import { BottomNavigation, BottomNavigationAction, Box, IconButton, Paper, Tooltip, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { AuthContext } from '../../../context/AuthContext'
 import { FetchContext } from '../../../context/FetchContext'
 import NotificationLoader from '../notifications/NofiticationLoader'
@@ -77,7 +77,13 @@ export default function NotificationMenu() {
         <Box px={2}>
 
             <Box p={1} display="flex" width="100%" justifyContent="space-between" alignItems="center"  >
-                <Typography fontWeight={700}>Notifications</Typography>
+                
+                <Box sx={{color: "black", textDecoration: 'none'}} display='flex' component={Link} alignItems='center' >
+                
+                <ArrowBackIosRounded onClick={()=> history.goBack()} fontSize='small' />
+                <Typography onClick={()=> history.goBack()} sx={{ml: 1}} fontWeight={700}>Notifications</Typography>
+
+                </Box>
                 
 
                 <Box display="flex" width="100%" justifyContent="flex-end" alignItems="center" >
@@ -97,7 +103,10 @@ export default function NotificationMenu() {
             </Box>
 
 
-            <>
+            <Box 
+                maxHeight="calc(99vh - 20px)"
+                overflow='auto'           
+            >
             {
             loading ?
             <NotificationLoader /> :
@@ -112,24 +121,10 @@ export default function NotificationMenu() {
             
             }
             
-            </>
+            </Box>
 
 
-            <Paper  sx={{ position: 'fixed', zIndex: 500, bottom: 0, left: 0, right: 0, display: {xs: "block", sm: "none"}}} elevation={0}>
-                <BottomNavigation
-                showLabels
-            
-                sx={{
-                    textDecoration: "none"
-                }}
-                value={0}
-              
-                >
-
-                <BottomNavigationAction disableRipple onClick={() => history.goBack()}  label="Go Back" icon={<ArrowBackIosNewRounded />} />
-                   
-                </BottomNavigation>
-            </Paper>
+        
     
           
        

@@ -54,7 +54,7 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
     return (
       <Collapse  in={openAnticipationList} timeout="auto" unmountOnExit >
       
-        <Box  mx={2} my={1} > 
+        <Box  mx={2} my={1}  minWidth='100%' width='100%' > 
           
           {
                     loading ?
@@ -104,7 +104,7 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
 
     return (
         <>
-        <Box sx={{ maxWidth: "100%", flexGrow: 1 }}>
+        <Box minWidth='100%' width='100%' sx={{ maxWidth: "100%", flexGrow: 1 }}>
         <Paper
           square
           elevation={0}
@@ -114,6 +114,7 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
             height: 50,
             pl: 2,
             bgcolor: 'background.default',
+            width: '100%'
           }}
         >
          
@@ -183,6 +184,7 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
         component={Paper}
         square
         elevation={2}
+        minWidth='100%' width='100%'
       >
       <Paper
         square
@@ -193,6 +195,7 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
           height: 50,
           pl: 2,
           bgcolor: 'background.default',
+          width: '100%',
           
         }}
       >
@@ -208,7 +211,7 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
                   
                  
              
-              <Box mx={1} >
+              <Box mx={1} minWidth='100%' width='100%' >
                   <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} variant="body2" color="ButtonShadow" noWrap={true}> expires in {expires} </Typography>
   
               </Box>

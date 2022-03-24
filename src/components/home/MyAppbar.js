@@ -161,44 +161,6 @@ export default function MyAppbar(props) {
  
     }
 
-    // const handleRecieveAnticipationLike = (res) => {
-     
-    //   const {sender_slug, receivers, isPost} = res
-
-    //   if(isCurrentUser(sender_slug)){
-        
-    //     if(receivers.map(rec => rec.slug).includes(slug)){
-          
-    //       const thePackage = receivers.find(rec => (rec.slug === slug))
-    //       const {total_notifications} = thePackage
-    //       setTotalNotifications(total_notifications)
-       
-
-    //     }
-        
-    //   }
- 
-    // }
-
-    // const handleRecieveAnticipationSubScription = (res) => {
-     
-    //   const {sender_slug, receivers, isPost} = res
-
-    //   if(isCurrentUser(sender_slug)){
-        
-    //     if(receivers.map(rec => rec.slug).includes(slug)){
-          
-    //       const thePackage = receivers.find(rec => (rec.slug === slug))
-    //       const {total_notifications} = thePackage
-    //       setTotalNotifications(total_notifications)
-       
-
-    //     }
-        
-    //   }
- 
-    // }
-
 
 
     return (

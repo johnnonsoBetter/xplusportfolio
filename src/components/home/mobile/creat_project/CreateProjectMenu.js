@@ -4,8 +4,8 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import 'react-multi-carousel/lib/styles.css';
 import { FetchContext } from "../../../../context/FetchContext";
-import { CloseRounded } from '@mui/icons-material';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { ArrowBackIosRounded, CloseRounded } from '@mui/icons-material';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 
@@ -77,12 +77,6 @@ export default function CreateProjectMenu() {
   const [checked, setChecked] = useState(false)
   const [anticipationId, setAnticipationId] = useState(null)
   const [done, setDone] = useState(false)
-
-
-
-  console.log("this is the anticipation id", anticipationId)
-
-
  
   const {setSomethingWentWrong} = useContext(AuthContext)
  
@@ -157,25 +151,27 @@ export default function CreateProjectMenu() {
 
     return (
         <Box position="relative" height="100%" sx={{width: {sm: 550}}} >
-          <Box display='flex' justifyContent='space-between' alignItems='center' >
-              
-              <Box display='flex' justifyContent='space-between' alignItems='center' >
-                <Typography variant='h6' mx={2}  color="ButtonText" fontWeight={700}>
-                 
-                  {checked ? "Fulfill Anticipation" : "New Project"}
-                </Typography>
+         
 
-                <AnticipationToggle checked={checked} setChecked={setChecked} />
-              </Box>
-             
+            <Box  display='flex' alignItems='center' justifyContent='flex-start'>
 
-              <Box px={2} my={1} >
-              <IconButton  onClick={() => history.goBack() } >
-                <CloseRounded />
-              </IconButton>
+
+              <Box p={1} sx={{color: "black", textDecoration: 'none'}} display='flex' component={Link} alignItems='center' >
+                  
+                  <ArrowBackIosRounded onClick={()=> history.goBack()} fontSize='small' />
+
+                  <Typography mx={1} color="ButtonText" fontWeight={700}>
+                  
+                    {checked ? "Fulfill Anticipation" : "New Project"}
+                  </Typography>
+                  
               </Box>
-              
+              <AnticipationToggle checked={checked} setChecked={setChecked} />
+ 
+
+
             </Box>
+            
           {
 
             loading ?

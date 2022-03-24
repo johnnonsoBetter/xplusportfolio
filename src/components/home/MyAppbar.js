@@ -117,8 +117,27 @@ export default function MyAppbar(props) {
  
     }
 
+    const handleProject = (res) => {
+     
+      const {sender_slug, receivers, isPost} = res
 
-    const handleRecieveProject = (res) => {
+      if(isCurrentUser(sender_slug)){
+        
+        if(receivers.map(rec => rec.slug).includes(slug)){
+          
+          const thePackage = receivers.find(rec => (rec.slug === slug))
+          const {total_notifications} = thePackage
+          setTotalNotifications(total_notifications)
+       
+
+        }
+        
+      }
+ 
+    }
+
+
+    const handleRecieveNewProject = (res) => {
 
       const {sender_slug, receivers, isPost} = res
 
@@ -185,20 +204,21 @@ export default function MyAppbar(props) {
     return (
         <>
         <ActionCableConsumer channel="NewAnticipationChannel" onReceived={handleRecieveNewAnticipation}  >
-        <ActionCableConsumer channel="ProjectChannel" onReceived={handleRecieveProject}  >
+        <ActionCableConsumer channel="NewProjectChannel" onReceived={handleRecieveNewProject}  >
         <ActionCableConsumer channel="AnticipationChannel" onReceived={handleAnticipation}  >
-      
-              <ElevationScroll   {...props}>
-                  <AppBar sx={{backgroundColor: "white"}} >
-                      <Container  sx={{pr: {xs: "0px", sm: 1}, pl: {xs: "0px", sm: 1}}} >
-                          <Toolbar >
-                          <AppbarContent total_notifications={totalNotifications} />
-                          </Toolbar>
-                      </Container>      
-                  </AppBar>
-              </ElevationScroll>
-              </ActionCableConsumer>
-              </ActionCableConsumer>
+        <ActionCableConsumer channel="ProjectChannel" onReceived={handleProject}  >
+            <ElevationScroll   {...props}>
+                <AppBar sx={{backgroundColor: "white"}} >
+                    <Container  sx={{pr: {xs: "0px", sm: 1}, pl: {xs: "0px", sm: 1}}} >
+                        <Toolbar >
+                        <AppbarContent total_notifications={totalNotifications} />
+                        </Toolbar>
+                    </Container>      
+                </AppBar>
+            </ElevationScroll>
+        </ActionCableConsumer>
+        </ActionCableConsumer>
+        </ActionCableConsumer>
         </ActionCableConsumer>
         </>
     )

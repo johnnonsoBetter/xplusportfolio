@@ -21,7 +21,7 @@ import ProjectReview from './components/project_review/ProjectReview';
 const theme = createTheme({
   typography: {
     fontFamily: [
-      'Montserrat', 'sans-serif',
+      'Montserrat', 'Quicksand', 'sans-serif',
     ].join(','),
   },
 });

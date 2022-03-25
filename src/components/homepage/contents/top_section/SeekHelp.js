@@ -20,7 +20,7 @@ export default function SeekHelp() {
                             </Typography>
 
                             <Typography marginTop  marginBottom  fontSize='1.1rem' maxWidth="70%" fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39'}}>
-                                Passionate tech folks who understands are out there seeking to help you manage these challenges.                             </Typography>
+                                Passionate tech folks who understands these challenges are out there seeking to help you manage these challenges.                             </Typography>
 
                             <Chip avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: yellow[600], color: 'black'}} label="Whats the catch?" clickable />
                         </Box>

@@ -10,7 +10,10 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import TopbarContent from './contents/top_section/TopSectionContent';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { Chip } from '@mui/material';
+import { Avatar, Chip, Divider } from '@mui/material';
+import {KeyboardArrowDownRounded} from '@mui/icons-material';
+import { blue } from '@mui/material/colors';
+import FeaturesSection from './contents/features_section/FeaturesSection';
 
 
 
@@ -19,8 +22,8 @@ export default function Homepage(props) {
     <Box height='calc(99.9vh - 2px)' overflow='auto' 
         style={{  
       
-            backgroundImage: `url("/images/homepage_b.png")`,
-            backgroundColor: "#f1f2f3",
+            
+            backgroundColor: "#f5f5f5",
             backgroundPosition: 'center',
         
             backgroundRepeat: 'repeat'
@@ -48,11 +51,19 @@ export default function Homepage(props) {
             </Box>
           </Toolbar>
         </AppBar>
+        
+        <Toolbar />
       
-      <Toolbar />
      
-        <Box  >
+        <Box   >
          <TopbarContent />
+         <Box display='flex' alignItems='center' justifyContent='space-around' p={2} >
+           <Divider sx={{width: '30%'}} />
+           <Chip avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowDownRounded /> </Avatar>} sx={{backgroundColor: blue[600], color: 'white'}} label="Explore how below"  />
+           <Divider sx={{width: '30%'}} />
+         </Box>
+
+         <FeaturesSection />
         </Box>
    
     </Box>

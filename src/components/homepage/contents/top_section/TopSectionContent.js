@@ -10,7 +10,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import { Paper,Grid, Typography, Chip } from '@mui/material'
+import { Paper,Grid, Typography, Chip, Fab } from '@mui/material'
 import { orange, purple } from '@mui/material/colors';
 import GettingIntoTech from './GettingIntoTech';
 import WhatTodo from './WhatTodo';
@@ -77,7 +77,16 @@ function TopSectionContent() {
   };
 
   return (
-    <Box sx={{ maxWidth: "100%", ml: 4, flexGrow: 1 }}>
+    <Box
+    style={{  
+      
+      background: `#f5f5f5`,
+      backgroundColor: "#f5f5f5",
+      backgroundPosition: 'center',
+  
+      backgroundRepeat: 'repeat'
+    }}    
+    sx={{ maxWidth: "100%", ml: 4, flexGrow: 1, position: 'relative'}}>
       
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -94,35 +103,21 @@ function TopSectionContent() {
           </div>
         ))}
       </AutoPlaySwipeableViews>
-      {/* <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            Next
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
-          </Button>
-        }
-      /> */}
+
+      <Box position='absolute' top="30%" right={35}>
+            
+       
+        <Box display='flex' >
+            <Fab color=""  aria-label="prev" onClick={handleBack} disabled={activeStep === 0} sx={{mx: 2}}>
+                <KeyboardArrowLeft />
+            </Fab>
+            <Fab color="" aria-label="next" onClick={handleNext} disabled={activeStep === maxSteps - 1} sx={{mx: 2}}>
+                <KeyboardArrowRight />
+            </Fab>
+        </Box>
+
+      </Box>
+      
     </Box>
   );
 }

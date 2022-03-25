@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import TopbarContent from './contents/TopbarContent';
+import TopbarContent from './contents/top_section/TopSectionContent';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Chip } from '@mui/material';
 
@@ -28,7 +28,7 @@ export default function Homepage(props) {
     >
       <CssBaseline />
       
-        <AppBar elevation={2} sx={{backgroundColor: '#f5f5f5'}}>
+        <AppBar elevation={0} sx={{backgroundColor: '#f5f5f5'}}>
           <Toolbar>
             <Box width="100%" display="flex" position='relative' alignItems="center" justifyContent="space-between" >
                 <Box flexGrow={2} display='flex' justifyContent='flex-start'  >

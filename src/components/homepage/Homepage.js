@@ -9,15 +9,19 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import TopbarContent from './contents/top_section/TopSectionContent';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Avatar, Chip, Divider } from '@mui/material';
 import {KeyboardArrowDownRounded} from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
 import FeaturesSection from './contents/features_section/FeaturesSection';
+import Footer from './contents/Footer';
 
 
 
 export default function Homepage(props) {
+
+  const history = useHistory()
+
   return (
     <Box height='calc(99.9vh - 2px)' overflow='auto' 
         style={{  
@@ -43,9 +47,9 @@ export default function Homepage(props) {
                 </Box>
 
                 <Box display='flex' justifyContent='flex-end' >
-                    <Chip label='Why Bother?' clickable color='info' />
-                    <Chip label='Signup' clickable color='info' sx={{mx: 1}} />
-                    <Chip label='Login' clickable color='info' />
+                    {/* <Chip label='Why Bother?' clickable color='info' /> */}
+                    <Chip label='Signup' onClick={() => history.push('/sign_up')} clickable color='info' sx={{mx: 1}} />
+                    <Chip label='Login' onClick={() => history.push('/login')} clickable color='info' />
 
                 </Box>
             </Box>
@@ -65,6 +69,8 @@ export default function Homepage(props) {
 
          <FeaturesSection />
         </Box>
+
+        <Footer />
    
     </Box>
   );

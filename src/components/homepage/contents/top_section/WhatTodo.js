@@ -13,7 +13,7 @@ export default function WhatTodo() {
                     
 
                     <Grid item xs={12} sm={5} >
-                        <Box display='flex' minHeight={400} alignItems='center' justifyContent='center' flexDirection='column' >
+                        <Box display='flex'  alignItems='center' justifyContent='center' flexDirection='column' >
                             <Typography marginTop  fontSize='2rem' lineHeight='1.3' fontWeight={700} fontFamily='Quicksand' sx={{color: '#222d39'}}>
                                Make your portfolio stand out by buiding real world projects
                             </Typography>

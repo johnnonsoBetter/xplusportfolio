@@ -63,7 +63,7 @@ export default function Homepage(props) {
          <TopbarContent />
          <Box display='flex' alignItems='center' justifyContent='space-around' p={2} >
            <Divider sx={{width: '30%'}} />
-           <Chip avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowDownRounded /> </Avatar>} sx={{backgroundColor: blue[600], color: 'white'}} label="Explore how below"  />
+           <Chip avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowDownRounded /> </Avatar>} sx={{backgroundColor: "#313131", color: 'white'}} label="Explore how below"  />
            <Divider sx={{width: '30%'}} />
          </Box>
 

@@ -13,7 +13,7 @@ export default function Challenging() {
             
 
             <Grid item xs={12} sm={10} md={5} >
-                <Box display='flex'  alignItems='flex-start' sx={{justifyContent: {xs: 'flex-start', sm: 'flex-start', md: 'center'}}} flexDirection='column' >
+                <Box display='flex'  alignItems='flex-start' sx={{alignItems: {sm: ''}, justifyContent: {xs: 'flex-start', sm: 'flex-start', md: 'center'}}} flexDirection='column' >
                     <Typography marginTop lineHeight='1.3'  fontWeight={700} fontFamily='Quicksand'  sx={{color: '#222d39', textAlign: {xs: 'left', sm: 'left', md: 'center'}, fontSize: {xs: '1.7rem', sm: '1.8'}}}>
                                 
                                 Building useful project requires effort and time, It's difficult and challenging!

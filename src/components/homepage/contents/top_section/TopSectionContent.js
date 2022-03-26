@@ -130,11 +130,11 @@ function TopSectionContent() {
                                     <Typography marginTop={2}   marginBottom   maxWidth="70%" fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', fontSize: {xs: '0.9rem', sm: '1rem', md: '1.1rem'}, textAlign: {xs: 'left', sm: 'left', md: 'center'}}}>
                                       {step.body}
                                     </Typography>
-                                    <Chip   avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'none', sm: 'none', md: 'flex'}}} label="How about this?" clickable />
+                                    <Chip   avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'none', sm: 'none', md: 'flex'}}} label="How about this?"  />
 
                                 </Box>
                                 <Box display='flex'>
-                                <Chip  avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'flex', sm: 'flex', md: 'none'}}} label={step.chipLabel} clickable />
+                                <Chip  avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'flex', sm: 'flex', md: 'none'}}} label={step.chipLabel}  />
 
                                 </Box>
                                 

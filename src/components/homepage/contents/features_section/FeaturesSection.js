@@ -61,15 +61,13 @@ const Feature = ({feature}) => {
         <Zoom  top >
 
 
-            <Box minHeight={500} my={2} sx={{backgroundColor,}} >
+            <Box  my={2} sx={{backgroundColor, }} >
                 <Container >
 
                     <Grid container  spacing={1} justifyContent={justifyContent}>
 
-
-
-                        <Grid item xs={12} sm={5} order={order[0]} >
-                            <Box display='flex' minHeight={400} px={1} alignItems='center' justifyContent='center' >
+                        <Grid item xs={12} sm={5} order={order[0]} sx={{display: {xs: 'none', sm: 'none', md: 'block'}}} >
+                            <Box display='flex'  sx={{minHeight: {xs: 'auto', sm: 'auto', md: 400}}} px={1} py={2} alignItems='center' justifyContent='center' >
                                 <Paper  sx={{borderRadius: '15px', transformOrigin, transform: p,  transition: ".55s"}} elevation={3} >
                                     <img src={imgUrl} style={{maxWidth: '100%', borderRadius: '15px'}} />
                                     
@@ -78,23 +76,32 @@ const Feature = ({feature}) => {
                         </Grid>
 
 
-                        <Grid item xs={12} sm={5} order={order[1]}  >
-                            <Box display='flex' minHeight={400} alignItems='center' justifyContent='center' flexDirection='column' >
-                                <Typography  fontSize='2.4rem' lineHeight='1.3' fontWeight={700} fontFamily='Quicksand' sx={{color: '#222d39'}}>
+                        <Grid item xs={12} sm={10} md={5} order={order[1]}  >
+                            <Box display='flex'  sx={{my: {sm: 3}, minHeight: {xs: 'auto', sm: 'auto', md: 400}}} alignItems='center' justifyContent='center' flexDirection='column' >
+                                <Typography   lineHeight='1.3' fontWeight={700} fontFamily='Quicksand' sx={{color: '#222d39', textAlign: {xs: 'left', sm: 'center', md: 'center'}, fontSize: {xs: '1.7rem', sm: '1.8', md: '2.1rem'}}} >
                                     {title}
                                 </Typography>
 
                                 
-                                <Typography marginTop  fontSize='1.2rem' maxWidth="80%" fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39'}}>
+                                <Typography marginTop  fontSize='1.2rem' fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', fontSize: {xs: '0.9rem', sm: '1rem', md: '1.1rem'}, maxWidth: {xs: '100%', sm: '80%', md: '80%'}, textAlign: {xs: 'left', sm: 'center', md: 'center'}}}>
                                     {body1}
                                 </Typography>
 
                                 {
                                     body2 &&
-                                    <Typography px={4} variant='body2' fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39'}}>
+                                    <Typography px={4} variant='body2' fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', maxWidth: {xs: '100%', sm: '80%', md: '80%'}, textAlign: {xs: 'left', sm: 'center', md: 'center'}}}>
                                         {body2}
                                     </Typography>
                                 }
+
+                                <Box mt={3}  sx={{display: {xs: 'flex', sm: 'flex', md: 'none'}, minHeight: {xs: 320, sm: 400}}} px={1} alignItems='center' justifyContent='center' >
+                                    <Paper  sx={{borderRadius: '15px'}} elevation={3} >
+                                        <img src={imgUrl} style={{maxWidth: '100%', borderRadius: '15px'}} />
+                                        
+                                    </Paper>
+                                </Box>
+
+
                             </Box>
                         </Grid>
 

@@ -12,11 +12,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { Paper,Grid, Typography, Chip, Fab, Avatar } from '@mui/material'
 import { brown, green, grey, orange, pink, purple, yellow } from '@mui/material/colors';
-import GettingIntoTech from './GettingIntoTech';
-import WhatTodo from './WhatTodo';
-import Challenging from './Challenging';
-import SeekHelp from './SeekHelp';
-import TeamHelp from './TeamHelp';
+;
 
 
 
@@ -37,7 +33,8 @@ const topContentComponents = [
     title: 'Trying to get into the tech industry ?',
     body: 'Sometimes building useful projects can seem challenging to build, maybe because of lack of ideas, skills and motivation.',
     chipColor: purple[600],
-    imgUrl: '/images/tech.png'
+    imgUrl: '/images/tech.png',
+    chipLabel: 'Experts Advice'
    
      
   }, 
@@ -46,7 +43,8 @@ const topContentComponents = [
     title: 'Make your portfolio stand out by buiding real world projects',
     body: 'Experts in the tech industry advices to have a solid portfolio with proof of real world projects. This helps showcase the potential of problem solving ability and learning.',
     chipColor: orange[600],
-    imgUrl: '/images/frustration.png'
+    imgUrl: '/images/frustration.png',
+    chipLabel: 'But its hard!'
    
      
   }
@@ -56,7 +54,8 @@ const topContentComponents = [
     title: 'Building useful project requires effort and time, Its difficult and challenging',
     body: 'Sometimes building useful projects can seem challenging to build, maybe because of lack of ideas, skills and motivation.',
     chipColor: pink[600],
-    imgUrl: '/images/solid-portfolio.png'
+    imgUrl: '/images/solid-portfolio.png',
+    chipLabel: 'How about this?'
    
   }, 
   {
@@ -64,7 +63,8 @@ const topContentComponents = [
     title: 'Seek help, get feedback and put in the work!',
     body: 'Passionate tech folks who understands these challenges are out there seeking to help you manage these challenges.',
     chipColor: "#022c51",
-    imgUrl: '/images/seekhelp.png'
+    imgUrl: '/images/seekhelp.png',
+    chipLabel: 'Whats the catch?'
    
   }, 
   {
@@ -72,7 +72,8 @@ const topContentComponents = [
     title: 'What if you dont have to start from scratch',
     body: 'How about we come together as a platform and help take your existing projects to a much better level by giving you fresh ideas to work on, point out improvement areas and all you have to do is build upon these concepts.',
     chipColor: green[600],
-    imgUrl: '/images/team_help.png'
+    imgUrl: '/images/team_help.png', 
+    chipLabel: 'Explore how below'
    
   }
 ];
@@ -133,7 +134,7 @@ function TopSectionContent() {
 
                                 </Box>
                                 <Box display='flex'>
-                                <Chip  avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'flex', sm: 'flex', md: 'none'}}} label="How about this?" clickable />
+                                <Chip  avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'flex', sm: 'flex', md: 'none'}}} label={step.chipLabel} clickable />
 
                                 </Box>
                                 

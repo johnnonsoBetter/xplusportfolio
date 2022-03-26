@@ -29,7 +29,7 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
            scrollThreshold={1}
            hasMore={totalActivities !== activities.length}
             
-           height={matchesSm ? "calc(99vh - 45px)" : matchesXs ?  "calc(98vh - 45px)": "calc(99vh - 45px)" }
+           height={matchesSm ? "calc(92vh - 45px)" : matchesXs ?  "calc(98vh - 45px)": "calc(99vh - 45px)" }
             
            style={{
                display: "flex",

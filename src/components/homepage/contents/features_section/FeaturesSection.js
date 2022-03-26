@@ -24,7 +24,7 @@ const features = [
         transformOrigin: 'left',
         p: 'perspective(1200px) rotateY(5deg)',
         backgroundColor: 'white',
-        title: 'Feedback, Reviews and Hunting Bugs on  project matters.',
+        title: 'Hunt down bugs, review projects, and give feedbacks',
         body1: 'Simple but smart project review tool available for anyone to help improve other members projects by hunting bugs in their application, making suggestions, and taking notes.',
         imgUrl: 'https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648219275/homepage_photos/ezgif.com-gif-maker_10_dm5idx.gif',
     },
@@ -89,7 +89,7 @@ const Feature = ({feature}) => {
 
                                 {
                                     body2 &&
-                                    <Typography px={4} variant='body2' fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', maxWidth: {xs: '100%', sm: '80%', md: '80%'}, textAlign: {xs: 'left', sm: 'left', md: 'center'}}}>
+                                    <Typography variant='body2' fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', maxWidth: {xs: '100%', sm: '80%', md: '80%'}, textAlign: {xs: 'left', sm: 'left', md: 'center'}}}>
                                         {body2}
                                     </Typography>
                                 }

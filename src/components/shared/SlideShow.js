@@ -62,12 +62,12 @@ const topContentComponents = [
     body: 'How about we come together as a platform and help take your existing projects to a much better level by giving you fresh ideas to work on, point out improvement areas and all you have to do is build upon these concepts.',
     chipColor: green[600],
     imgUrl: '/images/team_help.png', 
-    chipLabel: 'Explore how below'
+    chipLabel: (message) => message
    
   }
 ];
 
-function SlideShow() {
+function SlideShow({message}) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = topContentComponents.length;
@@ -119,7 +119,7 @@ function SlideShow() {
                                     <Typography marginTop={2}   marginBottom   maxWidth="70%" fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', fontSize: {xs: '0.9rem', sm: '1rem', md: '1.1rem'}, textAlign: {xs: 'left', sm: 'left', md: 'center'}}}>
                                       {step.body}
                                     </Typography>
-                                    <Chip   avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'none', sm: 'none', md: 'flex'}}} label={step.chipLabel}  />
+                                    <Chip   avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'none', sm: 'none', md: 'flex'}}} label={ activeStep === maxSteps - 1 ? message : step.chipLabel}  />
 
                                 </Box>
                                 

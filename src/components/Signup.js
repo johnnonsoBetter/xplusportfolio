@@ -149,7 +149,7 @@ export default function Signup(){
 
             <Grid  container alignItems='center'  >
                 <Grid item xs={12} sm={12} md={7} sx={{display: {xs: 'none', sm: 'none', md: 'block'}}} >
-                      <SlideShow />
+                      <SlideShow message="Sign Up"/>
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={5} lg={4}  >

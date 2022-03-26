@@ -154,7 +154,7 @@ export default function Login(){
 
             <Grid  container alignItems='center'  >
                 <Grid item xs={12} sm={12} md={7} sx={{display: {xs: 'none', sm: 'none', md: 'block'}}} >
-                      <SlideShow />
+                      <SlideShow message="Login" />
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={5} lg={4}  >

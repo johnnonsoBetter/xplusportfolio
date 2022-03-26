@@ -67,7 +67,7 @@ const topContentComponents = [
   }
 ];
 
-function TopSectionContent() {
+function SlideShow() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = topContentComponents.length;
@@ -106,11 +106,11 @@ function TopSectionContent() {
         {topContentComponents.map((step, index) => (
           <div key={step.id}>
             {Math.abs(activeStep - index) <= 2 ? (
-                  <Box m={2} >
-                      <Grid container  spacing={2}>
+                  <Box m={2} display='flex'  sx={{height: "calc(99vh - 4px)", overflow: 'auto'}}  >
+                      <Grid container alignItems='center' spacing={2}>
 
-                            <Grid item xs={12} sm={10} md={5} >
-                                <Box display='flex'   alignItems='flex-start' sx={{minHeight: {xs: 'auto', sm: 'auto', md: 450}, alignItems: {sm: 'flex-start', md: 'center'}, justifyContent: {xs: 'flex-start', sm: 'flex-start', md: 'center'}}} flexDirection='column' >
+                            <Grid item xs={12}  >
+                                <Box display='flex'   alignItems='center' sx={{maxHeight: 400, alignItems: {sm: 'flex-start', md: 'center'}, justifyContent: {xs: 'flex-start', sm: 'flex-start', md: 'center'}}} flexDirection='column' >
                                   <Typography marginTop lineHeight='1.3'  fontWeight={700} fontFamily='Quicksand'  sx={{color: '#222d39', textAlign: {xs: 'left', sm: 'left', md: 'center'}, fontSize: {xs: '1.7rem', sm: '1.8', md: '2.1rem'}}}>
                                         
                                         {step.title}
@@ -122,15 +122,12 @@ function TopSectionContent() {
                                     <Chip   avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'none', sm: 'none', md: 'flex'}}} label="How about this?"  />
 
                                 </Box>
-                                <Box display='flex'>
-                                <Chip  avatar={<Avatar sx={{backgroundColor: "white", color: "black"}} > <KeyboardArrowRight /> </Avatar>} sx={{backgroundColor: step.chipColor, color: 'white', display: {xs: 'flex', sm: 'flex', md: 'none'}}} label={step.chipLabel}  />
-
-                                </Box>
+                                
                                 
                             </Grid>
         
-                            <Grid item xs={12} sm={12} md={5} >
-                                <Box display='flex'   sx={{minHeight: {xs: 'auto', sm: 'auto', md: 450}, alignItems: {xs: 'flex-start', sm: 'flex-start', md: 'center'}}} justifyContent='center' >
+                            <Grid item xs={12}  >
+                                <Box display='flex'   sx={{maxHeight: {xs: 'auto', sm: 'auto', md: 'auto'}, alignItems: {xs: 'flex-start', sm: 'flex-start', md: 'center'}}} justifyContent='center' >
                                     
                                         <img src={step.imgUrl} style={{maxWidth: '100%', borderRadius: '15px'}} />
                                     
@@ -161,4 +158,4 @@ function TopSectionContent() {
   );
 }
 
-export default TopSectionContent;
+export default SlideShow;

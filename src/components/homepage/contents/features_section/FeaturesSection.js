@@ -83,13 +83,13 @@ const Feature = ({feature}) => {
                                 </Typography>
 
                                 
-                                <Typography marginTop  fontSize='1.2rem' fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', fontSize: {xs: '0.9rem', sm: '1rem', md: '1.1rem'}, maxWidth: {xs: '100%', sm: '80%', md: '80%'}, textAlign: {xs: 'left', sm: 'center', md: 'center'}}}>
+                                <Typography marginTop  fontSize='1.2rem' fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', fontSize: {xs: '0.9rem', sm: '1rem', md: '1.1rem'}, maxWidth: {xs: '100%', sm: '80%', md: '80%'}, textAlign: {xs: 'left', sm: 'left', md: 'center'}}}>
                                     {body1}
                                 </Typography>
 
                                 {
                                     body2 &&
-                                    <Typography px={4} variant='body2' fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', maxWidth: {xs: '100%', sm: '80%', md: '80%'}, textAlign: {xs: 'left', sm: 'center', md: 'center'}}}>
+                                    <Typography px={4} variant='body2' fontWeight={500} fontFamily='Quicksand' sx={{color: '#222d39', maxWidth: {xs: '100%', sm: '80%', md: '80%'}, textAlign: {xs: 'left', sm: 'left', md: 'center'}}}>
                                         {body2}
                                     </Typography>
                                 }

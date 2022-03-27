@@ -45,7 +45,7 @@ export default function ResourcesLink({closeMenu}) {
                                 <Stack  >
                                    
                                     <Box  >
-                                    <Typography sx={{textTransform: "capitalize"}} color="ButtonText" variant="body2" noWrap={true}> {pageLink.name}</Typography>
+                                    <Typography sx={{textTransform: "capitalize", color: 'rgb(34, 45, 57)'}} variant="body2" noWrap={true}> {pageLink.name}</Typography>
                                     
                                     </Box>
                                    

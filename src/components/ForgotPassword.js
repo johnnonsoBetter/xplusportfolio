@@ -28,11 +28,7 @@ export default function ForgotPassword() {
 
     console.log(parsed)
     return (
-        <Box>
-            {
-                confirmed ?
-                
-                <Box width="100%" sx={{ display: "flex", justifyContent: "center", alignItems: 'center', minHeight: "50vh", flexDirection: "column" }}>
+        <Box width="100%" sx={{ display: "flex", justifyContent: "center", alignItems: 'center', minHeight: "50vh", flexDirection: "column" }}>
                 <Container maxWidth="md" >
                 <Box component='img' maxWidth='100%'  my={3} src='/images/xlogo.png' />
                 <Stack  width="100%" rowGap={2} >
@@ -55,11 +51,6 @@ export default function ForgotPassword() {
                 </Container>
                 
             </Box>
-                :
-                <Confirming />
-            }
-          
-        </Box>
         
     )
 }

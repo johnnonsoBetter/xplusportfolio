@@ -1,10 +1,12 @@
-import React, { useState, useContext, useEffect} from 'react'
-import {  Box, Button,Grid, InputAdornment, InputBase, Paper, Skeleton, TextField } from '@mui/material'
+import React, { useState, useContext, useEffect, useRef} from 'react'
+import {  Avatar, Box, Button,Grid, IconButton, InputAdornment, InputBase, Paper, Skeleton, TextField, Tooltip } from '@mui/material'
 import UploadLoading from '../../mobile/creat_project/UploadLoading'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import {AuthContext} from '../../../../context/AuthContext'
 import { FetchContext } from '../../../../context/FetchContext';
+import { UploadRounded } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
@@ -29,12 +31,27 @@ export default function EditProfile() {
     const {authAxios} = useContext(FetchContext)
     const {userInfo} = authState
     const {slug} = JSON.parse(userInfo)
-    const [name, setName] = useState(null)
-    const [githubUrl, setGithubUrl] = useState(null)
-    const [avatarUrl, setAvatarUrl] = useState(null)
+    const [name, setName] = useState('')
+    const [githubUrl, setGithubUrl] = useState('')
+    const [avatarUrl, setAvatarUrl] = useState('')
+    const [backcoverUrl, setBackCoverUrl] = useState('')
     const [loading, setLoading] = useState(false)
-    const [initialValues, setInitialValues] = useState({})
+    const history = useHistory()
+    const fileRef = useRef(null)
+    const [image, setImage] = useState(JSON.parse(null))
 
+
+
+    const updateBackgroundPhoto = (e) => {
+
+        e.preventDefault()
+        const newImage = e.target.files[0]
+        console.log(newImage)
+        setImage(newImage)
+        setBackCoverUrl(URL.createObjectURL(newImage))
+        
+    }
+ 
 
 
 
@@ -45,17 +62,12 @@ export default function EditProfile() {
         authAxios.get(`api/v1/users/${slug}`).then(res => {
           
             const {user} = res.data 
-            const {github_url, avatar_url, name} = user
-            setGithubUrl(github_url)
-            setAvatarUrl(avatar_url)
+            const {github_url, avatar_url, name, backcover_imgurl} = user
+            setBackCoverUrl(backcover_imgurl)
+            setGithubUrl(github_url ? github_url : '')
+            setAvatarUrl(avatar_url ? avatar_url : '')
             setName(name)
-
-            const newInitialValue = Object.assign({}, initialValues)
-            newInitialValue.github_url = github_url
-            newInitialValue.avatar_url = avatar_url 
-            newInitialValue.name = name 
-
-            setInitialValues(newInitialValue)
+            setLoading(false)
         }).catch(err => {
             setSomethingWentWrong(true)
         })
@@ -67,37 +79,89 @@ export default function EditProfile() {
         }
     }, [slug])
 
+    const openFilePicker = () => {
+
+        const file = fileRef.current
+        console.log(file)
+        file.click()
+        
+    }
 
 
-    const formik = useFormik({
-        initialValues,
-        validationSchema: validationSchema,
-        onSubmit: (values) => {
-          
-          console.log(values)
-        },
-    });
-    
+    const handleChange = (e) => {
+
+        e.preventDefault()
+        let name = e.target.name 
+
+        if(name === 'name') 
+            setName(e.target.value)
+        else if (name === 'avatar_url')
+            setAvatarUrl(e.target.value)
+        else if (name === 'github_url')
+            setGithubUrl(e.target.value)
+    }
+
+
+
+    const handleSubmit = (e) => {
+
+        e.preventDefault()
+        setLoadingBtn(true)
+
+        if(name === ''){
+            setLoadingBtn(false)
+            return
+        }
+             
+
+        const form = new FormData()
+
+
+        
+        form.append('name', name)
+        
+        if(image)form.append('backcover_imgurl', image)
+        form.append('avatar_url', avatarUrl)
+        form.append('github_url', githubUrl)
+
+
+        authAxios.put(`api/v1/users/${slug}`, form).then(res => {
+            history.push(`/xpo/my_profile/${slug}`)
+        }).catch(err => {
+            setLoadingBtn(false)
+            setSomethingWentWrong(true)
+        })
+
+    }
 
 
     return (
-        <Box px={2} >
+        <>
+            {
+                loading ?
+                <Loader /> :
+                <Box px={2} >
         
-        <form onSubmit={formik.handleSubmit} >
-            <Box display='flex' justifyContent='flex-end' >
-                        <InputBase
-                        sx={{ ml: 1, flex: 1 }}
-                        
-                        inputComponent={Button}
-                        
-                        size="small"
-                        sx={{p: 0, border: 'none', maxWidth: 200}}
-                        type='file' accept='image/*' className="form-control" 
-                        />
+        <form onSubmit={handleSubmit} >
+            <Box display='flex' justifyContent='flex-end' position='relative' >
+                       
+                    <Box my={1} component='img'  sx={{ objectFit: 'cover', borderRadius: "7px", minWidth: {xs: '100%', sm: 400, md: 540}}} width='100%' maxWidth='100%' maxHeight={150} height={150} src={backcoverUrl ? backcoverUrl : '/images/cover_default.png'}   /> 
+
+
+                    <Box position="absolute" top={10} right={5} >
+                        <Tooltip title="Edit Cover Photo" >  
+                        <IconButton size='small' onClick={openFilePicker} >
+                                <Avatar sx={{width: 32, height: 32}} ><UploadRounded color='action' fontSize='0.5rem'/> </Avatar>
+                        </IconButton>
+
+                        </Tooltip>
+                    </Box>
+
+                       
+              <input onChange={updateBackgroundPhoto} type='file' style={{display: 'none'}} accept='image/*' ref={fileRef} id="file" name="file" />
 
             </Box>
-            <Box my={1} component='img'  sx={{ objectFit: 'cover', borderRadius: "7px", minWidth: {xs: '100%', sm: 400, md: 540}}} width='100%' maxWidth='100%' maxHeight={150} height={150} src='/images/cover_default.png' /> 
-
+            
             <Box mt={2}>
 
                 <Grid container spacing={3} justifyContent='center' >
@@ -110,10 +174,8 @@ export default function EditProfile() {
                                 label="full name" 
                                 fullWidth 
                                 name='name'
-                                value={formik.values.name}
-                                onChange={formik.handleChange}
-                                error={formik.touched.name && Boolean(formik.errors.name)}
-                                helperText={formik.touched.name && formik.errors.name}
+                                value={name}
+                                onChange={handleChange}
 
                             />
                         </Box>
@@ -127,11 +189,11 @@ export default function EditProfile() {
                                 label="avatar url" 
                                 fullWidth 
                                 name='avatar_url'
-                                value={formik.values.avatar_url}
-                                onChange={formik.handleChange}
-                                error={formik.touched.avatar_url && Boolean(formik.errors.avatar_url)}
-                                helperText={formik.touched.avatar_url && formik.errors.avatar_url}
+                                value={avatarUrl}
 
+                                onChange={handleChange}
+                                
+                               
                             />
                         </Box>
                     </Grid>
@@ -144,11 +206,9 @@ export default function EditProfile() {
                                 label="github url" 
                                 fullWidth 
                                 name='github_url'
-                                value={formik.values.github_url}
-                                onChange={formik.handleChange}
-                                error={formik.touched.github_url && Boolean(formik.errors.github_url)}
-                                helperText={formik.touched.github_url && formik.errors.github_url}
-
+                                value={githubUrl}
+                                onChange={handleChange}
+                                
                             />
                         </Box>
                     </Grid>
@@ -175,6 +235,8 @@ export default function EditProfile() {
         </form>
         </Box>
 
+            }
+        </>
     )
 }
 
@@ -201,17 +263,25 @@ const Loader = () => {
 
             </Box>
             
+            <Grid container spacing={3} justifyContent='center' >
+                    <Grid item xs={12} sm={6} >
+                    <Skeleton type='text' width="100%" /> 
+                
+                
+                    </Grid>
 
-            <Box  >
-                <Skeleton type='text' width="60%" /> 
-                <Skeleton type='text' width="40%" /> 
-                
-            </Box>
-            <Box mt={1} mb={2} >
-                <Skeleton type='text' width="60%" /> 
-                
-                
-            </Box>
+                    <Grid item xs={12} sm={6} >
+                    <Skeleton type='text' width="100%" /> 
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} >
+                    <Skeleton type='text' width="100%" /> 
+                    </Grid>
+
+                    <Grid item xs={12} >
+                    <Skeleton type='text' width="100%" /> 
+                    </Grid>
+                </Grid>
 
             </Box>
     )

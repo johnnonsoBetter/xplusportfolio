@@ -227,7 +227,7 @@ export default function Login(){
                             </Box>
 
                             <Box mb={4}  mx={1} display="flex" justifyContent="space-between">
-                              <Typography variant="body2" to="/xpo#reset-password" textAlign="center" component={Link} sx={{color: blueGrey[500], textDecoration: "none"}}  > Forgot Password? </Typography>
+                              <Typography variant="body2" to="/password_reset" textAlign="center" component={Link} sx={{color: blueGrey[500], textDecoration: "none"}}  > Forgot Password? </Typography>
                               <Typography variant="body2" to="/sign_up" textAlign="center" component={Link} sx={{color: blueGrey[500], textDecoration: "none"}}  > Sign Up </Typography>
                               
                             </Box>

@@ -12,7 +12,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 
-import { HowToVoteOutlined, InsertLinkOutlined, LinkOffOutlined, OpenInNewOutlined, UsbOff} from '@mui/icons-material';
+import { HowToVoteOutlined, InsertLinkOutlined, LinkOffOutlined, LinkRounded, OpenInNewOutlined, UsbOff} from '@mui/icons-material';
 import { Badge, IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../context/AuthContext';
@@ -135,7 +135,7 @@ function ProjectActivity({project, typePackge, showType}) {
                     <a rel="noopener noreferrer" href={live_link} target="_blank">
 
                     <IconButton  size="small">
-                        <LinkOffOutlined />
+                        <LinkRounded />
                     </IconButton>
 
                     </a>

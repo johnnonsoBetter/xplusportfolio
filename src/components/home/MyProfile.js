@@ -116,7 +116,7 @@ export default function MyProfile() {
 
         <MenuItem disableRipple focusRipple={false} onClick={handleClose} >
        
-            <Box component={Link}  to="#edit_cover_photo"    sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
+            <Box component={Link}  to="/xpo/edit_profile"    sx={{textDecoration: "none"}}  color="ButtonShadow" width="100%" display="flex" justifyContent="flex-start" alignItems="center">
                
                 <ModeEditOutlineOutlined />
                 <Typography sx={{ml: 1}} color="ButtonText"> Edit Profile </Typography>

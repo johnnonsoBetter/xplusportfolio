@@ -43,6 +43,7 @@ export default function CoverPhotoEdit() {
             
             setDone(true)
             setBackCoverUrl(url)
+            history.goBack()
             
             
 

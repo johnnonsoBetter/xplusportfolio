@@ -143,7 +143,7 @@ function TopSectionContent() {
         ))}
       </AutoPlaySwipeableViews>
 
-      <Box position='absolute' sx={{top: {xs: '37%', sm: '30%'}, right: {xs: "5%", sm: "10%"}}} top="20%" right={35}>
+      <Box position='absolute' sx={{top: {xs: '37%', sm: '30%'}, right: {xs: "1%", sm: "10%"}}} top="20%" right={35}>
             
        
         <Box display='flex' >

@@ -48,6 +48,7 @@ function Projects({projects, setRank}) {
                 index={activeStep}
                 onChangeIndex={handleStepChange}
                 enableMouseEvents
+                interval={5000}
             >
                 {projects.map((step, index) => (
                 <div key={step.photo}>

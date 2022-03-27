@@ -1,17 +1,18 @@
 import { LoadingButton } from '@mui/lab'
-import { Alert, Avatar, Box, Container, FormControl, Grid, Grow, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar, Stack, TextField, Typography } from '@mui/material'
+import { Alert, Avatar, Box, Chip, Container, FormControl, Grid, Grow, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Snackbar, Stack, TextField, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { publicFetch } from '../utils/fetch';
 import { AuthContext } from '../context/AuthContext';
 import { Redirect } from 'react-router-dom';
-import { BadgeRounded, InboxRounded, MarkEmailReadRounded, Visibility, VisibilityOff } from '@mui/icons-material';
+import { BadgeRounded, InboxRounded, KeyboardArrowLeftRounded, MarkEmailReadRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { blueGrey } from '@mui/material/colors';
+import { blue, blueGrey } from '@mui/material/colors';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SlideShow from './shared/SlideShow';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const validationSchema = yup.object({
@@ -23,10 +24,15 @@ const validationSchema = yup.object({
     .string('Enter your full name')
     
     .required('full name is required'),
+    avatar_url: yup
+    .string('avatar_url').nullable(),
+    github_url: yup
+    .string('github url').nullable(),
     password: yup
       .string('Enter your password')
+      .required('Password is required')
       .min(0, 'Password should be of minimum 7 characters length')
-      .required('Password is required'),
+      
   });
   
   
@@ -46,7 +52,7 @@ export default function Signup(){
   })
   const [setOpenSnack] = useState(false)
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const history = useHistory()
 
 
   const formik = useFormik({
@@ -54,6 +60,9 @@ export default function Signup(){
         email: '',
         password: '',
         name: '',
+        github_url: null,
+        avatar_url: null,
+
       },
       validationSchema: validationSchema,
       onSubmit: (values) => {
@@ -159,12 +168,16 @@ export default function Signup(){
                     successfull ? <SignUpSuccessfull /> :
 
                   
-                    <Box  sx={{ display: "flex", justifyContent: "center", minHeight: "100vh", flexDirection: "column", backgroundColor: "#f5f5f5", }} >
+                    <Box  position='relative' sx={{ display: "flex", minHeight: "calc(99vh - 4px)", justifyContent: "center", flexDirection: "column", backgroundColor: "#f5f5f5", }} >
+                    <Box position='absolute'  right={0} top={20}>
+                      <Chip color='info' onClick={() => history.push('/')}  avatar={<Avatar sx={{ backgroundColor: blue[600]}} > <KeyboardArrowLeftRounded sx={{color: "white"}} /> </Avatar>}  label="Visit homepage"  />
+
+                    </Box>
                     <form onSubmit={formik.handleSubmit}> 
                         <Box  width="100%">
-                            <Paper elevation={0} sx={{backgroundColor: "inherit", py: 3}}  >
-                                <Box px={2} textAlign="center" display="flex" justifyContent="center" m={5} marginBottom={0} >
-                                <Box px={2}  textAlign="center" display="flex" justifyContent="center" m={5} marginBottom={0} >
+                            <Paper elevation={0} sx={{backgroundColor: "inherit", py: 1}}  >
+                                <Box px={2} textAlign="center" display="flex" justifyContent="center"  marginBottom={0} >
+                                <Box px={2}  textAlign="center" display="flex" justifyContent="center"  marginBottom={0} >
                                   
                                 <Link to='/' >
                                   <Box  component='img' src='/images/logo.png' />
@@ -178,23 +191,10 @@ export default function Signup(){
 
                                 </Box>
 
-                                <Box p={2} >
-                                    <TextField 
-                                        fullWidth  
-                                        label="Name"  
-                                        id="fullWidth"
-                                        type="name"
-                                        name="name"
-                                        value={formik.values.name}
-                                        onChange={formik.handleChange}
-                                        error={formik.touched.name && Boolean(formik.errors.name)}
-                                        helperText={formik.touched.name && formik.errors.name}
-                                    />
-
-                                </Box>
+                                
 
 
-                                <Box p={2} >
+                                <Box p={1} >
                                     <TextField 
                                         fullWidth  
                                         label="Email"  
@@ -209,7 +209,54 @@ export default function Signup(){
 
                                 </Box>
 
-                                <Box p={2} >
+                                <Box p={1} >
+                                    <TextField 
+                                        fullWidth  
+                                        label="Full name"  
+                                        id="fullWidth"
+                                        type="text"
+                                        name="name"
+                                        value={formik.values.name}
+                                        onChange={formik.handleChange}
+                                        error={formik.touched.name && Boolean(formik.errors.name)}
+                                        helperText={formik.touched.name && formik.errors.name}
+                                    />
+
+                                </Box>
+
+                                <Box p={1} >
+                                    <TextField 
+                                        fullWidth  
+                                        label="github url (optional)"  
+                                        id="fullWidth"
+                                        type="text"
+                                        name="github_url"
+                                        value={formik.values.github_url}
+                                        onChange={formik.handleChange}
+                                        error={formik.touched.github_url && Boolean(formik.errors.github_url)}
+                                        helperText={formik.touched.github_url && formik.errors.github_url}
+                                    />
+
+                                </Box>
+
+
+                                <Box p={1} >
+                                    <TextField 
+                                        fullWidth  
+                                        label="avatar url (optional)"  
+                                        id="fullWidth"
+                                        type="text"
+                                        name="avatar_url"
+                                        value={formik.values.avatar_url}
+                                        onChange={formik.handleChange}
+                                        error={formik.touched.avatar_url && Boolean(formik.errors.avatar_url)}
+                                        helperText={formik.touched.avatar_url && formik.errors.avatar_url}
+                                    />
+
+                                </Box>
+
+                                
+                                <Box p={1} >
                                 <FormControl sx={{width: '100%' }} variant="outlined">
                                         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                         <OutlinedInput
@@ -240,14 +287,14 @@ export default function Signup(){
                                 </Box>
 
                                 
-                                <Box mb={4}  mx={1} display="flex" justifyContent="center">
+                                <Box mb={2}  mx={1} display="flex" justifyContent="center">
                                   <Typography variant="body2" textAlign="center" to="/xpo#login" component={Link} sx={{color: blueGrey[500], textDecoration: "none"}}  >  Already a member ? Login </Typography>
                                   
                                 </Box>
 
                               
 
-                                <Box p={2} >
+                                <Box p={1} >
                                     <Container maxWidth="xs" >
                                     <LoadingButton variant="contained"  loading={loginLoading}  type="submit" fullWidth  >
                                         Sign Up

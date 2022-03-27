@@ -64,16 +64,11 @@ export default function ProfileMenu() {
 
 const Profile = ({profile}) => {
 
-    const {website_url, github_url, linkedin_url, name, about, backcover_imgurl, image } = profile
+    const {name, about, backcover_imgurl, image } = profile
     const {isCurrentUser} = useContext(AuthContext)
     const {slug} = useParams()
     const history = useHistory()
     const {backcoverUrl, setBackCoverUrl }= useContext(HomeInfoContext)
-
-
-    console.log("this is the background", backcoverUrl, backcover_imgurl)
-
-
 
     useEffect(() => {   
 

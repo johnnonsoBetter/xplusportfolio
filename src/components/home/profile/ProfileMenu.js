@@ -6,7 +6,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
 import { FetchContext } from '../../../context/FetchContext'
 import  HomeInfoContext  from '../../../context/HomeInfoContext'
-import { stringAvatar } from '../../../utils/stringUtil'
+import { abbreviateName } from '../../../utils/tools'
 import ProfileRouter from './ProfileRouter'
 
 export default function ProfileMenu() {
@@ -122,7 +122,7 @@ const Profile = ({profile}) => {
                 }
 
                 <Box position="absolute" bottom={-30} left={20} >
-                    <Avatar  {...stringAvatar(name, 90, 90)} sx={{width: 90, height: 90, border: "2px solid white", fontSize: "1.4em"}} src={image} alt="pics" width={50} height={50} />
+                    <Avatar   sx={{width: 90, height: 90, border: "2px solid white", fontSize: "1.4em"}} src={image} alt="pics" width={50} height={50} > {abbreviateName(name)} </Avatar>
 
                 </Box>
 

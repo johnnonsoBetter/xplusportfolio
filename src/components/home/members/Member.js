@@ -5,7 +5,7 @@ import { blue, green, orange } from '@mui/material/colors'
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FetchContext } from '../../../context/FetchContext'
-import { stringAvatar } from '../../../utils/stringUtil'
+import { abbreviateName } from '../../../utils/tools'
 
 
 export default function Member({user, noFollow}) {
@@ -17,7 +17,7 @@ export default function Member({user, noFollow}) {
                 <Stack rowGap={2} >
                     <Box  width="100%" display="flex" justifyContent="center" >
   
-                       <Avatar  {...stringAvatar(name, 50, 50)} src={image} alt="pics" sx={{width: 70, height: 70, my: 3}} />
+                       <Avatar   src={image} alt="pics" sx={{width: 70, height: 70, my: 3}}  > {abbreviateName(name)} </Avatar>
                     </Box>
                     <Box width="100%" display="flex" justifyContent="center" >
                         <Typography marginBottom color="GrayText" sx={{maxWidth: "80%"}} variant="body2" noWrap={true} > {name}</Typography>

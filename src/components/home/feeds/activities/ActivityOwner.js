@@ -7,7 +7,7 @@ import moment from 'moment'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../../context/AuthContext'
-import { stringAvatar, stringToColor } from '../../../../utils/stringUtil'
+import { abbreviateName } from '../../../../utils/tools'
 
 
 
@@ -42,14 +42,14 @@ export default function ActivityOwner({created_at, user}) {
         
             
                    
-                    <Avatar  {...stringAvatar(name, 35, 35)} sx={{width: 35, height: 35,  fontSize: "0.9em"}} src={image} alt="pics" width={40} height={40} />
+                    <Avatar  sx={{width: 35, height: 35,  fontSize: "0.9em"}} src={image} alt="pics" width={40} height={40} > {abbreviateName(name)} </Avatar>
                     
              
                 <Stack sx={{mx: 1}}  >
                     
             
                     <Box maxWidth={120} >
-                        <Typography textAlign='left' sx={{ textTransform: "downcase", color: stringToColor(name) }}  variant="body2" noWrap={true}> {name}</Typography>
+                        <Typography textAlign='left' sx={{ textTransform: "downcase", color: 'rgb(34, 45, 57)' }}  variant="body2" noWrap={true}> {name}</Typography>
 
                     </Box><Box maxWidth={120}>
                         <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} variant="body2" color="ButtonShadow" noWrap={true}> {date_created}</Typography>

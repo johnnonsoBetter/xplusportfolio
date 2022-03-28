@@ -7,7 +7,6 @@ import SubscribersLoader from '../../../../shared/SubscribersLoader';
 import { Box } from '@mui/system';
 import { AuthContext } from '../../../../../context/AuthContext';
 import { Link } from 'react-router-dom';
-import { stringAvatar, stringToColor } from '../../../../../utils/stringUtil'
 import { Virtuoso } from 'react-virtuoso';
 
 

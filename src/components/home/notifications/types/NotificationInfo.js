@@ -4,7 +4,7 @@ import { blue, green, purple } from '@mui/material/colors'
 import { Box } from '@mui/system'
 import React from 'react' 
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import { stringAvatar, stringToColor } from '../../../../utils/stringUtil'
+import { abbreviateName } from '../../../../utils/tools'
 
 
 const getTruncatedBody = (body) => {
@@ -43,7 +43,7 @@ export default function NotificationInfo({ link,  body, color, event_message, ac
             
                         
                         
-                        <Avatar  style={{width: "32px", height: "32px", fontSize: '0.9rem'}}  {...stringAvatar(name, 35, 35)} src={image} alt="pics" width={40} height={40} />
+                        <Avatar  style={{width: "32px", height: "32px", fontSize: '0.9rem'}}  src={image} alt="pics" width={40} height={40} >  {abbreviateName(name)} </Avatar>
 
     
                     </Box>
@@ -53,7 +53,7 @@ export default function NotificationInfo({ link,  body, color, event_message, ac
                             
                             <Typography variant='body2'>
                             
-                                <Box component="span" sx={{fontWeight: 700, color: stringToColor(name)}}  >
+                                <Box component="span" sx={{fontWeight: 700, color: 'rgb(34, 45, 57)'}}  >
                                     @{name}  {' '}
                                 </Box>
 

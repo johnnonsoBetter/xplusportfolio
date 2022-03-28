@@ -4,9 +4,9 @@ import { Avatar, Box, Divider, IconButton, InputBase, Paper, Skeleton, Stack } f
 
 
 import {useHistory} from 'react-router-dom'
-import { stringAvatar, stringToColor } from '../../utils/stringUtil';
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { abbreviateName } from '../../utils/tools';
 
 
 
@@ -53,7 +53,7 @@ export default function MyMiniInfo() {
                 <Box display="flex" p={1} width="100%" alignItems="center" justifyContent="flex-start" >
                     <Box component={Link} sx={{textDecoration: 'none'}} to={`/xpo/my_profile/${slug}`} width="20%" height="100%" display="flex" justifyContent="center" >
 
-                        {/* <Avatar  {...stringAvatar(name, 50, 50)} src={image} alt="pics" width={50} height={50} /> */}
+                        <Avatar  src={image} alt="pics" width={50} height={50} > {abbreviateName(name)}</Avatar>
                     </Box>
 
                     <Stack width="70%" sx={{my: 2}}   >

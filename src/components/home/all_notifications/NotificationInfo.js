@@ -4,7 +4,8 @@ import { blue, green, purple } from '@mui/material/colors'
 import { Box } from '@mui/system'
 import React from 'react' 
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import { stringAvatar, stringToColor} from '../../../utils/stringUtil'
+import { abbreviateName } from '../../../utils/tools'
+
 
 
 
@@ -44,7 +45,7 @@ export default function AllNotificationInfo({ link, markAsSeen, body, color, eve
             
                         
                         
-                        <Avatar  style={{width: "32px", height: "32px"}}  {...stringAvatar(name, 35, 35)} src={image} alt="pics" width={40} height={40} />
+                        <Avatar  style={{width: "32px", height: "32px"}}  src={image} alt="pics" width={40} height={40} > {abbreviateName(name)} </Avatar>
 
     
                     </Box>
@@ -54,7 +55,7 @@ export default function AllNotificationInfo({ link, markAsSeen, body, color, eve
                             
                             <Typography variant='body2' >
                             
-                                <Box component="span" sx={{fontWeight: 700, color: stringToColor(name)}}  >
+                                <Box component="span" sx={{fontWeight: 700, color: 'rgb(34, 45, 57)'}}  >
                                     @{name}  {' '}
                                 </Box>
 

@@ -12,8 +12,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { FetchContext } from '../../context/FetchContext';
 import { LogoutOutlined, ModeEditOutlineOutlined, PersonOutlineRounded } from '@mui/icons-material';
-import { stringAvatar } from '../../utils/stringUtil';
 import SubscribersLoader from '../shared/SubscribersLoader';
+import { abbreviateName } from '../../utils/tools';
 
 
 
@@ -61,7 +61,7 @@ export default function MyProfile() {
            
             <IconButton onClick={handleClick} disableRipple>
                
-                {/* <Avatar  {...stringAvatar(name, 32, 32, "0.6em")} src={image} alt="pics"  /> */}
+                <Avatar sx={{width: 30, height: 30, fontSize: '0.95rem'}}  src={image} alt="pics" > {abbreviateName(name)}</Avatar>
             </IconButton>
             
         </Tooltip>

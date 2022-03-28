@@ -4,7 +4,7 @@ import { Box } from '@mui/system'
 import moment from 'moment';
 import React from 'react' 
 import { Link } from 'react-router-dom';
-import { stringToColor } from '../../../../utils/stringUtil';
+
 
 
 
@@ -18,7 +18,7 @@ export default function ActivityType({owner_name, text, owner_slug, created_at})
             
             <Box  display='flex' alignItems='center' justifyContent='space-between' >
            
-              <Typography variant='body2' component={Link}  to={`/xpo/members/${owner_slug}`} color='info' fontWeight={500} sx={{textDecoration: "none", color: stringToColor(owner_name)}}  >@{owner_name} </Typography>
+              <Typography variant='body2' component={Link}  to={`/xpo/members/${owner_slug}`} color='info' fontWeight={500} sx={{textDecoration: "none", color: 'rgb(34, 45, 57)'}}  >@{owner_name} </Typography>
               <Typography variant='body2' sx={{ml: 1}} >{text} </Typography>
               
             </Box> 

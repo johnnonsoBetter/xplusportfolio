@@ -45,7 +45,11 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
                 <Box width='100%' >
                     <MyMiniInfo />
                     {
-                        loading && <SubscribersLoader />
+                        loading && 
+                        <Box width='100%' display='flex' my={2} justifyContent='center' alignItems='center'  >
+                            <img src='/images/review_loader.gif' width={45} height={45} />
+                            
+                        </Box>
                     }
                 </Box>
 
@@ -82,6 +86,8 @@ export default function ActivityList({activities, totalActivities, fetchMoreData
                    })
                }
                <Box p={1}  >
+
+                 
 
               
                     {

@@ -82,7 +82,7 @@ export default function EditProfile() {
     const openFilePicker = () => {
 
         const file = fileRef.current
-        console.log(file)
+
         file.click()
         
     }

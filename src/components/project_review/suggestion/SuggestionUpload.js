@@ -1,14 +1,13 @@
-import React, { useCallback } from "react";
-import styled from "@emotion/styled";
-import Uploady from "@rpldy/uploady";
-import withPasteUpload from "@rpldy/upload-paste";
-import UploadPreview from "@rpldy/upload-preview";
-import UploadButton from "@rpldy/upload-button"
+import React, { useRef } from "react";
+
 import { Box } from "@mui/system";
-import { Button, InputAdornment, InputBase, Typography } from "@mui/material";
+import { Avatar, Tooltip, IconButton } from "@mui/material";
+import { UploadRounded } from "@mui/icons-material";
 
 
 export default function SuggestionUpload ({image, setImage, setImageUrl}) {
+
+  const fileRef = useRef(null)
    
     const uploadImage = (e) => {
 
@@ -26,23 +25,22 @@ export default function SuggestionUpload ({image, setImage, setImageUrl}) {
 
            
 
-                    <InputBase
-                      sx={{ ml: 1, flex: 1 }}
-                      
-                      onChange={uploadImage }
-                      endAdornment={
-                        <InputAdornment position="start">
-                          <Box component='img' width={24} src="/images/photo.png" />
-                        </InputAdornment>
-                      }
-                      size="small"
-                      sx={{p: 0, border: 'none', maxWidth: 200}}
-                      type='file' accept='image/*' className="form-control" 
-                    />
-               
-            
+      
+                <Tooltip title="Upload Screenshot" >  
+                  <IconButton size='small' onClick={() => {
+                    const file = fileRef.current 
 
-            <Typography variant='body2' > Upload screen shot</Typography>
+                    file.click()
+                  }} >
+                          <Avatar sx={{width: 32, height: 32}} ><UploadRounded color='action' fontSize='0.5rem'/> </Avatar>
+                  </IconButton>
+
+                </Tooltip>
+                   
+
+                       
+              <input onChange={uploadImage} type='file' style={{display: 'none'}} accept='image/*' ref={fileRef} id="file" name="file" />
+
 
         </Box>
     )

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { ArrowBackIosNewRounded} from '@mui/icons-material'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { ArrowBackIosNewRounded, UploadRounded} from '@mui/icons-material'
 
-import { Box, Button, Grid, InputAdornment, InputBase, TextField, Typography } from '@mui/material'
+import { Box, Button, Grid, IconButton, InputAdornment, InputBase, TextField, Typography } from '@mui/material'
 import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min'
 import HomeInfoContext from '../../../context/HomeInfoContext'
 import UploadLoading from '../mobile/creat_project/UploadLoading'
@@ -17,6 +17,7 @@ export default function CoverPhotoEdit() {
     const {authAxios} = useContext(FetchContext)
     const [done, setDone] = useState(false)
     const [loadingBtn, setLoadingBtn] = React.useState(false)
+    const fileRef = useRef(null)
 
 
     useEffect(() => {
@@ -43,6 +44,7 @@ export default function CoverPhotoEdit() {
             
             setDone(true)
             setBackCoverUrl(url)
+            history.goBack()
             
             
 
@@ -83,21 +85,14 @@ export default function CoverPhotoEdit() {
 
                 <Box width='100%'  mt={2} display='flex' alignItems='center' flexDirection='column' justifyContent='center' >
                     
+                    <IconButton  onClick={() => {
+                        const file = fileRef.current 
 
+                        file.click()
+                    }} ><UploadRounded /></IconButton>
 
-                    <InputBase
-                      sx={{ ml: 1, flex: 1 }}
-                      
-                      onChange={updateBackgroundPhoto }
-                      endAdornment={
-                        <InputAdornment position="start">
-                          <Box component='img' width={24} src="/images/photo.png" />
-                        </InputAdornment>
-                      }
-                      size="small"
-                      sx={{p: 0, border: 'none', maxWidth: 200}}
-                      type='file' accept='image/*' className="form-control" 
-                    />
+                    <input onChange={updateBackgroundPhoto } type='file' style={{display: 'none'}} accept='image/*' ref={fileRef} id="file" name="file" />
+
                
                <Box my={1} component='img'  sx={{ objectFit: 'cover', borderRadius: "7px", minWidth: {xs: '100%', sm: 400, md: 540}}} width='100%' maxWidth='100%' maxHeight={150} height={150} src={imageUrl} /> 
 

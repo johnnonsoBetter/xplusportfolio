@@ -17,6 +17,7 @@ import SetReset from './components/SetReset';
 import Homepage from './components/homepage/Homepage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectReview from './components/project_review/ProjectReview';
+import ResetPassword from './components/ResetPassword';
 
 const theme = createTheme({
   typography: {
@@ -38,7 +39,7 @@ function App() {
             
             <Route path="/login" render={() => <Login />} />
             <Route path="/sign_up" render={() => <Signup />} />
-            
+            <Route path='/password_reset' render={() => <ForgotPassword /> } />
             <Route path="/update_password" render={() => <UpdatePassword />} />  
             <Route path='/api' render={() => <SetReset /> } />        
             <Route  path="/xpo" render={() => isAuthenticated() ? <Home /> : <Redirect to='/login' /> } />

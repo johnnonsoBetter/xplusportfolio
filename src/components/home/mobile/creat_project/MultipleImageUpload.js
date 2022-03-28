@@ -1,5 +1,5 @@
 
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useRef, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -18,6 +18,7 @@ export default function MultipleImageUpload (props) {
   
     const {images, imageURLs, setImageURLs, setImages} = props
     const [changed, setChanged] = useState(false)
+    const fileRef = useRef(null)
 
     useEffect(() => {
       if(images.length < 1) 
@@ -39,6 +40,7 @@ export default function MultipleImageUpload (props) {
 
     function uploadMultipleFiles(e) {
         e.preventDefault()
+
         const newImages = images.concat(e.target.files[0])
         console.log(newImages[0])
         setImages( [...new Set(newImages)])
@@ -58,16 +60,19 @@ export default function MultipleImageUpload (props) {
                     component="form"
                     sx={{ p: '2px 4px', display: 'flex', alignItems: 'center' }}
                   >
-                    <IconButton sx={{ p: '10px' }} aria-label="menu">
-                    <AddPhotoAlternateRounded />
-                    </IconButton>
-                    <InputBase
-                      sx={{ ml: 1, flex: 1 }}
-                      placeholder="Search Google Maps"
-                     
-                      inputProps={{ 'aria-label': 'search google maps' }}
-                      type='file' accept='image/*' className="form-control" onChange={uploadMultipleFiles} multiple
-                    />
+                    
+                        <Tooltip title="Add Photo" >  
+                        <IconButton size='small' onClick={() => {
+                          const file = fileRef.current
+                          file.click()
+                        }} >
+                                <Avatar sx={{width: 32, height: 32}} ><AddPhotoAlternateRounded color='action' fontSize='0.5rem'/> </Avatar>
+                        </IconButton>
+                        </Tooltip>
+
+                       
+                    <input onChange={uploadMultipleFiles} type='file' style={{display: 'none'}} accept='image/*' ref={fileRef} id="file" name="file" />
+
                   
                    
                   </Paper>

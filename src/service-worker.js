@@ -73,14 +73,14 @@ self.addEventListener('message', (event) => {
 self.addEventListener("push", (event) => {
 
   const {body, title} = event.data
-  let body = "We have received a push message";
+
   let icon = '/favicon.ico';
   
 
   console.log(event.data)
 
   event.waitUntil(
-    self.registration.showNotification(title, { body, icon, tag })
+    self.registration.showNotification(title, { body, icon })
   )
 });
 

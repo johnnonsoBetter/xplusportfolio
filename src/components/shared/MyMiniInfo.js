@@ -53,7 +53,7 @@ export default function MyMiniInfo() {
                 <Box display="flex" p={1} width="100%" alignItems="center" justifyContent="flex-start" >
                     <Box component={Link} sx={{textDecoration: 'none'}} to={`/xpo/my_profile/${slug}`} width="20%" height="100%" display="flex" justifyContent="center" >
 
-                        <Avatar  {...stringAvatar(name, 50, 50)} src={image} alt="pics" width={50} height={50} />
+                        {/* <Avatar  {...stringAvatar(name, 50, 50)} src={image} alt="pics" width={50} height={50} /> */}
                     </Box>
 
                     <Stack width="70%" sx={{my: 2}}   >

@@ -61,7 +61,7 @@ export default function MyProfile() {
            
             <IconButton onClick={handleClick} disableRipple>
                
-                <Avatar  {...stringAvatar(name, 32, 32, "0.6em")} src={image} alt="pics"  />
+                {/* <Avatar  {...stringAvatar(name, 32, 32, "0.6em")} src={image} alt="pics"  /> */}
             </IconButton>
             
         </Tooltip>

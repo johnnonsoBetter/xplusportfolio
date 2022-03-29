@@ -2,6 +2,7 @@ import { Box, ButtonBase, Grid, Paper, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react' 
 import { AuthContext } from '../../../../../context/AuthContext'
 import { FetchContext } from '../../../../../context/FetchContext'
+import ResourceList from './ResourceList'
 import ResourcesLoader from './ResourcesLoader'
 
 
@@ -11,14 +12,14 @@ export default function JobBoards() {
     const {authAxios} = useContext(FetchContext)
     const {setSomethingWentWrong} = useContext(AuthContext)
     const [loading, setLoading] = useState(true)
-    const [communities, setCommunites] = useState([])
+    const [jobboards, setJobBoards] = useState([])
 
     useEffect(() => {
 
         document.title = "Job Boards"
         authAxios.get('api/v1/resources',  {params: {resources_type: 'job_board'}}).then(res => {
 
-            setCommunites(res.data)
+            setJobBoards(res.data)
             setLoading(false)
         }).catch(err => {
             setSomethingWentWrong(true)
@@ -26,14 +27,23 @@ export default function JobBoards() {
 
         return () => {
             setSomethingWentWrong(false)
-            setCommunites([])
+            setJobBoards([])
         }
     }, [])
 
     
 
     return (
-       <ResourcesLoader />
+        <Box my={2} height="calc(98vh - 45px)" overflow='auto'>
+         
+            {
+                loading ?
+                <ResourcesLoader /> : <ResourceList resources={jobboards} />
+            }
+
+        
+        
+        </Box>
     )
 }
 

@@ -37,7 +37,7 @@ function ResourceList({resources}) {
   return (
     <Box position='relative'>
 
-        <Box my={2} display='flex' >
+        <Box my={2} display='flex' justifyContent='flex-end' >
             <Fab color=""  aria-label="prev" onClick={handleBack} disabled={activeStep === 0} sx={{mx: 2}}>
                 <KeyboardArrowLeft />
             </Fab>

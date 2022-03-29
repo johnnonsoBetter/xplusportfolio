@@ -26,7 +26,7 @@ const features = [
         backgroundColor: 'white',
         title: 'Hunt down bugs, review projects, and give feedbacks',
         body1: 'Simple but smart project review tool available for anyone to help improve other members projects by hunting bugs in their application, making suggestions, and taking notes.',
-        imgUrl: 'https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648219275/homepage_photos/ezgif.com-gif-maker_10_dm5idx.gif',
+        imgUrl: 'https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648518507/homepage_photos/ezgif.com-gif-maker_10_1_ifjtfs.gif',
     },
     {
         order: [2, 1],
@@ -48,6 +48,16 @@ const features = [
         title: ' Never miss any important updates.',
         body1: 'With Live feed and Push notifications you almost never miss important activities in the platform.',
         imgUrl: 'https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648221830/homepage_photos/ezgif.com-gif-maker_9_slwpz4.gif',
+    },
+    {
+        order: [2, 1],
+        justifyContent: 'flex-end',
+        transformOrigin: 'right',
+        p: 'perspective(1200px) rotateY(-5deg)',
+        backgroundColor: 'white',
+        title: 'Discover other rich platforms',
+        body1: 'Improve your skill-sets by utilizing rich contents provided by other platforms ',
+        imgUrl: 'https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648518416/homepage_photos/ezgif.com-gif-maker_11_hnccxw.gif',
     }
 ]
 

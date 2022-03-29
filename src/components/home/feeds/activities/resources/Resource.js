@@ -28,7 +28,12 @@ export default function Resource({resource}) {
                         
                         </Box>
                         <Box p={1} >
-                            <Button variant='contained' fullWidth endIcon={<OpenInNewOutlined />} > Learn More</Button>
+                            <a rel="noopener noreferrer" style={{textDecoration: 'none'}} href={link} target="_blank">
+
+                                <Button variant='contained' fullWidth endIcon={<OpenInNewOutlined />} > Learn More</Button>
+
+                            </a>
+
                         </Box>
                     </Paper>
 

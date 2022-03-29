@@ -41,13 +41,10 @@ export default function Communities() {
     
 
     return (
-        <Box m={2} height="calc(98vh - 45px)" overflow='auto'>
-            {/* <Typography variant='h6' marginBottom={1}  textAlign='left' > Communities </Typography>
-        */}
-           
-            
-            
-            
+        <Box my={2} height="calc(98vh - 45px)" overflow='auto'>
+
+            <Typography textAlign='left' variant='h6'> Communities</Typography>
+         
             {
                 loading ?
                 <ResourcesLoader /> : <ResourceList resources={communities} />

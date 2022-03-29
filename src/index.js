@@ -8,17 +8,18 @@ import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './context/AuthContext';
 import { FetchProvider } from './context/FetchContext';
 import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom/cjs/react-router-dom.min';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter >
+    <HashRouter >
       <AuthProvider>
       <FetchProvider>
         <App />
       </FetchProvider>
       
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
     
     
   </React.StrictMode>,

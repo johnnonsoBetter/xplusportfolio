@@ -23,7 +23,7 @@ const getTruncatedBody = (body) => {
 }
 
 
-export default function AllNotificationInfo({ link, markAsSeen, body, color, event_message, action_owner, total_performers}) {
+export default function NotificationInfo({ link, markAsSeen, body, color, event_message, action_owner, total_performers}) {
 
     const history = useHistory()
     const {name, image} = action_owner

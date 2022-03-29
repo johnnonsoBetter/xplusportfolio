@@ -24,7 +24,7 @@ export default function ConfirmAccount() {
         setConfirmed(true)
     }).catch(err => {
         
-        setFailed(true)
+        setConfirmed(true)
     })
 
     return (

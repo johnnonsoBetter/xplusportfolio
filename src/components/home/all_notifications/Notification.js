@@ -8,7 +8,7 @@ import NotificationInfo from './NotificationInfo'
 import { blue, orange, purple } from '@mui/material/colors'
 
 
-const Notification = ({object, type, user_slug, seen, id}) => {
+function Notification({object, type, user_slug, seen, id}){
 
     const {authAxios} = useContext(FetchContext)
     const {setSomethingWentWrong} = useContext(AuthContext)
@@ -69,23 +69,6 @@ const Notification = ({object, type, user_slug, seen, id}) => {
     </Box>
 
     <Box   >
-        
-{/*         
-        <>
-            {
-                type === "AnticipationLikeNotification" ?
-                <NotificationInfo markAsSeen={markAsSeen} body={object['anticipation'].body} link={`/xpo/my_profile/${user_slug}/anticipations/`} title="Anticipation Like" backgroundColor={purple[400]} icon={<ThumbUpRounded    fontSize='0.7rem' />}/>
-                : 
-                type === "UpvoteNotification" ? 
-                <NotificationInfo markAsSeen={markAsSeen} body={object['project'].title} link={`/xpo/projects/${object['project'].slug}`} title="Project Upvote"  backgroundColor={orange[400]} icon={ <HowToVoteRounded   fontSize='0.7rem' />}/> 
-                :
-                type === "NewAnticipationNotification" ?
-                <NotificationInfo markAsSeen={markAsSeen} body={object['anticipation'].body} link={`/xpo/my_profile/${user_slug}/anticipations/`} title="New Anticipation" backgroundColor={purple[400]} icon={ <PsychologyRounded   fontSize='0.7rem' />}/> : 
-                type === "ProjectLikeNotification" ? 
-                <NotificationInfo markAsSeen={markAsSeen} body={object['project'].title} link={`/xpo/projects/${object['project'].slug}`} title="Project Like" backgroundColor={orange[400]} icon={ <ThumbUpRounded   fontSize='0.7rem' />}/> 
-                : null
-            }
-        </> */}
 
         <>
         {
@@ -117,17 +100,7 @@ const Notification = ({object, type, user_slug, seen, id}) => {
         }
     </>
 
-        {/* {
-                type === "AnticipationLikeNotification" ?
-                <AnticipationLike anticipation={object['anticipation']} user_slug={user_slug} /> : 
-                type === "NewAnticipationNotification" ? 
-                <NewAnticipation anticipation={object['anticipation']} user_slug={user_slug} /> : 
-                type === "UpvoteNotification" ? 
-                <ProjectUpvote project={object['project']} /> : 
-                type === "ProjectLikeNotification" ? 
-                <ProjectLike project={object['project']} /> : null
-            }
-               */}
+       
     </Box>
     </Paper>
 </Box>

@@ -209,7 +209,7 @@ const Profile = ({profile}) => {
     const {isCurrentUser} = useContext(AuthContext)
     const {slug} = useParams()
     
-    const {total_anticipations, total_suggestions, total_projects, repu_coin, total_project_votes, total_followings, total_followers, is_following} = profile
+    const {total_anticipations, total_suggestions, total_projects, repu_coin, github_url, total_project_votes, total_followings, total_followers, is_following} = profile
     const [totalFollowersCount, setTotalFollowersCount] = useState(total_followers)
 
 
@@ -227,19 +227,44 @@ const Profile = ({profile}) => {
         <Box my={1} mx={1} >
         <Grid container spacing={1} >
             <Grid item xs={6} md={3}  >
-                <a rel="noopener noreferrer" href='hey' target="_blank">
+
+                {
+
+                    github_url ?
+                    
+                
+                <a rel="noopener noreferrer" href={github_url} target="_blank">
                     <Paper  sx={{minHeight: 130, display: 'flex', alignItems: 'center'}}  >
                         
 
                                
 
                         
-                        <Box width='100%' display='flex' justifyContent='center' sx={{textDecoration: 'none'}} p={1} >
+                        <Box width='100%' display='flex' justifyContent='center'  sx={{textDecoration: 'none'}} p={1} >
                             <img  src="/images/repo.png" alt="github"  />
                             
                         </Box>
+
+
                     </Paper>
                 </a>
+
+                :
+                    <Paper component={Link} to='/xpo/edit_profile' sx={{minHeight: 130, display: 'flex', alignItems: 'center'}}  >
+                        
+
+                               
+
+                        
+                        <Box width='100%' display='flex' justifyContent='center'  sx={{textDecoration: 'none'}} p={1} >
+                            <img  src="/images/repo.png" alt="github"  />
+                            
+                        </Box>
+
+
+                    </Paper>
+
+                }
             </Grid>
 
             

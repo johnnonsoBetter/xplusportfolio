@@ -185,6 +185,16 @@ export default function CreateProjectMenu() {
             <form onSubmit={formik.handleSubmit} >
 
                 <Grid container>
+
+                <Grid item xs={12} >
+                        <Box  mx={2} my={1} >
+
+                            <Typography variant='body2' > Ensure that your project does not block an iframe</Typography>
+                        </Box>
+
+                    </Grid>
+
+
                     <Grid item xs={12} >
                         <Box  mx={2} my={1} >
 

@@ -62,10 +62,12 @@ export default function Signup(){
         name: '',
         github_url: null,
         avatar_url: null,
+        confirm_success_url: 'https://xplusportfoliob.herokuapp.com'
 
       },
       validationSchema: validationSchema,
       onSubmit: (values) => {
+        
         submitCredentials(values)
         
       },

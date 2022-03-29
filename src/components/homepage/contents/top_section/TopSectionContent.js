@@ -20,7 +20,7 @@ const topContentComponents = [
   {
     id: 'intotech',
     title: 'Trying to get into the tech industry ?',
-    body: 'Sometimes building useful projects can seem challenging to build, maybe because of lack of ideas, skills and motivation.',
+    body: 'As self-taught, bootcamp grads, or newbies in tech trying to get into tech without prior experience, one great advice that experts in the software industry has given is to have a solid portfolio with proof of real world projects. This helps showcase the potential of problem solving ability and learning.',
     chipColor: purple[600],
     imgUrl: '/images/tech.png',
     chipLabel: 'Experts Advice'

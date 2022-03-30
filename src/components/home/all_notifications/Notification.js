@@ -8,7 +8,7 @@ import NotificationInfo from './NotificationInfo'
 import { blue, orange, purple } from '@mui/material/colors'
 
 
-function Notification({object, type, user_slug, seen, id}){
+export default function Notification({object, type, user_slug, seen, id}){
 
     const {authAxios} = useContext(FetchContext)
     const {setSomethingWentWrong} = useContext(AuthContext)
@@ -107,5 +107,3 @@ function Notification({object, type, user_slug, seen, id}){
     )
 }
 
-
-export default Notification

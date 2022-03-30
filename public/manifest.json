@@ -3,7 +3,7 @@
   "background_color": "#f5f5f5",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/xpo",
   "name": "Xplusportfolio",
   "short_name": "Xplusportfolio",
   "icons": [

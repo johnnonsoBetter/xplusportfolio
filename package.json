@@ -1,6 +1,5 @@
 {
   "name": "xplusportfolio",
-  "homepage": ".",
   "engines": {
     "node": "17.4.0"
   },
@@ -88,7 +87,6 @@
       "not dead",
       "not op_mini all"
     ],
-    
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

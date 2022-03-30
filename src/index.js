@@ -8,6 +8,9 @@ import { AuthProvider } from './context/AuthContext';
 import { FetchProvider } from './context/FetchContext';
 import { BrowserRouter } from 'react-router-dom';
 
+// import 'core-js/es7/'; import 'core-js/es6/'; import 'raf/polyfill';
+import 'raf/polyfill'
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter >
@@ -23,6 +26,9 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

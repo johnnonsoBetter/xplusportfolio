@@ -117,12 +117,12 @@ export default function AppbarContent({user, notify}) {
                         
 
                      
-                            <IconButton to={`#notification`} LinkComponent={Link}  disableRipple sx={{mr: 1}}>
+                            {/* <IconButton to={`#notification`} LinkComponent={Link}  disableRipple sx={{mr: 1}}>
                             
                                 <Badge color="error" badgeContent={totalNotifications} >
                                     <NotificationsOutlined />
                                 </Badge>
-                            </IconButton>
+                            </IconButton> */}
 
                     </Box>
                     
@@ -130,7 +130,7 @@ export default function AppbarContent({user, notify}) {
                     <Box sx={{display: {xs: "none", sm: "flex"}, justifyContent: "space-between"}} >
                        
 
-                        <NotificationMenu />
+                        {/* <NotificationMenu /> */}
                     </Box>
 
                     <MyProfile />

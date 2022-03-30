@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'core-js/actual';
 import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -8,18 +7,17 @@ import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './context/AuthContext';
 import { FetchProvider } from './context/FetchContext';
 import { BrowserRouter } from 'react-router-dom';
-import { HashRouter } from 'react-router-dom/cjs/react-router-dom.min';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter >
+    <BrowserRouter >
       <AuthProvider>
       <FetchProvider>
         <App />
       </FetchProvider>
       
       </AuthProvider>
-    </HashRouter>
+    </BrowserRouter>
     
     
   </React.StrictMode>,

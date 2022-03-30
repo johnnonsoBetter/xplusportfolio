@@ -20,9 +20,23 @@ import parse from 'html-react-parser'
 
 export default function Note() {
 
-const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
+  const [editorState, setEditorState] = React.useState(() =>
+  EditorState.createEmpty()
 );
+const [markup, setMarkups] = useState('')
+
+const editor = React.useRef(null);
+
+
+function focusEditor() {
+  editor.current.focus();
+}
+
+  function onEditorStateChange(editorState) {
+   setEditorState(editorState)
+  };
+
+
 
 
 
@@ -31,14 +45,20 @@ useEffect(() => {
 
   const rawContentState = convertToRaw(editorState.getCurrentContent());
 
+  console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
 
+  setMarkups(draftToHtml(convertToRaw(editorState.getCurrentContent())))
 
-const markup = draftToHtml(
   
-  rawContentState, 
-);
 
-    console.log(parse(`${markup}`));
+
+
+// const markup = draftToHtml(
+  
+//   rawContentState, 
+// );
+
+//     console.log(parse(`${markup}`));
 
     
 
@@ -49,11 +69,22 @@ const markup = draftToHtml(
     <Box>
       
       <Box style={{ minHeight: '400px' }}>
+      <div>
         <Editor
           editorState={editorState}
-          onEditorStateChange={setEditorState}
+          toolbarClassName="toolbarClassName"
+          wrapperClassName="wrapperClassName"
+          editorClassName="editorClassName"
+          onEditorStateChange={onEditorStateChange}
         />
+        <textarea
+          disabled
+          value={markup}
+        ></textarea>
+      </div>
       </Box>
+
+      
     </Box>
   );
 }

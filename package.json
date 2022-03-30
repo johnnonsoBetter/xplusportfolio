@@ -1,7 +1,8 @@
 {
   "name": "xplusportfolio",
   "engines": {
-    "node": "17.4.0"
+    "node": "17.4.0",
+    "npm": "8.5.4"
   },
   "version": "0.1.0",
   "private": true,

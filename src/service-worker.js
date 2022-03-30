@@ -75,28 +75,13 @@ self.addEventListener("push", (event) => {
   const {body, title} = event.data.json()
 
   let icon = '/favicon.ico';
-  
-
-  console.log(event.data)
+  let badge = '/favicon.ico'
 
   event.waitUntil(
-    self.registration.showNotification(title, { body, icon })
+    self.registration.showNotification(title, { body, icon, badge })
   )
 });
 
-// var data = {};
-//   if (event.data) {
-//     data = event.data.json();
-//   }
-//   var title = data.title || "Something Has Happened";
-//   var message = data.message || "Here's something you might want to check out.";
-//   var icon = "images/new-notification.png";
-
-//   var notification = new self.Notification(title, {
-//     body: message,
-//     tag: 'simple-push-demo-notification',
-//     icon: icon
-//   });
 
 
 

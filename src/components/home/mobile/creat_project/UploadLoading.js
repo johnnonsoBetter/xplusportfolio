@@ -23,7 +23,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 
-export default function UploadLoading({done}) {
+export default function UploadLoading({done, uploadText}) {
     const [progress, setProgress] = React.useState(10);
 
     const progressMessage = () => {
@@ -64,7 +64,7 @@ export default function UploadLoading({done}) {
         <Zoom in={true}  >
            <Box my={1} display='flex' justifyContent='center' flexDirection='column' alignItems='center' >
           <CheckCircleRounded color='success'/>
-          <Typography variant='body2' > Upload Done!</Typography>
+          <Typography variant='body2' > {uploadText ? uploadText : 'Upload Done!'}</Typography>
         </Box>
 
         </Zoom>

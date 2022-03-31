@@ -98,7 +98,7 @@ export default function PushConsentNotify({setOpenNotify}) {
             <Box display='flex' alignItems='center'  >
 
             <Typography sx={{mr: 1}} variant='h5' fontWeight={700} >
-                Hey John! 
+                Hey There! 
             </Typography>
 
 

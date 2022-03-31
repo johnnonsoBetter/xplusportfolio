@@ -1,43 +1,83 @@
-import { Avatar, Box, Grid } from '@mui/material'
-import React from 'react'  
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import React, { useContext, useEffect, useState } from 'react'
+import { Box, Grid } from '@mui/material'
+import { FetchContext } from '../../../../../context/FetchContext';
+import { AuthContext } from '../../../../../context/AuthContext';
+import Empty from '../../../../shared/Empty';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import Note from './Note';
 
 
-export default function NoteContainer() {
+export default function SuggestionContainer (props) {
+
+  const {authAxios} = useContext(FetchContext)
+  const {setSomethingWentWrong, isCurrentUser} = useContext(AuthContext)
+  const [loading, setLoading] = useState(true)
+  const [notes, setNotes] = useState([])
+  const {slug} = useParams()
+
+
+
+  useEffect(() => {   
+       
+
+    authAxios.get(`/api/v1/projects/${slug}/notes`).then(res => {
+        setNotes(res.data)  
+        setLoading(false)
+    }).catch(err => {
+
+        setSomethingWentWrong(true)
+    })
+
+
+    return () => {
+        setNotes([])
+        setLoading(true)
+        setSomethingWentWrong(false)
+    }
+  }, [])
+
+  
+
 
 
     return (
-        <Grid container spacing={3} >
-            <Grid item xs={6} sm={4} md={4} >
 
-                <Box display='flex' position='relative' component={Link}  justifyContent='center' >
-                    <img style={{maxWidth: '50%'}} src='/images/notes.png' />
-                    {/* <p style={{"text-align:center;"}}><strong>Making the application to have all pleawse </strong></p> */}
+      <>
+        {
+          loading ?
+          <Box width='100%' display='flex' my={2} justifyContent='center' alignItems='center'  >
+              <img src='/images/review_loader.gif' width={45} height={45} />
+              
+          </Box> : 
 
-                    <Avatar sx={{ width: 32, height: 32, position: 'fixed' }}  src='/images/pics.jpg' />
-                </Box>
-            </Grid>
+          <Box width="100%" p={1}> 
+              
+             
+              <Box my={3} >
+                   {
+                     notes.length === 0 ?
+                     <Empty emptyDetail="No note yet" sx={{minHeight: "70px"}}/> : 
+                     <>
+                     <Grid container justifyContent='center'>
+                        {
+                            notes.map(note => {
+                            
+                            return (
+                                <Note key={note.id} note={note} />
+                            )
+                            })
+                        }
 
-            <Grid item xs={6} sm={4} md={4} >
-                <Box display='flex' position='relative' component={Link}  justifyContent='center' >
-                    <img style={{maxWidth: '50%'}} src='/images/notes.png' />
-                    <Avatar sx={{ width: 32, height: 32, position: 'fixed' }}  src='/images/pics.jpg' />
-                </Box>
-            </Grid>
-
-            <Grid item xs={6} sm={4} md={4} >
-                <Box display='flex' position='relative' component={Link}  justifyContent='center' >
-                    <img style={{maxWidth: '50%'}} src='/images/notes.png' />
-                    <Avatar sx={{ width: 32, height: 32, position: 'fixed' }}  src='/images/pics.jpg' />
-                </Box>
-            </Grid>
-
-            <Grid item xs={6} sm={4} md={4} >
-                <Box display='flex' position='relative' component={Link}  justifyContent='center' >
-                    <img style={{maxWidth: '50%'}} src='/images/notes.png' />
-                    <Avatar sx={{ width: 32, height: 32, position: 'fixed' }}  src='/images/pics.jpg' />
-                </Box>
-            </Grid>
-        </Grid>
+                     </Grid>
+                        
+                    </>
+                   }
+                  
+              </Box>
+          </Box>
+        }
+      </>
+        
     )
 }
+

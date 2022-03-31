@@ -10,6 +10,7 @@ import ColorPicker from './tools/ColorPicker';
 import Resizer from './tools/Resizer';
 import Suggestion from './tools/Suggestion';
 import Info from './info/Info'
+import Note from './note/Note';
 
 
 
@@ -185,14 +186,7 @@ export default function ReviewToolbar() {
 
               <ListItem   >
                 <ListItemIcon>
-                  
-                    <Tooltip title="Add Note" >
-
-                      <IconButton onClick={handleClickOpen} >
-                      <NoteAddRounded />
-                      </IconButton>
-
-                  </Tooltip>
+                  <Note />
                 </ListItemIcon>
               
               </ListItem>

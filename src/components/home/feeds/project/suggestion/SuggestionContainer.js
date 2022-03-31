@@ -48,8 +48,9 @@ export default function SuggestionContainer (props) {
       <>
         {
           loading ?
-          <Box >
-            <CircularProgress />
+          <Box width='100%' display='flex' my={2} justifyContent='center' alignItems='center'  >
+              <img src='/images/review_loader.gif' width={45} height={45} />
+              
           </Box> : 
 
           <Box width="100%" p={1}> 

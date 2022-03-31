@@ -17,7 +17,7 @@ export default function Learning() {
     useEffect(() => {
 
         document.title = "Learning"
-        authAxios.get('api/v1/resources',  {params: {resources_type: 'learning'}}).then(res => {
+        authAxios.get('api/v1/resources',  {params: {resource_type: 'learning'}}).then(res => {
 
             setLearnings(res.data)
             setLoading(false)

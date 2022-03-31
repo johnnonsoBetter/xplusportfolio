@@ -17,7 +17,7 @@ export default function Agencies() {
     useEffect(() => {
 
         document.title = "Agencies"
-        authAxios.get('api/v1/resources',  {params: {resources_type: 'agency'}}).then(res => {
+        authAxios.get('api/v1/resources',  {params: {resource_type: 'agency'}}).then(res => {
 
             setAgencies(res.data)
             setLoading(false)

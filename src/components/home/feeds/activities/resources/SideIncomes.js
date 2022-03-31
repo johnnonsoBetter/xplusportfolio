@@ -17,7 +17,7 @@ export default function SideIncomes() {
     useEffect(() => {
 
         document.title = "Side Incomes"
-        authAxios.get('api/v1/resources',  {params: {resources_type: 'side_income'}}).then(res => {
+        authAxios.get('api/v1/resources',  {params: {resource_type: 'side_income'}}).then(res => {
 
             setSideIncomes(res.data)
             setLoading(false)

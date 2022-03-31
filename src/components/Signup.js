@@ -312,7 +312,7 @@ export default function Signup(){
                     </Box>
                     }
                   
-
+                  
 
 
                 </Grid>
@@ -341,12 +341,12 @@ function SignUpSuccessfull(){
               <Stack  width="100%" rowGap={2} >
                   <Typography variant="h5" fontWeight={900}>Sign up successfull!</Typography>
                   <Typography variant="h6" fontWeight={600}> You have been sent a confirmation email</Typography>
-              
+                  
                   <Box >
                       <MarkEmailReadRounded fontSize='large' color='success' sx={{width: 80, height: 80}} />
                   </Box>
 
-                  <Typography variant="h6" fontWeight={600}> Check Your Inbox</Typography>
+                  <Typography variant="h6" fontWeight={600}> Check Your Inbox or Spam box</Typography>
               </Stack>
 
               </Container>

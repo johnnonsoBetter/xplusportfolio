@@ -17,7 +17,7 @@ export default function JobBoards() {
     useEffect(() => {
 
         document.title = "Job Boards"
-        authAxios.get('api/v1/resources',  {params: {resources_type: 'job_board'}}).then(res => {
+        authAxios.get('api/v1/resources',  {params: {resource_type: 'job_board'}}).then(res => {
 
             setJobBoards(res.data)
             setLoading(false)

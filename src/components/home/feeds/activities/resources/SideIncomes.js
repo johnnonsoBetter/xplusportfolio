@@ -35,6 +35,9 @@ export default function SideIncomes() {
 
     return (
         <Box my={2} height="calc(98vh - 45px)" overflow='auto'>
+
+        <Typography textAlign='left' variant='h6' sx={{ml: {xs: 2, sm: 2, md: 0}}}> SideIncomes</Typography>
+     
          
         {
             loading ?

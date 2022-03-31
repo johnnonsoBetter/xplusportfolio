@@ -17,8 +17,13 @@ export default function Resource({resource}) {
 
                 <Paper elevation={2} sx={{borderRadius: '12px' }} >
                         <Box  sx={{borderTopRightRadius: '12px',borderTopLeftRadius: '12px'}} height={270}  display='flex' alignItems='center' justifyContent='center' >
-                            <ReactPlayer controls width='100%' height={270} url={video_url} />
-                            {/* <img style={{maxWidth: "100%"}} src='https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648468081/resources/agencies/turing-removebg-preview_uiuwwm.png' /> */}
+                            
+                            {
+                                video_url ?
+                                <ReactPlayer controls width='100%' height={270} url={video_url} /> :
+                                <img style={{maxWidth: "100%"}} src={img_url} />
+                            }
+                          
                         </Box>
                         <Box p={1}  >
                             <Typography variant='body1' marginBottom={1}  textAlign='left' > {title} </Typography>

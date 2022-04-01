@@ -1,8 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { LightbulbOutlined } from '@mui/icons-material';
-import { Box, CircularProgress, Divider, IconButton, InputBase, Paper, Tooltip } from '@mui/material'
-
-import SuggestionList from './SuggestionList';
+import { Box} from '@mui/material'
 import { FetchContext } from '../../../../../context/FetchContext';
 import { AuthContext } from '../../../../../context/AuthContext';
 import Empty from '../../../../shared/Empty';
@@ -17,8 +14,6 @@ export default function SuggestionContainer (props) {
   const [loading, setLoading] = useState(true)
   const [suggestions, setSuggestions] = useState([])
   const {slug} = useParams()
-
-
 
   useEffect(() => {   
        

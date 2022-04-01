@@ -1,21 +1,16 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Box, TextField, Typography} from '@mui/material';
+import {Box, TextField} from '@mui/material';
 import Menu from '@mui/material/Menu';
-
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import {  CloseOutlined, InsertCommentRounded, Link, NoteAddRounded, ScreenshotRounded} from '@mui/icons-material';
+import {  CloseOutlined, NoteAddRounded} from '@mui/icons-material';
 import Paper from '@mui/material/Paper';
-
 import { LoadingButton } from '@mui/lab';
-
-import SuggestionUpload from '../suggestion/SuggestionUpload'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { FetchContext } from '../../../context/FetchContext';
 import ProjectReviewContext from '../../../context/ProjectReviewContext';
 import UploadLoading from '../../home/mobile/creat_project/UploadLoading';
-
 
 
 const validationSchema = yup.object({
@@ -25,24 +20,13 @@ const validationSchema = yup.object({
 });
 
 
-
-
-
-
-
 export default function Note() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [imageUrl, setImageUrl] = React.useState(null)
-  const [image, setImage] = React.useState(null)
   const [loadingBtn, setLoadingBtn] = React.useState(false)
   const {authAxios} = useContext(FetchContext)
   const {project} = useContext(ProjectReviewContext)
   const [done, setDone] = useState(false)
-  const {user} = project
-  const {name} = user
-
-
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -54,8 +38,7 @@ export default function Note() {
   useEffect(() => {
 
     return () => {
-      setImageUrl(null)
-      setImage(null)
+     
       setLoadingBtn(false)
       setDone(false)
     }

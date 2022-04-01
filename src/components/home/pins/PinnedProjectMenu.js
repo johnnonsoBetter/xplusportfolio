@@ -5,23 +5,14 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import '../../../css/PinnedProject.css';
 import Tooltip from '@mui/material/Tooltip';
-
 import { Badge,Typography } from '@mui/material';
 import { useHistory } from 'react-router-dom';
-import { FetchContext } from '../../../context/FetchContext';
-import { AuthContext } from '../../../context/AuthContext';
 import { PushPinOutlined } from '@mui/icons-material';
-
 import PinnedProjectLoader from './PinnedProjectLoader';
-
 
 export default function PinnedProjectMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-//   const {authAxios} = useContext(FetchContext)
-  const [loading, setLoading] = useState(false)
   const open = Boolean(anchorEl);
- // const {logUserOut} = React.useContext(AuthContext)
-  const history = useHistory()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -30,20 +21,6 @@ export default function PinnedProjectMenu() {
     setAnchorEl(null);
   };
 
-
-//   const logout = () => {
-
-//     setLoading(true)
-//     authAxios.delete('api/v1/auth/sign_out').then((res) => {
-
-//         logUserOut()
-//         history.push('/login')
-      
-//     }).catch(err => {
-//         setLoading(false)
-//     })
-
-//   }
 
 
   return (

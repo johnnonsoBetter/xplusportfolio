@@ -1,17 +1,11 @@
 import { useTheme } from '@emotion/react'
-import { FolderRounded, HowToVoteRounded, PsychologyRounded, ThumbUpRounded } from '@mui/icons-material'
-import { Avatar, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useMediaQuery } from '@mui/material'
-import { blue, orange, purple } from '@mui/material/colors'
-import { Box } from '@mui/system'
+import { ListItem, useMediaQuery } from '@mui/material'
+
 import React, { useContext } from 'react'
 import { Virtuoso } from 'react-virtuoso'
 import { FetchContext } from '../../../context/FetchContext'
 import HomeInfoContext from '../../../context/HomeInfoContext'
 import Notification from './Notification'
-import NotificationInfo from './types/NotificationInfo'
-
-
-
 
 
 export default function NotificationList({notifications, handleClose}) {

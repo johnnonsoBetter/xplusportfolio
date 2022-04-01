@@ -1,18 +1,9 @@
-import { PsychologyRounded } from '@mui/icons-material';
-import { Avatar, Box, Divider, IconButton, InputBase, Paper, Skeleton, Stack } from '@mui/material'
+import { Box} from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
-import ActivityLoader from './ActivityLoader';
-import AnticipationActivity from './anticipation_activity/AnticipationActivity';
-import ProjectActivity from './project_activity/ProjectActivity';
-import '../../../../App.css'
-import {useHistory} from 'react-router-dom'
-import FeedLoader from '../../../shared/FeedLoader';
 import { FetchContext } from '../../../../context/FetchContext';
 import { AuthContext } from '../../../../context/AuthContext';
 import ActivityList from './ActivityList';
 import HomeInfoContext from '../../../../context/HomeInfoContext';
-
-
 
 export default function ActivityPage() {
 
@@ -23,26 +14,19 @@ export default function ActivityPage() {
     const [activities, setActivities] = useState([])
     const [page, setPage] = useState(1)
     const [totalActivities, setTotalActivities] = useState(0)
-    const {showFriendsActivities, setShowFriendsActivites,setNewPostAvailable, appIsOffline, totalNotifications} = useContext(HomeInfoContext)
-
+    const {showFriendsActivities, setShowFriendsActivites, appIsOffline, totalNotifications} = useContext(HomeInfoContext)
 
 
     const fetchMoreData = () => {
         
         authAxios.get(  showFriendsActivities ? 'api/v1/friends_activities'  :'api/v1/all_activities', {params: {page: page}}).then(res => {
             const {data} = res 
-
-
-            
             setPage(page => page + 1)
             setActivities(activities.concat(data))
             setTotalActivities(activities.length)
        }).catch(err => {
-        
-      
 
-           const {exception, status} = err.response 
-
+           const {status} = err.response 
 
            if(status === 500){
             
@@ -53,8 +37,6 @@ export default function ActivityPage() {
        })
     }
 
-
-   
 
     useEffect(() => {
         document.title = totalNotifications >= 1 ? `Feeds (${totalNotifications})`: "Feeds"
@@ -85,11 +67,6 @@ export default function ActivityPage() {
         }
 
     }, [showFriendsActivities, appIsOffline])
-
-
-
-
-
 
     return (
         <Box className="activity-container" >

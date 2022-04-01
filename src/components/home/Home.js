@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import MyAppbar from './MyAppbar';
-import { Route, useLocation } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom';
 import Feed from './feeds/Feed';
@@ -17,11 +17,11 @@ import { AuthContext } from '../../context/AuthContext';
 import { ActionCableProvider } from '@thrash-industries/react-actioncable-provider';
 import { HomeInfoContextProvider } from '../../context/HomeInfoContext';
 import { FetchContext } from '../../context/FetchContext';
-import Zoom from '@mui/material/Zoom'
 
 
 
-export default function Home(props) {
+
+export default function Home() {
 
   const { path} = useRouteMatch()
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -45,10 +45,9 @@ export default function Home(props) {
   const [backcoverUrl, setBackCoverUrl] = useState(null)
   const [newActivityPackage, setNewActivityPackage] = useState({})
   const [newActivityId, setNewActivityId] = useState(null)
-
-
-
   const [image, setImage] = useState(null)
+
+
 
   const notifyForOffline = () => {
 

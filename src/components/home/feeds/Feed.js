@@ -2,13 +2,9 @@ import { Box, Grid } from '@mui/material'
 import React from 'react'
 import Resources from '../resources/ResourcesLink'
 import ActivityContainer from './activities/ActivityContainer'
-import TopMembers from './top_members/TopMembers'
 import TopProjects from './top_project/TopProjects'
 
 export default function Feed() {
-
-    
-
 
     return (
         <Box >
@@ -20,8 +16,6 @@ export default function Feed() {
                     <ActivityContainer />
                 </Grid>
                 <Grid item sm={4} sx={{display: {xs: "none", sm: "none", md: "block"}}} md={4} lg={3} >
-                    
-                   
 
                     <Box  sx={{width: "100%",  height: "calc(99vh - 60px)", scrollbarWidth: {display: "none"}, overflowY: "auto"}} > 
                         
@@ -38,11 +32,11 @@ export default function Feed() {
                     
                 </Grid>
                 <Grid item sm={4} sx={{display: {xs: "none", sm: "none", md: "none"}}} md={4} lg={3} >
-                <TopProjects />
+                    <TopProjects />
                 </Grid>
                 <Grid  item sm={4} sx={{display: {xs: "none", sm: "none", md: "none", lg: "none"}}} md={4} lg={3} >
                     
-                <TopProjects />
+                    <TopProjects />
                 </Grid>
             </Grid>
         </Box>

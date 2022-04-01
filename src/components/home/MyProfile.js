@@ -6,7 +6,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-
 import { Avatar, Button, Typography } from '@mui/material';
 import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
@@ -25,7 +24,6 @@ export default function MyProfile() {
   const open = Boolean(anchorEl);
   const {logUserOut, authState} = React.useContext(AuthContext)
   const {slug} = JSON.parse(authState.userInfo)
-  const {userInfo} = authState
   const {name, image} = JSON.parse(authState.userInfo)
  
   const history = useHistory()

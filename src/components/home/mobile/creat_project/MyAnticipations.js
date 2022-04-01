@@ -1,5 +1,5 @@
 import { VerifiedRounded } from '@mui/icons-material'
-import { ButtonBase, Chip, CircularProgress, Collapse, MobileStepper, Paper, Tooltip, Typography } from '@mui/material'
+import { ButtonBase, Chip, CircularProgress, Collapse, MobileStepper, Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../../context/AuthContext'
@@ -9,7 +9,6 @@ import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
 import { useTheme } from '@emotion/react'
 import moment from 'moment'
 
@@ -44,38 +43,31 @@ export default function MyAnticipations ({openAnticipationList, setAnticipationI
   }, [])
 
 
-
-
-    
-  
-  
-    
-  
     return (
       <Collapse  in={openAnticipationList} timeout="auto" unmountOnExit >
       
         <Box  mx={2} my={1}  minWidth='100%' width='100%' > 
           
           {
-                    loading ?
-                    <Box display='flex' minHeight={250} alignItems='center' justifyContent='center'>
-                        <CircularProgress />
-                    </Box>
-                    :
-                    <>
+              loading ?
+              <Box display='flex' minHeight={250} alignItems='center' justifyContent='center'>
+                  <CircularProgress />
+              </Box>
+              :
+              <>
 
-                    {
-                     anticipations.length === 0 ?
-                     <Empty emptyDetail="No Unfulfilled Anticipation found" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
-                        
+              {
+              anticipations.length === 0 ?
+              <Empty emptyDetail="No Unfulfilled Anticipation found" sx={{minHeight: "300px", display: "flex", alignItems: 'center', justifyContent: "center"}}/> : 
+                  
 
-                        <>
-                           <AnticipationList anticipationId={anticipationId} anticipations={anticipations} setAnticipationId={setAnticipationId} />
-                        </>
-                   }
-                    
-                    </>
-                }
+                  <>
+                    <AnticipationList anticipationId={anticipationId} anticipations={anticipations} setAnticipationId={setAnticipationId} />
+                  </>
+            }
+              
+              </>
+          }
         </Box>
       </Collapse>
     )

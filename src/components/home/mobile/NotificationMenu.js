@@ -1,5 +1,5 @@
-import { ArrowBackIosNewRounded, ArrowBackIosRounded, BackupRounded, PlaylistAddCheckRounded, ViewAgendaOutlined } from '@mui/icons-material'
-import { BottomNavigation, BottomNavigationAction, Box, IconButton, Paper, Tooltip, Typography } from '@mui/material'
+import { ArrowBackIosRounded, PlaylistAddCheckRounded, ViewAgendaOutlined } from '@mui/icons-material'
+import { Box, IconButton,Tooltip, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { AuthContext } from '../../../context/AuthContext'
@@ -12,10 +12,9 @@ import HomeInfoContext from '../../../context/HomeInfoContext'
 export default function NotificationMenu() {
 
 
-    const history = useHistory()
+  const history = useHistory()
   const [notifications, setNotifications] = useState([])
   const {setTotalNotifications} = useContext(HomeInfoContext)
-  
   const [loading, setLoading] = useState(true)
   const {setSomethingWentWrong} = useContext(AuthContext)
   const {authAxios} = useContext(FetchContext)
@@ -48,8 +47,8 @@ export default function NotificationMenu() {
       authAxios.get('api/v1/notifications', {params: {status: 'unread'}}).then(res => {
 
         const {total_notifications, notifications} = res.data['notification_info']
-        if (notifications.length > 0)
-            setDisabled(false)
+    if (notifications.length > 0)
+        setDisabled(false)
         setNotifications(notifications)
         setTotalNotifications(total_notifications)
         setLoading(false)
@@ -58,9 +57,6 @@ export default function NotificationMenu() {
        setSomethingWentWrong(true)
        
     })
-
-
-
 
     return () => {
       setSomethingWentWrong(false)

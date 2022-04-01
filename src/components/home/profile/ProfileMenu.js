@@ -1,5 +1,5 @@
-import { AddAPhotoRounded, AddRounded, CloseRounded, EditRounded, HowToVoteOutlined, LanguageOutlined, PersonAddAlt1Outlined, PersonAddAlt1Rounded, PsychologyOutlined, RequestQuoteOutlined } from '@mui/icons-material'
-import { Avatar, Badge, Box, IconButton, Chip, Skeleton, Tooltip, Typography } from '@mui/material'
+import { EditRounded} from '@mui/icons-material'
+import { Avatar, Box, IconButton, Skeleton, Tooltip, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useParams, useHistory } from 'react-router-dom'
@@ -7,7 +7,6 @@ import { AuthContext } from '../../../context/AuthContext'
 import { FetchContext } from '../../../context/FetchContext'
 import  HomeInfoContext  from '../../../context/HomeInfoContext'
 import { abbreviateName } from '../../../utils/tools'
-import ProfileRouter from './ProfileRouter'
 
 export default function ProfileMenu() {
 

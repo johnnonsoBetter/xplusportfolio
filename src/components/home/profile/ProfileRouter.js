@@ -1,15 +1,10 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import {
   Route,
-  useLocation,
-  useRouteMatch,
 } from 'react-router-dom';
-
 import { Switch } from 'react-router-dom';
 import { ListSubheader } from '@mui/material';
 import { Redirect } from 'react-router-dom';
@@ -45,8 +40,6 @@ function MyTabs({slug}) {
 
 
 export default function ProfileRouter({isCurrentUser}) {
-  const {path} = useRouteMatch()
-  const {pathname} = useLocation
   const {slug} = useParams()
   
 

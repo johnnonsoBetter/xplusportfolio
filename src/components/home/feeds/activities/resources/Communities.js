@@ -1,10 +1,7 @@
-import { OpenInNewOutlined } from '@mui/icons-material'
-import { Box, Button, ButtonBase, Grid, Paper, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react' 
-import ReactPlayer from 'react-player/youtube'
+import { Box, Typography } from '@mui/material'
 import { AuthContext } from '../../../../../context/AuthContext'
 import { FetchContext } from '../../../../../context/FetchContext'
-import Resource from './Resource'
 import ResourceList from './ResourceList'
 import ResourcesLoader from './ResourcesLoader'
 
@@ -16,9 +13,6 @@ export default function Communities() {
     const {setSomethingWentWrong} = useContext(AuthContext)
     const [loading, setLoading] = useState(true)
     const [communities, setCommunites] = useState([])
-
-
-
 
     useEffect(() => {
 

@@ -1,11 +1,10 @@
 import { Box, CircularProgress, Container, Grow, Stack, Typography } from '@mui/material'
 import { blue } from '@mui/material/colors'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import queryString from 'query-string'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 import {  CancelRounded, CheckCircleRounded } from '@mui/icons-material'
-import { AuthContext } from '../context/AuthContext'
 import { publicFetch } from '../utils/fetch'
 
 
@@ -15,7 +14,6 @@ export default function ConfirmAccount() {
     const parsed = queryString.parse(location.search);
     const {confirmation_token} = parsed
     const [confirmed, setConfirmed] = useState(false)
-    const {authContext} = useContext(AuthContext)
     const [failed, setFailed] = useState(false)
 
 
@@ -25,6 +23,7 @@ export default function ConfirmAccount() {
     }).catch(err => {
         
         setConfirmed(true)
+        setFailed(true)
     })
 
     return (

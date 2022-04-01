@@ -13,14 +13,11 @@ export default function MembersContainer() {
     const {authAxios} = useContext(FetchContext)
     const {setSomethingWentWrong} = useContext(AuthContext)
     const [finished, setFinished] = useState(false)
-
     const [loading, setLoading] = useState(false)
     const [users, setUsers] = useState([])
     const [page, setPage] = useState(1)
     const [totalMembers, setTotalMembers] = useState(0)
     const {appIsOffline} = useContext(HomeInfoContext)
-
-
 
     const fetchMoreData = () => {
         
@@ -32,8 +29,7 @@ export default function MembersContainer() {
             setTotalMembers(users.length)
        }).catch(err => {
         
-        const {exception, status} = err.response 
-
+        const { status} = err.response 
 
            if(status === 500){
             

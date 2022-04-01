@@ -67,7 +67,7 @@ function ElevationScroll(props) {
 
 
 export default function MyAppbar(props) {
-  const {totalNotifications, setTotalNotifications, newPostAvailable, showFriendsActivities, setNewActivityId, setNewActivityPackage, setNewPostAvailable} = useContext(HomeInfoContext)
+  const {totalNotifications, setTotalNotifications, setNewPostAvailable} = useContext(HomeInfoContext)
   const {isCurrentUser, authState} = useContext(AuthContext)
   const {slug} = JSON.parse(authState.userInfo)
   
@@ -100,7 +100,7 @@ export default function MyAppbar(props) {
 
     const handleAnticipation = (res) => {
      
-      const {sender_slug, receivers, isPost} = res
+      const {sender_slug, receivers} = res
 
       if(isCurrentUser(sender_slug)){
         
@@ -119,7 +119,7 @@ export default function MyAppbar(props) {
 
     const handleProject = (res) => {
      
-      const {sender_slug, receivers, isPost} = res
+      const {sender_slug, receivers} = res
 
       if(isCurrentUser(sender_slug)){
         

@@ -1,24 +1,18 @@
 import React from 'react'
-
-import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import TopbarContent from './contents/top_section/TopSectionContent';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Avatar, Chip, Divider } from '@mui/material';
 import {KeyboardArrowDownRounded} from '@mui/icons-material';
-import { blue } from '@mui/material/colors';
 import FeaturesSection from './contents/features_section/FeaturesSection';
 import Footer from './contents/Footer';
 
 
 
-export default function Homepage(props) {
+export default function Homepage() {
 
   const history = useHistory()
 

@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import { Loader } from '../../profile/projects/ProjectListLoader';
 import { BuildRounded, DescriptionRounded } from '@mui/icons-material';
 import ProjectActivity from '../activities/project_activity/ProjectActivity';
-
 import { Chip, Paper } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -13,7 +12,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FetchContext } from '../../../../context/FetchContext';
 import { AuthContext } from '../../../../context/AuthContext';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import SuggestionContainer from './suggestion/SuggestionContainer';
 import ProjectTab from './ProjectTab';
 
 
@@ -36,7 +34,6 @@ import ProjectTab from './ProjectTab';
           id="panel1bh-header"
         >
            
-
            <Box display="flex" alignItems="center"  >
            <DescriptionRounded  color="primary" />
            <Typography  variant="body2" sx={{ ml: 1, color: 'text.secondary' }}>

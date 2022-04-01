@@ -1,18 +1,13 @@
 
 
 
-import { ThumbUpOutlined, VerifiedRounded } from '@mui/icons-material'
-import { Avatar, Badge, Box, IconButton, ListItemIcon, Stack, Tooltip, Typography } from '@mui/material'
+import {VerifiedRounded } from '@mui/icons-material'
+import {Box, Stack, Tooltip, Typography } from '@mui/material'
 import moment from 'moment'
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../../../context/AuthContext'
-import LikerButton from '../../../../shared/LikerButton'
 import SuggestionMaker from './SuggestionMarker'
-
-
-
-
 
 export default function SuggestionLabel({created_at, user, project, suggestion}) {
 

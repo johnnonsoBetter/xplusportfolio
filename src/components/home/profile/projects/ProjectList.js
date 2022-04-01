@@ -2,7 +2,7 @@
 
 
 import { useTheme } from '@emotion/react';
-import { List, ListItem, useMediaQuery } from '@mui/material'
+import {  ListItem, useMediaQuery } from '@mui/material'
 import { Box } from '@mui/system';
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component';

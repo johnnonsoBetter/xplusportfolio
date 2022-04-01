@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Fragment } from 'react';
 import { useState, useContext } from 'react';
 import { AsyncTypeahead, Menu } from 'react-bootstrap-typeahead';
 import Paper from '@mui/material/Paper';
@@ -15,7 +14,6 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { FolderRounded, PsychologyRounded } from '@mui/icons-material';
 import { orange, purple } from '@mui/material/colors';
 
-const SEARCH_URI = 'https://api.github.com/search/users';
 
 const Search = () => {
   const [isLoading, setIsLoading] = useState(false);

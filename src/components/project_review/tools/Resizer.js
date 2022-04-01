@@ -5,14 +5,13 @@ import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import {  AspectRatioRounded } from '@mui/icons-material';
-import { SketchPicker } from 'react-color';
 import { Slider } from '@mui/material';
 import ProjectReviewContext from '../../../context/ProjectReviewContext';
 
 
 const ResizeTool = () => {
 
-    const {setScreenPoint, screenPoint, resizeValue, setResizeValue} = React.useContext(ProjectReviewContext)
+    const {setScreenPoint, resizeValue, setResizeValue} = React.useContext(ProjectReviewContext)
 
 
 

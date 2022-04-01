@@ -1,11 +1,9 @@
-import { Box, ButtonBase, Grid, Paper, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react' 
 import { AuthContext } from '../../../../../context/AuthContext'
 import { FetchContext } from '../../../../../context/FetchContext'
 import ResourceList from './ResourceList'
 import ResourcesLoader from './ResourcesLoader'
-
-
 
 export default function Agencies() {
 
@@ -37,16 +35,11 @@ export default function Agencies() {
         <Box my={2} mb={5} height="calc(96vh - 45px)" overflow='auto'>
 
         <Typography textAlign='left' variant='h6' sx={{ml: {xs: 2, sm: 2, md: 0}}}> Agencies</Typography>
-     
-            
-         
         {
             loading ?
             <ResourcesLoader /> : <ResourceList resources={agencies} />
         }
 
-    
-    
         </Box>
     )
 }

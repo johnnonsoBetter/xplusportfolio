@@ -43,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-export default function ProjectTab(project) {
+export default function ProjectTab() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 

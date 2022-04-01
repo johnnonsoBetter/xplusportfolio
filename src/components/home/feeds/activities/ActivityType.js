@@ -1,12 +1,8 @@
-import { ArrowDownwardRounded } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import moment from 'moment';
 import React from 'react' 
 import { Link } from 'react-router-dom';
-
-
-
 
 export default function ActivityType({owner_name, text, owner_slug, created_at}) {
 
@@ -24,8 +20,7 @@ export default function ActivityType({owner_name, text, owner_slug, created_at})
             </Box> 
 
             <Box >
-              
-              
+
               <Typography color="ButtonShadow" variant='body2' sx={{ textTransform: "downcase", fontSize: "0.8em", mr: 2 }}  >{date_created}</Typography>
             </Box>
             

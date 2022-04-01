@@ -1,5 +1,5 @@
-import { Paper,Grid, Typography, Chip, Container } from '@mui/material'
-import { orange, purple } from '@mui/material/colors';
+import { Paper,Grid, Typography,  Container } from '@mui/material'
+
 import { Box } from '@mui/system'
 import React from 'react'
 import Zoom from 'react-reveal/Zoom';

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
-import { Apps, BubbleChartRounded, PeopleOutlineRounded, Search } from '@mui/icons-material';
+import { Apps, PeopleOutlineRounded, Search } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
-import { Box, Slide } from '@mui/material';
+import {Slide } from '@mui/material';
 import ResourcesMobileLink from './resources/ResourcesMobileLink';
 
 

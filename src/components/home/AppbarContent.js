@@ -1,15 +1,12 @@
 
-import { Alert, Badge, Box, Chip, IconButton, Avatar, Tooltip, Typography, Zoom } from '@mui/material'
+import { Badge, Box, Chip, IconButton, Avatar, Tooltip} from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import Search from './Search'
 import NotificationMenu from './notifications/NotificationMenu'
-import PinnedProjectMenu from './pins/PinnedProjectMenu'
 import MyProfile from './MyProfile'
-import { Link, useLocation } from 'react-router-dom'
-import { AppsOutlined, BubbleChartRounded, NotificationsOutlined, NotificationsRounded, PeopleAltOutlined, PushPinOutlined } from '@mui/icons-material'
-import { useRouteMatch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { AppsOutlined, NotificationsOutlined, NotificationsRounded, PeopleAltOutlined } from '@mui/icons-material'
 import SearchIcon from '@mui/icons-material/Search';
-import DrawerContext from '../../context/DrawerContext'
 import HomeInfoContext from '../../context/HomeInfoContext'
 import {blue} from '@mui/material/colors'
 import PushConsentNotify from '../shared/PushConsentNotify'
@@ -17,7 +14,7 @@ import usePushNotifications from '../shared/usePushNotifications'
 import ResourcesTabLink from './resources/ResourcesTabLink'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
-export default function AppbarContent({user, notify}) {
+export default function AppbarContent() {
     
     const history = useHistory()
 
@@ -28,7 +25,7 @@ export default function AppbarContent({user, notify}) {
       } = usePushNotifications();
 
     const [openNotify, setOpenNotify] = useState(userConsent !== 'granted')
-    const {totalNotifications, showFriendsActivities, setNewPostAvailable, newPostAvailable, setShowFriendsActivites} = useContext(HomeInfoContext)
+    const {totalNotifications, newPostAvailable, setShowFriendsActivites} = useContext(HomeInfoContext)
 
 
     useEffect(() => {

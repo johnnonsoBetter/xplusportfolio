@@ -3,22 +3,19 @@ import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
-
 import Tooltip from '@mui/material/Tooltip';
-
-
 import { Badge, Typography } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { FetchContext } from '../../../context/FetchContext';
 import { AuthContext } from '../../../context/AuthContext';
-import { NotificationsOutlined, PlaylistAddCheckOutlined, PlaylistAddCheckRounded, ViewAgendaOutlined, ViewAgendaRounded } from '@mui/icons-material';
+import { NotificationsOutlined, PlaylistAddCheckRounded, ViewAgendaOutlined } from '@mui/icons-material';
 import NotificationLoader from './NofiticationLoader';
 import NotificationList from './NotificationList';
 import Empty from '../../shared/Empty';
 import HomeInfoContext from '../../../context/HomeInfoContext';
 
 
-export default function NotificationMenu({total_notifications}) {
+export default function NotificationMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [loading, setLoading] = useState(true)
   const open = Boolean(anchorEl);

@@ -5,33 +5,22 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-
-
-import { AccessTimeOutlined, ArrowDownwardRounded, CheckOutlined, DisabledByDefaultRounded, InsertLinkRounded, TaskRounded } from '@mui/icons-material';
-import {Avatar, Button, Chip, Divider, IconButton, Tooltip } from '@mui/material';
+import { AccessTimeOutlined, CheckOutlined, DisabledByDefaultRounded, InsertLinkRounded, TaskRounded } from '@mui/icons-material';
+import {Button, Chip, IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
-
-import {ArrowDown} from '@mui/icons-material'
 import moment from 'moment';
 import { AuthContext } from '../../../../../context/AuthContext';
 import SubscribeButton from '../../../../shared/SubscriberButton';
 import LikerButton from '../../../../shared/LikerButton';
 import ActivityOwner from '../ActivityOwner';
-import { purple } from '@mui/material/colors';
 import Subscribers from './Subscribers'
-
 import ActivityType from '../ActivityType';
-
-
-
-
 
 function AnticipationActivity({anticipation, showType, typePackge}) {
 
   const {owner_name, owner_slug, action_type} = typePackge 
+  const {isCurrentUser} = React.useContext(AuthContext)
 
-
-  const {authState, isCurrentUser} = React.useContext(AuthContext)
   const {
     body, 
     cover, 
@@ -48,6 +37,7 @@ function AnticipationActivity({anticipation, showType, typePackge}) {
     fulfilled,
     project_slug
   } = anticipation
+  
   const {image, text_color} = cover
  
   const [totalSubScribers, setTotalSubScribers] = useState(total_subscribers)

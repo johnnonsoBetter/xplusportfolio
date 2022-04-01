@@ -2,11 +2,9 @@ import { blue, orange } from "@mui/material/colors"
 import NotificationInfo from "./types/NotificationInfo"
 
 
-
 export default function Notification({object, type,  user_slug}){
 
     const {anticipation, project, action_owner, total_performers} = object
-
 
     return (
         <>

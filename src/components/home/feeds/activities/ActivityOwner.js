@@ -1,8 +1,6 @@
 
-
-
 import { VerifiedRounded } from '@mui/icons-material'
-import { Avatar, Box, ListItemIcon, Stack, Tooltip, Typography } from '@mui/material'
+import { Avatar, Box, Stack, Tooltip, Typography } from '@mui/material'
 import moment from 'moment'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
@@ -10,13 +8,11 @@ import { AuthContext } from '../../../../context/AuthContext'
 import { abbreviateName } from '../../../../utils/tools'
 
 
-
 export default function ActivityOwner({created_at, user}) {
 
     const date_created = moment(created_at).fromNow()
     const {isCurrentUser} = useContext(AuthContext)
     const {name, image, slug} = user
-
 
     return (
         <Box  my={1} display="flex" width="100%" alignItems="center" justifyContent="space-between" >
@@ -58,8 +54,6 @@ export default function ActivityOwner({created_at, user}) {
                      
                 </Stack>
                 </Link>
-
-
             }
             
         </Box>

@@ -1,10 +1,7 @@
 import { useTheme } from '@emotion/react'
-import { Folder, HowToVoteOutlined } from '@mui/icons-material'
-import { Avatar, Badge, Box, List, ListItem, ListItemButton, ListItemIcon, ListSubheader, Menu, MenuItem, MobileStepper, Paper, Stack, Typography } from '@mui/material'
-import { blue, deepOrange, orange } from '@mui/material/colors'
+import { Avatar, Box, Paper, Typography } from '@mui/material'
+import { blue } from '@mui/material/colors'
 import React, { useContext, useEffect, useState } from 'react'
-import { useRouteMatch } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import SwipeableViews from 'react-swipeable-views'
 import { AuthContext } from '../../../../context/AuthContext'
 import { FetchContext } from '../../../../context/FetchContext'
@@ -23,22 +20,13 @@ function Projects({projects, setRank}) {
 
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
-    const maxSteps = projects.length;
-
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      };
     
-      const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-      };
     
-      const handleStepChange = (step) => {
-        
+    const handleStepChange = (step) => {
+    
         setActiveStep(step);
         setRank(step + 1)
-      };
+    };
 
 
     return (

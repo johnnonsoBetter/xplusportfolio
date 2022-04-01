@@ -5,7 +5,6 @@ import { useState, useEffect, useContext } from "react";
 import {
   isPushNotificationSupported,
   askUserPermission,
-  registerServiceWorker,
   createNotificationSubscription,
   getUserSubscription
 } from "../../utils/push-notifications";

@@ -1,9 +1,7 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import {
   Route,
   useLocation,
@@ -13,9 +11,7 @@ import {
 import { Switch } from 'react-router-dom';
 import { ListSubheader } from '@mui/material';
 import { Redirect } from 'react-router-dom';
-
 import { NavLink } from 'react-router-dom';
-
 import Following from '../profile/following/Following';
 import Followers from '../profile/followers/Followers';
 import AncticipationContainer from '../profile/anticipations/AnticipationContainer';
@@ -48,8 +44,7 @@ function MyTabs({slug}) {
 
 
 export default function MyProfileRouter() {
-  const {path} = useRouteMatch()
-  const {pathname} = useLocation
+
   const {slug} = useParams()
 
   return (

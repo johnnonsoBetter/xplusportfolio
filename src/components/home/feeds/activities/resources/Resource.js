@@ -1,9 +1,7 @@
 import { OpenInNewOutlined } from '@mui/icons-material'
-import { Box, Button, ButtonBase, Grid, Paper, Typography } from '@mui/material'
-import React, { useContext, useEffect, useState } from 'react' 
+import { Box, Button, Paper, Typography } from '@mui/material'
+import React from 'react' 
 import ReactPlayer from 'react-player/youtube'
-
-
 
 
 export default function Resource({resource}) {
@@ -13,7 +11,7 @@ export default function Resource({resource}) {
 
     return (
        
-            <Box >
+            <Box  >
 
                 <Paper elevation={2} sx={{borderRadius: '12px' }} >
                         <Box  sx={{borderTopRightRadius: '12px',borderTopLeftRadius: '12px'}} height={270}  display='flex' alignItems='center' justifyContent='center' >

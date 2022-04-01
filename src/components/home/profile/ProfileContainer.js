@@ -1,14 +1,11 @@
 import * as React from 'react';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
 import ProfileMenu from './ProfileMenu';
 import ProfileRouter from './ProfileRouter';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../../css/InfiniteList.css'
 
-export default function ProfileContainer({isCurrentUser}) {
+export default function ProfileContainer() {
 
   const {slug} = useParams()
  

@@ -15,7 +15,6 @@ export default function NotificationPage() {
     const [loading, setLoading] = useState(false)
     const [notifications, setNotifications] = useState([])
     const [page, setPage] = useState(0)
-    const [totalMembers, setTotalMembers] = useState(0)
     const [changed, setChanged] = useState(false)
     const [disabled, setDisabled] = useState(false)
 
@@ -42,17 +41,16 @@ export default function NotificationPage() {
     const fetchMoreData = () => {
         
         authAxios.get('api/v1/notifications', {params: {page: page}}).then(res => {
-            const {data} = res 
             
             const {total_notifications} = res.data['notification_info']
 
             setNotifications(notifications.concat(res.data['notification_info'].notifications))
             setTotalNotifications(total_notifications)
             setPage(page + 1)
-            setTotalMembers(notifications.length)
+            
        }).catch(err => {
         
-           console.log(err)
+           
         
        })
     }

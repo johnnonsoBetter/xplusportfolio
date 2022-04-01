@@ -6,16 +6,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-
-import { Avatar, Typography } from '@mui/material';
-import { Link, useHistory } from 'react-router-dom';
-
-import { LogoutOutlined, ModeEditOutlineOutlined, PersonOutlineRounded, VerifiedRounded } from '@mui/icons-material';
+import { Typography } from '@mui/material';
+import { VerifiedRounded } from '@mui/icons-material';
 import { FetchContext } from '../../../../../context/FetchContext';
 import { LoadingButton } from '@mui/lab';
 import { AuthContext } from '../../../../../context/AuthContext';
-
-
 
 
 export default function SuggestionMaker(props) {
@@ -25,9 +20,6 @@ export default function SuggestionMaker(props) {
     const open = Boolean(anchorEl);
     const {setSomethingWentWrong} = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
-    
-    
-    const history = useHistory()
 
     useEffect(() => {
         setSomethingWentWrong(false)
@@ -60,9 +52,6 @@ export default function SuggestionMaker(props) {
     }
 
     
-
-
-
 
   return (
     <React.Fragment>

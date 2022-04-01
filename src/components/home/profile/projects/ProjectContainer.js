@@ -15,10 +15,8 @@ export default function ProjectContainer() {
     const [loading, setLoading] = useState(true)
     const [projects, setProjects] = useState([])
     const {slug} = useParams()
-    const [totalProjects, setTotalProjects] = useState(0)
     const [page, setPage] = useState(0)
-    const [totalMembers, setTotalMembers] = useState(0)
-    const {setTitleBarUserName, titleBarUserName, appIsOffline} = useContext(HomeInfoContext)
+    const {titleBarUserName, appIsOffline} = useContext(HomeInfoContext)
 
 
 
@@ -28,7 +26,7 @@ export default function ProjectContainer() {
             const {data} = res 
             setProjects(data)
             setPage(page + 1)
-            setTotalProjects(projects.length)
+            
        }).catch(err => {
         
            

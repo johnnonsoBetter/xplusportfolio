@@ -1,14 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Box, TextField, Typography} from '@mui/material';
+import {Box, TextField} from '@mui/material';
 import Menu from '@mui/material/Menu';
-
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import {  CloseOutlined, InsertCommentRounded, Link, ScreenshotRounded} from '@mui/icons-material';
+import {  CloseOutlined, InsertCommentRounded} from '@mui/icons-material';
 import Paper from '@mui/material/Paper';
-
 import { LoadingButton } from '@mui/lab';
-
 import SuggestionUpload from '../suggestion/SuggestionUpload'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
@@ -167,7 +164,7 @@ export default function Suggestion() {
            <Box height={ imageUrl ? 140 : 0}>
              {
                imageUrl && 
-               <img style={{maxWidth: "100%", width: "100%", maxHeight: "100%", objectFit: 'cover', objectPosition: '50% 50%'}} src={imageUrl} />
+               <img alt="" style={{maxWidth: "100%", width: "100%", maxHeight: "100%", objectFit: 'cover', objectPosition: '50% 50%'}} src={imageUrl} />
 
              }
             

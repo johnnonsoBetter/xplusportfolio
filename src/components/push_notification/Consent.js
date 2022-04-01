@@ -1,21 +1,17 @@
 import React, { useState } from 'react'
 
-import { CloseRounded, SendRounded } from '@mui/icons-material'
-import { Avatar, IconButton, Stack, Typography } from '@mui/material'
-import { blue, grey, orange } from '@mui/material/colors'
+import { SendRounded } from '@mui/icons-material'
+import {  IconButton } from '@mui/material'
 import { Box } from '@mui/system'
 
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import DirectionsIcon from '@mui/icons-material/Directions';
 
 
 
 
-export default function Consent({show, setShow}) {
+
+export default function Consent() {
 
    
 

@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, useMediaQuery } from '@mui/material'
+import { Box, useMediaQuery } from '@mui/material'
 import React from 'react'
 import '../../../App.css'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -13,8 +13,6 @@ export default function NotificationList({notifications, totalMembers, fetchMore
     const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesXs = useMediaQuery(theme.breakpoints.up('xs'));
     
-  
-    
     return (
         <Box py={1} mb={4} className="member-container" sx={{width: "100%", scrollbarColor: "red", scrollbarWidth: {display: "none"}, overflowY: "auto"}} >
             
@@ -24,11 +22,7 @@ export default function NotificationList({notifications, totalMembers, fetchMore
            next={fetchMoreData}
            scrollThreshold={1}
            hasMore={totalMembers !== notifications.length}
-           
            height={matchesSm ? "calc(99vh - 60px)" : matchesXs ?  "calc(98vh - 85px)": "calc(99vh - 80px)" }
-            
-         
-           
             >
            
 

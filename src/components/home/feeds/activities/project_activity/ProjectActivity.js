@@ -11,18 +11,14 @@ import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
-
-import { HowToVoteOutlined, InsertLinkOutlined, LinkOffOutlined, LinkRounded, OpenInNewOutlined, UsbOff} from '@mui/icons-material';
+import { HowToVoteOutlined, LinkRounded, OpenInNewOutlined} from '@mui/icons-material';
 import { Badge, IconButton, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../../context/AuthContext';
 import LikerButton from '../../../../shared/LikerButton';
 import VoteButton from '../../../../shared/VoteButton';
 import ActivityOwner from '../ActivityOwner';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import ActivityType from '../ActivityType';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-
 
 
 function ProjectActivity({project, typePackge, showType}) {
@@ -35,7 +31,6 @@ function ProjectActivity({project, typePackge, showType}) {
     total_likes,
     total_votes,
     project_photos,
-    github_link,
     live_link,
     title,
     liked,
@@ -50,8 +45,6 @@ function ProjectActivity({project, typePackge, showType}) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = project_photos.length;
-  
-  const params = useHistory()
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

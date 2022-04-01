@@ -5,8 +5,6 @@ import React from 'react'
 
 export default function AnticipationToggle({checked, setChecked}) {
 
-  
-
     const handleChange = (event) => {
       setChecked(event.target.checked);
     };

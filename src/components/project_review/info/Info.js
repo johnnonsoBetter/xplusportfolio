@@ -1,17 +1,11 @@
 import * as React from 'react';
-import {Avatar, Box, Chip, ListItemIcon, Stack, Typography} from '@mui/material';
+import {Avatar, Box, Stack, Typography} from '@mui/material';
 import Menu from '@mui/material/Menu';
-
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import {  CloseOutlined, InfoOutlined, InsertCommentRounded, ScreenshotRounded} from '@mui/icons-material';
+import { InfoOutlined} from '@mui/icons-material';
 import {Link} from 'react-router-dom'
 import ProjectReviewContext from '../../../context/ProjectReviewContext';
-
-
-
-
-const ITEM_HEIGHT = 48;
 
 
 export default function Project() {

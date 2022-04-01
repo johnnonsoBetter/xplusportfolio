@@ -1,10 +1,8 @@
-import { AppRegistrationRounded, AspectRatioRounded, ColorLensRounded, ComputerRounded, InsertCommentRounded, InsertLinkRounded, LaptopRounded, NoteAddRounded } from '@mui/icons-material'
-import { Avatar, Divider, IconButton, Slide, List, ListItem, ListItemIcon, Slider, Tooltip } from '@mui/material'
-import { Box } from '@mui/system'
+import { AppRegistrationRounded, InsertLinkRounded} from '@mui/icons-material'
+import { Avatar, Divider, IconButton, Slide, List, ListItem, ListItemIcon, Tooltip } from '@mui/material'
 import React, { useContext } from 'react'
-import LaptopRoundedIcon from '@mui/icons-material/LaptopRounded';
 import ProjectReviewContext from '../../context/ProjectReviewContext';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import ColorPicker from './tools/ColorPicker';
 import Resizer from './tools/Resizer';
@@ -68,18 +66,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function ReviewToolbar() {
 
-  const {handleClickOpen, isDrawMode, setIsDrawMode, project} = useContext(ProjectReviewContext)
+  const {isDrawMode, setIsDrawMode, project} = useContext(ProjectReviewContext)
 
   
   const {
-    user,
     github_link,
     live_link,
-    title,
-    liked,
-    voted,
-    description,
-    slug,
   } = project
 
 

@@ -1,31 +1,13 @@
 import React, { useState, useContext, useEffect, useRef} from 'react'
-import {  Avatar, Box, Button,Grid, IconButton, InputAdornment, InputBase, Paper, Skeleton, TextField, Tooltip } from '@mui/material'
+import {  Avatar, Box, Button,Grid, IconButton, Skeleton, TextField, Tooltip } from '@mui/material'
 import UploadLoading from '../../mobile/creat_project/UploadLoading'
-import * as yup from 'yup';
-import { useFormik } from 'formik';
 import {AuthContext} from '../../../../context/AuthContext'
 import { FetchContext } from '../../../../context/FetchContext';
 import { UploadRounded } from '@mui/icons-material';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-
-
-
-
-const validationSchema = yup.object({
-    name: yup
-    .string('Enter your full name')
-    .required('full name is required'),
-    avatar_url: yup
-    .string('avatar_url').nullable(),
-    github_url: yup
-    .string('github url').nullable(),
-      
-  });
-
 export default function EditProfile() {
 
-    const [done, setDone] = useState(false)
     const [loadingBtn, setLoadingBtn] = React.useState(false)
     const {authState, setSomethingWentWrong} = useContext(AuthContext)
     const {authAxios} = useContext(FetchContext)
@@ -40,13 +22,10 @@ export default function EditProfile() {
     const fileRef = useRef(null)
     const [image, setImage] = useState(JSON.parse(null))
 
-
-
     const updateBackgroundPhoto = (e) => {
 
         e.preventDefault()
         const newImage = e.target.files[0]
-        console.log(newImage)
         setImage(newImage)
         setBackCoverUrl(URL.createObjectURL(newImage))
         

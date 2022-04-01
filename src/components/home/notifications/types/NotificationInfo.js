@@ -1,11 +1,8 @@
-import { PsychologyRounded,  ThumbUpRounded } from '@mui/icons-material'
-import { Avatar,  ListItemButton, ListItemIcon, Paper, Typography } from '@mui/material'
-import { blue, green, purple } from '@mui/material/colors'
+import { Avatar,  ListItemButton, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react' 
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { abbreviateName } from '../../../../utils/tools'
-
 
 const getTruncatedBody = (body) => {
 

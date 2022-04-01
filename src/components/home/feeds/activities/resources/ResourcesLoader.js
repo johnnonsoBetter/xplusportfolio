@@ -1,8 +1,6 @@
 import { Box, Grid, Paper, Skeleton } from '@mui/material'
 import React from 'react' 
 
-
-
 export default function ResourcesLoader() {
 
     return (

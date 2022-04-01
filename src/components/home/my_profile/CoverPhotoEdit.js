@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ArrowBackIosNewRounded, UploadRounded} from '@mui/icons-material'
-
-import { Box, Button, Grid, IconButton, InputAdornment, InputBase, TextField, Typography } from '@mui/material'
+import { Box, Button, IconButton, Typography } from '@mui/material'
 import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min'
 import HomeInfoContext from '../../../context/HomeInfoContext'
 import UploadLoading from '../mobile/creat_project/UploadLoading'
@@ -40,17 +39,10 @@ export default function CoverPhotoEdit() {
         authAxios.put('api/v1/background_cover_photos', formData).then(res => {
 
             const {url} = res.data
-
-            
             setDone(true)
             setBackCoverUrl(url)
             history.goBack()
-            
-            
-
         }).catch(err => {
-
-            console.log(err)
             setLoadingBtn(false)
             
         })
@@ -62,7 +54,6 @@ export default function CoverPhotoEdit() {
 
         e.preventDefault()
         const newImage = e.target.files[0]
-        console.log(newImage)
         setImage(newImage)
         setImageUrl(URL.createObjectURL(newImage))
         

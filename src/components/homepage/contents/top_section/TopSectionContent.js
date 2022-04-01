@@ -4,14 +4,12 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
-import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import { Paper,Grid, Typography, Chip, Fab, Avatar } from '@mui/material'
-import { brown, green, grey, orange, pink, purple, yellow } from '@mui/material/colors';
+import { Grid, Typography, Chip, Fab, Avatar } from '@mui/material'
+import {green, orange, pink, purple,  } from '@mui/material/colors';
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);

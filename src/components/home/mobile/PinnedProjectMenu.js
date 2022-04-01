@@ -1,10 +1,9 @@
-import { CloseOutlined, DeleteOutline, Folder, PushPinOutlined } from '@mui/icons-material'
+import { DeleteOutline, Folder } from '@mui/icons-material'
 import { Avatar, Box, Button, IconButton, List, ListItem, ListItemIcon, Stack, Typography } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import DrawerContext from '../../../context/DrawerContext'
-import PinnedProjectLoader from '../pins/PinnedProjectLoader'
 
 
 export default function PinnedProjectMenu() {

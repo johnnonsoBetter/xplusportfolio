@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, LinearProgress, useMediaQuery } from '@mui/material'
+import { Box, Grid, useMediaQuery } from '@mui/material'
 import React from 'react'
 import Member from './Member'
 import '../../../App.css'

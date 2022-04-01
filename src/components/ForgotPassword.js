@@ -1,22 +1,13 @@
-import { Box, CircularProgress, Container, Grow, Stack, TextField, Typography } from '@mui/material'
-import { blue } from '@mui/material/colors'
-import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
-import queryString from 'query-string'
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
-import {  CheckCircleRounded } from '@mui/icons-material'
-import { AuthContext } from '../context/AuthContext'
-import { publicFetch } from '../utils/fetch'
+import { Box, Container, Stack, TextField, Typography } from '@mui/material'
+import React from 'react'
 import { LoadingButton } from '@mui/lab'
 
 
 export default function ForgotPassword() {
 
-    const location = useLocation()
-    const parsed = queryString.parse(location.search);
-    const {confirmation_token} = parsed
-    const [confirmed, setConfirmed] = useState(false)
-    const {authContext} = useContext(AuthContext)
+  
+    
+
 
     // publicFetch.get(`api/v1/auth/confirmation?confirmation_token=${confirmation_token}`).then(res => {
     //     console.log("Confirmed")
@@ -26,7 +17,6 @@ export default function ForgotPassword() {
     //     setConfirmed(true)
     // })
 
-    console.log(parsed)
     return (
         <Box width="100%" sx={{ display: "flex", justifyContent: "center", alignItems: 'center', minHeight: "50vh", flexDirection: "column" }}>
                 <Container maxWidth="md" >
@@ -55,43 +45,43 @@ export default function ForgotPassword() {
     )
 }
 
- function ForgotPasswordMenu(){
+//  function ForgotPasswordMenu(){
 
 
-    return (
-        <Grow in={true} >
+//     return (
+//         <Grow in={true} >
 
             
-        </Grow>
-    )
-}
+//         </Grow>
+//     )
+// }
 
 
 
 
-function Confirming(){
+// function Confirming(){
 
 
-    return (
-        <Grow in={true} >
+//     return (
+//         <Grow in={true} >
 
-            <Box width="100%" sx={{ display: "flex", justifyContent: "center", alignItems: 'center', minHeight: "50vh", flexDirection: "column" }}>
-                <Container maxWidth="md" >
+//             <Box width="100%" sx={{ display: "flex", justifyContent: "center", alignItems: 'center', minHeight: "50vh", flexDirection: "column" }}>
+//                 <Container maxWidth="md" >
 
-                <Stack  width="100%" rowGap={2} >
-                    <Typography variant="h4" fontWeight={900}>Please Wait</Typography>
-                    <Typography variant="h5" fontWeight={600}>Confirming</Typography>
+//                 <Stack  width="100%" rowGap={2} >
+//                     <Typography variant="h4" fontWeight={900}>Please Wait</Typography>
+//                     <Typography variant="h5" fontWeight={600}>Confirming</Typography>
                 
-                    <Box >
-                        <CircularProgress />
-                    </Box>
+//                     <Box >
+//                         <CircularProgress />
+//                     </Box>
                  
                     
-                </Stack>
+//                 </Stack>
 
-                </Container>
+//                 </Container>
                 
-            </Box>
-        </Grow>
-    )
-}
+//             </Box>
+//         </Grow>
+//     )
+// }

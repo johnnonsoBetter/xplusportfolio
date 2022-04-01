@@ -26,10 +26,6 @@ export default function  AncticipationContainer() {
         
         authAxios.get(`/api/v1/users/${slug}/anticipations`, {params: {page: page}}).then(res => {
             const {data} = res 
-
-
-            console.log("fetching the more data that i amago ig t")
-
             setPage(page + 1)
             setAnticipations(anticipations => anticipations.concat(data))
             setTotalAnticipations(anticipations.length)

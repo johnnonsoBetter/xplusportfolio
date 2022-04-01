@@ -1,17 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
-
+import React, { useContext, useEffect } from 'react'
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import DrawerContext from '../../context/DrawerContext';
 import SearchMenu from './mobile/SearchMenu'
 import NotificationMenu from './mobile/NotificationMenu';
 import CreateAnticipationMenu from './mobile/CreateAnticipationMenu'
 import PinnedProjectMenu from './mobile/PinnedProjectMenu'
-import { Alert, Box, IconButton, Snackbar } from '@mui/material';
-import { CloseOutlined } from '@mui/icons-material';
+import { Alert, Box, Snackbar } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -24,13 +19,12 @@ import CoverPhotoEdit from './my_profile/CoverPhotoEdit';
 
 export default function DrawerMenu() {
 
-    const {drawerOpen, setDrawerOpen, fullScreen, setDrawerComponent, image, setFullScreen, drawerComponent} = useContext(DrawerContext)
+    const {drawerOpen, setDrawerOpen, fullScreen, setDrawerComponent, setFullScreen, drawerComponent} = useContext(DrawerContext)
     const location = useLocation()
     const {hash} = location
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesSmSearch = theme.breakpoints.down('md')
-    const [fullWidth, setFullWidth] = useState(false)
     const {somethingWentWrong, setSomethingWentWrong} = useContext(AuthContext)
 
     const handleClose = (event, reason) => {
@@ -42,10 +36,6 @@ export default function DrawerMenu() {
       };
 
     useEffect(() => {
-        
-        setFullWidth(false)
-        setFullScreen(false)
-
         
         if (hash == "#search" && matches ){
             // open the search menu, when the search hash is found.
@@ -72,14 +62,14 @@ export default function DrawerMenu() {
         }else if (hash === "#create_anticipation") {
             setDrawerOpen(true)
             setDrawerComponent('create_anticipation')
-            setFullWidth(true)
+            
 
             if(matches)
                 setFullScreen(true)
         }else if (hash === "#create_project") {
             setDrawerOpen(true)
             setDrawerComponent('create_project')
-            setFullWidth(true)
+            
 
             if(matches)
                 setFullScreen(true)

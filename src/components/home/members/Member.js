@@ -67,7 +67,7 @@ function FollowButton({is_following, slug}) {
         setFollowTrue(true)
 
         authAxios.post(`/api/v1/users/${slug}/followings`, {id: slug}).then(res => {
-            console.log(res)
+           
         }).catch(err => {
             setIsFollowing(false)
             setFollowTrue(false)
@@ -83,7 +83,7 @@ function FollowButton({is_following, slug}) {
         setunFollowTrue(true)
 
         authAxios.delete(`/api/v1/users/${slug}/followings`, {id: slug}).then(res => {
-            console.log(res)
+        
         }).catch(err => {
             setIsFollowing(true)
             setunFollowTrue(false)

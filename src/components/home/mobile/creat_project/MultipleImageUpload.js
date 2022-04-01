@@ -1,21 +1,18 @@
 
-import React, { Component, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
-import { Avatar, IconButton, Input, InputBase, Tooltip } from '@mui/material';
-import { AddPhotoAlternateRounded, CloseRounded, Menu } from '@mui/icons-material';
+import { Avatar, IconButton, Tooltip } from '@mui/material';
+import { AddPhotoAlternateRounded, CloseRounded } from '@mui/icons-material';
 
 export default function MultipleImageUpload (props) {
 
-  
     const {images, imageURLs, setImageURLs, setImages} = props
     const [changed, setChanged] = useState(false)
     const fileRef = useRef(null)
@@ -42,7 +39,6 @@ export default function MultipleImageUpload (props) {
         e.preventDefault()
 
         const newImages = images.concat(e.target.files[0])
-        console.log(newImages[0])
         setImages( [...new Set(newImages)])
         setChanged(!changed)
 
@@ -153,7 +149,6 @@ function Images({imageURLs, setImageURLs, setImages, images}) {
                 <Box display='flex' justifyContent='flex-end' >
                   <Tooltip title="Remove" >  
                   <IconButton onClick={() => {
-                    console.log(images)
                     const newImageURLs = imageURLs.filter(img_ => img_.name !== img.name)
                     const newImages = images.filter(img_ => img_.name !== img.name)
                     setImages(newImages)

@@ -1,28 +1,18 @@
 
 
-import React, { useContext, useEffect, useState } from 'react'
-import { Badge, Button, Menu, Typography, Avatar, Stack, MenuItem, Chip, ButtonBase} from '@mui/material';
-import {FetchContext} from '../../../../../context/FetchContext'
-import SubscribersLoader from '../../../../shared/SubscribersLoader';
+import React, { useContext, useEffect} from 'react'
+import {Menu, Typography, ButtonBase} from '@mui/material';
 import { Box } from '@mui/system';
 import { AuthContext } from '../../../../../context/AuthContext';
-import { Link } from 'react-router-dom';
-import { Virtuoso } from 'react-virtuoso';
-import { abbreviateName } from '../../../../../utils/tools';
-
-
 
 
 
 export default function NoteInfo({note}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [loading, setLoading] = useState(true)
   const open = Boolean(anchorEl);
   const {setSomethingWentWrong} = useContext(AuthContext)
-  const {authAxios} = useContext(FetchContext)
-
   const {content, user} = note 
-    const {image, name} = user 
+  const { name} = user 
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -32,18 +22,12 @@ export default function NoteInfo({note}) {
   };
 
 
-
   useEffect(() => {
 
     return () => {
       setSomethingWentWrong(false)
-      
-     
     }
   }, [open])
-
-
-
 
   return (
     <React.Fragment>
@@ -96,9 +80,6 @@ export default function NoteInfo({note}) {
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
       >
         
-
-           
-      
           <Box width='100%' display='flex' my={2} justifyContent='center' alignItems='center'  >
               <img src='/images/review_loader.gif' width={45} height={45} />
               
@@ -107,12 +88,6 @@ export default function NoteInfo({note}) {
               <Typography px={1} variant='body2'> {content} </Typography> 
               <Typography  px={1} variant='body2' > by @{name}</Typography>
           </Box>
-
-    
-
-
-       
-
 
       </Menu>
     </React.Fragment>

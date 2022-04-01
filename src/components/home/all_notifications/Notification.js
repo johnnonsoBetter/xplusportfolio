@@ -1,11 +1,11 @@
-import { CheckBoxRounded, HowToVoteRounded, PsychologyRounded, ThumbUpRounded, VerifiedRounded } from '@mui/icons-material'
-import { Box, Grid, IconButton, Paper, Stack, Tooltip, Typography, useMediaQuery } from '@mui/material'
+import { CheckBoxRounded} from '@mui/icons-material'
+import { Box,IconButton, Paper, Stack, Tooltip, Typography } from '@mui/material'
 import { useContext, useState } from 'react'
 import {FetchContext} from '../../../context/FetchContext'
 import { AuthContext } from '../../../context/AuthContext'
 import HomeInfoContext from '../../../context/HomeInfoContext'
 import NotificationInfo from './NotificationInfo'
-import { blue, orange, purple } from '@mui/material/colors'
+import { blue, orange } from '@mui/material/colors'
 
 
 export default function Notification({object, type, user_slug, seen, id}){
@@ -17,7 +17,6 @@ export default function Notification({object, type, user_slug, seen, id}){
     const {anticipation, project, action_owner, total_performers} = object
 
     
-
     const markAsSeen = () => {
 
 
@@ -41,8 +40,6 @@ export default function Notification({object, type, user_slug, seen, id}){
             
              <Stack  >
              
-     
-            
              <Box maxWidth={120}>
                  <Typography sx={{ textTransform: "downcase", fontSize: "0.8em" }} variant="body2" color="ButtonShadow" noWrap={true}> 2days ago</Typography>
                 

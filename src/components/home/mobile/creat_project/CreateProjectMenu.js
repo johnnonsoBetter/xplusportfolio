@@ -1,23 +1,17 @@
 import { LoadingButton } from '@mui/lab'
-import {  Box, Divider, Typography, TextField, IconButton, CircularProgress, Grid, Autocomplete} from '@mui/material'
+import {  Box, Divider, Typography, TextField, CircularProgress, Grid, Autocomplete} from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
-
 import 'react-multi-carousel/lib/styles.css';
 import { FetchContext } from "../../../../context/FetchContext";
-import { ArrowBackIosRounded, CloseRounded } from '@mui/icons-material';
+import { ArrowBackIosRounded } from '@mui/icons-material';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-
-import nextDay from 'date-fns/nextDay'
 import MultipleImageUpload from './MultipleImageUpload'
 import { AuthContext } from '../../../../context/AuthContext';
 import MyAnticipations from './MyAnticipations';
 import AnticipationToggle from './AnticipationToggle';
 import UploadLoading from './UploadLoading';
-
-
-
 
 const validationSchema = yup.object({
     title: yup 
@@ -35,12 +29,6 @@ const validationSchema = yup.object({
     anticipation_id: null
 });
 
-
-
- 
-
-
-
 const Loader = () => {
 
   return (
@@ -51,24 +39,11 @@ const Loader = () => {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 export default function CreateProjectMenu() {
 
   const {authAxios} = useContext(FetchContext)
   const [loading, setLoading] = useState(true)
   const history = useHistory()
-  const [dueDate, setDueDate] = useState(nextDay(new Date(), -1))
   const [loadingBtn, setLoadingBtn] = useState(false)
   const [images, setImages] = useState([])
   const [imageURLs, setImageURLs] = useState([])
@@ -77,7 +52,6 @@ export default function CreateProjectMenu() {
   const [checked, setChecked] = useState(false)
   const [anticipationId, setAnticipationId] = useState(null)
   const [done, setDone] = useState(false)
- 
   const {setSomethingWentWrong} = useContext(AuthContext)
  
 
@@ -109,9 +83,8 @@ export default function CreateProjectMenu() {
       images.forEach((img , index) => formData.append('image' + index, img))
 
       authAxios.post('api/v1/projects', formData).then(res => {
-        console.log(res)
+        
         setDone(true)
-        setDueDate(nextDay(new Date(), -1))
         setLoadingBtn(false)
         setImageURLs([])
         setImages([])

@@ -4,14 +4,12 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
-import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import { Paper,Grid, Typography, Chip, Fab, Avatar } from '@mui/material'
-import { brown, green, grey, orange, pink, purple, yellow } from '@mui/material/colors';
+import { Grid, Typography, Chip, Fab, Avatar } from '@mui/material'
+import { green, orange, pink, purple } from '@mui/material/colors';
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -129,7 +127,7 @@ function SlideShow({message}) {
                             <Grid item xs={12}  >
                                 <Box display='flex'   sx={{maxHeight: {xs: 'auto', sm: 'auto', md: 'auto'}, alignItems: {xs: 'flex-start', sm: 'flex-start', md: 'center'}}} justifyContent='center' >
                                     
-                                        <img src={step.imgUrl} style={{maxWidth: '100%', borderRadius: '15px'}} />
+                                        <img src={step.imgUrl} alt="" style={{maxWidth: '100%', borderRadius: '15px'}} />
                                     
                                 </Box>
                             </Grid>

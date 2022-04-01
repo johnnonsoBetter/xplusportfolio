@@ -1,6 +1,6 @@
 import React, { useContext } from 'react' 
 import { Grid, IconButton, Paper, Divider, Box, Tooltip } from '@mui/material';
-import { ArrowLeftRounded, ArrowRightRounded, FiberManualRecordRounded, FullscreenExitOutlined, FullscreenOutlined, RefreshRounded } from '@mui/icons-material';
+import { ArrowLeftRounded, ArrowRightRounded, FiberManualRecordRounded, FullscreenExitOutlined, FullscreenOutlined } from '@mui/icons-material';
 import ProjectReviewContext from '../../../context/ProjectReviewContext';
 import { Canvas } from '../canvas/Canvas';
 
@@ -57,7 +57,7 @@ export default function  ProjectIframe() {
 
             <Box width='100%' height="100%" sx={{position: 'relative'}} id="capture" >
 
-            <iframe name='iframe' id='iframe'  src={live_link} style={{border: 'none', borderBottomRightRadius: "15px", borderBottomLeftRadius: "15px"}} height="95%" width="100%" >
+            <iframe title='project_review' name='iframe' id='iframe'  src={live_link} style={{border: 'none', borderBottomRightRadius: "15px", borderBottomLeftRadius: "15px"}} height="95%" width="100%" >
 
             </iframe>
             {

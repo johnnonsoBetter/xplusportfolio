@@ -3,11 +3,8 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import CircularProgress, {
-  circularProgressClasses,
-} from '@mui/material/CircularProgress';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
-import { Chip, Slide, Typography, Zoom } from '@mui/material';
+import { Chip, Typography, Zoom } from '@mui/material';
 import { CheckCircleRounded } from '@mui/icons-material';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({

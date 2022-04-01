@@ -7,16 +7,14 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Note from './Note';
 
 
-export default function SuggestionContainer (props) {
+export default function SuggestionContainer () {
 
   const {authAxios} = useContext(FetchContext)
-  const {setSomethingWentWrong, isCurrentUser} = useContext(AuthContext)
+  const {setSomethingWentWrong} = useContext(AuthContext)
   const [loading, setLoading] = useState(true)
   const [notes, setNotes] = useState([])
   const {slug} = useParams()
-
-
-
+  
   useEffect(() => {   
        
 
@@ -24,10 +22,8 @@ export default function SuggestionContainer (props) {
         setNotes(res.data)  
         setLoading(false)
     }).catch(err => {
-
         setSomethingWentWrong(true)
     })
-
 
     return () => {
         setNotes([])

@@ -5,6 +5,22 @@
 <!-- This is the frontend part of the application, it consumes data from its backend server application  [https://github.com/johnnonsoBetter/school_b](https://github.com/johnnonsoBetter/school_b) -->
 
 
+## Features
+
+* Project Reivew Tool.
+* Instant Live Feed.
+* Search (Text based indexed search functionality).
+* Notifications.
+* Like, Vote, Follow, Unlike, Unfollow, Unvote functionality.
+* logins and signup.
+* Create Anticipation
+* Subscribe Anticipation.
+* Adding notes.
+* Making suggestions.
+* View Profile
+* Online and offline detection
+
+
 ## Important Technologies Utilized
 * Ruby on Rails ()
 * React (17.0.2)
@@ -45,15 +61,4 @@ Share Resource: What use would it be to suggest a complex feature for a project 
 
 
 
-## Features
 
-<!-- * Instant Grade And Behavior Report Notifications.
-* School Inventory Management.
-* Automated Reported Cards Generation.
-* Reliable Record Keeping.
-* Seperate domain for teachers, parents, admins.
-* PWA support
-* Teachers dashboard.
-* School admin dashboard.
-* Parent dashboard.
-* logins and signup. -->

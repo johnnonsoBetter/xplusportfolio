@@ -58,7 +58,7 @@ Share Resource: What use would it be to suggest a complex feature for a project 
 ## Basic Usage
 ### Register
 Visit [xplusportfolio.tech](https://xplusportfolio.tech), to sign up and create an account. 
-![alt text](https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648518416/homepage_photos/ezgif.com-gif-maker_11_hnccxw.gif)
+![alt text](https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648905990/git_homepage/ezgif.com-gif-maker_12_lb3to1.gif)
 
 
 

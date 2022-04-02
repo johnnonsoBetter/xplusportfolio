@@ -22,12 +22,12 @@
 * Online and offline detection
 
 ## Important Technologies Utilized
-* Ruby on Rails ()
+* Ruby on Rails (6.0.4.1)
 * React (17.0.2)
-* Devise-token-auth
-* Postgresql
-* Sidekiq
-* Elastic-search
+* Devise-token-auth (1.2.0)
+* Postgresql (1.2.3)
+* Sidekiq (4.2.10)
+* Elastic-search (Searchkick) (4.6.3)
 * Redis
 * Cloudinary
 * Action cable

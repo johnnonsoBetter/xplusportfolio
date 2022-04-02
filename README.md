@@ -76,6 +76,12 @@ Review projects by using the project review tool
 ![alt text](https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648909249/git_homepage/ezgif.com-gif-maker_15_prhamf.gif)
 
 
+### Utilize Project Review tool
+Give feedbacks on project by making suggestions, adding notes and drawing out bugs by uploading screenshots.
+![alt text](https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648909787/git_homepage/ezgif.com-gif-maker_16_on7ytj.gif)
+
+
+
 
 
 

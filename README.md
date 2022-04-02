@@ -57,9 +57,14 @@ Share Resource: What use would it be to suggest a complex feature for a project 
 
 ## Basic Usage
 ### Register
-Visit [xplusportfolio.tech](https://xplusportfolio.tech), to sign up and create an account. 
+Visit [xplusportfolio.tech](https://xplusportfolio.tech), to sign up and create an account. confirm your account on email and login.
 ![alt text](https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648905990/git_homepage/ezgif.com-gif-maker_12_lb3to1.gif)
 
+
+## Start Exploring
+### Add your existing projects.
+Add any of your existing live projects you have worked on. Ensure that project is live and the repo is public
+![alt text](https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648905990/git_homepage/ezgif.com-gif-maker_12_lb3to1.gif)
 
 
 

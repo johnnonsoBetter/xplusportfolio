@@ -112,14 +112,12 @@ export default function Signup(){
        
         const {status, data} = err.response
         const {errors} = data
-        console.log(errors)
         const newSnackInfo = Object.assign(snackInfo, {})
-        setSnackInfo(newSnackInfo)
-        setLoginLoading(false)
-        setLoginError(true)
         newSnackInfo.message = errors['full_messages'][0]
         
         setSnackInfo(newSnackInfo)
+        setLoginError(true)
+        setLoginLoading(false)
 
 
       })

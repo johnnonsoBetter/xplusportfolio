@@ -19,7 +19,11 @@ import LikerButton from '../../../../shared/LikerButton';
 import VoteButton from '../../../../shared/VoteButton';
 import ActivityOwner from '../ActivityOwner';
 import ActivityType from '../ActivityType';
+import { autoPlay } from 'react-swipeable-views-utils';
 
+
+
+const AutoSwipeableView = autoPlay(SwipeableViews)
 
 function ProjectActivity({project, typePackge, showType}) {
 
@@ -157,11 +161,12 @@ function ProjectActivity({project, typePackge, showType}) {
             </Box>
         </Box>
       </Paper>
-      <SwipeableViews
+      <AutoSwipeableView
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
+        interval={5000}
       >
         {project_photos.map((step, index) => (
           <div key={step.img_url}>
@@ -190,7 +195,7 @@ function ProjectActivity({project, typePackge, showType}) {
             ) : null}
           </div>
         ))}
-      </SwipeableViews>
+      </AutoSwipeableView>
       <MobileStepper
         steps={maxSteps}
         position="static"

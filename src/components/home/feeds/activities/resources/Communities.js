@@ -35,7 +35,7 @@ export default function Communities() {
     
 
     return (
-        <Box my={2} sx={{mx: {xs: 2, sm: 2, md: 0}}} mb={5} height="calc(96vh - 45px)"  overflow='auto'>
+        <Box my={2} mb={5} height="calc(96vh - 45px)"  overflow='auto'>
 
             <Typography textAlign='left' variant='h6' sx={{ml: {xs: 2, sm: 2, md: 0}}}> Communities</Typography>
          

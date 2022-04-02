@@ -28,7 +28,7 @@ function ResourceList({resources}) {
   };
 
   return (
-    <Box position='relative'>
+    <Box position='relative' sx={{mx: {xs: 2, sm: 2, md: 0}}}>
 
         <Box my={2} display='flex' justifyContent='flex-end' >
             <Fab color=""  aria-label="prev" onClick={handleBack} disabled={activeStep === 0} sx={{mx: 2}}>

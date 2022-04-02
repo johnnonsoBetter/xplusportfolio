@@ -84,14 +84,12 @@ export default function usePushNotifications() {
               
             authAxios.post("/api/v1/web_push_notifications", {subscription: subscription})
             .then(function(response) {
-
-                console.log("I have completed hte sub")
                 setSubCompleted(true)
                 setPushServerSubscriptionId(response.id);
                 setLoading(false);
             })
             .catch(err => {
-                console.log("err has occured")
+               
                 setLoading(false);
                 setError(err);
             });
@@ -115,7 +113,6 @@ export default function usePushNotifications() {
         setLoading(false);
       })
       .catch(err => {
-        console.error("Couldn't create the notification subscription", err, "name:", err.name, "message:", err.message, "code:", err.code);
         setError(err);
         setLoading(false);
       });

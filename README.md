@@ -12,6 +12,7 @@
 * Search (Text based indexed search functionality).
 * Notifications.
 * Like, Vote, Follow, Unlike, Unfollow, Unvote functionality.
+* PWA support for push notifications and installability  
 * logins and signup.
 * Create Anticipation
 * Subscribe Anticipation.
@@ -19,7 +20,6 @@
 * Making suggestions.
 * View Profile
 * Online and offline detection
-
 
 ## Important Technologies Utilized
 * Ruby on Rails ()
@@ -55,7 +55,8 @@ Share Resource: What use would it be to suggest a complex feature for a project 
 
 
 
-
+## Basic Usage
+### Register
 
 
 

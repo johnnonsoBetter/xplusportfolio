@@ -54,7 +54,7 @@ const features = [
         justifyContent: 'flex-end',
         transformOrigin: 'right',
         p: 'perspective(1200px) rotateY(-5deg)',
-        backgroundColor: 'white',
+        backgroundColor: '',
         title: 'Discover helpful resources',
         body1: 'Improve your skill-sets by utilizing rich contents provided by other platforms ',
         imgUrl: 'https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648518416/homepage_photos/ezgif.com-gif-maker_11_hnccxw.gif',

@@ -48,7 +48,7 @@ Anticipate: A User can use the platform to share a project they are working on t
 This helps the user put in the work and complete the project because he is aware that other users are waiting for his project.
 
 ### New Ideas
-Gain New Ideas: Users are able to suggest new ideas for an existing project to be worked on, helping the user to add more advanced features and fix bugs. “Imagine turning a todo-app into a todoist by suggesting useful features like login, push notifications and more“.  The reality is that no app is stupid and a toy, it requires better features to make it more useable.
+Gain New Ideas: Users are able to suggest new ideas for an existing project to be worked on, helping the user to add more advanced features and fix bugs. “Imagine turning a todo-app into a todoist by suggesting useful features like login, push notifications and more“.  The reality is that no app is stupid and a toy, it requires better features to make it more useable. [xplusportfolio.tech](https://xplusportfolio.tech)
 
 ### Required Skills
 Share Resource: What use would it be to suggest a complex feature for a project and not give the user direction to accomplish it. Users not only share suggestions to be worked on, they can share resources to accomplish the suggestion.
@@ -88,3 +88,7 @@ Search, view members, like, follow, vote project, anticipations and more.
 
 
 
+
+
+## Note.
+This is the frontend part of the application, it consumes data from its backend server application [backend](https://github.com/johnnonsoBetter/xplusportfolio_b)

@@ -64,7 +64,7 @@ Visit [xplusportfolio.tech](https://xplusportfolio.tech), to sign up and create 
 ## Start Exploring
 ### Add your existing projects.
 Add any of your existing live projects you have worked on. Ensure that project is live and the repo is public
-![alt text](https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648905990/git_homepage/ezgif.com-gif-maker_12_lb3to1.gif)
+![alt text](https://res.cloudinary.com/dn6vnxbnm/image/upload/v1648906545/git_homepage/ezgif.com-gif-maker_13_m3kcsj.gif)
 
 
 

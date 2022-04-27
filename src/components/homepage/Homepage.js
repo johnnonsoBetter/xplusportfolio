@@ -19,12 +19,11 @@ export default function Homepage() {
   return (
     <Box height='calc(99.9vh - 2px)' overflow='auto' 
         style={{  
-      
-            
             backgroundColor: "#f5f5f5",
             backgroundPosition: 'center',
         
-            backgroundRepeat: 'repeat'
+            backgroundRepeat: 'repeat',
+            position: 'relative'
         }}      
     >
       <CssBaseline />
